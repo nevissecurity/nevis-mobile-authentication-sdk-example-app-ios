@@ -1,0 +1,160 @@
+author: Nevis Security AG
+copyright: '© 2022 Nevis Security AG. All rights reserved.'
+module: NevisExampleApp
+
+clean: true
+theme: fullwidth
+output: Docs/generated
+include: 'NevisExampleApp/*'
+exclude: 'Pods/*'
+skip_undocumented: true
+hide_documentation_coverage: true
+xcodebuild_arguments:
+    - '-workspace'
+    - 'NevisExampleApp.xcworkspace'
+    - '-scheme'
+    - 'NevisExampleApp'
+
+custom_categories:
+  - name: Application
+    children:
+      - AppDelegate
+  - name: Configuration
+    children:
+      - ConfigurationLoader
+      - ConfigurationLoaderImpl
+      - AppConfiguration
+      - LoginConfiguration
+      - Environment
+  - name: Coordinator
+    children:
+      - Coordinator
+      - NavigationParameterizable
+      - AppCoordinator
+      - AppCoordinatorImpl
+  - name: Dependency Provider
+    children:
+      - AppAssembly
+      - DependencyProvider
+      - ObjectScope
+  - name: Error
+    children:
+      - AppError
+      - ErrorHandlerChain
+      - ErrorHandlerChainImpl
+      - ErrorHandler
+      - GeneralErrorHandlerName
+      - GeneralErrorHandler
+      - NevisErrorHandlerName
+      - NevisErrorHandler
+  - name: Interaction
+    children:
+      - AccountSelectorImpl
+      - AuthenticationAuthenticatorSelectorName
+      - AuthenticationAuthenticatorSelectorImpl
+      - BiometricUserVerifierImpl
+      - OutOfBandOperationHandler
+      - OutOfBandOperationHandlerImpl
+      - PinChangerImpl
+      - PinEnrollerImpl
+      - PinUserVerifierImpl
+      - RegistrationAuthenticatorSelectorName
+      - RegistrationAuthenticatorSelectorImpl
+  - name: Model
+    children:
+      - DeepLink
+      - Operation
+      - OperationError
+
+  - name: Screens
+    children:
+      - Screen
+      - BaseScreen
+      - BaseView
+      - LaunchScreen
+      - LaunchPresenter
+      - HomeScreen
+      - HomePresenter
+      - QrScannerScreen
+      - QrScannerPresenter
+      - SelectAccountScreen
+      - SelectAccountPresenter
+      - SelectAccountParameter
+      - SelectAccountItemViewModel
+      - AccountCell
+      - SelectAuthenticatorScreen
+      - SelectAuthenticatorPresenter
+      - SelectAuthenticatorParameter
+      - SelectAuthenticatorItemViewModel
+      - AuthenticatorCell
+      - PinScreen
+      - PinView
+      - PinPresenter
+      - PinParameter
+      - PinProtectionInformation
+      - AuthCloudApiRegistrationScreen
+      - AuthCloudApiRegistrationPresenter
+      - ChangeDeviceInformationScreen
+      - ChangeDeviceInformationPresenter
+      - ChangeDeviceInformationParameter
+      - LegacyLoginScreen
+      - LegacyLoginPresenter
+      - NotEnrolledAuthenticatorScreen
+      - NotEnrolledAuthenticatorPresenter
+      - TransactionConfirmationScreen
+      - TransactionConfirmationPresenter
+      - TransactionConfirmationParameter
+      - ResultScreen
+      - ResultPresenter
+      - ResultParameter
+      - LoggingScreen
+      - LoggingView
+      - LoggingPresenter
+  - name: Utility / Client Provider
+    children:
+      - ClientProvider
+      - ClientProviderImpl
+  - name: Utility / Timer
+    children:
+      - InteractionCountDownTimer
+  - name: Utility / Extensions
+    children:
+      - Authenticator
+      - '[String: String]'
+      - Notification
+      - OSLog
+      - PinAuthenticatorProtectionStatus
+      - String
+      - String?
+      - UIApplication
+      - UIDevice
+      - UINavigationController
+      - UIStackView
+      - UIView
+      - UIViewController      
+  - name: Utility / Localization
+    children:
+      - L10n
+  - name: Utility / Logger
+    children:
+      - SDKLogger
+      - SDKLoggerImpl
+  - name: Utility / Login
+    children:
+      - LoginService
+      - LoginServiceImpl
+      - LoginSessionDelegate
+      - LoginRequest
+      - LoginResponse
+  - name: Utility / UI
+    children:
+      - NSLabel
+      - NSTextField
+      - OutlinedButton
+      - Style
+  - name: Utility / Validation
+    children:
+      - AccountValidator
+      - AuthCloudApiRegistrationValidator
+      - LegacyLoginValidator
+      - ValidationResult
