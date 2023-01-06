@@ -24,7 +24,7 @@ final class SelectAccountScreen: BaseScreen, Screen {
 	var presenter: SelectAccountPresenter!
 
 	/// The list of accounts.
-	private var accounts = Set<Account>()
+	private var accounts = [any Account]()
 
 	// MARK: - Initialization
 

@@ -17,17 +17,17 @@ extension AccountValidator {
 	///
 	/// - Parameter context: The context holding the accounts to validate.
 	/// - Returns: The result of the validation
-	func validate(context: AccountSelectionContext) -> ValidationResult<Set<Account>> {
+	func validate(context: AccountSelectionContext) -> ValidationResult<[any Account]> {
 		let supportedAuthenticators = context.authenticators.filter(\.isSupportedByHardware)
 		if supportedAuthenticators.isEmpty {
 			return .failure(AppError.authenticatorNotFound)
 		}
 
-		var accounts = Set<Account>()
+		var accounts = [any Account]()
 		supportedAuthenticators.forEach { authenticator in
 			authenticator.registration?.registeredAccounts.forEach { account in
 				if context.isPolicyCompliant(username: account.username, aaid: authenticator.aaid) {
-					accounts.insert(account)
+					accounts.append(account)
 				}
 			}
 		}

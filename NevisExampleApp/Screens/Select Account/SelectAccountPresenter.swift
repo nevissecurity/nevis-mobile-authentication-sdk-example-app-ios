@@ -15,7 +15,7 @@ enum SelectAccountParameter: NavigationParameterizable {
 	///    - operation: The ongoing operation.
 	///    - handler: The account selection handler.
 	///    - message: The message to confirm.
-	case select(accounts: Set<Account>,
+	case select(accounts: [any Account],
 	            operation: Operation,
 	            handler: AccountSelectionHandler?,
 	            message: String?)
@@ -59,7 +59,7 @@ final class SelectAccountPresenter {
 	}
 
 	/// The list of accounts.
-	private var accounts = Set<Account>()
+	private var accounts = [any Account]()
 
 	/// The current operation.
 	private var operation: Operation?
@@ -119,14 +119,14 @@ extension SelectAccountPresenter {
 	/// Returns the available accounts.
 	///
 	/// - Returns: The available accounts.
-	func getAccounts() -> Set<Account> {
+	func getAccounts() -> [any Account] {
 		accounts
 	}
 
 	/// Selects the given account.
 	///
 	/// - Parameter account: The selected account.
-	func select(account: Account) {
+	func select(account: any Account) {
 		if let transactionConfirmationData {
 			// Transaction confirmation data is received from the SDK
 			// Show it to the user for confirmation or cancellation
@@ -158,7 +158,7 @@ private extension SelectAccountPresenter {
 	/// - Parameters:
 	///   - transaction: The transaction that need to be confirmed or cancelled by the user.
 	///   - account: The current account.
-	func confirm(transaction: String, using account: Account) {
+	func confirm(transaction: String, using account: any Account) {
 		let parameter: TransactionConfirmationParameter = .confirm(message: transaction,
 		                                                           account: account,
 		                                                           handler: handler!)
@@ -169,7 +169,7 @@ private extension SelectAccountPresenter {
 	/// Starts an In-Band Authentication.
 	///
 	/// - Parameter account: The account that must be used to authenticate.
-	func inBandAuthenticate(using account: Account, completion handler: ((Result<AuthorizationProvider?, Error>) -> ())? = nil) {
+	func inBandAuthenticate(using account: any Account, completion handler: ((Result<AuthorizationProvider?, Error>) -> ())? = nil) {
 		mobileAuthenticationClient?.operations.authentication
 			.username(account.username)
 			.authenticatorSelector(authenticatorSelector)
@@ -202,7 +202,7 @@ private extension SelectAccountPresenter {
 	/// Deregisters the given account.
 	///
 	/// - Parameter account: The account to deregister.
-	func deregister(using account: Account) {
+	func deregister(using account: any Account) {
 		logger.log("Deregistering account: \(account)")
 
 		// Deregistration (Identity Suite env) is in progress where the deregistration endpoint is guarded,
@@ -265,7 +265,7 @@ private extension SelectAccountPresenter {
 	/// Changes the PIN of the selected account.
 	///
 	/// - Parameter account: The seleced account.
-	func changePin(using account: Account) {
+	func changePin(using account: any Account) {
 		logger.log("Changing PIN for account: \(account)")
 		view?.disableInteraction()
 		mobileAuthenticationClient?.operations.pinChange
