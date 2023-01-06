@@ -122,7 +122,7 @@ extension HomePresenter {
 
 	/// Starts an In-Band Authentication operation.
 	func authenticate() {
-		let accounts = mobileAuthenticationClient?.localData.accounts ?? Set<Account>()
+		let accounts = mobileAuthenticationClient?.localData.accounts ?? [any Account]()
 		let parameter: SelectAccountParameter = .select(accounts: accounts,
 		                                                operation: .authentication,
 		                                                handler: nil,
@@ -139,13 +139,14 @@ extension HomePresenter {
 			}
 
 			view?.disableInteraction()
-			doDeregistration(for: accounts)
+			let usernames = accounts.map(\.username)
+			doDeregistration(for: usernames)
 		case .identitySuite:
 			// In the Identity Suite environment the deregistration endpoint is guarded,
 			// and as such we need to provide a cookie to the deregister call.
 			// Also in Identity Siute a deregistration has to be authenticated for every user,
 			// so batch deregistration is not really possible.
-			let accounts = mobileAuthenticationClient?.localData.accounts ?? Set<Account>()
+			let accounts = mobileAuthenticationClient?.localData.accounts ?? [any Account]()
 			let parameter: SelectAccountParameter = .select(accounts: accounts,
 			                                                operation: .deregistration,
 			                                                handler: nil,
@@ -161,7 +162,7 @@ extension HomePresenter {
 			return errorHandlerChain.handle(error: AppError.pinAuthenticatorNotFound)
 		}
 
-		guard let pinAuthenticator = authenticators.filter({ $0.aaid == Authenticator.pinAuthenticatorAaid }).first else {
+		guard let pinAuthenticator = authenticators.filter({ $0.aaid == AuthenticatorAaid.Pin.rawValue }).first else {
 			return errorHandlerChain.handle(error: AppError.pinAuthenticatorNotFound)
 		}
 
@@ -174,7 +175,12 @@ extension HomePresenter {
 			return errorHandlerChain.handle(error: AppError.accountsNotFound)
 		}
 
-		let eligibleAccounts = accounts.filter { enrollment.enrolledAccounts.contains($0) }
+		let eligibleAccounts = accounts.filter { account in
+			enrollment.enrolledAccounts.contains { enrolledAccount in
+				enrolledAccount.username == account.username
+			}
+		}
+
 		switch eligibleAccounts.count {
 		case 0:
 			errorHandlerChain.handle(error: AppError.accountsNotFound)
@@ -218,48 +224,22 @@ extension HomePresenter {
 
 private extension HomePresenter {
 
-	/// Deregisters a list of account.
+	/// Deregisters all accounts.
 	///
-	/// - Parameter accounts: The list of accounts to deregister.
-	func doDeregistration(for accounts: Set<Account>) {
-		guard let authenticators = mobileAuthenticationClient?.localData.authenticators else {
-			return appCoordinator.navigateToResult(with: .success(operation: .deregistration))
-		}
-
-		var remainingAccounts = accounts
-		guard let account = remainingAccounts.popFirst() else {
+	/// - Parameters:
+	///   - usernames: The list of usernames to deregister..
+	func doDeregistration(for usernames: [Username]) {
+		var remainingUsernames = usernames
+		guard let username = remainingUsernames.popLast() else {
 			logger.log("Deregistration succeeded.", color: .green)
 			return appCoordinator.navigateToResult(with: .success(operation: .deregistration))
 		}
 
-		let registeredAuthenticators = authenticators.filter {
-			$0.registration?.isRegistered(account.username) ?? false
-		}
-
-		doDeregistration(for: account.username, aaids: Set(registeredAuthenticators.map(\.aaid))) {
-			self.doDeregistration(for: remainingAccounts)
-		}
-	}
-
-	/// Deregisters all authenticators of a given account.
-	///
-	/// - Parameters:
-	///   - accounts: The account to deregister.
-	///   - aaids: The list of authenticator AAIDs to deregister.
-	///   - handler: Code need to be executed on successful deregistration.
-	func doDeregistration(for username: String, aaids: Set<String>, completion handler: @escaping () -> ()) {
-		var remainingAaids = aaids
-		guard let aaid = remainingAaids.popFirst() else {
-			logger.log("Deregistration succeeded for user \(username)", color: .green)
-			return handler()
-		}
-
 		mobileAuthenticationClient?.operations.deregistration
 			.username(username)
-			.aaid(aaid)
 			.onSuccess {
-				self.logger.log("Deregistration succeeded for authenticator with aaid \(aaid) for user \(username)", color: .green)
-				self.doDeregistration(for: username, aaids: remainingAaids, completion: handler)
+				self.logger.log("Deregistration succeeded for user \(username)", color: .green)
+				self.doDeregistration(for: remainingUsernames)
 			}
 			.onError {
 				self.logger.log("Deregistration failed for user \(username)", color: .red)

@@ -24,7 +24,7 @@ final class SelectAuthenticatorScreen: BaseScreen, Screen {
 	var presenter: SelectAuthenticatorPresenter!
 
 	/// The list of authenticators.
-	private var authenticators = Set<Authenticator>()
+	private var authenticators = [any Authenticator]()
 
 	// MARK: - Initialization
 

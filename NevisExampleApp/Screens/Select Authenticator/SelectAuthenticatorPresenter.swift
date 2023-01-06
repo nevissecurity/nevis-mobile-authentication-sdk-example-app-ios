@@ -13,7 +13,7 @@ enum SelectAuthenticatorParameter: NavigationParameterizable {
 	///  - Parameters:
 	///    - authenticators: The list of authenticators.
 	///    - handler: The authenticator selection handler.
-	case select(authenticators: Set<Authenticator>,
+	case select(authenticators: [any Authenticator],
 	            handler: AuthenticatorSelectionHandler)
 }
 
@@ -26,7 +26,7 @@ final class SelectAuthenticatorPresenter {
 	private let appCoordinator: AppCoordinator
 
 	/// The list of authenticators.
-	private var authenticators = Set<Authenticator>()
+	private var authenticators = [any Authenticator]()
 
 	/// The authenticator selection handler.
 	private var handler: AuthenticatorSelectionHandler?
@@ -59,14 +59,14 @@ extension SelectAuthenticatorPresenter {
 	/// Returns the list of available authenticators.
 	///
 	/// - Returns: The list of available authenticators.
-	func getAuthenticators() -> Set<Authenticator> {
+	func getAuthenticators() -> [any Authenticator] {
 		authenticators
 	}
 
 	/// Handles the selected authenticator.
 	///
 	/// - Parameter authenticator: The selected authenticator.
-	func select(authenticator: Authenticator) {
+	func select(authenticator: any Authenticator) {
 		if let enrollment = authenticator.userEnrollment as? OsUserEnrollment, !enrollment.isEnrolled() {
 			// The selected authenticator is an OS based authenticator (Face/Touch ID)
 			// But the user is not enrolled
