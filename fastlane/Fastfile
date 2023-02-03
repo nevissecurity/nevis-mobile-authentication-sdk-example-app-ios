@@ -1,0 +1,162 @@
+##
+## Fastlane configuration for the Nevis Mobile Authentication SDK Example App iOS application.
+## See https://docs.fastlane.tools
+##
+
+require 'securerandom'
+
+default_platform(:ios)
+
+workspace = "NevisExampleApp.xcworkspace"
+app_xcodeproj = "NevisExampleApp.xcodeproj"
+target_name = "NevisExampleApp"
+app_identifier = "ch.nevis.mobile.authentication.sdk.ios.example"
+match_type = "adhoc"
+config_plist = File.expand_path("../NevisExampleApp/Resources/ConfigAuthenticationCloud.plist")
+output_dir = File.expand_path("output/")
+display_name = "Nevis Mobile Authentication SDK Example App iOS"
+
+keychain_password = SecureRandom.base64
+
+def ensure_temp_keychain(name, password)
+	delete_temp_keychain(name)
+	create_temp_keychain(name, password)
+end
+
+def create_temp_keychain(name, password)
+	create_keychain(
+		name: name,
+		password: password,
+		unlock: true,
+		timeout: 0,
+		lock_when_sleeps: true
+	)
+end
+
+def delete_temp_keychain(name)
+	delete_keychain(
+		name: name
+	) if File.exist? File.expand_path("~/Library/Keychains/#{name}-db")
+end
+
+def report_on_success(message)
+	slack(
+		message: "#{message}\nCheck build logs: #{ENV['CURRENT_BUILD_URL']}",
+		slack_url: ENV['SLACK_WEBHOOK_URL']
+	) if ENV['SLACK_WEBHOOK_URL']
+end
+
+def report_on_error(message, exception)
+	slack(
+		message: "#{message} build failed ❌\nCheck build logs: #{ENV['CURRENT_BUILD_URL']}",
+		slack_url: ENV['SLACK_WEBHOOK_URL'],
+		success: false,
+		attachment_properties: {
+			fields: [
+				{
+					title: "Error message",
+					value: exception.to_s,
+					short: false
+				}
+			]
+		}
+	) if ENV['SLACK_WEBHOOK_URL']
+	UI.user_error!("#{exception}")
+end
+
+platform :ios do
+	desc "Build and distribute the application"
+	lane :main do
+		begin
+			keychain_name = ENV["TEMP_KEYCHAIN_NAME"]
+			ensure_temp_keychain(
+				keychain_name,
+				keychain_password
+			)
+
+			update_project_team(
+				path: app_xcodeproj,
+				targets: [target_name],
+				teamid: ENV["DEVELOPER_PORTAL_TEAM_ID"]
+			)
+
+			update_config(host_name: ENV["HOST_NAME"])
+
+			build_number = ENV["BUILD_NUMBER"] || get_build_number()
+			version = get_version_number()
+			increment_build_number(build_number: build_number)
+
+			UI.message("Distributing #{display_name} #{version} (#{build_number}) 📦")
+
+			cocoapods()
+
+			match(
+				type: match_type,
+				readonly: true,
+				app_identifier: app_identifier,
+				git_url: ENV["MATCH_GIT_URL"],
+				git_basic_authorization: Base64.strict_encode64(ENV["MATCH_GIT_AUTHORIZATION"]),
+				keychain_name: keychain_name,
+				keychain_password: keychain_password
+			)
+
+			disable_automatic_code_signing
+			profile = ENV["sigh_#{app_identifier}_#{match_type}_profile-path"]
+			update_project_provisioning(
+				xcodeproj: app_xcodeproj,
+				profile: profile,
+				build_configuration: "Release",
+				code_signing_identity: ENV["CODE_SIGNING_IDENTITY"]
+			)
+
+			gym(
+				workspace: workspace,
+				scheme: target_name,
+				configuration: "Release",
+				clean: true,
+				export_method: "ad-hoc",
+				export_options: {
+					provisioningProfiles: {
+						app_identifier => ENV["PROVISIONING_PROFILE_SPECIFIER"]
+					}
+				},
+				output_directory: "#{output_dir}/builds",
+				xcargs: "OTHER_CODE_SIGN_FLAGS=\"--keychain=#{keychain_name}\"",
+			)
+
+			firebase_app_distribution(
+				app: ENV["FIREBASE_APP_ID"],
+				ipa_path: "#{output_dir}/builds/#{target_name}.ipa",
+				groups: "developers"
+			)
+
+ 			add_git_tag(tag: "release/#{version}/#{build_number}", message: "[Fastlane] #{display_name} #{version} (#{build_number})")
+ 			push_git_tags
+
+			delete_temp_keychain(keychain_name)
+			report_on_success("#{display_name} build is completed: #{version} (#{build_number}) ✅")
+		rescue => exception
+			report_on_error("#{display_name} build failed ❌", exception)
+		end
+	end
+
+	##
+	## Private Lanes
+	##
+
+	private_lane :update_config do |options|
+		host_name = options[:host_name]
+
+		update_plist(
+			plist_path: config_plist,
+			block: proc do |plist|
+				plist["login"] = {
+					"loginRequestURL": "https://#{host_name}.mauth.nevis.cloud/_app/auth/pwd"
+				}
+				plist["sdk"] = {
+					"hostName": "#{host_name}.mauth.nevis.cloud"
+				}
+			end
+		)
+	end
+end
