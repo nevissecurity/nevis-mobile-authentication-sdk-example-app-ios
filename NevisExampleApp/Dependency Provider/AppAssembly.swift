@@ -52,8 +52,8 @@ private extension AppAssembly {
 		                       initializer: AuthCloudApiRegistrationScreen.init)
 			.inObjectScope(.weak)
 
-		container.autoregister(LegacyLoginScreen.self,
-		                       initializer: LegacyLoginScreen.init)
+		container.autoregister(UsernamePasswordLoginScreen.self,
+		                       initializer: UsernamePasswordLoginScreen.init)
 			.inObjectScope(.weak)
 
 		container.register(SelectAccountScreen.self) { (res: Resolver, arg: NavigationParameterizable) in
@@ -131,18 +131,18 @@ private extension AppAssembly {
 			                                         logger: res~>)
 		}.inObjectScope(.transient)
 
-		container.register(LegacyLoginPresenter.self) { res in
+		container.register(UsernamePasswordLoginPresenter.self) { res in
 			let authenticatorSelector = res ~> (AuthenticatorSelector.self,
 			                                    name: RegistrationAuthenticatorSelectorName)
-			return LegacyLoginPresenter(configurationLoader: res~>,
-			                            loginService: res~>,
-			                            clientProvider: res~>,
-			                            authenticatorSelector: authenticatorSelector,
-			                            pinEnroller: res~>,
-			                            biometricUserVerifier: res~>,
-			                            appCoordinator: res~>,
-			                            errorHandlerChain: res~>,
-			                            logger: res~>)
+			return UsernamePasswordLoginPresenter(configurationLoader: res~>,
+			                                      loginService: res~>,
+			                                      clientProvider: res~>,
+			                                      authenticatorSelector: authenticatorSelector,
+			                                      pinEnroller: res~>,
+			                                      biometricUserVerifier: res~>,
+			                                      appCoordinator: res~>,
+			                                      errorHandlerChain: res~>,
+			                                      logger: res~>)
 		}.inObjectScope(.transient)
 
 		container.register(SelectAccountPresenter.self) { res, arg in

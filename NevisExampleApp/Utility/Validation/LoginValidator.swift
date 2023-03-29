@@ -6,14 +6,14 @@
 
 import Foundation
 
-/// Class for validating Auth Cloud Api Registration input data.
-final class LegacyLoginValidator {}
+/// Class for validating Username Password Login input data.
+final class LoginValidator {}
 
 // MARK: - Actions
 
-extension LegacyLoginValidator {
+extension LoginValidator {
 
-	/// Validates Legacy Login input data.
+	/// Validates Login input data.
 	///
 	/// - Parameters:
 	///   - username: Specifies the username.
@@ -21,7 +21,7 @@ extension LegacyLoginValidator {
 	/// - Returns: The result of the validation.
 	func validate(_ username: String?, _ password: String?) -> ValidationResult<()> {
 		if username.isEmptyOrNil, password.isEmptyOrNil {
-			return .failure(AppError.legacyLoginDataNotFound)
+			return .failure(AppError.loginDataNotFound)
 		}
 
 		return .success(())

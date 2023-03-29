@@ -60,12 +60,12 @@
 "auth_cloud_api_registration_confirm_button"="Confirm";
 "auth_cloud_api_registration_cancel_button"="Cancel";
 
-// Auth Cloud Api Registration screen
-"legacy_login_title"="In-Band Registration";
-"legacy_login_username_placeholder"="Enter username";
-"legacy_login_password_placeholder"="Enter password";
-"legacy_login_confirm_button"="Confirm";
-"legacy_login_cancel_button"="Cancel";
+// Username Password Login screen
+"username_password_login_title"="In-Band Registration";
+"username_password_login_username_placeholder"="Enter username";
+"username_password_login_password_placeholder"="Enter password";
+"username_password_login_confirm_button"="Confirm";
+"username_password_login_cancel_button"="Cancel";
 
 // Result screen
 "result_continue_button"="Continue";
@@ -95,15 +95,15 @@
 "error_generic_message"="We're sorry, it seems you encountered an unknown error. Please try again.";
 "error_load_app_configuration_error_message"="Failed to load the configuration file.";
 "error_read_login_configuration_error_message"="Failed to read the login configuration.";
-"error_cookie_not_found_error_message"="No cookie was provided in the legacy login response.";
+"error_cookie_not_found_error_message"="No cookie was provided in the login response.";
 "error_accounts_not_found_message"="There are no registered accounts.";
 "error_authenticator_not_found_message"="Authenticator not found.";
 "error_pin_authenticator_not_found_message"="Pin authenticator not found.";
 "error_device_information_not_found_message"="No device information was found for the operation.";
 "error_auth_cloud_api_registration_missing_data_message"="Either the response or the appLinkUri is required.";
 "error_auth_cloud_api_registration_wrong_data_message"="You cannot provide both the response and the appLinkUri.";
-"error_legacy_login_missing_data_message"="Please provide both username and password.";
-"error_legacy_login_failed_message"="Legacy login failed.";
+"error_login_missing_data_message"="Please provide both username and password.";
+"error_login_failed_message"="Login failed.";
 "error_qr_scan_title"="Error";
 "error_qr_scan_unavailable_message"="Qr Code scanning is not supported using a simulator. You can start an Out-of-Band operation by opening a deep link or try out the Auth Cloud API registration.";
 "error_qr_scan_unauthorized_message"="Camera access is required to scan Qr code.";

@@ -6,40 +6,40 @@
 
 import UIKit
 
-/// The Legacy Login view.
-final class LegacyLoginScreen: BaseScreen, Screen {
+/// The Username Password Login view.
+final class UsernamePasswordLoginScreen: BaseScreen, Screen {
 
 	// MARK: - UI
 
 	/// The title label.
-	private let titleLabel = NSLabel(text: L10n.LegacyLogin.title, style: .title)
+	private let titleLabel = NSLabel(text: L10n.UsernamePasswordLogin.title, style: .title)
 
 	/// The text field for the username.
-	private let usernameField = NSTextField(placeholder: L10n.LegacyLogin.usernamePlaceholder, returnKeyType: .next)
+	private let usernameField = NSTextField(placeholder: L10n.UsernamePasswordLogin.usernamePlaceholder, returnKeyType: .next)
 
 	/// The text field for the password.
-	private let passwordField = NSTextField(placeholder: L10n.LegacyLogin.passwordPlaceholder)
+	private let passwordField = NSTextField(placeholder: L10n.UsernamePasswordLogin.passwordPlaceholder)
 
 	/// The error label.
 	private let errorLabel = NSLabel(style: .error)
 
 	/// The confirm button.
-	private let confirmButton = OutlinedButton(title: L10n.LegacyLogin.confirm)
+	private let confirmButton = OutlinedButton(title: L10n.UsernamePasswordLogin.confirm)
 
 	/// The cancel button.
-	private let cancelButton = OutlinedButton(title: L10n.LegacyLogin.cancel)
+	private let cancelButton = OutlinedButton(title: L10n.UsernamePasswordLogin.cancel)
 
 	// MARK: - Properties
 
 	/// The presenter.
-	var presenter: LegacyLoginPresenter!
+	var presenter: UsernamePasswordLoginPresenter!
 
 	// MARK: - Initialization
 
 	/// Creates a new instance.
 	///
 	/// - Parameter presenter: The presenter.
-	init(presenter: LegacyLoginPresenter) {
+	init(presenter: UsernamePasswordLoginPresenter) {
 		super.init()
 		self.presenter = presenter
 		self.presenter.view = self
@@ -47,13 +47,13 @@ final class LegacyLoginScreen: BaseScreen, Screen {
 
 	/// :nodoc:
 	deinit {
-		os_log("LegacyLoginScreen", log: OSLog.deinit, type: .debug)
+		os_log("UsernamePasswordLoginScreen", log: OSLog.deinit, type: .debug)
 	}
 }
 
 // MARK: - Lifecycle
 
-extension LegacyLoginScreen {
+extension UsernamePasswordLoginScreen {
 
 	/// Override of the `viewDidLoad()` lifecycle method. Sets up the user interface.
 	override func viewDidLoad() {
@@ -69,7 +69,7 @@ extension LegacyLoginScreen {
 // MARK: - Setups
 
 /// :nodoc:
-private extension LegacyLoginScreen {
+private extension UsernamePasswordLoginScreen {
 
 	func setupUI() {
 		setupTitleLabel()
@@ -130,7 +130,7 @@ private extension LegacyLoginScreen {
 // MARK: - UITextFieldDelegate
 
 /// :nodoc:
-extension LegacyLoginScreen: UITextFieldDelegate {
+extension UsernamePasswordLoginScreen: UITextFieldDelegate {
 
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		if textField == usernameField {
@@ -146,11 +146,11 @@ extension LegacyLoginScreen: UITextFieldDelegate {
 // MARK: - Actions
 
 /// :nodoc:
-private extension LegacyLoginScreen {
+private extension UsernamePasswordLoginScreen {
 
 	@objc
 	func confirm() {
-		let validator = LegacyLoginValidator()
+		let validator = LoginValidator()
 		let result = validator.validate(usernameField.text, passwordField.text)
 		switch result {
 		case .success:
