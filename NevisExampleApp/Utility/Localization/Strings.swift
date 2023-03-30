@@ -208,18 +208,18 @@ enum L10n {
 		static let cancel = L10n.tr("auth_cloud_api_registration_cancel_button")
 	}
 
-	/// Legacy Login screen related localized strings.
-	enum LegacyLogin {
+	/// Username Password Login screen related localized strings.
+	enum UsernamePasswordLogin {
 		/// Screen title: "In-Band Registration"
-		static let title = L10n.tr("legacy_login_title")
+		static let title = L10n.tr("username_password_login_title")
 		/// Name field placeholder: "Enter username"
-		static let usernamePlaceholder = L10n.tr("legacy_login_username_placeholder")
+		static let usernamePlaceholder = L10n.tr("username_password_login_username_placeholder")
 		/// Name field placeholder: "Enter password"
-		static let passwordPlaceholder = L10n.tr("legacy_login_password_placeholder")
+		static let passwordPlaceholder = L10n.tr("username_password_login_password_placeholder")
 		/// Confirm button: "Confirm"
-		static let confirm = L10n.tr("legacy_login_confirm_button")
+		static let confirm = L10n.tr("username_password_login_confirm_button")
 		/// Confirm button: "Cancel"
-		static let cancel = L10n.tr("legacy_login_cancel_button")
+		static let cancel = L10n.tr("username_password_login_cancel_button")
 	}
 
 	/// Result screen related localized strings.
@@ -365,7 +365,7 @@ enum L10n {
 			static let loadAppConfigurationError = L10n.tr("error_load_app_configuration_error_message")
 			/// Configuration read error message: "Failed to read the login configuration."
 			static let readLoginConfigurationError = L10n.tr("error_read_login_configuration_error_message")
-			/// Cookies not found error message: "No cookie was provided in the legacy login response."
+			/// Cookies not found error message: "No cookie was provided in the username password login response."
 			static let cookieNotFound = L10n.tr("error_cookie_not_found_error_message")
 			/// Accounts not found error message: "There are no registered accounts."
 			static let accountsNotFound = L10n.tr("error_accounts_not_found_message")
@@ -379,10 +379,10 @@ enum L10n {
 			static let authCloudApiRegistrationDataNotFound = L10n.tr("error_auth_cloud_api_registration_missing_data_message")
 			/// Auth Cloud registration wrong data error message: "You cannot provide both the response and the appLinkUri."
 			static let authCloudApiRegistrationDataWrong = L10n.tr("error_auth_cloud_api_registration_wrong_data_message")
-			/// Legacy login data not found error message: "Please provide both username and password."
-			static let legacyLoginDataNotFound = L10n.tr("error_legacy_login_missing_data_message")
-			/// Legacy login error message: "Legacy login failed."
-			static let legacyLoginFailed = L10n.tr("error_legacy_login_failed_message")
+			/// Login data not found error message: "Please provide both username and password."
+			static let loginDataNotFound = L10n.tr("error_login_missing_data_message")
+			/// Login error message: "Login failed."
+			static let loginFailed = L10n.tr("error_login_failed_message")
 		}
 
 		/// Qr Code scan error related localized strings.

@@ -12,7 +12,7 @@ enum AppError: Error {
 	case loadAppConfigurationError
 	/// Login configuration read error.
 	case readLoginConfigurationError
-	/// No ccokie was received during Legacy Login.
+	/// No ccokie was received during In-Band Registration.
 	case cookieNotFound
 	/// No accounts found.
 	case accountsNotFound
@@ -26,10 +26,10 @@ enum AppError: Error {
 	case authCloudApiRegistrationDataNotFound
 	/// Wrong data found during Auth Cloud registration.
 	case authCloudApiRegistrationDataWrong
-	/// No data found during Legacy Login.
-	case legacyLoginDataNotFound
-	/// Legacy Login error.
-	case legacyLoginError
+	/// No data found during login.
+	case loginDataNotFound
+	/// Login error.
+	case loginError
 }
 
 // MARK: - LocalizedError
@@ -55,10 +55,10 @@ extension AppError: LocalizedError {
 			return L10n.Error.App.authCloudApiRegistrationDataNotFound
 		case .authCloudApiRegistrationDataWrong:
 			return L10n.Error.App.authCloudApiRegistrationDataWrong
-		case .legacyLoginDataNotFound:
-			return L10n.Error.App.legacyLoginDataNotFound
-		case .legacyLoginError:
-			return L10n.Error.App.legacyLoginFailed
+		case .loginDataNotFound:
+			return L10n.Error.App.loginDataNotFound
+		case .loginError:
+			return L10n.Error.App.loginFailed
 		}
 	}
 }

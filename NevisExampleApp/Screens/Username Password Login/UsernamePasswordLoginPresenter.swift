@@ -7,8 +7,8 @@
 import NevisMobileAuthentication
 import UIKit
 
-/// Presenter of Legacy Login view.
-final class LegacyLoginPresenter {
+/// Presenter of Username Password Login view.
+final class UsernamePasswordLoginPresenter {
 
 	// MARK: - Properties
 
@@ -78,15 +78,15 @@ final class LegacyLoginPresenter {
 
 	/// :nodoc:
 	deinit {
-		os_log("LegacyLoginPresenter", log: OSLog.deinit, type: .debug)
+		os_log("UsernamePasswordLoginPresenter", log: OSLog.deinit, type: .debug)
 	}
 }
 
 // MARK: - Public Interface
 
-extension LegacyLoginPresenter {
+extension UsernamePasswordLoginPresenter {
 
-	/// Starts the legacy login.
+	/// Starts the login.
 	///
 	/// - Parameters:
 	///   - username: The username.
@@ -132,7 +132,7 @@ extension LegacyLoginPresenter {
 
 // MARK: - Private Interface
 
-private extension LegacyLoginPresenter {
+private extension UsernamePasswordLoginPresenter {
 
 	/// Starts the In-Band registration operation.
 	///

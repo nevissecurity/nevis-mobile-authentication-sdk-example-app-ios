@@ -216,7 +216,7 @@ extension HomePresenter {
 
 	/// Starts In-Band registration operation.
 	func register() {
-		appCoordinator.navigateToLegacyLogin()
+		appCoordinator.navigateToUsernamePasswordLogin()
 	}
 }
 

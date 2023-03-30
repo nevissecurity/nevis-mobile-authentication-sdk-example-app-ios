@@ -36,7 +36,7 @@ extension LoginServiceImpl: LoginService {
 			                     forHTTPHeaderField: "Content-Type")
 			let requestData = try JSONEncoder().encode(request)
 			guard let parameters = try JSONSerialization.jsonObject(with: requestData) as? [String: String] else {
-				return handler(.failure(AppError.legacyLoginError))
+				return handler(.failure(AppError.loginError))
 			}
 
 			let urlEncodedBody = parameters.urlEncoded()
@@ -48,7 +48,7 @@ extension LoginServiceImpl: LoginService {
 
 				do {
 					guard let responseData, let httpResponse = urlResponse as? HTTPURLResponse else {
-						return DispatchQueue.main.async { handler(.failure(AppError.legacyLoginError)) }
+						return DispatchQueue.main.async { handler(.failure(AppError.loginError)) }
 					}
 
 					var response = try JSONDecoder().decode(LoginResponse.self, from: responseData)
