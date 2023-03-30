@@ -87,8 +87,8 @@ Before being able to authenticate using the Nevis Mobile Authentication SDK, go 
 
 If the application is using a backend using the Nevis Authentication Cloud, the [AuthCloudApiRegistrationPresenter](NevisExampleApp/Screens/Auth%20Cloud%20Api%20Registration/AuthCloudApiRegistrationPresenter.swift) class will be used by passing the `enrollment` response or an `appLinkUri`.
 
-When the backend used by the application does not use the Nevis Authentication Cloud the name of the user to be registered is passed to the [LegacyLoginPresenter](NevisExampleApp/Screens/Legacy%20Login/LegacyLoginPresenter.swift) class.
-If authorization is required by the backend to register, provide an `AuthorizationProvider`. In the example app a `CookieAuthorizationProvider` is created from the cookies (see [LegacyLoginPresenter](NevisExampleApp/Screens/Legacy%20Login/LegacyLoginPresenter.swift)) obtained by the [LoginServiceImpl](NevisExampleApp/Utility/Login/LoginServiceImpl.swift) class.
+When the backend used by the application does not use the Nevis Authentication Cloud the name of the user to be registered is passed to the [UsernamePasswordLoginPresenter](NevisExampleApp/Screens/Username%20Password%20Login/UsernamePasswordLoginPresenter.swift) class.
+If authorization is required by the backend to register, provide an `AuthorizationProvider`. In the example app a `CookieAuthorizationProvider` is created from the cookies (see [UsernamePasswordLoginPresenter](NevisExampleApp/Screens/Username%20Password%20Login/UsernamePasswordLoginPresenter.swift)) obtained by the [LoginServiceImpl](NevisExampleApp/Utility/Login/LoginServiceImpl.swift) class.
 
 #### Out-of-band registration
 
