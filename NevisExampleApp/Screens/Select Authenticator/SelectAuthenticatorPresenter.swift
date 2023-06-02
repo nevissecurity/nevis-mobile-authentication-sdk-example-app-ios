@@ -11,9 +11,9 @@ enum SelectAuthenticatorParameter: NavigationParameterizable {
 	/// Represents authenticator selection.
 	///
 	///  - Parameters:
-	///    - authenticators: The list of authenticators.
+	///    - authenticatorItems: The list of authenticator items.
 	///    - handler: The authenticator selection handler.
-	case select(authenticators: [any Authenticator],
+	case select(authenticatorItems: [AuthenticatorItem],
 	            handler: AuthenticatorSelectionHandler)
 }
 
@@ -25,8 +25,8 @@ final class SelectAuthenticatorPresenter {
 	/// The application coordinator.
 	private let appCoordinator: AppCoordinator
 
-	/// The list of authenticators.
-	private var authenticators = [any Authenticator]()
+	/// The list of authenticator items.
+	private var authenticatorItems = [AuthenticatorItem]()
 
 	/// The authenticator selection handler.
 	private var handler: AuthenticatorSelectionHandler?
@@ -56,23 +56,17 @@ final class SelectAuthenticatorPresenter {
 
 extension SelectAuthenticatorPresenter {
 
-	/// Returns the list of available authenticators.
+	/// Returns the list of authenticators.
 	///
-	/// - Returns: The list of available authenticators.
-	func getAuthenticators() -> [any Authenticator] {
-		authenticators
+	/// - Returns: The list of authenticators.
+	func getAuthenticators() -> [AuthenticatorItem] {
+		authenticatorItems
 	}
 
 	/// Handles the selected authenticator.
 	///
 	/// - Parameter authenticator: The selected authenticator.
 	func select(authenticator: any Authenticator) {
-		if let enrollment = authenticator.userEnrollment as? OsUserEnrollment, !enrollment.isEnrolled() {
-			// The selected authenticator is an OS based authenticator (Face/Touch ID)
-			// But the user is not enrolled
-			return appCoordinator.navigateToNotEnrolledAuthenticator()
-		}
-
 		handler?.aaid(authenticator.aaid)
 		handler = nil
 	}
@@ -91,8 +85,8 @@ private extension SelectAuthenticatorPresenter {
 		}
 
 		switch parameter {
-		case let .select(authenticators, handler):
-			self.authenticators = authenticators
+		case let .select(authenticatorItems, handler):
+			self.authenticatorItems = authenticatorItems
 			self.handler = handler
 		}
 	}
