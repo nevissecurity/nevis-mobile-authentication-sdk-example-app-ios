@@ -80,10 +80,6 @@ private extension AppAssembly {
 			                                argument: arg))
 		}.inObjectScope(.weak)
 
-		container.autoregister(NotEnrolledAuthenticatorScreen.self,
-		                       initializer: NotEnrolledAuthenticatorScreen.init)
-			.inObjectScope(.weak)
-
 		container.autoregister(LoggingScreen.self,
 		                       initializer: LoggingScreen.init)
 			.inObjectScope(.container)
@@ -177,10 +173,6 @@ private extension AppAssembly {
 		container.autoregister(ResultPresenter.self,
 		                       argument: NavigationParameterizable.self,
 		                       initializer: ResultPresenter.init)
-			.inObjectScope(.transient)
-
-		container.autoregister(NotEnrolledAuthenticatorPresenter.self,
-		                       initializer: NotEnrolledAuthenticatorPresenter.init)
 			.inObjectScope(.transient)
 
 		container.autoregister(LoggingPresenter.self,

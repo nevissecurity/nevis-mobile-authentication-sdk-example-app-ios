@@ -22,17 +22,18 @@ extension Authenticator {
 		}
 	}
 
-	/// Returns the localized description.
-	var localizedDescription: String {
-		switch aaid {
-		case AuthenticatorAaid.Pin.rawValue:
-			return L10n.Authenticator.Pin.description
-		case AuthenticatorAaid.FaceRecognition.rawValue:
-			return L10n.Authenticator.FaceRecognition.description
-		case AuthenticatorAaid.Fingerprint.rawValue:
-			return L10n.Authenticator.Fingerprint.description
+	/// Returns whether the user is enrolled to this authenticator.
+	///
+	/// - Parameter username: the username.
+	/// - Returns: `true` if the user is enrolled, `flase` otherwise.
+	func isEnrolled(username: Username) -> Bool {
+		switch userEnrollment {
+		case let enrollment as SdkUserEnrollment:
+			return enrollment.isEnrolled(username)
+		case let enrollment as OsUserEnrollment:
+			return enrollment.isEnrolled()
 		default:
-			return String()
+			return false
 		}
 	}
 }

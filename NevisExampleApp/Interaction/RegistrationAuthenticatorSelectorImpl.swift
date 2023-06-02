@@ -41,12 +41,19 @@ class RegistrationAuthenticatorSelectorImpl {
 extension RegistrationAuthenticatorSelectorImpl: AuthenticatorSelector {
 	func selectAuthenticator(context: AuthenticatorSelectionContext, handler: AuthenticatorSelectionHandler) {
 		logger.log("Please select one of the received available authenticators!")
-		let authenticators = context.authenticators.filter {
+		let authenticatorItems = context.authenticators.filter {
+			// Do not display:
+			//   - policy non-compliant authenticators (this includes already registered authenticators)
+			//   - not hardware supported authenticators.
 			$0.isSupportedByHardware && context.isPolicyCompliant(authenticatorAaid: $0.aaid)
+		}.map {
+			AuthenticatorItem(authenticator: $0,
+			                  isPolicyCompliant: true,
+			                  isUserEnrolled: $0.isEnrolled(username: context.account.username))
 		}
 
 		appCoordinator.topScreen?.enableInteraction()
-		let parameter: SelectAuthenticatorParameter = .select(authenticators: authenticators,
+		let parameter: SelectAuthenticatorParameter = .select(authenticatorItems: authenticatorItems,
 		                                                      handler: handler)
 		appCoordinator.navigateToAuthenticatorSelection(with: parameter)
 	}

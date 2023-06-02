@@ -38,6 +38,7 @@ class AuthenticatorCell: UITableViewCell {
 		super.prepareForReuse()
 		textLabel?.text = ""
 		detailTextLabel?.text = ""
+		selectionStyle = .default
 	}
 }
 
@@ -52,6 +53,7 @@ private extension AuthenticatorCell {
 		}
 
 		detailTextLabel?.do {
+			$0.numberOfLines = 0
 			$0.font = Style.detail.font
 			$0.textColor = Style.detail.textColor
 		}
@@ -68,5 +70,6 @@ extension AuthenticatorCell {
 	func bind(viewModel: SelectAuthenticatorItemViewModel) {
 		textLabel?.text = viewModel.title
 		detailTextLabel?.text = viewModel.details
+		selectionStyle = viewModel.isEnabled ? .default : .none
 	}
 }

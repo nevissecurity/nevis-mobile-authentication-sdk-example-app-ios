@@ -23,8 +23,8 @@ final class SelectAuthenticatorScreen: BaseScreen, Screen {
 	/// The presenter.
 	var presenter: SelectAuthenticatorPresenter!
 
-	/// The list of authenticators.
-	private var authenticators = [any Authenticator]()
+	/// The list of authenticator items.
+	private var authenticatorItems = [AuthenticatorItem]()
 
 	// MARK: - Initialization
 
@@ -57,7 +57,7 @@ extension SelectAuthenticatorScreen {
 	/// - parameter animated: If *true*, the view is being added to the window using an animation.
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		authenticators = presenter.getAuthenticators()
+		authenticatorItems = presenter.getAuthenticators()
 		tableView.reloadData()
 	}
 
@@ -103,7 +103,7 @@ private extension SelectAuthenticatorScreen {
 /// :nodoc:
 extension SelectAuthenticatorScreen: UITableViewDataSource {
 	func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-		authenticators.count
+		authenticatorItems.count
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -112,10 +112,25 @@ extension SelectAuthenticatorScreen: UITableViewDataSource {
 				"Failed to dequeue a cell with identifier \(AuthenticatorCell.reuseIdentifier) matching type \(AuthenticatorCell.self)."
 			)
 		}
-		let idx = authenticators.index(authenticators.startIndex, offsetBy: indexPath.row)
-		let authenticator = authenticators[idx]
-		cell.bind(viewModel: .init(title: authenticator.localizedTitle,
-		                           details: authenticator.localizedDescription))
+		let idx = authenticatorItems.index(authenticatorItems.startIndex, offsetBy: indexPath.row)
+		let item = authenticatorItems[idx]
+		var details: String? {
+			guard !item.isEnabled else {
+				return nil
+			}
+
+			if !item.isPolicyCompliant {
+				return L10n.AuthenticatorSelection.authenticatorNotPolicyCompliant
+			}
+			if !item.isUserEnrolled {
+				return L10n.AuthenticatorSelection.authenticatorNotEnrolled
+			}
+
+			return nil
+		}
+		cell.bind(viewModel: .init(title: item.authenticator.localizedTitle,
+		                           isEnabled: item.isEnabled,
+		                           details: details))
 		return cell
 	}
 }
@@ -127,8 +142,13 @@ extension SelectAuthenticatorScreen: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)
 
-		let idx = authenticators.index(authenticators.startIndex, offsetBy: indexPath.row)
-		let authenticator = authenticators[idx]
+		let idx = authenticatorItems.index(authenticatorItems.startIndex, offsetBy: indexPath.row)
+		let item = authenticatorItems[idx]
+		guard item.isEnabled else {
+			return
+		}
+
+		let authenticator = authenticatorItems[idx].authenticator
 		presenter.select(authenticator: authenticator)
 	}
 }

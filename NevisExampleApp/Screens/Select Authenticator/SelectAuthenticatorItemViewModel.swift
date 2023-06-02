@@ -14,6 +14,9 @@ struct SelectAuthenticatorItemViewModel {
 	/// The readable title.
 	let title: String
 
+	/// Flag that tells whether the item is selectable.
+	let isEnabled: Bool
+
 	/// The readable details.
-	let details: String
+	var details: String?
 }
