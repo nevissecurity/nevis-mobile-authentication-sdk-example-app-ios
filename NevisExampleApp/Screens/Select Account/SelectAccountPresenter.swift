@@ -44,6 +44,9 @@ final class SelectAccountPresenter {
 	/// The biometric user verifier.
 	private let biometricUserVerifier: BiometricUserVerifier
 
+	/// The device passcode user verifier.
+	private let devicePasscodeUserVerifier: DevicePasscodeUserVerifier
+
 	/// The application coordinator.
 	private let appCoordinator: AppCoordinator
 
@@ -80,6 +83,7 @@ final class SelectAccountPresenter {
 	///   - pinChanger: The PIN changer.
 	///   - pinUserVerifier: The PIN user verifier.
 	///   - biometricUserVerifier: The biometric user verifier.
+	///   - devicePasscodeUserVerifier: The device passcode user verifier.
 	///   - appCoordinator: The application coordinator.
 	///   - errorHandlerChain: The error handler chain.
 	///   - logger: The logger.
@@ -89,6 +93,7 @@ final class SelectAccountPresenter {
 	     pinChanger: PinChanger,
 	     pinUserVerifier: PinUserVerifier,
 	     biometricUserVerifier: BiometricUserVerifier,
+	     devicePasscodeUserVerifier: DevicePasscodeUserVerifier,
 	     appCoordinator: AppCoordinator,
 	     errorHandlerChain: ErrorHandlerChain,
 	     logger: SDKLogger,
@@ -98,6 +103,7 @@ final class SelectAccountPresenter {
 		self.pinChanger = pinChanger
 		self.pinUserVerifier = pinUserVerifier
 		self.biometricUserVerifier = biometricUserVerifier
+		self.devicePasscodeUserVerifier = devicePasscodeUserVerifier
 		self.appCoordinator = appCoordinator
 		self.errorHandlerChain = errorHandlerChain
 		self.logger = logger
@@ -169,20 +175,16 @@ private extension SelectAccountPresenter {
 	/// Starts an In-Band Authentication.
 	///
 	/// - Parameter account: The account that must be used to authenticate.
-	func inBandAuthenticate(using account: any Account, completion handler: ((Result<AuthorizationProvider?, Error>) -> ())? = nil) {
+	func inBandAuthenticate(using account: any Account, completion handler: ((Result<AuthorizationProvider?, AuthenticationError>) -> ())? = nil) {
 		mobileAuthenticationClient?.operations.authentication
 			.username(account.username)
 			.authenticatorSelector(authenticatorSelector)
 			.pinUserVerifier(pinUserVerifier)
 			.biometricUserVerifier(biometricUserVerifier)
-			.onSuccess {
+			.devicePasscodeUserVerifier(devicePasscodeUserVerifier)
+			.onSuccess { // (authorizationProvider: AuthorizationProvider) in
 				self.logger.log("In-band authentication succeeded.", color: .green)
-				if let cookieAuthorizationProvider = $0 as? CookieAuthorizationProvider {
-					self.logger.log("Received cookies: \(cookieAuthorizationProvider.cookies)")
-				}
-				else if let jwtAuthorizationProvider = $0 as? JwtAuthorizationProvider {
-					self.logger.log("Received JWT is \(jwtAuthorizationProvider.jwt)")
-				}
+				self.printAuthorizationInfo($0)
 
 				if let handler {
 					return handler(.success($0))
@@ -190,10 +192,20 @@ private extension SelectAccountPresenter {
 
 				self.appCoordinator.navigateToResult(with: .success(operation: self.operation!))
 			}
-			.onError {
+			.onError { error in
 				self.logger.log("In-band authentication failed.", color: .red)
-				handler?(.failure($0))
-				let operationError = OperationError(operation: .authentication, underlyingError: $0)
+				handler?(.failure(error))
+				switch error {
+				case let .FidoError(_, _, sessionProvider),
+				     let .NetworkError(_, sessionProvider):
+					self.printSessionInfo(sessionProvider)
+				case .Unknown:
+					fallthrough
+				@unknown default:
+					self.logger.log("In-band authentication failed because of an unknown error.", color: .red)
+				}
+
+				let operationError = OperationError(operation: .authentication, underlyingError: error)
 				self.errorHandlerChain.handle(error: operationError)
 			}
 			.execute()
@@ -297,6 +309,24 @@ private extension SelectAccountPresenter {
 			self.operation = operation
 			self.handler = handler
 			self.transactionConfirmationData = transactionConfirmationData
+		}
+	}
+
+	func printAuthorizationInfo(_ authorizationProvider: AuthorizationProvider?) {
+		if let cookieAuthorizationProvider = authorizationProvider as? CookieAuthorizationProvider {
+			logger.log("Received cookies: \(cookieAuthorizationProvider.cookies)")
+		}
+		else if let jwtAuthorizationProvider = authorizationProvider as? JwtAuthorizationProvider {
+			logger.log("Received JWT is \(jwtAuthorizationProvider.jwt)")
+		}
+	}
+
+	func printSessionInfo(_ sessionProvider: SessionProvider?) {
+		if let cookieSessionProvider = sessionProvider as? CookieSessionProvider {
+			logger.log("Received cookies: \(cookieSessionProvider.cookies)")
+		}
+		else if let jwtSessionProvider = sessionProvider as? JwtSessionProvider {
+			logger.log("Received JWT is \(jwtSessionProvider.jwt)")
 		}
 	}
 }

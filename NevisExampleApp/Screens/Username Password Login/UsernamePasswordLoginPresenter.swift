@@ -146,6 +146,9 @@ private extension UsernamePasswordLoginPresenter {
 			return errorHandlerChain.handle(error: operationError)
 		}
 
+		/// Nevis Mobile Authentication SDK supports registering authenticators in multiple servers.
+		/// You can specify the base URL of the server where the registration should be made, see ``Registration/serverUrl(_:)``.
+		/// If no server base URL is provided, then the base URL defined in ``Configuration/baseUrl`` will be used.
 		let client = clientProvider.get()
 		client?.operations.registration
 			.username(username)

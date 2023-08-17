@@ -26,6 +26,9 @@ final class AuthCloudApiRegistrationPresenter {
 	/// The biometric user verifier.
 	private let biometricUserVerifier: BiometricUserVerifier
 
+	/// The device passcode user verifier.
+	private let devicePasscodeUserVerifier: DevicePasscodeUserVerifier
+
 	/// The application coordinator.
 	private let appCoordinator: AppCoordinator
 
@@ -44,6 +47,7 @@ final class AuthCloudApiRegistrationPresenter {
 	///   - authenticatorSelector: The authenticator selector used during registration.
 	///   - pinEnroller: The PIN enroller.
 	///   - biometricUserVerifier: The biometric user verifier.
+	///   - devicePasscodeUserVerifier: The device passcode user verifier.
 	///   - appCoordinator: The application coordinator.
 	///   - errorHandlerChain: The error handler chain.
 	///   - logger: The logger.
@@ -51,6 +55,7 @@ final class AuthCloudApiRegistrationPresenter {
 	     authenticatorSelector: AuthenticatorSelector,
 	     pinEnroller: PinEnroller,
 	     biometricUserVerifier: BiometricUserVerifier,
+	     devicePasscodeUserVerifier: DevicePasscodeUserVerifier,
 	     appCoordinator: AppCoordinator,
 	     errorHandlerChain: ErrorHandlerChain,
 	     logger: SDKLogger) {
@@ -58,6 +63,7 @@ final class AuthCloudApiRegistrationPresenter {
 		self.authenticatorSelector = authenticatorSelector
 		self.pinEnroller = pinEnroller
 		self.biometricUserVerifier = biometricUserVerifier
+		self.devicePasscodeUserVerifier = devicePasscodeUserVerifier
 		self.appCoordinator = appCoordinator
 		self.errorHandlerChain = errorHandlerChain
 		self.logger = logger
@@ -87,6 +93,7 @@ extension AuthCloudApiRegistrationPresenter {
 			.authenticatorSelector(authenticatorSelector)
 			.pinEnroller(pinEnroller)
 			.biometricUserVerifier(biometricUserVerifier)
+			.devicePasscodeUserVerifier(devicePasscodeUserVerifier)
 			.onSuccess {
 				self.logger.log("Auth Cloud Api registration succeeded.", color: .green)
 				self.appCoordinator.navigateToResult(with: .success(operation: .registration))

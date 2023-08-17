@@ -105,6 +105,7 @@
 		38DABD6629D581D3008B8116 /* UsernamePasswordLoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DABD6429D581D3008B8116 /* UsernamePasswordLoginPresenter.swift */; };
 		38DABD6A29D585C0008B8116 /* LoginValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DABD6929D585C0008B8116 /* LoginValidator.swift */; };
 		38E17EB02A28DD7200441821 /* Authenticator+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E17EAF2A28DD7200441821 /* Authenticator+Extension.swift */; };
+		38E1CBF32A8E31DE00D4F7EB /* DevicePasscodeUserVerifierImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1CBF22A8E31DE00D4F7EB /* DevicePasscodeUserVerifierImpl.swift */; };
 		38FF9DC5292E09E70027C09E /* PinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF9DC4292E09E70027C09E /* PinView.swift */; };
 		38FF9DC7292E0B160027C09E /* LoggingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF9DC6292E0B160027C09E /* LoggingView.swift */; };
 /* End PBXBuildFile section */
@@ -212,6 +213,7 @@
 		38DABD6429D581D3008B8116 /* UsernamePasswordLoginPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsernamePasswordLoginPresenter.swift; sourceTree = "<group>"; };
 		38DABD6929D585C0008B8116 /* LoginValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginValidator.swift; sourceTree = "<group>"; };
 		38E17EAF2A28DD7200441821 /* Authenticator+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Authenticator+Extension.swift"; sourceTree = "<group>"; };
+		38E1CBF22A8E31DE00D4F7EB /* DevicePasscodeUserVerifierImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicePasscodeUserVerifierImpl.swift; sourceTree = "<group>"; };
 		38FF9DC4292E09E70027C09E /* PinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinView.swift; sourceTree = "<group>"; };
 		38FF9DC6292E0B160027C09E /* LoggingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -343,6 +345,7 @@
 				3859EB01292CF92000013472 /* AccountSelectorImpl.swift */,
 				3859EAFE292CF92000013472 /* AuthenticationAuthenticatorSelectorImpl.swift */,
 				3859EB04292CF92000013472 /* BiometricUserVerifierImpl.swift */,
+				38E1CBF22A8E31DE00D4F7EB /* DevicePasscodeUserVerifierImpl.swift */,
 				3859EB03292CF92000013472 /* OutOfBandOperationHandler.swift */,
 				3859EB00292CF92000013472 /* OutOfBandOperationHandlerImpl.swift */,
 				3859EAFF292CF92000013472 /* PinChangerImpl.swift */,
@@ -791,6 +794,7 @@
 				3859EB3D292CF92000013472 /* OutOfBandOperationHandler.swift in Sources */,
 				3859EBAD292CFA1900013472 /* ClientProviderImpl.swift in Sources */,
 				3859EB9A292CFA1900013472 /* NSLabel.swift in Sources */,
+				38E1CBF32A8E31DE00D4F7EB /* DevicePasscodeUserVerifierImpl.swift in Sources */,
 				3859EADE292CF7F000013472 /* DependencyProvider.swift in Sources */,
 				3859EAE8292CF82D00013472 /* ConfigurationLoaderImpl.swift in Sources */,
 				3859EBA2292CFA1900013472 /* UIApplication+Extension.swift in Sources */,
@@ -1002,7 +1006,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.2.0;
+				MARKETING_VERSION = 3.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ch.nevis.mobile.authentication.sdk.ios.example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1034,7 +1038,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.2.0;
+				MARKETING_VERSION = 3.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ch.nevis.mobile.authentication.sdk.ios.example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
