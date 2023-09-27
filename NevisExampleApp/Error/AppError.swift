@@ -44,7 +44,7 @@ extension AppError: LocalizedError {
 		case .cookieNotFound:
 			return L10n.Error.App.cookieNotFound
 		case .accountsNotFound:
-			return L10n.Error.App.authenticatorNotFound
+			return L10n.Error.App.accountsNotFound
 		case .authenticatorNotFound:
 			return L10n.Error.App.authenticatorNotFound
 		case .pinAuthenticatorNotFound:
