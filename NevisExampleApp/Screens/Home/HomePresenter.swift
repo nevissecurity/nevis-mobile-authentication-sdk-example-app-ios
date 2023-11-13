@@ -122,7 +122,13 @@ extension HomePresenter {
 
 	/// Starts an In-Band Authentication operation.
 	func authenticate() {
-		let accounts = mobileAuthenticationClient?.localData.accounts ?? [any Account]()
+		guard let accounts = mobileAuthenticationClient?.localData.accounts, !accounts.isEmpty else {
+			logger.log("Accounts not found.", color: .red)
+			let operationError = OperationError(operation: .authentication,
+			                                    underlyingError: AppError.accountsNotFound)
+			return errorHandlerChain.handle(error: operationError)
+		}
+
 		let parameter: SelectAccountParameter = .select(accounts: accounts,
 		                                                operation: .authentication,
 		                                                handler: nil,
@@ -157,22 +163,30 @@ extension HomePresenter {
 
 	/// Starts PIN changing.
 	func changePin() {
+		// find enrolled accounts
+		guard let accounts = mobileAuthenticationClient?.localData.accounts, !accounts.isEmpty else {
+			let operationError = OperationError(operation: .pinChange,
+			                                    underlyingError: AppError.accountsNotFound)
+			return errorHandlerChain.handle(error: operationError)
+		}
+
 		// find PIN authenticator
 		guard let authenticators = mobileAuthenticationClient?.localData.authenticators else {
-			return errorHandlerChain.handle(error: AppError.pinAuthenticatorNotFound)
+			let operationError = OperationError(operation: .pinChange,
+			                                    underlyingError: AppError.pinAuthenticatorNotFound)
+			return errorHandlerChain.handle(error: operationError)
 		}
 
 		guard let pinAuthenticator = authenticators.filter({ $0.aaid == AuthenticatorAaid.Pin.rawValue }).first else {
-			return errorHandlerChain.handle(error: AppError.pinAuthenticatorNotFound)
+			let operationError = OperationError(operation: .pinChange,
+			                                    underlyingError: AppError.pinAuthenticatorNotFound)
+			return errorHandlerChain.handle(error: operationError)
 		}
 
 		guard let enrollment = pinAuthenticator.userEnrollment as? SdkUserEnrollment else {
-			return errorHandlerChain.handle(error: AppError.pinAuthenticatorNotFound)
-		}
-
-		// find enrolled accounts
-		guard let accounts = mobileAuthenticationClient?.localData.accounts else {
-			return errorHandlerChain.handle(error: AppError.accountsNotFound)
+			let operationError = OperationError(operation: .pinChange,
+			                                    underlyingError: AppError.pinAuthenticatorNotFound)
+			return errorHandlerChain.handle(error: operationError)
 		}
 
 		let eligibleAccounts = accounts.filter { account in
@@ -183,7 +197,9 @@ extension HomePresenter {
 
 		switch eligibleAccounts.count {
 		case 0:
-			errorHandlerChain.handle(error: AppError.accountsNotFound)
+			let operationError = OperationError(operation: .pinChange,
+			                                    underlyingError: AppError.accountsNotFound)
+			return errorHandlerChain.handle(error: operationError)
 		case 1:
 			// do PIN change automatically
 			doPinChange(for: eligibleAccounts.first!.username)
@@ -202,7 +218,9 @@ extension HomePresenter {
 		let deviceInformation = mobileAuthenticationClient?.localData.deviceInformation
 		guard let deviceInformation else {
 			logger.log("Device information not found.", color: .red)
-			return errorHandlerChain.handle(error: AppError.deviceInformationNotFound)
+			let operationError = OperationError(operation: .deviceInformationChange,
+			                                    underlyingError: AppError.deviceInformationNotFound)
+			return errorHandlerChain.handle(error: operationError)
 		}
 
 		let parameter: ChangeDeviceInformationParameter = .change(deviceInformation: deviceInformation)
@@ -212,6 +230,29 @@ extension HomePresenter {
 	/// Starts Auth Cloud API registration operation.
 	func authCloudApiRegister() {
 		appCoordinator.navigateToAuthCloudApiRegistration()
+	}
+
+	/// Deletes local authenticators.
+	func deleteLocalAuthenticators() {
+		// find enrolled accounts
+		guard let accounts = mobileAuthenticationClient?.localData.accounts, !accounts.isEmpty else {
+			logger.log("Accounts not found.", color: .red)
+			let operationError = OperationError(operation: .localData,
+			                                    underlyingError: AppError.accountsNotFound)
+			return errorHandlerChain.handle(error: operationError)
+		}
+
+		doDeleteAuthenticators(of: accounts.map(\.username)) { result in
+			switch result {
+			case .success:
+				self.logger.log("Delete authenticators succeeded.", color: .green)
+				self.appCoordinator.navigateToResult(with: .success(operation: .localData))
+			case let .failure(error):
+				self.logger.log("Delete authenticators failed.", color: .red)
+				let operationError = OperationError(operation: .localData, underlyingError: error)
+				self.errorHandlerChain.handle(error: operationError)
+			}
+		}
 	}
 
 	/// Starts In-Band registration operation.
@@ -267,5 +308,46 @@ private extension HomePresenter {
 				self.errorHandlerChain.handle(error: operationError)
 			}
 			.execute()
+	}
+
+	/// Deletes all local authenticators of all accounts.
+	///
+	/// - Parameters:
+	///   - usernames: The usernames of the enrolled accounts.
+	///   - handler: The code need to be executed after deletion.
+	func doDeleteAuthenticators(of usernames: [Username], completion handler: @escaping (Result<(), Error>) -> ()) {
+		var remainingUsernames = usernames
+		guard let username = remainingUsernames.popLast() else {
+			return handler(.success)
+		}
+
+		doDeleteAuthenticators(of: username) { result in
+			if case let .failure(error) = result {
+				return handler(.failure(error))
+			}
+			self.logger.log("Delete authenticators succeeded for user \(username).", color: .green)
+			self.doDeleteAuthenticators(of: remainingUsernames, completion: handler)
+		}
+	}
+
+	/// Deletes all local authenticators of an account.
+	///
+	/// - Parameters:
+	///   - usernames: The username of the enrolled account.
+	///   - handler: The code need to be executed after deletion.
+	func doDeleteAuthenticators(of username: Username, completion handler: @escaping (Result<(), Error>) -> ()) {
+		DispatchQueue.global().async {
+			do {
+				try self.mobileAuthenticationClient?.localData.deleteAuthenticator(username: username, aaid: nil)
+				DispatchQueue.main.async {
+					handler(.success)
+				}
+			}
+			catch {
+				DispatchQueue.main.async {
+					handler(.failure(error))
+				}
+			}
+		}
 	}
 }
