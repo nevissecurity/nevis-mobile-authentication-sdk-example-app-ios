@@ -35,6 +35,9 @@ final class HomeScreen: BaseScreen, Screen {
 	/// The Auth Cloud Api Register button.
 	private let authCloudApiRegisterButton = OutlinedButton(title: L10n.Home.authCloudApiRegistration)
 
+	/// The Delete Authenticators button.
+	private let deleteAuthenticatorsButton = OutlinedButton(title: L10n.Home.deleteAuthenticators)
+
 	/// The separator label.
 	private let separatorLabel = NSLabel(text: L10n.Home.separator, style: .normal)
 
@@ -102,6 +105,7 @@ private extension HomeScreen {
 		setupPinChangeButton()
 		setupChangeDeviceInformationButton()
 		setupAuthCloudApiRegisterButton()
+		setupDeleteAuthenticatorsButton()
 		setupSeparatorLabel()
 		setupInBandRegisterButton()
 	}
@@ -166,6 +170,14 @@ private extension HomeScreen {
 		}
 	}
 
+	func setupDeleteAuthenticatorsButton() {
+		deleteAuthenticatorsButton.do {
+			addItemToBottom($0, spacing: 16)
+			$0.setHeight(with: 40)
+			$0.addTarget(self, action: #selector(deleteAuthenticators), for: .touchUpInside)
+		}
+	}
+
 	func setupSeparatorLabel() {
 		separatorLabel.do {
 			addItemToBottom($0, spacing: 8)
@@ -214,6 +226,11 @@ private extension HomeScreen {
 	@objc
 	func authCloudApiRegister() {
 		presenter.authCloudApiRegister()
+	}
+
+	@objc
+	func deleteAuthenticators() {
+		presenter.deleteLocalAuthenticators()
 	}
 
 	@objc

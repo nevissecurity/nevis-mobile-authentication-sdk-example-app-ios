@@ -32,6 +32,9 @@ public enum Operation {
 	/// Device information change operation.
 	case deviceInformationChange
 
+	/// Local data operation.
+	case localData
+
 	/// Unknown operation.
 	case unknown
 
@@ -54,6 +57,8 @@ public enum Operation {
 			return L10n.Operation.Pinchange.title
 		case .deviceInformationChange:
 			return L10n.Operation.DeviceInformationChange.title
+		case .localData:
+			return L10n.Operation.LocalData.title
 		case .unknown:
 			return String()
 		}
