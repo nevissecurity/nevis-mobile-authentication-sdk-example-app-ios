@@ -38,27 +38,27 @@ extension AppError: LocalizedError {
 	public var errorDescription: String? {
 		switch self {
 		case .loadAppConfigurationError:
-			return L10n.Error.App.loadAppConfigurationError
+			L10n.Error.App.loadAppConfigurationError
 		case .readLoginConfigurationError:
-			return L10n.Error.App.readLoginConfigurationError
+			L10n.Error.App.readLoginConfigurationError
 		case .cookieNotFound:
-			return L10n.Error.App.cookieNotFound
+			L10n.Error.App.cookieNotFound
 		case .accountsNotFound:
-			return L10n.Error.App.accountsNotFound
+			L10n.Error.App.accountsNotFound
 		case .authenticatorNotFound:
-			return L10n.Error.App.authenticatorNotFound
+			L10n.Error.App.authenticatorNotFound
 		case .pinAuthenticatorNotFound:
-			return L10n.Error.App.pinAuthenticatorNotFound
+			L10n.Error.App.pinAuthenticatorNotFound
 		case .deviceInformationNotFound:
-			return L10n.Error.App.deviceInformationNotFound
+			L10n.Error.App.deviceInformationNotFound
 		case .authCloudApiRegistrationDataNotFound:
-			return L10n.Error.App.authCloudApiRegistrationDataNotFound
+			L10n.Error.App.authCloudApiRegistrationDataNotFound
 		case .authCloudApiRegistrationDataWrong:
-			return L10n.Error.App.authCloudApiRegistrationDataWrong
+			L10n.Error.App.authCloudApiRegistrationDataWrong
 		case .loginDataNotFound:
-			return L10n.Error.App.loginDataNotFound
+			L10n.Error.App.loginDataNotFound
 		case .loginError:
-			return L10n.Error.App.loginFailed
+			L10n.Error.App.loginFailed
 		}
 	}
 }
