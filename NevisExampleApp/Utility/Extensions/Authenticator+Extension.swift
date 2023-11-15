@@ -12,15 +12,15 @@ extension Authenticator {
 	var localizedTitle: String {
 		switch aaid {
 		case AuthenticatorAaid.Pin.rawValue:
-			return L10n.Authenticator.Pin.title
+			L10n.Authenticator.Pin.title
 		case AuthenticatorAaid.FaceRecognition.rawValue:
-			return L10n.Authenticator.FaceRecognition.title
+			L10n.Authenticator.FaceRecognition.title
 		case AuthenticatorAaid.Fingerprint.rawValue:
-			return L10n.Authenticator.Fingerprint.title
+			L10n.Authenticator.Fingerprint.title
 		case AuthenticatorAaid.DevicePasscode.rawValue:
-			return L10n.Authenticator.DevicePasscode.title
+			L10n.Authenticator.DevicePasscode.title
 		default:
-			return String()
+			String()
 		}
 	}
 
@@ -31,11 +31,11 @@ extension Authenticator {
 	func isEnrolled(username: Username) -> Bool {
 		switch userEnrollment {
 		case let enrollment as SdkUserEnrollment:
-			return enrollment.isEnrolled(username)
+			enrollment.isEnrolled(username)
 		case let enrollment as OsUserEnrollment:
-			return enrollment.isEnrolled()
+			enrollment.isEnrolled()
 		default:
-			return false
+			false
 		}
 	}
 }

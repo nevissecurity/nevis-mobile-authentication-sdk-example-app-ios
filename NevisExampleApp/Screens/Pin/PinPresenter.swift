@@ -118,11 +118,11 @@ extension PinPresenter {
 	func getTitle() -> String {
 		switch operation {
 		case .enrollment:
-			return L10n.Pin.Enrollment.title
+			L10n.Pin.Enrollment.title
 		case .verification:
-			return L10n.Pin.Verify.title
+			L10n.Pin.Verify.title
 		case .credentialChange:
-			return L10n.Pin.Change.title
+			L10n.Pin.Change.title
 		}
 	}
 
@@ -132,11 +132,11 @@ extension PinPresenter {
 	func getDescription() -> String {
 		switch operation {
 		case .enrollment:
-			return L10n.Pin.Enrollment.description
+			L10n.Pin.Enrollment.description
 		case .verification:
-			return L10n.Pin.Verify.description
+			L10n.Pin.Verify.description
 		case .credentialChange:
-			return L10n.Pin.Change.description
+			L10n.Pin.Change.description
 		}
 	}
 
@@ -153,11 +153,11 @@ extension PinPresenter {
 	func getLastRecoverableError() -> String {
 		switch operation {
 		case .enrollment:
-			return enrollmentError?.localizedDescription ?? String()
+			enrollmentError?.localizedDescription ?? String()
 		case .verification:
-			return verificationError?.localizedDescription ?? String()
+			verificationError?.localizedDescription ?? String()
 		case .credentialChange:
-			return credentialChangeError?.localizedDescription ?? String()
+			credentialChangeError?.localizedDescription ?? String()
 		}
 	}
 
