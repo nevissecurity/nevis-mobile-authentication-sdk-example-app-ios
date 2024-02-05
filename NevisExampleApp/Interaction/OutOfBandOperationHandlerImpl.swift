@@ -32,6 +32,9 @@ final class OutOfBandOperationHandlerImpl {
 	/// The biometric user verifier.
 	private let biometricUserVerifier: BiometricUserVerifier
 
+	/// The device passcode user verifier.
+	private let devicePasscodeUserVerifier: DevicePasscodeUserVerifier
+
 	/// The application coordinator.
 	private let appCoordinator: AppCoordinator
 
@@ -58,6 +61,7 @@ final class OutOfBandOperationHandlerImpl {
 	///   - pinEnroller: The PIN enroller.
 	///   - pinUserVerifier: The PIN user verifier.
 	///   - biometricUserVerifier: The biometric user verifier.
+	///   - devicePasscodeUserVerifier: The device passcode user verifier.
 	///   - appCoordinator: The application coordinator.
 	///   - errorHandlerChain: The error handler chain.
 	///   - logger: The logger.
@@ -68,6 +72,7 @@ final class OutOfBandOperationHandlerImpl {
 	     pinEnroller: PinEnroller,
 	     pinUserVerifier: PinUserVerifier,
 	     biometricUserVerifier: BiometricUserVerifier,
+	     devicePasscodeUserVerifier: DevicePasscodeUserVerifier,
 	     appCoordinator: AppCoordinator,
 	     errorHandlerChain: ErrorHandlerChain,
 	     logger: SDKLogger) {
@@ -78,6 +83,7 @@ final class OutOfBandOperationHandlerImpl {
 		self.pinEnroller = pinEnroller
 		self.pinUserVerifier = pinUserVerifier
 		self.biometricUserVerifier = biometricUserVerifier
+		self.devicePasscodeUserVerifier = devicePasscodeUserVerifier
 		self.appCoordinator = appCoordinator
 		self.errorHandlerChain = errorHandlerChain
 		self.logger = logger
@@ -150,6 +156,7 @@ private extension OutOfBandOperationHandlerImpl {
 			.authenticatorSelector(registrationAuthenticatorSelector)
 			.pinEnroller(pinEnroller)
 			.biometricUserVerifier(biometricUserVerifier)
+			.devicePasscodeUserVerifier(devicePasscodeUserVerifier)
 			.onSuccess {
 				self.logger.log("Out-of-Band registration succeeded.", color: .green)
 				self.appCoordinator.navigateToResult(with: .success(operation: .registration))
@@ -171,6 +178,7 @@ private extension OutOfBandOperationHandlerImpl {
 			.authenticatorSelector(authenticationAuthenticatorSelector)
 			.pinUserVerifier(pinUserVerifier)
 			.biometricUserVerifier(biometricUserVerifier)
+			.devicePasscodeUserVerifier(devicePasscodeUserVerifier)
 			.onSuccess { _ in
 				self.logger.log("Out-of-Band authentication succeeded.", color: .green)
 				self.appCoordinator.navigateToResult(with: .success(operation: .authentication))
