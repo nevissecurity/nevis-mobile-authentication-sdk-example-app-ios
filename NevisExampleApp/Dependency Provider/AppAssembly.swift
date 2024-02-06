@@ -137,6 +137,7 @@ private extension AppAssembly {
 			                                      authenticatorSelector: authenticatorSelector,
 			                                      pinEnroller: res~>,
 			                                      biometricUserVerifier: res~>,
+			                                      devicePasscodeUserVerifier: res~>,
 			                                      appCoordinator: res~>,
 			                                      errorHandlerChain: res~>,
 			                                      logger: res~>)
@@ -239,6 +240,7 @@ private extension AppAssembly {
 			                                     pinEnroller: res~>,
 			                                     pinUserVerifier: res~>,
 			                                     biometricUserVerifier: res~>,
+			                                     devicePasscodeUserVerifier: res~>,
 			                                     appCoordinator: res~>,
 			                                     errorHandlerChain: res~>,
 			                                     logger: res~>)

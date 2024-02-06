@@ -33,6 +33,9 @@ final class UsernamePasswordLoginPresenter {
 	/// The biometric user verifier.
 	private let biometricUserVerifier: BiometricUserVerifier
 
+	/// The device passcode user verifier.
+	private let devicePasscodeUserVerifier: DevicePasscodeUserVerifier
+
 	/// The application coordinator.
 	private let appCoordinator: AppCoordinator
 
@@ -53,6 +56,7 @@ final class UsernamePasswordLoginPresenter {
 	///   - authenticatorSelector: The authenticator selector.
 	///   - pinEnroller: The PIN enroller.
 	///   - biometricUserVerifier: The biometric user verifier.
+	///   - devicePasscodeUserVerifier: The device passcode user verifier.
 	///   - appCoordinator: The application coordinator.
 	///   - errorHandlerChain: The error handler chain.
 	///   - logger: The logger.
@@ -62,6 +66,7 @@ final class UsernamePasswordLoginPresenter {
 	     authenticatorSelector: AuthenticatorSelector,
 	     pinEnroller: PinEnroller,
 	     biometricUserVerifier: BiometricUserVerifier,
+	     devicePasscodeUserVerifier: DevicePasscodeUserVerifier,
 	     appCoordinator: AppCoordinator,
 	     errorHandlerChain: ErrorHandlerChain,
 	     logger: SDKLogger) {
@@ -71,6 +76,7 @@ final class UsernamePasswordLoginPresenter {
 		self.authenticatorSelector = authenticatorSelector
 		self.pinEnroller = pinEnroller
 		self.biometricUserVerifier = biometricUserVerifier
+		self.devicePasscodeUserVerifier = devicePasscodeUserVerifier
 		self.appCoordinator = appCoordinator
 		self.errorHandlerChain = errorHandlerChain
 		self.logger = logger
@@ -157,6 +163,7 @@ private extension UsernamePasswordLoginPresenter {
 			.authenticatorSelector(authenticatorSelector)
 			.pinEnroller(pinEnroller)
 			.biometricUserVerifier(biometricUserVerifier)
+			.devicePasscodeUserVerifier(devicePasscodeUserVerifier)
 			.onSuccess {
 				self.appCoordinator.navigateToResult(with: .success(operation: .registration))
 			}
