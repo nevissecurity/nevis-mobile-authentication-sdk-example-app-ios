@@ -43,10 +43,11 @@ extension PinEnrollerImpl: PinEnroller {
 		else {
 			logger.log("Please start PIN enrollment.")
 		}
+		handler.pin("123345")
 
-		let parameter: PinParameter = .enrollment(lastRecoverableError: context.lastRecoverableError,
-		                                          handler: handler)
-		appCoordinator.navigateToPin(with: parameter)
+//		let parameter: PinParameter = .enrollment(lastRecoverableError: context.lastRecoverableError,
+//		                                          handler: handler)
+//		appCoordinator.navigateToPin(with: parameter)
 	}
 
 	/// You can add custom PIN policy by overriding the `pinPolicy` getter.
