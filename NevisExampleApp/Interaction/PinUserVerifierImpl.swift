@@ -44,9 +44,11 @@ extension PinUserVerifierImpl: PinUserVerifier {
 			logger.log("Please start PIN user verification.")
 		}
 
-		let parameter: PinParameter = .verification(protectionStatus: context.authenticatorProtectionStatus,
-		                                            lastRecoverableError: context.lastRecoverableError,
-		                                            handler: handler)
-		appCoordinator.navigateToPin(with: parameter)
+		handler.verify("123345")
+
+//		let parameter: PinParameter = .verification(protectionStatus: context.authenticatorProtectionStatus,
+//		                                            lastRecoverableError: context.lastRecoverableError,
+//		                                            handler: handler)
+//		appCoordinator.navigateToPin(with: parameter)
 	}
 }

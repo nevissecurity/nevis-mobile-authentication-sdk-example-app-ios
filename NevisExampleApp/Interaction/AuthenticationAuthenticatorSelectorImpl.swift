@@ -39,25 +39,26 @@ class AuthenticationAuthenticatorSelectorImpl {
 // MARK: - AuthenticatorSelector
 
 extension AuthenticationAuthenticatorSelectorImpl: AuthenticatorSelector {
-	func selectAuthenticator(context: AuthenticatorSelectionContext, handler: AuthenticatorSelectionHandler) {
+	func selectAuthenticator(context _: AuthenticatorSelectionContext, handler: AuthenticatorSelectionHandler) {
 		logger.log("Please select one of the received available authenticators!")
-		let authenticatorItems = context.authenticators.filter {
-			guard let registration = $0.registration else {
-				return false
-			}
-
-			// Do not display:
-			//   - policy non-registered authenticators
-			//   - not hardware supported authenticators.
-			return $0.isSupportedByHardware && registration.isRegistered(context.account.username)
-		}.map {
-			AuthenticatorItem(authenticator: $0,
-			                  isPolicyCompliant: context.isPolicyCompliant(authenticatorAaid: $0.aaid),
-			                  isUserEnrolled: $0.isEnrolled(username: context.account.username))
-		}
-
-		let parameter: SelectAuthenticatorParameter = .select(authenticatorItems: authenticatorItems,
-		                                                      handler: handler)
-		appCoordinator.navigateToAuthenticatorSelection(with: parameter)
+		handler.aaid(AuthenticatorAaid.Pin.rawValue)
+//		let authenticatorItems = context.authenticators.filter {
+//			guard let registration = $0.registration else {
+//				return false
+//			}
+//
+//			// Do not display:
+//			//   - policy non-registered authenticators
+//			//   - not hardware supported authenticators.
+//			return $0.isSupportedByHardware && registration.isRegistered(context.account.username)
+//		}.map {
+//			AuthenticatorItem(authenticator: $0,
+//			                  isPolicyCompliant: context.isPolicyCompliant(authenticatorAaid: $0.aaid),
+//			                  isUserEnrolled: $0.isEnrolled(username: context.account.username))
+//		}
+//
+//		let parameter: SelectAuthenticatorParameter = .select(authenticatorItems: authenticatorItems,
+//		                                                      handler: handler)
+//		appCoordinator.navigateToAuthenticatorSelection(with: parameter)
 	}
 }
