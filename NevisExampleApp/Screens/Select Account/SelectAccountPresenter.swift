@@ -176,6 +176,8 @@ private extension SelectAccountPresenter {
 	///
 	/// - Parameter account: The account that must be used to authenticate.
 	func inBandAuthenticate(using account: any Account, completion handler: ((Result<AuthorizationProvider?, AuthenticationError>) -> ())? = nil) {
+		let startDate = Date()
+		logger.log("In-band authentication started.", color: .red)
 		mobileAuthenticationClient?.operations.authentication
 			.username(account.username)
 			.authenticatorSelector(authenticatorSelector)
@@ -183,6 +185,7 @@ private extension SelectAccountPresenter {
 			.biometricUserVerifier(biometricUserVerifier)
 			.devicePasscodeUserVerifier(devicePasscodeUserVerifier)
 			.onSuccess { // (authorizationProvider: AuthorizationProvider) in
+				os_log("In-band authentication succeeded in: %f", log: OSLog.sdk, type: .default, Date().timeIntervalSince(startDate))
 				self.logger.log("In-band authentication succeeded.", color: .green)
 				self.printAuthorizationInfo($0)
 

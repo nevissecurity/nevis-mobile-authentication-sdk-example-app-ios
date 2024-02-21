@@ -11,6 +11,8 @@ import UIKit
 final class OutOfBandOperationHandlerImpl {
 	// MARK: - Properties
 
+	private var startDate: Date = Date()
+
 	/// The client provider.
 	private let clientProvider: ClientProvider
 
@@ -130,6 +132,8 @@ private extension OutOfBandOperationHandlerImpl {
 	///
 	/// - Parameter payload: The Out-of-Band payload.
 	func startOutOfBandOperation(with payload: OutOfBandPayload) {
+		startDate = Date()
+		logger.log("Out-of-Band operation started.", color: .red)
 		mobileAuthenticationClient?.operations.outOfBandOperation
 			.payload(payload)
 			.onRegistration {
@@ -158,6 +162,7 @@ private extension OutOfBandOperationHandlerImpl {
 			.biometricUserVerifier(biometricUserVerifier)
 			.devicePasscodeUserVerifier(devicePasscodeUserVerifier)
 			.onSuccess {
+				os_log("Out-of-Band registration succeeded in: %f", log: OSLog.sdk, type: .default, Date().timeIntervalSince(self.startDate))
 				self.logger.log("Out-of-Band registration succeeded.", color: .green)
 				self.appCoordinator.navigateToResult(with: .success(operation: .registration))
 			}

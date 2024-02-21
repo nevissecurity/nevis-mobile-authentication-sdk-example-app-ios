@@ -156,6 +156,8 @@ private extension UsernamePasswordLoginPresenter {
 		/// You can specify the base URL of the server where the registration should be made, see ``Registration/serverUrl(_:)``.
 		/// If no server base URL is provided, then the base URL defined in ``Configuration/baseUrl`` will be used.
 		let client = clientProvider.get()
+		let startDate = Date()
+		logger.log("Registration started.", color: .red)
 		client?.operations.registration
 			.username(username)
 			.deviceInformation(DeviceInformation(name: UIDevice.extendedName))
@@ -165,6 +167,7 @@ private extension UsernamePasswordLoginPresenter {
 			.biometricUserVerifier(biometricUserVerifier)
 			.devicePasscodeUserVerifier(devicePasscodeUserVerifier)
 			.onSuccess {
+				os_log("Registration succeeded in: %f", log: OSLog.sdk, type: .default, Date().timeIntervalSince(startDate))
 				self.appCoordinator.navigateToResult(with: .success(operation: .registration))
 			}
 			.onError {
