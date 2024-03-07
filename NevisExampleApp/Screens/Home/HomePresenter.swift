@@ -133,7 +133,12 @@ extension HomePresenter {
 		                                                operation: .authentication,
 		                                                handler: nil,
 		                                                message: nil)
-		appCoordinator.navigateToAccountSelection(with: parameter)
+//		appCoordinator.navigateToAccountSelection(with: parameter)
+		if let account = accounts.first {
+			let presenter = DependencyProvider.shared.container.resolve(SelectAccountPresenter.self,
+			                                                            argument: parameter as NavigationParameterizable)
+			presenter?.select(account: account)
+		}
 	}
 
 	/// Starts deregistering all accounts.

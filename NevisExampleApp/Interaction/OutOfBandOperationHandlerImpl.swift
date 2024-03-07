@@ -11,7 +11,7 @@ import UIKit
 final class OutOfBandOperationHandlerImpl {
 	// MARK: - Properties
 
-	private var startDate: Date = Date()
+	private var startDate: Date = .init()
 
 	/// The client provider.
 	private let clientProvider: ClientProvider
