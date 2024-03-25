@@ -9,7 +9,7 @@ target 'NevisExampleApp' do
 	platform :ios, IOSDeploymentTarget
 
 	pod 'FittedSheets', '= 2.6.1'
-	pod 'KRProgressHUD', '= 3.4.7'
+	pod 'KRProgressHUD', '= 3.4.8'
 	pod 'MercariQRScanner', '= 1.9.0'
 	pod 'Swinject', '= 2.8.3'
 	pod 'SwinjectAutoregistration', '= 2.8.3'

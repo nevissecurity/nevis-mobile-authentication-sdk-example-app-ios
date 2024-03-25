@@ -1,11 +1,11 @@
 PODS:
   - FittedSheets (2.6.1)
-  - KRActivityIndicatorView (3.0.7)
-  - KRProgressHUD (3.4.7):
-    - KRActivityIndicatorView (= 3.0.7)
+  - KRActivityIndicatorView (3.0.8)
+  - KRProgressHUD (3.4.8):
+    - KRActivityIndicatorView (= 3.0.8)
   - MercariQRScanner (1.9.0)
-  - NevisMobileAuthentication (3.6.1)
-  - NevisMobileAuthentication-Debug (3.6.1)
+  - NevisMobileAuthentication (3.6.4)
+  - NevisMobileAuthentication-Debug (3.6.4)
   - Swinject (2.8.3)
   - SwinjectAutoregistration (2.8.3):
     - Swinject (~> 2.8.3)
@@ -13,7 +13,7 @@ PODS:
 
 DEPENDENCIES:
   - FittedSheets (= 2.6.1)
-  - KRProgressHUD (= 3.4.7)
+  - KRProgressHUD (= 3.4.8)
   - MercariQRScanner (= 1.9.0)
   - NevisMobileAuthentication (~> 3.6.0)
   - NevisMobileAuthentication-Debug (~> 3.6.0)
@@ -35,15 +35,15 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   FittedSheets: 37e35f105c531f3845075f1788dd8517a35315c4
-  KRActivityIndicatorView: ad69e89c4ce40c986cf580595be4829dcad0e35a
-  KRProgressHUD: a248f0bc6c9c2aed40a37b76e03ffecc7f85c887
+  KRActivityIndicatorView: c5c503bf56e54834382dd926b64ff47287ca0006
+  KRProgressHUD: d0fb4e72428d312eb6966e84c543ea58fb1efbc7
   MercariQRScanner: e5aea873969af59b09b4cc411fc1c5b6293dba44
-  NevisMobileAuthentication: 3801ddc251892ee3c9fc2b01d9ba62ce083332a2
-  NevisMobileAuthentication-Debug: 6f122eac4bdc5d0916b535784eff0ab9f3088ce0
+  NevisMobileAuthentication: ddf68900d84b25df43397daf4e11231eed96e3ff
+  NevisMobileAuthentication-Debug: 2d5632961696c6ca3b246c45c50e438c4603a36a
   Swinject: 893c9a543000ac2f10ee4cbaf0933c6992c935d5
   SwinjectAutoregistration: e3ee378dc458acf78d176fc7fec3902603452667
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
 
-PODFILE CHECKSUM: 06d8fb0ba58dafde3ea6a3002ebfa535153fd17d
+PODFILE CHECKSUM: 199ed59c8405e47365ff123e078c1c2e5ab4c80e
 
 COCOAPODS: 1.15.2

@@ -11,6 +11,9 @@ class BiometricUserVerifierImpl {
 
 	// MARK: - Properties
 
+	/// The application coordinator.
+	private let appCoordinator: AppCoordinator
+
 	/// The logger.
 	private let logger: SDKLogger
 
@@ -18,22 +21,24 @@ class BiometricUserVerifierImpl {
 
 	/// Creates a new instance.
 	///
-	/// - Parameter logger: The logger.
-	init(logger: SDKLogger) {
+	/// - Parameters:
+	///   - appCoordinator: The application coordinator.
+	///   - logger: The logger.
+	init(appCoordinator: AppCoordinator,
+	     logger: SDKLogger) {
 		self.logger = logger
+		self.appCoordinator = appCoordinator
 	}
 }
 
 // MARK: - BiometricUserVerifier
 
 extension BiometricUserVerifierImpl: BiometricUserVerifier {
-	func verifyBiometric(context _: BiometricUserVerificationContext, handler: BiometricUserVerificationHandler) {
+	func verifyBiometric(context: BiometricUserVerificationContext, handler: BiometricUserVerificationHandler) {
 		logger.log("Please start biometric user verification.")
 
-		// In case of face recognition authenticator (Face ID) you may show a confirmation screen
-		// because the OS provided popup doesn't give the possibility to cancel the process.
-		// In the example app automatic verification is selected.
-		logger.log("Performing automatic user verification.")
-		handler.verify()
+		let parameter: ConfirmationParameter = .confirmBiometric(authenticator: context.authenticator.localizedTitle,
+		                                                         handler: handler)
+		appCoordinator.navigateToConfirmation(with: parameter)
 	}
 }

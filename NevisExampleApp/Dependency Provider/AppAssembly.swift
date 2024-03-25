@@ -75,6 +75,11 @@ private extension AppAssembly {
 			                                                 argument: arg))
 		}.inObjectScope(.weak)
 
+		container.register(ConfirmationScreen.self) { (res: Resolver, arg: NavigationParameterizable) in
+			ConfirmationScreen(presenter: res ~> (ConfirmationPresenter.self,
+			                                      argument: arg))
+		}.inObjectScope(.weak)
+
 		container.register(ResultScreen.self) { (res: Resolver, arg: NavigationParameterizable) in
 			ResultScreen(presenter: res ~> (ResultPresenter.self,
 			                                argument: arg))
@@ -176,6 +181,11 @@ private extension AppAssembly {
 		container.autoregister(ResultPresenter.self,
 		                       argument: NavigationParameterizable.self,
 		                       initializer: ResultPresenter.init)
+			.inObjectScope(.transient)
+
+		container.autoregister(ConfirmationPresenter.self,
+		                       argument: NavigationParameterizable.self,
+		                       initializer: ConfirmationPresenter.init)
 			.inObjectScope(.transient)
 
 		container.autoregister(LoggingPresenter.self,
