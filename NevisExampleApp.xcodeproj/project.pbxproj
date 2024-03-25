@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		382FE1D72BADD5FC00999625 /* ConfirmationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382FE1D62BADD5FC00999625 /* ConfirmationPresenter.swift */; };
+		382FE1D92BADD60400999625 /* ConfirmationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382FE1D82BADD60400999625 /* ConfirmationScreen.swift */; };
 		3833EB262685EA03002C5E0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3833EB252685EA03002C5E0C /* Assets.xcassets */; };
 		3833EB292685EA03002C5E0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3833EB272685EA03002C5E0C /* LaunchScreen.storyboard */; };
 		3859EAD7292CF78900013472 /* AppCoordinatorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EAD3292CF78900013472 /* AppCoordinatorImpl.swift */; };
@@ -111,6 +113,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		382FE1D62BADD5FC00999625 /* ConfirmationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationPresenter.swift; sourceTree = "<group>"; };
+		382FE1D82BADD60400999625 /* ConfirmationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationScreen.swift; sourceTree = "<group>"; };
 		3833EB192685EA03002C5E0C /* NevisExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NevisExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3833EB252685EA03002C5E0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3833EB282685EA03002C5E0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -229,6 +233,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		382FE1D52BADD5EA00999625 /* Confirmation */ = {
+			isa = PBXGroup;
+			children = (
+				382FE1D62BADD5FC00999625 /* ConfirmationPresenter.swift */,
+				382FE1D82BADD60400999625 /* ConfirmationScreen.swift */,
+			);
+			path = Confirmation;
+			sourceTree = "<group>";
+		};
 		3833EB102685EA03002C5E0C = {
 			isa = PBXGroup;
 			children = (
@@ -362,6 +375,7 @@
 				3859EB30292CF92000013472 /* Auth Cloud Api Registration */,
 				3859EB2E292CF92000013472 /* Base */,
 				3859EB11292CF92000013472 /* Change Device Information */,
+				382FE1D52BADD5EA00999625 /* Confirmation */,
 				3859EB06292CF92000013472 /* Home */,
 				3859EB14292CF92000013472 /* Launch */,
 				3859EB26292CF92000013472 /* Logging */,
@@ -756,6 +770,7 @@
 				3859EB5A292CF92000013472 /* AuthenticatorCell.swift in Sources */,
 				3859EB97292CFA1900013472 /* OutlinedButton.swift in Sources */,
 				3859EB52292CF92000013472 /* QrScannerPresenter.swift in Sources */,
+				382FE1D92BADD60400999625 /* ConfirmationScreen.swift in Sources */,
 				3872BFCE2A29D18F0041C594 /* AuthenticatorItem.swift in Sources */,
 				3859EB98292CFA1900013472 /* NSTextField.swift in Sources */,
 				3859EB3F292CF92000013472 /* HomeScreen.swift in Sources */,
@@ -824,6 +839,7 @@
 				3859EAF7292CF8A800013472 /* GeneralErrorHandler.swift in Sources */,
 				3859EB58292CF92000013472 /* SelectAuthenticatorPresenter.swift in Sources */,
 				3859EBC8292D096100013472 /* UIViewController+Extension.swift in Sources */,
+				382FE1D72BADD5FC00999625 /* ConfirmationPresenter.swift in Sources */,
 				38DABD6A29D585C0008B8116 /* LoginValidator.swift in Sources */,
 				3859EBB5292CFA1900013472 /* ValidationResult.swift in Sources */,
 				3859EB38292CF92000013472 /* AuthenticationAuthenticatorSelectorImpl.swift in Sources */,

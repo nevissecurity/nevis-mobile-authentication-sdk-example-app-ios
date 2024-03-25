@@ -165,9 +165,11 @@ private extension UsernamePasswordLoginPresenter {
 			.biometricUserVerifier(biometricUserVerifier)
 			.devicePasscodeUserVerifier(devicePasscodeUserVerifier)
 			.onSuccess {
+				self.logger.log("In-Band registration succeeded.", color: .green)
 				self.appCoordinator.navigateToResult(with: .success(operation: .registration))
 			}
 			.onError {
+				self.logger.log("In-Band registration failed.", color: .red)
 				let operationError = OperationError(operation: .registration,
 				                                    underlyingError: $0)
 				self.errorHandlerChain.handle(error: operationError)

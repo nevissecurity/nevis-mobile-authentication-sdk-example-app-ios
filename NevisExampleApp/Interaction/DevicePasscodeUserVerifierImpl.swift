@@ -11,6 +11,9 @@ class DevicePasscodeUserVerifierImpl {
 
 	// MARK: - Properties
 
+	/// The application coordinator.
+	private let appCoordinator: AppCoordinator
+
 	/// The logger.
 	private let logger: SDKLogger
 
@@ -18,8 +21,12 @@ class DevicePasscodeUserVerifierImpl {
 
 	/// Creates a new instance.
 	///
-	/// - Parameter logger: The logger.
-	init(logger: SDKLogger) {
+	/// - Parameters:
+	///   - appCoordinator: The application coordinator.
+	///   - logger: The logger.
+	init(appCoordinator: AppCoordinator,
+	     logger: SDKLogger) {
+		self.appCoordinator = appCoordinator
 		self.logger = logger
 	}
 }
@@ -27,9 +34,11 @@ class DevicePasscodeUserVerifierImpl {
 // MARK: - DevicePasscodeUserVerifier
 
 extension DevicePasscodeUserVerifierImpl: DevicePasscodeUserVerifier {
-	func verifyDevicePasscode(context _: DevicePasscodeUserVerificationContext, handler: DevicePasscodeUserVerificationHandler) {
+	func verifyDevicePasscode(context: DevicePasscodeUserVerificationContext, handler: DevicePasscodeUserVerificationHandler) {
 		logger.log("Please start device passcode user verification.")
-		logger.log("Performing automatic user verification.")
-		handler.verify()
+
+		let parameter: ConfirmationParameter = .confirmDevicePasscode(authenticator: context.authenticator.localizedTitle,
+		                                                              handler: handler)
+		appCoordinator.navigateToConfirmation(with: parameter)
 	}
 }
