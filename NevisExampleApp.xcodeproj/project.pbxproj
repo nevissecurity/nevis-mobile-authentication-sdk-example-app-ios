@@ -110,9 +110,11 @@
 		38E1CBF32A8E31DE00D4F7EB /* DevicePasscodeUserVerifierImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1CBF22A8E31DE00D4F7EB /* DevicePasscodeUserVerifierImpl.swift */; };
 		38FF9DC5292E09E70027C09E /* PinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF9DC4292E09E70027C09E /* PinView.swift */; };
 		38FF9DC7292E0B160027C09E /* LoggingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF9DC6292E0B160027C09E /* LoggingView.swift */; };
+		9BE0F5E78A6A916FF7E09A96 /* Pods_NevisExampleApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F141C519C68C029C049F2F79 /* Pods_NevisExampleApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B956422D44439C093E00399 /* Pods-NevisExampleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NevisExampleApp.release.xcconfig"; path = "Target Support Files/Pods-NevisExampleApp/Pods-NevisExampleApp.release.xcconfig"; sourceTree = "<group>"; };
 		382FE1D62BADD5FC00999625 /* ConfirmationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationPresenter.swift; sourceTree = "<group>"; };
 		382FE1D82BADD60400999625 /* ConfirmationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationScreen.swift; sourceTree = "<group>"; };
 		3833EB192685EA03002C5E0C /* NevisExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NevisExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -220,6 +222,8 @@
 		38E1CBF22A8E31DE00D4F7EB /* DevicePasscodeUserVerifierImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicePasscodeUserVerifierImpl.swift; sourceTree = "<group>"; };
 		38FF9DC4292E09E70027C09E /* PinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinView.swift; sourceTree = "<group>"; };
 		38FF9DC6292E0B160027C09E /* LoggingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingView.swift; sourceTree = "<group>"; };
+		67BBC52FF1A43798284EED29 /* Pods-NevisExampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NevisExampleApp.debug.xcconfig"; path = "Target Support Files/Pods-NevisExampleApp/Pods-NevisExampleApp.debug.xcconfig"; sourceTree = "<group>"; };
+		F141C519C68C029C049F2F79 /* Pods_NevisExampleApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NevisExampleApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +231,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BE0F5E78A6A916FF7E09A96 /* Pods_NevisExampleApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +252,8 @@
 			children = (
 				3833EB1B2685EA03002C5E0C /* NevisExampleApp */,
 				3833EB1A2685EA03002C5E0C /* Products */,
+				A651FDC4F5C71ADD993EA999 /* Pods */,
+				8E9E59B3AFC9FF84E096D1EB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -664,6 +671,24 @@
 			path = "Username Password Login";
 			sourceTree = "<group>";
 		};
+		8E9E59B3AFC9FF84E096D1EB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F141C519C68C029C049F2F79 /* Pods_NevisExampleApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A651FDC4F5C71ADD993EA999 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				67BBC52FF1A43798284EED29 /* Pods-NevisExampleApp.debug.xcconfig */,
+				0B956422D44439C093E00399 /* Pods-NevisExampleApp.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -671,10 +696,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3833EB2D2685EA03002C5E0C /* Build configuration list for PBXNativeTarget "NevisExampleApp" */;
 			buildPhases = (
+				79CB52AC7DDC23DF75949849 /* [CP] Check Pods Manifest.lock */,
 				3867C1972685EE1F00A8B98B /* Swiftformat */,
 				3833EB152685EA03002C5E0C /* Sources */,
 				3833EB162685EA03002C5E0C /* Frameworks */,
 				3833EB172685EA03002C5E0C /* Resources */,
+				B33D1E141A1B58EE4EBF5ABB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -752,6 +779,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftformat >/dev/null; then\n    echo \"SwiftFormat version: $(swiftformat --version)\"\n    swiftformat \"${SRCROOT}/\"\nelse\n    echo \"warning: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\nfi\n";
+		};
+		79CB52AC7DDC23DF75949849 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NevisExampleApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B33D1E141A1B58EE4EBF5ABB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NevisExampleApp/Pods-NevisExampleApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NevisExampleApp/Pods-NevisExampleApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NevisExampleApp/Pods-NevisExampleApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1005,6 +1071,7 @@
 		};
 		3833EB2E2685EA03002C5E0C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67BBC52FF1A43798284EED29 /* Pods-NevisExampleApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1036,6 +1103,7 @@
 		};
 		3833EB2F2685EA03002C5E0C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0B956422D44439C093E00399 /* Pods-NevisExampleApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
