@@ -29,6 +29,9 @@ public enum Operation {
 	/// PIN change operation.
 	case pinChange
 
+	/// Password change operation.
+	case passwordChange
+
 	/// Device information change operation.
 	case deviceInformationChange
 
@@ -54,7 +57,9 @@ public enum Operation {
 		case .deregistration:
 			L10n.Operation.Deregistration.title
 		case .pinChange:
-			L10n.Operation.Pinchange.title
+			L10n.Operation.PinChange.title
+		case .passwordChange:
+			L10n.Operation.PasswordChange.title
 		case .deviceInformationChange:
 			L10n.Operation.DeviceInformationChange.title
 		case .localData:

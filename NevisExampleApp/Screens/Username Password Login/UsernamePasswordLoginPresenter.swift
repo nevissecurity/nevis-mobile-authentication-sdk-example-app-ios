@@ -30,6 +30,9 @@ final class UsernamePasswordLoginPresenter {
 	/// The PIN enroller.
 	private let pinEnroller: PinEnroller
 
+	/// The PIN enroller.
+	private let passwordEnroller: PasswordEnroller
+
 	/// The biometric user verifier.
 	private let biometricUserVerifier: BiometricUserVerifier
 
@@ -55,6 +58,7 @@ final class UsernamePasswordLoginPresenter {
 	///   - clientProvider: The client provider.
 	///   - authenticatorSelector: The authenticator selector.
 	///   - pinEnroller: The PIN enroller.
+	///   - passwordEnroller: The Password enroller.
 	///   - biometricUserVerifier: The biometric user verifier.
 	///   - devicePasscodeUserVerifier: The device passcode user verifier.
 	///   - appCoordinator: The application coordinator.
@@ -65,6 +69,7 @@ final class UsernamePasswordLoginPresenter {
 	     clientProvider: ClientProvider,
 	     authenticatorSelector: AuthenticatorSelector,
 	     pinEnroller: PinEnroller,
+	     passwordEnroller: PasswordEnroller,
 	     biometricUserVerifier: BiometricUserVerifier,
 	     devicePasscodeUserVerifier: DevicePasscodeUserVerifier,
 	     appCoordinator: AppCoordinator,
@@ -75,6 +80,7 @@ final class UsernamePasswordLoginPresenter {
 		self.clientProvider = clientProvider
 		self.authenticatorSelector = authenticatorSelector
 		self.pinEnroller = pinEnroller
+		self.passwordEnroller = passwordEnroller
 		self.biometricUserVerifier = biometricUserVerifier
 		self.devicePasscodeUserVerifier = devicePasscodeUserVerifier
 		self.appCoordinator = appCoordinator
@@ -162,6 +168,7 @@ private extension UsernamePasswordLoginPresenter {
 			.authorizationProvider(CookieAuthorizationProvider(cookies))
 			.authenticatorSelector(authenticatorSelector)
 			.pinEnroller(pinEnroller)
+			.passwordEnroller(passwordEnroller)
 			.biometricUserVerifier(biometricUserVerifier)
 			.devicePasscodeUserVerifier(devicePasscodeUserVerifier)
 			.onSuccess {

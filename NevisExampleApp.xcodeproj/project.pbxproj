@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06000BAC2C37DDDD00AB53A1 /* PasswordAuthenticatorProtectionStatus+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06000BAB2C37DDDD00AB53A1 /* PasswordAuthenticatorProtectionStatus+Extension.swift */; };
+		06000BAE2C37ECD800AB53A1 /* PasswordChangerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06000BAD2C37ECD800AB53A1 /* PasswordChangerImpl.swift */; };
+		06000BB02C37EDA100AB53A1 /* PasswordEnroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06000BAF2C37EDA100AB53A1 /* PasswordEnroller.swift */; };
+		06000BB22C37EE6A00AB53A1 /* PasswordUserVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06000BB12C37EE6A00AB53A1 /* PasswordUserVerifier.swift */; };
+		06471B152C29685C006879F9 /* AuthenticatorAaid+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06471B142C29685C006879F9 /* AuthenticatorAaid+Extensions.swift */; };
+		068E9ABC2C2D60BA0059E33C /* AuthenticatorValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068E9ABB2C2D60BA0059E33C /* AuthenticatorValidator.swift */; };
 		382FE1D72BADD5FC00999625 /* ConfirmationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382FE1D62BADD5FC00999625 /* ConfirmationPresenter.swift */; };
 		382FE1D92BADD60400999625 /* ConfirmationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382FE1D82BADD60400999625 /* ConfirmationScreen.swift */; };
 		3833EB262685EA03002C5E0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3833EB252685EA03002C5E0C /* Assets.xcassets */; };
@@ -29,8 +35,7 @@
 		3859EAF9292CF8A800013472 /* ErrorHandlerChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EAF3292CF8A800013472 /* ErrorHandlerChain.swift */; };
 		3859EAFA292CF8A800013472 /* ErrorHandlerChainImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EAF4292CF8A800013472 /* ErrorHandlerChainImpl.swift */; };
 		3859EB36292CF92000013472 /* PinUserVerifierImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EAFC292CF92000013472 /* PinUserVerifierImpl.swift */; };
-		3859EB37292CF92000013472 /* RegistrationAuthenticatorSelectorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EAFD292CF92000013472 /* RegistrationAuthenticatorSelectorImpl.swift */; };
-		3859EB38292CF92000013472 /* AuthenticationAuthenticatorSelectorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EAFE292CF92000013472 /* AuthenticationAuthenticatorSelectorImpl.swift */; };
+		3859EB38292CF92000013472 /* AuthenticatorSelectorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EAFE292CF92000013472 /* AuthenticatorSelectorImpl.swift */; };
 		3859EB39292CF92000013472 /* PinChangerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EAFF292CF92000013472 /* PinChangerImpl.swift */; };
 		3859EB3A292CF92000013472 /* OutOfBandOperationHandlerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EB00292CF92000013472 /* OutOfBandOperationHandlerImpl.swift */; };
 		3859EB3B292CF92000013472 /* AccountSelectorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EB01292CF92000013472 /* AccountSelectorImpl.swift */; };
@@ -39,9 +44,9 @@
 		3859EB3E292CF92000013472 /* BiometricUserVerifierImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EB04292CF92000013472 /* BiometricUserVerifierImpl.swift */; };
 		3859EB3F292CF92000013472 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EB07292CF92000013472 /* HomeScreen.swift */; };
 		3859EB40292CF92000013472 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EB08292CF92000013472 /* HomePresenter.swift */; };
-		3859EB41292CF92000013472 /* PinPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EB0A292CF92000013472 /* PinPresenter.swift */; };
-		3859EB42292CF92000013472 /* PinScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EB0B292CF92000013472 /* PinScreen.swift */; };
-		3859EB43292CF92000013472 /* PinProtectionInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EB0D292CF92000013472 /* PinProtectionInformation.swift */; };
+		3859EB41292CF92000013472 /* CredentialPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EB0A292CF92000013472 /* CredentialPresenter.swift */; };
+		3859EB42292CF92000013472 /* CredentialScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EB0B292CF92000013472 /* CredentialScreen.swift */; };
+		3859EB43292CF92000013472 /* CredentialProtectionInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EB0D292CF92000013472 /* CredentialProtectionInformation.swift */; };
 		3859EB44292CF92000013472 /* ResultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EB0F292CF92000013472 /* ResultPresenter.swift */; };
 		3859EB45292CF92000013472 /* ResultScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EB10292CF92000013472 /* ResultScreen.swift */; };
 		3859EB46292CF92000013472 /* ChangeDeviceInformationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EB12292CF92000013472 /* ChangeDeviceInformationScreen.swift */; };
@@ -108,13 +113,17 @@
 		38DABD6A29D585C0008B8116 /* LoginValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DABD6929D585C0008B8116 /* LoginValidator.swift */; };
 		38E17EB02A28DD7200441821 /* Authenticator+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E17EAF2A28DD7200441821 /* Authenticator+Extension.swift */; };
 		38E1CBF32A8E31DE00D4F7EB /* DevicePasscodeUserVerifierImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1CBF22A8E31DE00D4F7EB /* DevicePasscodeUserVerifierImpl.swift */; };
-		38FF9DC5292E09E70027C09E /* PinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF9DC4292E09E70027C09E /* PinView.swift */; };
+		38FF9DC5292E09E70027C09E /* CredentialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF9DC4292E09E70027C09E /* CredentialView.swift */; };
 		38FF9DC7292E0B160027C09E /* LoggingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF9DC6292E0B160027C09E /* LoggingView.swift */; };
-		9BE0F5E78A6A916FF7E09A96 /* Pods_NevisExampleApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F141C519C68C029C049F2F79 /* Pods_NevisExampleApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0B956422D44439C093E00399 /* Pods-NevisExampleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NevisExampleApp.release.xcconfig"; path = "Target Support Files/Pods-NevisExampleApp/Pods-NevisExampleApp.release.xcconfig"; sourceTree = "<group>"; };
+		06000BAB2C37DDDD00AB53A1 /* PasswordAuthenticatorProtectionStatus+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasswordAuthenticatorProtectionStatus+Extension.swift"; sourceTree = "<group>"; };
+		06000BAD2C37ECD800AB53A1 /* PasswordChangerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordChangerImpl.swift; sourceTree = "<group>"; };
+		06000BAF2C37EDA100AB53A1 /* PasswordEnroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordEnroller.swift; sourceTree = "<group>"; };
+		06000BB12C37EE6A00AB53A1 /* PasswordUserVerifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordUserVerifier.swift; sourceTree = "<group>"; };
+		06471B142C29685C006879F9 /* AuthenticatorAaid+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthenticatorAaid+Extensions.swift"; sourceTree = "<group>"; };
+		068E9ABB2C2D60BA0059E33C /* AuthenticatorValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatorValidator.swift; sourceTree = "<group>"; };
 		382FE1D62BADD5FC00999625 /* ConfirmationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationPresenter.swift; sourceTree = "<group>"; };
 		382FE1D82BADD60400999625 /* ConfirmationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationScreen.swift; sourceTree = "<group>"; };
 		3833EB192685EA03002C5E0C /* NevisExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NevisExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,8 +148,7 @@
 		3859EAF3292CF8A800013472 /* ErrorHandlerChain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandlerChain.swift; sourceTree = "<group>"; };
 		3859EAF4292CF8A800013472 /* ErrorHandlerChainImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandlerChainImpl.swift; sourceTree = "<group>"; };
 		3859EAFC292CF92000013472 /* PinUserVerifierImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinUserVerifierImpl.swift; sourceTree = "<group>"; };
-		3859EAFD292CF92000013472 /* RegistrationAuthenticatorSelectorImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationAuthenticatorSelectorImpl.swift; sourceTree = "<group>"; };
-		3859EAFE292CF92000013472 /* AuthenticationAuthenticatorSelectorImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationAuthenticatorSelectorImpl.swift; sourceTree = "<group>"; };
+		3859EAFE292CF92000013472 /* AuthenticatorSelectorImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticatorSelectorImpl.swift; sourceTree = "<group>"; };
 		3859EAFF292CF92000013472 /* PinChangerImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinChangerImpl.swift; sourceTree = "<group>"; };
 		3859EB00292CF92000013472 /* OutOfBandOperationHandlerImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutOfBandOperationHandlerImpl.swift; sourceTree = "<group>"; };
 		3859EB01292CF92000013472 /* AccountSelectorImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSelectorImpl.swift; sourceTree = "<group>"; };
@@ -149,9 +157,9 @@
 		3859EB04292CF92000013472 /* BiometricUserVerifierImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiometricUserVerifierImpl.swift; sourceTree = "<group>"; };
 		3859EB07292CF92000013472 /* HomeScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		3859EB08292CF92000013472 /* HomePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
-		3859EB0A292CF92000013472 /* PinPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinPresenter.swift; sourceTree = "<group>"; };
-		3859EB0B292CF92000013472 /* PinScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinScreen.swift; sourceTree = "<group>"; };
-		3859EB0D292CF92000013472 /* PinProtectionInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinProtectionInformation.swift; sourceTree = "<group>"; };
+		3859EB0A292CF92000013472 /* CredentialPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialPresenter.swift; sourceTree = "<group>"; };
+		3859EB0B292CF92000013472 /* CredentialScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialScreen.swift; sourceTree = "<group>"; };
+		3859EB0D292CF92000013472 /* CredentialProtectionInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialProtectionInformation.swift; sourceTree = "<group>"; };
 		3859EB0F292CF92000013472 /* ResultPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultPresenter.swift; sourceTree = "<group>"; };
 		3859EB10292CF92000013472 /* ResultScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultScreen.swift; sourceTree = "<group>"; };
 		3859EB12292CF92000013472 /* ChangeDeviceInformationScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeDeviceInformationScreen.swift; sourceTree = "<group>"; };
@@ -220,10 +228,8 @@
 		38DABD6929D585C0008B8116 /* LoginValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginValidator.swift; sourceTree = "<group>"; };
 		38E17EAF2A28DD7200441821 /* Authenticator+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Authenticator+Extension.swift"; sourceTree = "<group>"; };
 		38E1CBF22A8E31DE00D4F7EB /* DevicePasscodeUserVerifierImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicePasscodeUserVerifierImpl.swift; sourceTree = "<group>"; };
-		38FF9DC4292E09E70027C09E /* PinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinView.swift; sourceTree = "<group>"; };
+		38FF9DC4292E09E70027C09E /* CredentialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialView.swift; sourceTree = "<group>"; };
 		38FF9DC6292E0B160027C09E /* LoggingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingView.swift; sourceTree = "<group>"; };
-		67BBC52FF1A43798284EED29 /* Pods-NevisExampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NevisExampleApp.debug.xcconfig"; path = "Target Support Files/Pods-NevisExampleApp/Pods-NevisExampleApp.debug.xcconfig"; sourceTree = "<group>"; };
-		F141C519C68C029C049F2F79 /* Pods_NevisExampleApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NevisExampleApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,13 +237,32 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BE0F5E78A6A916FF7E09A96 /* Pods_NevisExampleApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		06000BA92C37D9D000AB53A1 /* Pin */ = {
+			isa = PBXGroup;
+			children = (
+				3859EAFF292CF92000013472 /* PinChangerImpl.swift */,
+				3859EB02292CF92000013472 /* PinEnrollerImpl.swift */,
+				3859EAFC292CF92000013472 /* PinUserVerifierImpl.swift */,
+			);
+			path = Pin;
+			sourceTree = "<group>";
+		};
+		06000BAA2C37D9E200AB53A1 /* Password */ = {
+			isa = PBXGroup;
+			children = (
+				06000BAD2C37ECD800AB53A1 /* PasswordChangerImpl.swift */,
+				06000BAF2C37EDA100AB53A1 /* PasswordEnroller.swift */,
+				06000BB12C37EE6A00AB53A1 /* PasswordUserVerifier.swift */,
+			);
+			path = Password;
+			sourceTree = "<group>";
+		};
 		382FE1D52BADD5EA00999625 /* Confirmation */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,8 +277,6 @@
 			children = (
 				3833EB1B2685EA03002C5E0C /* NevisExampleApp */,
 				3833EB1A2685EA03002C5E0C /* Products */,
-				A651FDC4F5C71ADD993EA999 /* Pods */,
-				8E9E59B3AFC9FF84E096D1EB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -362,16 +385,14 @@
 		3859EAFB292CF92000013472 /* Interaction */ = {
 			isa = PBXGroup;
 			children = (
+				06000BAA2C37D9E200AB53A1 /* Password */,
+				06000BA92C37D9D000AB53A1 /* Pin */,
 				3859EB01292CF92000013472 /* AccountSelectorImpl.swift */,
-				3859EAFE292CF92000013472 /* AuthenticationAuthenticatorSelectorImpl.swift */,
+				3859EAFE292CF92000013472 /* AuthenticatorSelectorImpl.swift */,
 				3859EB04292CF92000013472 /* BiometricUserVerifierImpl.swift */,
 				38E1CBF22A8E31DE00D4F7EB /* DevicePasscodeUserVerifierImpl.swift */,
 				3859EB03292CF92000013472 /* OutOfBandOperationHandler.swift */,
 				3859EB00292CF92000013472 /* OutOfBandOperationHandlerImpl.swift */,
-				3859EAFF292CF92000013472 /* PinChangerImpl.swift */,
-				3859EB02292CF92000013472 /* PinEnrollerImpl.swift */,
-				3859EAFC292CF92000013472 /* PinUserVerifierImpl.swift */,
-				3859EAFD292CF92000013472 /* RegistrationAuthenticatorSelectorImpl.swift */,
 			);
 			path = Interaction;
 			sourceTree = "<group>";
@@ -383,17 +404,17 @@
 				3859EB2E292CF92000013472 /* Base */,
 				3859EB11292CF92000013472 /* Change Device Information */,
 				382FE1D52BADD5EA00999625 /* Confirmation */,
+				3859EB09292CF92000013472 /* Credential */,
 				3859EB06292CF92000013472 /* Home */,
 				3859EB14292CF92000013472 /* Launch */,
 				3859EB26292CF92000013472 /* Logging */,
-				3859EB09292CF92000013472 /* Pin */,
 				3859EB20292CF92000013472 /* Qr Scanner */,
 				3859EB0E292CF92000013472 /* Result */,
+				3859EB1F292CF92000013472 /* Screen.swift */,
 				3859EB1A292CF92000013472 /* Select Account */,
 				3859EB29292CF92000013472 /* Select Authenticator */,
 				3859EB33292CF92000013472 /* Transaction Confirmation */,
 				38DABD5E29D5817E008B8116 /* Username Password Login */,
-				3859EB1F292CF92000013472 /* Screen.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -407,21 +428,21 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		3859EB09292CF92000013472 /* Pin */ = {
+		3859EB09292CF92000013472 /* Credential */ = {
 			isa = PBXGroup;
 			children = (
 				3859EB0C292CF92000013472 /* Model */,
-				3859EB0A292CF92000013472 /* PinPresenter.swift */,
-				3859EB0B292CF92000013472 /* PinScreen.swift */,
-				38FF9DC4292E09E70027C09E /* PinView.swift */,
+				3859EB0A292CF92000013472 /* CredentialPresenter.swift */,
+				3859EB0B292CF92000013472 /* CredentialScreen.swift */,
+				38FF9DC4292E09E70027C09E /* CredentialView.swift */,
 			);
-			path = Pin;
+			path = Credential;
 			sourceTree = "<group>";
 		};
 		3859EB0C292CF92000013472 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3859EB0D292CF92000013472 /* PinProtectionInformation.swift */,
+				3859EB0D292CF92000013472 /* CredentialProtectionInformation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -486,7 +507,6 @@
 		3859EB29292CF92000013472 /* Select Authenticator */ = {
 			isa = PBXGroup;
 			children = (
-				3872BFCF2A29D1930041C594 /* Model */,
 				3859EB2D292CF92000013472 /* AuthenticatorCell.swift */,
 				3859EB2C292CF92000013472 /* SelectAuthenticatorItemViewModel.swift */,
 				3859EB2B292CF92000013472 /* SelectAuthenticatorPresenter.swift */,
@@ -571,9 +591,11 @@
 			isa = PBXGroup;
 			children = (
 				38E17EAF2A28DD7200441821 /* Authenticator+Extension.swift */,
+				06471B142C29685C006879F9 /* AuthenticatorAaid+Extensions.swift */,
 				3859EB84292CFA1900013472 /* Dictionary+Extension.swift */,
 				3859EB83292CFA1900013472 /* Notification+Extension.swift */,
 				3859EBBA292CFA7000013472 /* OSLog+Extension.swift */,
+				06000BAB2C37DDDD00AB53A1 /* PasswordAuthenticatorProtectionStatus+Extension.swift */,
 				3859EB82292CFA1900013472 /* PinAuthenticatorProtectionStatus+Extension.swift */,
 				3859EBB8292CFA7000013472 /* String+Extension.swift */,
 				3859EB7C292CFA1900013472 /* UIApplication+Extension.swift */,
@@ -619,6 +641,7 @@
 			children = (
 				3859EB91292CFA1900013472 /* AccountValidator.swift */,
 				3859EB92292CFA1900013472 /* AuthCloudApiRegistrationValidator.swift */,
+				068E9ABB2C2D60BA0059E33C /* AuthenticatorValidator.swift */,
 				38DABD6929D585C0008B8116 /* LoginValidator.swift */,
 				3859EB93292CFA1900013472 /* ValidationResult.swift */,
 			);
@@ -645,21 +668,14 @@
 		3867C19C2685F55400A8B98B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				3833EB2A2685EA03002C5E0C /* Info.plist */,
 				3833EB272685EA03002C5E0C /* LaunchScreen.storyboard */,
-				3833EB252685EA03002C5E0C /* Assets.xcassets */,
 				38C1B37B269D815A00ED5782 /* Localizable.strings */,
+				3833EB252685EA03002C5E0C /* Assets.xcassets */,
 				38821E6F292502670009522A /* ConfigAuthenticationCloud.plist */,
 				38821E6D292500ED0009522A /* ConfigIdentitySuite.plist */,
+				3833EB2A2685EA03002C5E0C /* Info.plist */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		3872BFCF2A29D1930041C594 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		38DABD5E29D5817E008B8116 /* Username Password Login */ = {
@@ -671,21 +687,10 @@
 			path = "Username Password Login";
 			sourceTree = "<group>";
 		};
-		8E9E59B3AFC9FF84E096D1EB /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				F141C519C68C029C049F2F79 /* Pods_NevisExampleApp.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		A651FDC4F5C71ADD993EA999 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				67BBC52FF1A43798284EED29 /* Pods-NevisExampleApp.debug.xcconfig */,
-				0B956422D44439C093E00399 /* Pods-NevisExampleApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -696,12 +701,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3833EB2D2685EA03002C5E0C /* Build configuration list for PBXNativeTarget "NevisExampleApp" */;
 			buildPhases = (
-				79CB52AC7DDC23DF75949849 /* [CP] Check Pods Manifest.lock */,
 				3867C1972685EE1F00A8B98B /* Swiftformat */,
 				3833EB152685EA03002C5E0C /* Sources */,
 				3833EB162685EA03002C5E0C /* Frameworks */,
 				3833EB172685EA03002C5E0C /* Resources */,
-				B33D1E141A1B58EE4EBF5ABB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -718,8 +721,9 @@
 		3833EB112685EA03002C5E0C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					3833EB182685EA03002C5E0C = {
 						CreatedOnToolsVersion = 12.5;
@@ -780,45 +784,6 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftformat >/dev/null; then\n    echo \"SwiftFormat version: $(swiftformat --version)\"\n    swiftformat \"${SRCROOT}/\"\nelse\n    echo \"warning: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\nfi\n";
 		};
-		79CB52AC7DDC23DF75949849 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NevisExampleApp-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B33D1E141A1B58EE4EBF5ABB /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NevisExampleApp/Pods-NevisExampleApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NevisExampleApp/Pods-NevisExampleApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NevisExampleApp/Pods-NevisExampleApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -851,12 +816,14 @@
 				3859EB4E292CF92000013472 /* SelectAccountScreen.swift in Sources */,
 				3859EB3A292CF92000013472 /* OutOfBandOperationHandlerImpl.swift in Sources */,
 				3859EBBC292CFA7000013472 /* UIDevice+Extension.swift in Sources */,
+				06471B152C29685C006879F9 /* AuthenticatorAaid+Extensions.swift in Sources */,
 				3859EB40292CF92000013472 /* HomePresenter.swift in Sources */,
 				3859EAEB292CF82D00013472 /* LoginConfiguration.swift in Sources */,
 				3859EB3C292CF92000013472 /* PinEnrollerImpl.swift in Sources */,
 				3859EBB2292CFA1900013472 /* LoginService.swift in Sources */,
+				06000BB22C37EE6A00AB53A1 /* PasswordUserVerifier.swift in Sources */,
 				3859EBA7292CFA1900013472 /* UIStackView+Extension.swift in Sources */,
-				3859EB42292CF92000013472 /* PinScreen.swift in Sources */,
+				3859EB42292CF92000013472 /* CredentialScreen.swift in Sources */,
 				3859EB65292CF9AF00013472 /* OperationError.swift in Sources */,
 				3859EAE9292CF82D00013472 /* AppConfiguration.swift in Sources */,
 				3859EBB7292CFA1900013472 /* Strings.swift in Sources */,
@@ -867,10 +834,9 @@
 				3859EADA292CF78900013472 /* Coordinator.swift in Sources */,
 				3859EAF5292CF8A800013472 /* ErrorHandler.swift in Sources */,
 				3859EB4C292CF92000013472 /* SelectAccountItemViewModel.swift in Sources */,
-				3859EB41292CF92000013472 /* PinPresenter.swift in Sources */,
+				3859EB41292CF92000013472 /* CredentialPresenter.swift in Sources */,
 				3859EAD7292CF78900013472 /* AppCoordinatorImpl.swift in Sources */,
 				3859EAF6292CF8A800013472 /* NevisErrorHandler.swift in Sources */,
-				3859EB37292CF92000013472 /* RegistrationAuthenticatorSelectorImpl.swift in Sources */,
 				3859EB59292CF92000013472 /* SelectAuthenticatorItemViewModel.swift in Sources */,
 				3859EB3D292CF92000013472 /* OutOfBandOperationHandler.swift in Sources */,
 				3859EBAD292CFA1900013472 /* ClientProviderImpl.swift in Sources */,
@@ -886,7 +852,7 @@
 				3859EB45292CF92000013472 /* ResultScreen.swift in Sources */,
 				3859EADF292CF7F000013472 /* AppAssembly.swift in Sources */,
 				3859EAE7292CF82D00013472 /* ConfigurationLoader.swift in Sources */,
-				3859EB43292CF92000013472 /* PinProtectionInformation.swift in Sources */,
+				3859EB43292CF92000013472 /* CredentialProtectionInformation.swift in Sources */,
 				38DABD6529D581D3008B8116 /* UsernamePasswordLoginScreen.swift in Sources */,
 				3859EAD9292CF78900013472 /* NavigationParameterizable.swift in Sources */,
 				3859EBAA292CFA1900013472 /* Dictionary+Extension.swift in Sources */,
@@ -897,7 +863,8 @@
 				3859EBBD292CFA7000013472 /* OSLog+Extension.swift in Sources */,
 				3859EB46292CF92000013472 /* ChangeDeviceInformationScreen.swift in Sources */,
 				3859EB99292CFA1900013472 /* Style.swift in Sources */,
-				38FF9DC5292E09E70027C09E /* PinView.swift in Sources */,
+				06000BB02C37EDA100AB53A1 /* PasswordEnroller.swift in Sources */,
+				38FF9DC5292E09E70027C09E /* CredentialView.swift in Sources */,
 				3859EAD8292CF78900013472 /* AppCoordinator.swift in Sources */,
 				3859EBAE292CFA1900013472 /* ClientProvider.swift in Sources */,
 				3859EBB4292CFA1900013472 /* AuthCloudApiRegistrationValidator.swift in Sources */,
@@ -908,16 +875,19 @@
 				382FE1D72BADD5FC00999625 /* ConfirmationPresenter.swift in Sources */,
 				38DABD6A29D585C0008B8116 /* LoginValidator.swift in Sources */,
 				3859EBB5292CFA1900013472 /* ValidationResult.swift in Sources */,
-				3859EB38292CF92000013472 /* AuthenticationAuthenticatorSelectorImpl.swift in Sources */,
+				3859EB38292CF92000013472 /* AuthenticatorSelectorImpl.swift in Sources */,
+				068E9ABC2C2D60BA0059E33C /* AuthenticatorValidator.swift in Sources */,
 				3859EB47292CF92000013472 /* ChangeDeviceInformationPresenter.swift in Sources */,
 				3859EB5B292CF92000013472 /* BaseScreen.swift in Sources */,
 				38DABD6629D581D3008B8116 /* UsernamePasswordLoginPresenter.swift in Sources */,
+				06000BAE2C37ECD800AB53A1 /* PasswordChangerImpl.swift in Sources */,
 				3859EB39292CF92000013472 /* PinChangerImpl.swift in Sources */,
 				3859EB5D292CF92000013472 /* AuthCloudApiRegistrationScreen.swift in Sources */,
 				3859EB3E292CF92000013472 /* BiometricUserVerifierImpl.swift in Sources */,
 				3859EB6A292CF9D700013472 /* DeepLink.swift in Sources */,
 				3859EB5C292CF92000013472 /* AuthCloudApiRegistrationPresenter.swift in Sources */,
 				3859EB5E292CF92000013472 /* TransactionConfirmationPresenter.swift in Sources */,
+				06000BAC2C37DDDD00AB53A1 /* PasswordAuthenticatorProtectionStatus+Extension.swift in Sources */,
 				38FF9DC7292E0B160027C09E /* LoggingView.swift in Sources */,
 				38E17EB02A28DD7200441821 /* Authenticator+Extension.swift in Sources */,
 				3859EBB1292CFA1900013472 /* LoginResponse.swift in Sources */,
@@ -1071,7 +1041,6 @@
 		};
 		3833EB2E2685EA03002C5E0C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 67BBC52FF1A43798284EED29 /* Pods-NevisExampleApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1103,7 +1072,6 @@
 		};
 		3833EB2F2685EA03002C5E0C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0B956422D44439C093E00399 /* Pods-NevisExampleApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

@@ -6,10 +6,10 @@
 
 import NevisMobileAuthentication
 
-/// Default implementation of ``PinChanger`` protocol.
+/// Default implementation of ``PinEnroller`` protocol.
 ///
-/// Navigates to the ``PinScreen`` where the user can change the PIN.
-class PinChangerImpl {
+/// Navigates to the ``CredentialScreen`` where the user can enroll the PIN authenticator.
+class PinEnrollerImpl {
 
 	// MARK: - Properties
 
@@ -33,22 +33,20 @@ class PinChangerImpl {
 	}
 }
 
-// MARK: - PinChanger
+// MARK: - PinEnroller
 
-extension PinChangerImpl: PinChanger {
-	func changePin(context: PinChangeContext, handler: PinChangeHandler) {
+extension PinEnrollerImpl: PinEnroller {
+	func enrollPin(context: PinEnrollmentContext, handler: PinEnrollmentHandler) {
 		if context.lastRecoverableError != nil {
-			logger.log("PIN change failed. Please try again.")
+			logger.log("PIN enrollment failed. Please try again.")
 		}
 		else {
-			logger.log("Please start PIN change.")
+			logger.log("Please start PIN enrollment.")
 		}
 
-		appCoordinator.topScreen?.enableInteraction()
-		let parameter: PinParameter = .credentialChange(protectionStatus: context.authenticatorProtectionStatus,
-		                                                lastRecoverableError: context.lastRecoverableError,
-		                                                handler: handler)
-		appCoordinator.navigateToPin(with: parameter)
+		let parameter: PinParameter = .enrollment(lastRecoverableError: context.lastRecoverableError,
+		                                          handler: handler)
+		appCoordinator.navigateToCredential(with: parameter)
 	}
 
 	/// You can add custom PIN policy by overriding the `pinPolicy` getter.

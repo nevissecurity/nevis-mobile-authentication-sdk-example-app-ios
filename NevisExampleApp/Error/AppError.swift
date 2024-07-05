@@ -20,6 +20,8 @@ enum AppError: Error {
 	case authenticatorNotFound
 	/// No PIN authenticator found in the list of registered authenticators.
 	case pinAuthenticatorNotFound
+	/// No Password authenticator found in the list of registered authenticators.
+	case passwordAuthenticatorNotFound
 	/// No device information found.
 	case deviceInformationNotFound
 	/// No data found during Auth Cloud registration.
@@ -49,6 +51,8 @@ extension AppError: LocalizedError {
 			L10n.Error.App.authenticatorNotFound
 		case .pinAuthenticatorNotFound:
 			L10n.Error.App.pinAuthenticatorNotFound
+		case .passwordAuthenticatorNotFound:
+			L10n.Error.App.passwordAuthenticatorNotFound
 		case .deviceInformationNotFound:
 			L10n.Error.App.deviceInformationNotFound
 		case .authCloudApiRegistrationDataNotFound:

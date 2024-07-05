@@ -27,6 +27,8 @@ extension AppAssembly: Assembly {
 
 private extension AppAssembly {
 
+	// MARK: Screens
+
 	/// Registers the screens.
 	///
 	/// - Parameter container: The container provided by the `Assembler`.
@@ -66,8 +68,8 @@ private extension AppAssembly {
 			                                             argument: arg))
 		}.inObjectScope(.weak)
 
-		container.register(PinScreen.self) { (res: Resolver, arg: NavigationParameterizable) in
-			PinScreen(presenter: res ~> (PinPresenter.self, argument: arg))
+		container.register(CredentialScreen.self) { (res: Resolver, arg: NavigationParameterizable) in
+			CredentialScreen(presenter: res ~> (CredentialPresenter.self, argument: arg))
 		}.inObjectScope(.weak)
 
 		container.register(TransactionConfirmationScreen.self) { (res: Resolver, arg: NavigationParameterizable) in
@@ -90,6 +92,8 @@ private extension AppAssembly {
 			.inObjectScope(.container)
 	}
 
+	// MARK: Coordinators
+
 	/// Registers the coordinators.
 	///
 	/// - Parameter container: The container provided by the `Assembler`.
@@ -98,6 +102,8 @@ private extension AppAssembly {
 		                       initializer: AppCoordinatorImpl.init)
 			.inObjectScope(.container)
 	}
+
+	// MARK: Presenters
 
 	/// Registers the presenters.
 	///
@@ -126,6 +132,7 @@ private extension AppAssembly {
 			return AuthCloudApiRegistrationPresenter(clientProvider: res~>,
 			                                         authenticatorSelector: authenticatorSelector,
 			                                         pinEnroller: res~>,
+			                                         passwordEnroller: res~>,
 			                                         biometricUserVerifier: res~>,
 			                                         devicePasscodeUserVerifier: res~>,
 			                                         appCoordinator: res~>,
@@ -141,6 +148,7 @@ private extension AppAssembly {
 			                                      clientProvider: res~>,
 			                                      authenticatorSelector: authenticatorSelector,
 			                                      pinEnroller: res~>,
+			                                      passwordEnroller: res~>,
 			                                      biometricUserVerifier: res~>,
 			                                      devicePasscodeUserVerifier: res~>,
 			                                      appCoordinator: res~>,
@@ -155,6 +163,8 @@ private extension AppAssembly {
 			                              authenticatorSelector: authenticatorSelector,
 			                              pinChanger: res~>,
 			                              pinUserVerifier: res~>,
+			                              passwordChanger: res~>,
+			                              passwordUserVerifier: res~>,
 			                              biometricUserVerifier: res~>,
 			                              devicePasscodeUserVerifier: res~>,
 			                              appCoordinator: res~>,
@@ -168,9 +178,9 @@ private extension AppAssembly {
 		                       initializer: SelectAuthenticatorPresenter.init)
 			.inObjectScope(.transient)
 
-		container.autoregister(PinPresenter.self,
+		container.autoregister(CredentialPresenter.self,
 		                       argument: NavigationParameterizable.self,
-		                       initializer: PinPresenter.init)
+		                       initializer: CredentialPresenter.init)
 			.inObjectScope(.transient)
 
 		container.autoregister(TransactionConfirmationPresenter.self,
@@ -193,6 +203,8 @@ private extension AppAssembly {
 			.inObjectScope(.transient)
 	}
 
+	// MARK: Components
+
 	/// Registers the components.
 	///
 	/// - Parameter container: The container provided by the `Assembler`.
@@ -208,13 +220,21 @@ private extension AppAssembly {
 		container.autoregister(AccountSelector.self,
 		                       initializer: AccountSelectorImpl.init)
 
-		container.autoregister(AuthenticatorSelector.self,
-		                       name: AuthenticationAuthenticatorSelectorName,
-		                       initializer: AuthenticationAuthenticatorSelectorImpl.init)
+		container.register(AuthenticatorSelector.self,
+		                   name: RegistrationAuthenticatorSelectorName) { res in
+			AuthenticatorSelectorImpl(appCoordinator: res~>,
+			                          logger: res~>,
+			                          configurationLoader: res~>,
+			                          operation: .registration)
+		}
 
-		container.autoregister(AuthenticatorSelector.self,
-		                       name: RegistrationAuthenticatorSelectorName,
-		                       initializer: RegistrationAuthenticatorSelectorImpl.init)
+		container.register(AuthenticatorSelector.self,
+		                   name: AuthenticationAuthenticatorSelectorName) { res in
+			AuthenticatorSelectorImpl(appCoordinator: res~>,
+			                          logger: res~>,
+			                          configurationLoader: res~>,
+			                          operation: .authentication)
+		}
 
 		container.autoregister(PinEnroller.self,
 		                       initializer: PinEnrollerImpl.init)
@@ -224,6 +244,15 @@ private extension AppAssembly {
 
 		container.autoregister(PinUserVerifier.self,
 		                       initializer: PinUserVerifierImpl.init)
+
+		container.autoregister(PasswordEnroller.self,
+		                       initializer: PasswordEnrollerImpl.init)
+
+		container.autoregister(PasswordChanger.self,
+		                       initializer: PasswordChangerImpl.init)
+
+		container.autoregister(PasswordUserVerifier.self,
+		                       initializer: PasswordUserVerifierImpl.init)
 
 		container.autoregister(BiometricUserVerifier.self,
 		                       initializer: BiometricUserVerifierImpl.init)
@@ -249,6 +278,8 @@ private extension AppAssembly {
 			                                     authenticationAuthenticatorSelector: authSelectorForAuth,
 			                                     pinEnroller: res~>,
 			                                     pinUserVerifier: res~>,
+			                                     passwordEnroller: res~>,
+			                                     passwordUserVerifier: res~>,
 			                                     biometricUserVerifier: res~>,
 			                                     devicePasscodeUserVerifier: res~>,
 			                                     appCoordinator: res~>,
