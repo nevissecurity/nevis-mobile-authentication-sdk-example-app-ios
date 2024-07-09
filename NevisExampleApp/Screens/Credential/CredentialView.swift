@@ -6,11 +6,11 @@
 
 import Foundation
 
-/// View protocol for the ``PinScreen``.
-protocol PinView: BaseView {
+/// View protocol for the ``CredentialScreen``.
+protocol CredentialView: BaseView {
 
 	/// Updates the view with the protection information.
 	///
 	/// - Parameter protectionInfo: The protection information.
-	func update(by protectionInfo: PinProtectionInformation)
+	func update(by protectionInfo: CredentialProtectionInformation)
 }

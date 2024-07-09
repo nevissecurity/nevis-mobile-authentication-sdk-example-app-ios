@@ -41,6 +41,12 @@ final class SelectAccountPresenter {
 	/// The PIN user verifier.
 	private let pinUserVerifier: PinUserVerifier
 
+	/// The Password changer.
+	private let passwordChanger: PasswordChanger
+
+	/// The Password user verifier.
+	private let passwordUserVerifier: PasswordUserVerifier
+
 	/// The biometric user verifier.
 	private let biometricUserVerifier: BiometricUserVerifier
 
@@ -82,6 +88,8 @@ final class SelectAccountPresenter {
 	///   - authenticatorSelector: The authenticator selector used during in-band authentication.
 	///   - pinChanger: The PIN changer.
 	///   - pinUserVerifier: The PIN user verifier.
+	///   - passwordChanger: The Password changer.
+	///   - passwordUserVerifier: The Password user verifier.
 	///   - biometricUserVerifier: The biometric user verifier.
 	///   - devicePasscodeUserVerifier: The device passcode user verifier.
 	///   - appCoordinator: The application coordinator.
@@ -92,6 +100,8 @@ final class SelectAccountPresenter {
 	     authenticatorSelector: AuthenticatorSelector,
 	     pinChanger: PinChanger,
 	     pinUserVerifier: PinUserVerifier,
+	     passwordChanger: PasswordChanger,
+	     passwordUserVerifier: PasswordUserVerifier,
 	     biometricUserVerifier: BiometricUserVerifier,
 	     devicePasscodeUserVerifier: DevicePasscodeUserVerifier,
 	     appCoordinator: AppCoordinator,
@@ -102,6 +112,8 @@ final class SelectAccountPresenter {
 		self.authenticatorSelector = authenticatorSelector
 		self.pinChanger = pinChanger
 		self.pinUserVerifier = pinUserVerifier
+		self.passwordChanger = passwordChanger
+		self.passwordUserVerifier = passwordUserVerifier
 		self.biometricUserVerifier = biometricUserVerifier
 		self.devicePasscodeUserVerifier = devicePasscodeUserVerifier
 		self.appCoordinator = appCoordinator
@@ -148,6 +160,8 @@ extension SelectAccountPresenter {
 			deregister(using: account)
 		case .pinChange:
 			changePin(using: account)
+		case .passwordChange:
+			changePassword(using: account)
 		default:
 			handler?.username(account.username)
 			handler = nil
@@ -180,6 +194,7 @@ private extension SelectAccountPresenter {
 			.username(account.username)
 			.authenticatorSelector(authenticatorSelector)
 			.pinUserVerifier(pinUserVerifier)
+			.passwordUserVerifier(passwordUserVerifier)
 			.biometricUserVerifier(biometricUserVerifier)
 			.devicePasscodeUserVerifier(devicePasscodeUserVerifier)
 			.onSuccess { // (authorizationProvider: AuthorizationProvider) in
@@ -199,6 +214,8 @@ private extension SelectAccountPresenter {
 				case let .FidoError(_, _, sessionProvider),
 				     let .NetworkError(_, sessionProvider):
 					self.printSessionInfo(sessionProvider)
+				case .NoDeviceLockError:
+					fallthrough
 				case .Unknown:
 					fallthrough
 				@unknown default:
@@ -290,6 +307,27 @@ private extension SelectAccountPresenter {
 			.onError {
 				self.logger.log("PIN change failed.", color: .red)
 				let operationError = OperationError(operation: .pinChange, underlyingError: $0)
+				self.errorHandlerChain.handle(error: operationError)
+			}
+			.execute()
+	}
+
+	/// Changes the Password of the selected account.
+	///
+	/// - Parameter account: The seleced account.
+	func changePassword(using account: any Account) {
+		logger.log("Changing Password for account: \(account)")
+		view?.disableInteraction()
+		mobileAuthenticationClient?.operations.passwordChange
+			.username(account.username)
+			.passwordChanger(passwordChanger)
+			.onSuccess {
+				self.logger.log("Password change succeeded.", color: .green)
+				self.appCoordinator.navigateToResult(with: .success(operation: .passwordChange))
+			}
+			.onError {
+				self.logger.log("Password change failed.", color: .red)
+				let operationError = OperationError(operation: .passwordChange, underlyingError: $0)
 				self.errorHandlerChain.handle(error: operationError)
 			}
 			.execute()

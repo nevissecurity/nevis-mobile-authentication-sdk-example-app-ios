@@ -23,6 +23,9 @@ final class AuthCloudApiRegistrationPresenter {
 	/// The PIN enroller.
 	private let pinEnroller: PinEnroller
 
+	/// The Password enroller.
+	private let passwordEnroller: PasswordEnroller
+
 	/// The biometric user verifier.
 	private let biometricUserVerifier: BiometricUserVerifier
 
@@ -46,6 +49,7 @@ final class AuthCloudApiRegistrationPresenter {
 	///   - clientProvider: The client provider.
 	///   - authenticatorSelector: The authenticator selector used during registration.
 	///   - pinEnroller: The PIN enroller.
+	///   - passwordEnroller: The Password enroller.
 	///   - biometricUserVerifier: The biometric user verifier.
 	///   - devicePasscodeUserVerifier: The device passcode user verifier.
 	///   - appCoordinator: The application coordinator.
@@ -54,6 +58,7 @@ final class AuthCloudApiRegistrationPresenter {
 	init(clientProvider: ClientProvider,
 	     authenticatorSelector: AuthenticatorSelector,
 	     pinEnroller: PinEnroller,
+	     passwordEnroller: PasswordEnroller,
 	     biometricUserVerifier: BiometricUserVerifier,
 	     devicePasscodeUserVerifier: DevicePasscodeUserVerifier,
 	     appCoordinator: AppCoordinator,
@@ -62,6 +67,7 @@ final class AuthCloudApiRegistrationPresenter {
 		self.clientProvider = clientProvider
 		self.authenticatorSelector = authenticatorSelector
 		self.pinEnroller = pinEnroller
+		self.passwordEnroller = passwordEnroller
 		self.biometricUserVerifier = biometricUserVerifier
 		self.devicePasscodeUserVerifier = devicePasscodeUserVerifier
 		self.appCoordinator = appCoordinator
@@ -92,6 +98,7 @@ extension AuthCloudApiRegistrationPresenter {
 			.deviceInformation(deviceInformation)
 			.authenticatorSelector(authenticatorSelector)
 			.pinEnroller(pinEnroller)
+			.passwordEnroller(passwordEnroller)
 			.biometricUserVerifier(biometricUserVerifier)
 			.devicePasscodeUserVerifier(devicePasscodeUserVerifier)
 			.onSuccess {

@@ -8,7 +8,7 @@ import NevisMobileAuthentication
 
 /// Default implementation of ``PinUserVerifier`` protocol.
 ///
-/// Navigates to the ``PinScreen`` where the user can verify the PIN.
+/// Navigates to the ``CredentialScreen`` where the user can verify the PIN.
 class PinUserVerifierImpl {
 
 	// MARK: - Properties
@@ -47,6 +47,6 @@ extension PinUserVerifierImpl: PinUserVerifier {
 		let parameter: PinParameter = .verification(protectionStatus: context.authenticatorProtectionStatus,
 		                                            lastRecoverableError: context.lastRecoverableError,
 		                                            handler: handler)
-		appCoordinator.navigateToPin(with: parameter)
+		appCoordinator.navigateToCredential(with: parameter)
 	}
 }

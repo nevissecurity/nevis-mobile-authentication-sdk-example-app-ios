@@ -6,8 +6,8 @@
 
 import UIKit
 
-/// The Pin view. Used for Pin code creation verification and change.
-class PinScreen: BaseScreen, Screen {
+/// The Credential view. Used for PIN / Password creation verification and change.
+class CredentialScreen: BaseScreen, Screen {
 
 	// MARK: - UI
 
@@ -17,11 +17,11 @@ class PinScreen: BaseScreen, Screen {
 	/// The description label.
 	private let descriptionLabel = NSLabel(style: .normal)
 
-	/// The text field for the old PIN.
-	private let oldPinField = NSTextField(placeholder: L10n.Pin.oldPinPlaceholder, returnKeyType: .next)
+	/// The text field for the old credential.
+	private let oldCredentialField = NSTextField(returnKeyType: .next)
 
-	/// The text field for the PIN.
-	private let pinField = NSTextField(placeholder: L10n.Pin.pinPlaceholder)
+	/// The text field for the credential.
+	private let credentialField = NSTextField()
 
 	/// The error label.
 	private let errorLabel = NSLabel(style: .error)
@@ -30,10 +30,10 @@ class PinScreen: BaseScreen, Screen {
 	private let infoMessageLabel = NSLabel(style: .info)
 
 	/// The confirm button.
-	private let confirmButton = OutlinedButton(title: L10n.Pin.confirm)
+	private let confirmButton = OutlinedButton(title: L10n.Credential.confirm)
 
 	/// The cancel button.
-	private let cancelButton = OutlinedButton(title: L10n.Pin.cancel)
+	private let cancelButton = OutlinedButton(title: L10n.Credential.cancel)
 
 	/// The toolbar for the keyboard with type *numberPad*.
 	private let keyboardToolbar = UIToolbar()
@@ -41,14 +41,14 @@ class PinScreen: BaseScreen, Screen {
 	// MARK: - Properties
 
 	/// The presenter.
-	var presenter: PinPresenter!
+	var presenter: CredentialPresenter!
 
 	// MARK: - Initialization
 
 	/// Creates a new instance.
 	///
 	/// - Parameter presenter: The presenter.
-	init(presenter: PinPresenter) {
+	init(presenter: CredentialPresenter) {
 		super.init()
 		self.presenter = presenter
 		self.presenter.view = self
@@ -56,13 +56,13 @@ class PinScreen: BaseScreen, Screen {
 
 	/// :nodoc:
 	deinit {
-		os_log("PinScreen", log: OSLog.deinit, type: .debug)
+		os_log("CredentialScreen", log: OSLog.deinit, type: .debug)
 	}
 }
 
 // MARK: - Lifecycle
 
-extension PinScreen {
+extension CredentialScreen {
 
 	/// Override of the `viewDidLoad()` lifecycle method. Sets up the user interface.
 	override func viewDidLoad() {
@@ -88,7 +88,7 @@ extension PinScreen {
 // MARK: - Setups
 
 /// :nodoc:
-private extension PinScreen {
+private extension CredentialScreen {
 
 	func setupUI() {
 		setupTitleLabel()
@@ -120,7 +120,7 @@ private extension PinScreen {
 		let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
 		                                target: nil,
 		                                action: nil)
-		let doneButton = UIBarButtonItem(title: L10n.Pin.done,
+		let doneButton = UIBarButtonItem(title: L10n.Credential.done,
 		                                 style: .done,
 		                                 target: self,
 		                                 action: #selector(done))
@@ -132,10 +132,11 @@ private extension PinScreen {
 	}
 
 	func setupOldPinField() {
-		oldPinField.do {
+		oldCredentialField.do {
 			addItem($0, topSpacing: 16)
 			$0.setHeight(with: 40)
-			$0.keyboardType = .numberPad
+			$0.placeholder = presenter.getCredentialType() == .Pin ? L10n.Credential.Pin.oldPinPlaceholder : L10n.Credential.Password.oldPasswordPlaceholder
+			$0.keyboardType = presenter.getCredentialType() == .Pin ? .numberPad : .default
 			$0.isSecureTextEntry = true
 			$0.inputAccessoryView = keyboardToolbar
 			$0.superview?.isHidden = presenter.getOperation() != .credentialChange
@@ -143,10 +144,11 @@ private extension PinScreen {
 	}
 
 	func setupPinField() {
-		pinField.do {
+		credentialField.do {
 			addItem($0, topSpacing: 16)
 			$0.setHeight(with: 40)
-			$0.keyboardType = .numberPad
+			$0.placeholder = presenter.getCredentialType() == .Pin ? L10n.Credential.Pin.pinPlaceholder : L10n.Credential.Password.passwordPlaceholder
+			$0.keyboardType = presenter.getCredentialType() == .Pin ? .numberPad : .default
 			$0.isSecureTextEntry = true
 			$0.inputAccessoryView = keyboardToolbar
 		}
@@ -181,21 +183,21 @@ private extension PinScreen {
 	}
 
 	func setupTextFields() {
-		if let superview = oldPinField.superview, !superview.isHidden {
-			oldPinField.becomeFirstResponder()
+		if let superview = oldCredentialField.superview, !superview.isHidden {
+			oldCredentialField.becomeFirstResponder()
 		}
 		else {
-			pinField.becomeFirstResponder()
+			credentialField.becomeFirstResponder()
 		}
 	}
 }
 
-// MARK: - PinView
+// MARK: - CredentialView
 
 /// :nodoc:
-extension PinScreen: PinView {
+extension CredentialScreen: CredentialView {
 
-	func update(by protectionInfo: PinProtectionInformation) {
+	func update(by protectionInfo: CredentialProtectionInformation) {
 		infoMessageLabel.text = protectionInfo.message
 		confirmButton.isEnabled = !protectionInfo.isInCoolDown
 		cancelButton.isEnabled = !protectionInfo.isInCoolDown
@@ -205,7 +207,7 @@ extension PinScreen: PinView {
 // MARK: - Actions
 
 /// :nodoc:
-private extension PinScreen {
+private extension CredentialScreen {
 
 	@objc
 	func done() {
@@ -214,18 +216,18 @@ private extension PinScreen {
 
 	@objc
 	func confirm() {
-		if presenter.getOperation() == .credentialChange, oldPinField.text.isEmptyOrNil {
-			errorLabel.text = L10n.Pin.missingOldPin
+		if presenter.getOperation() == .credentialChange, oldCredentialField.text.isEmptyOrNil {
+			errorLabel.text = presenter.getCredentialType() == .Pin ? L10n.Credential.Pin.missingOldPin : L10n.Credential.Password.missingOldPassword
 			return
 		}
 
-		guard let pin = pinField.text, !pin.isEmpty else {
-			errorLabel.text = L10n.Pin.missingPin
+		guard let credential = credentialField.text, !credential.isEmpty else {
+			errorLabel.text = presenter.getCredentialType() == .Pin ? L10n.Credential.Pin.missingPin : L10n.Credential.Password.missingPassword
 			return
 		}
 
 		errorLabel.text = nil
-		presenter.confirm(oldPin: oldPinField.text ?? String(), pin: pin)
+		presenter.confirm(oldCredential: oldCredentialField.text ?? String(), credential: credential)
 	}
 
 	@objc

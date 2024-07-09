@@ -23,6 +23,9 @@ final class HomePresenter {
 	/// The PIN changer.
 	private let pinChanger: PinChanger
 
+	/// The Password changer.
+	private let passwordChanger: PasswordChanger
+
 	/// The application coordinator.
 	private let appCoordinator: AppCoordinator
 
@@ -45,18 +48,21 @@ final class HomePresenter {
 	///   - configurationLoader: The configuration loader.
 	///   - clientProvider: The client provider.
 	///   - pinChanger: The PIN changer.
+	///   - passwordChanger: The Password changer.
 	///   - appCoordinator: The application coordinator.
 	///   - errorHandlerChain: The error handler chain.
 	///   - logger: The logger.
 	init(configurationLoader: ConfigurationLoader,
 	     clientProvider: ClientProvider,
 	     pinChanger: PinChanger,
+	     passwordChanger: PasswordChanger,
 	     appCoordinator: AppCoordinator,
 	     errorHandlerChain: ErrorHandlerChain,
 	     logger: SDKLogger) {
 		self.configurationLoader = configurationLoader
 		self.clientProvider = clientProvider
 		self.pinChanger = pinChanger
+		self.passwordChanger = passwordChanger
 		self.appCoordinator = appCoordinator
 		self.errorHandlerChain = errorHandlerChain
 		self.logger = logger
@@ -161,31 +167,34 @@ extension HomePresenter {
 		}
 	}
 
-	/// Starts PIN changing.
-	func changePin() {
+	/// Starts Credential changing.
+	func changeCredential(_ authenticatorType: AuthenticatorAaid) {
+		let operation: Operation = authenticatorType == .Pin ? .pinChange : .passwordChange
+		let authenticatorNotFoundError: AppError = authenticatorType == .Pin ? .pinAuthenticatorNotFound : .passwordAuthenticatorNotFound
+
 		// find enrolled accounts
 		guard let accounts = mobileAuthenticationClient?.localData.accounts, !accounts.isEmpty else {
-			let operationError = OperationError(operation: .pinChange,
+			let operationError = OperationError(operation: operation,
 			                                    underlyingError: AppError.accountsNotFound)
 			return errorHandlerChain.handle(error: operationError)
 		}
 
-		// find PIN authenticator
+		// find Credential authenticator
 		guard let authenticators = mobileAuthenticationClient?.localData.authenticators else {
-			let operationError = OperationError(operation: .pinChange,
-			                                    underlyingError: AppError.pinAuthenticatorNotFound)
+			let operationError = OperationError(operation: operation,
+			                                    underlyingError: authenticatorNotFoundError)
 			return errorHandlerChain.handle(error: operationError)
 		}
 
-		guard let pinAuthenticator = authenticators.filter({ $0.aaid == AuthenticatorAaid.Pin.rawValue }).first else {
-			let operationError = OperationError(operation: .pinChange,
-			                                    underlyingError: AppError.pinAuthenticatorNotFound)
+		guard let credentialAuthenticator = authenticators.filter({ $0.aaid == authenticatorType.rawValue }).first else {
+			let operationError = OperationError(operation: operation,
+			                                    underlyingError: authenticatorNotFoundError)
 			return errorHandlerChain.handle(error: operationError)
 		}
 
-		guard let enrollment = pinAuthenticator.userEnrollment as? SdkUserEnrollment else {
-			let operationError = OperationError(operation: .pinChange,
-			                                    underlyingError: AppError.pinAuthenticatorNotFound)
+		guard let enrollment = credentialAuthenticator.userEnrollment as? SdkUserEnrollment else {
+			let operationError = OperationError(operation: operation,
+			                                    underlyingError: authenticatorNotFoundError)
 			return errorHandlerChain.handle(error: operationError)
 		}
 
@@ -197,16 +206,19 @@ extension HomePresenter {
 
 		switch eligibleAccounts.count {
 		case 0:
-			let operationError = OperationError(operation: .pinChange,
+			let operationError = OperationError(operation: operation,
 			                                    underlyingError: AppError.accountsNotFound)
 			return errorHandlerChain.handle(error: operationError)
-		case 1:
+		case 1 where authenticatorType == .Pin:
 			// do PIN change automatically
 			doPinChange(for: eligibleAccounts.first!.username)
+		case 1 where authenticatorType == .Password:
+			// do PIN change automatically
+			doPasswordChange(for: eligibleAccounts.first!.username)
 		default:
 			// in case of multiple eligible accounts we have to show the account selection screen
 			let parameter: SelectAccountParameter = .select(accounts: eligibleAccounts,
-			                                                operation: .pinChange,
+			                                                operation: operation,
 			                                                handler: nil,
 			                                                message: nil)
 			appCoordinator.navigateToAccountSelection(with: parameter)
@@ -305,6 +317,26 @@ private extension HomePresenter {
 			.onError {
 				self.logger.log("PIN change failed.", color: .red)
 				let operationError = OperationError(operation: .pinChange, underlyingError: $0)
+				self.errorHandlerChain.handle(error: operationError)
+			}
+			.execute()
+	}
+
+	/// Starts the Password change operation.
+	///
+	/// - Parameter username: The username of the account whose PIN must be changed.
+	func doPasswordChange(for username: String) {
+		view?.disableInteraction()
+		mobileAuthenticationClient?.operations.passwordChange
+			.username(username)
+			.passwordChanger(passwordChanger)
+			.onSuccess {
+				self.logger.log("Password change succeeded.", color: .green)
+				self.appCoordinator.navigateToResult(with: .success(operation: .passwordChange))
+			}
+			.onError {
+				self.logger.log("Password change failed.", color: .red)
+				let operationError = OperationError(operation: .passwordChange, underlyingError: $0)
 				self.errorHandlerChain.handle(error: operationError)
 			}
 			.execute()

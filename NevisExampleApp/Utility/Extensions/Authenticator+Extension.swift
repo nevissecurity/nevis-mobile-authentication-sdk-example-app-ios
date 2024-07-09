@@ -19,6 +19,8 @@ extension Authenticator {
 			L10n.Authenticator.Fingerprint.title
 		case AuthenticatorAaid.DevicePasscode.rawValue:
 			L10n.Authenticator.DevicePasscode.title
+		case AuthenticatorAaid.Password.rawValue:
+			L10n.Authenticator.Password.title
 		default:
 			String()
 		}

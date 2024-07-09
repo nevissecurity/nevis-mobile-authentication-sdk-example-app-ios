@@ -138,26 +138,26 @@ extension AppCoordinatorImpl: AppCoordinator {
 		rootNavigationController?.pushViewController(screen, animated: true)
 	}
 
-	func navigateToPin(with parameter: PinParameter) {
-		guard let screen = DependencyProvider.shared.container.resolve(PinScreen.self,
+	func navigateToCredential(with parameter: CredentialParameter) {
+		guard let screen = DependencyProvider.shared.container.resolve(CredentialScreen.self,
 		                                                               argument: parameter as NavigationParameterizable) else {
 			return
 		}
 
-		if let pinScreen = topScreen as? PinScreen {
-			// the `PinEnrollerImpl` or `PinUserVerifierImpl` navigates to the PIN screen although that is the visible screen.
-			// It means that the user entered an invalid PIN and a recoverable error recevied.
+		if let credentialScreen = topScreen as? CredentialScreen {
+			// the `PinEnrollerImpl`, `PinUserVerifierImpl`, `PasswordEnrollerImpl` or `PasswordUserVerifierImpl` navigates to the Credential screen although that is the visible screen.
+			// It means that the user entered invalid credentials and a recoverable error recevied.
 			// Just refresh the screen with the new presenter.
-			pinScreen.presenter = DependencyProvider.shared.container.resolve(PinPresenter.self,
-			                                                                  argument: parameter as NavigationParameterizable)
-			pinScreen.presenter.view = pinScreen
-			logger.log("Refreshing Pin screen.", color: .purple)
-			pinScreen.refresh()
-			pinScreen.enableInteraction()
+			credentialScreen.presenter = DependencyProvider.shared.container.resolve(CredentialPresenter.self,
+			                                                                         argument: parameter as NavigationParameterizable)
+			credentialScreen.presenter.view = credentialScreen
+			logger.log("Refreshing credential (PIN, Password) screen.", color: .purple)
+			credentialScreen.refresh()
+			credentialScreen.enableInteraction()
 			return
 		}
 
-		logger.log("Navigating to Pin screen.", color: .purple)
+		logger.log("Navigating to Credential screen.", color: .purple)
 		rootNavigationController?.pushViewController(screen, animated: true)
 	}
 

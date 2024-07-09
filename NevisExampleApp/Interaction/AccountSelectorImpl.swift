@@ -20,9 +20,6 @@ class AccountSelectorImpl {
 	/// The application coordinator.
 	private let appCoordinator: AppCoordinator
 
-	/// The error handler chain.
-	private let errorHandlerChain: ErrorHandlerChain
-
 	/// The logger.
 	private let logger: SDKLogger
 
@@ -32,13 +29,11 @@ class AccountSelectorImpl {
 	///
 	/// - Parameters:
 	///   - appCoordinator: The application coordinator.
-	///   - errorHandlerChain: The error handler chain.
 	///   - logger: The logger.
 	init(appCoordinator: AppCoordinator,
 	     errorHandlerChain: ErrorHandlerChain,
 	     logger: SDKLogger) {
 		self.appCoordinator = appCoordinator
-		self.errorHandlerChain = errorHandlerChain
 		self.logger = logger
 	}
 }
@@ -87,7 +82,7 @@ extension AccountSelectorImpl: AccountSelector {
 				appCoordinator.navigateToAccountSelection(with: parameter)
 			}
 		case let .failure(error):
-			errorHandlerChain.handle(error: error)
+			handler.cancel()
 		}
 	}
 }
