@@ -12,6 +12,7 @@
 		06000BB02C37EDA100AB53A1 /* PasswordEnroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06000BAF2C37EDA100AB53A1 /* PasswordEnroller.swift */; };
 		06000BB22C37EE6A00AB53A1 /* PasswordUserVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06000BB12C37EE6A00AB53A1 /* PasswordUserVerifier.swift */; };
 		06471B152C29685C006879F9 /* AuthenticatorAaid+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06471B142C29685C006879F9 /* AuthenticatorAaid+Extensions.swift */; };
+		068293672C3FCE77005563AB /* PasswordPolicyImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068293662C3FCE77005563AB /* PasswordPolicyImpl.swift */; };
 		068E9ABC2C2D60BA0059E33C /* AuthenticatorValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068E9ABB2C2D60BA0059E33C /* AuthenticatorValidator.swift */; };
 		382FE1D72BADD5FC00999625 /* ConfirmationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382FE1D62BADD5FC00999625 /* ConfirmationPresenter.swift */; };
 		382FE1D92BADD60400999625 /* ConfirmationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382FE1D82BADD60400999625 /* ConfirmationScreen.swift */; };
@@ -123,6 +124,7 @@
 		06000BAF2C37EDA100AB53A1 /* PasswordEnroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordEnroller.swift; sourceTree = "<group>"; };
 		06000BB12C37EE6A00AB53A1 /* PasswordUserVerifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordUserVerifier.swift; sourceTree = "<group>"; };
 		06471B142C29685C006879F9 /* AuthenticatorAaid+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthenticatorAaid+Extensions.swift"; sourceTree = "<group>"; };
+		068293662C3FCE77005563AB /* PasswordPolicyImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordPolicyImpl.swift; sourceTree = "<group>"; };
 		068E9ABB2C2D60BA0059E33C /* AuthenticatorValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatorValidator.swift; sourceTree = "<group>"; };
 		382FE1D62BADD5FC00999625 /* ConfirmationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationPresenter.swift; sourceTree = "<group>"; };
 		382FE1D82BADD60400999625 /* ConfirmationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationScreen.swift; sourceTree = "<group>"; };
@@ -643,6 +645,7 @@
 				3859EB92292CFA1900013472 /* AuthCloudApiRegistrationValidator.swift */,
 				068E9ABB2C2D60BA0059E33C /* AuthenticatorValidator.swift */,
 				38DABD6929D585C0008B8116 /* LoginValidator.swift */,
+				068293662C3FCE77005563AB /* PasswordPolicyImpl.swift */,
 				3859EB93292CFA1900013472 /* ValidationResult.swift */,
 			);
 			path = Validation;
@@ -685,13 +688,6 @@
 				38DABD6329D581D3008B8116 /* UsernamePasswordLoginScreen.swift */,
 			);
 			path = "Username Password Login";
-			sourceTree = "<group>";
-		};
-		A651FDC4F5C71ADD993EA999 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -815,6 +811,7 @@
 				3859EB50292CF92000013472 /* Screen.swift in Sources */,
 				3859EB4E292CF92000013472 /* SelectAccountScreen.swift in Sources */,
 				3859EB3A292CF92000013472 /* OutOfBandOperationHandlerImpl.swift in Sources */,
+				068293672C3FCE77005563AB /* PasswordPolicyImpl.swift in Sources */,
 				3859EBBC292CFA7000013472 /* UIDevice+Extension.swift in Sources */,
 				06471B152C29685C006879F9 /* AuthenticatorAaid+Extensions.swift in Sources */,
 				3859EB40292CF92000013472 /* HomePresenter.swift in Sources */,

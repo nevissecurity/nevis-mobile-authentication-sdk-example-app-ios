@@ -50,18 +50,24 @@ custom_categories:
   - name: Interaction
     children:
       - AccountSelectorImpl
+      - AuthenticatorSelectorImpl
       - AuthenticationAuthenticatorSelectorName
       - AuthenticationAuthenticatorSelectorImpl
       - BiometricUserVerifierImpl
+      - DevicePasscodeUserVerifierImpl
       - OutOfBandOperationHandler
       - OutOfBandOperationHandlerImpl
       - PinChangerImpl
       - PinEnrollerImpl
       - PinUserVerifierImpl
+      - PasswordChangerImpl
+      - PasswordEnrollerImpl
+      - PasswordUserVerifierImpl
       - RegistrationAuthenticatorSelectorName
       - RegistrationAuthenticatorSelectorImpl
   - name: Model
     children:
+      - AuthenticatorItem
       - DeepLink
       - Operation
       - OperationError
@@ -87,11 +93,13 @@ custom_categories:
       - SelectAuthenticatorParameter
       - SelectAuthenticatorItemViewModel
       - AuthenticatorCell
-      - PinScreen
-      - PinView
-      - PinPresenter
+      - CredentialScreen
+      - CredentialView
+      - CredentialPresenter
+      - CredentialParameter
       - PinParameter
-      - PinProtectionInformation
+      - PasswordParameter
+      - CredentialProtectionInformation
       - AuthCloudApiRegistrationScreen
       - AuthCloudApiRegistrationPresenter
       - ChangeDeviceInformationScreen
@@ -102,6 +110,9 @@ custom_categories:
       - TransactionConfirmationScreen
       - TransactionConfirmationPresenter
       - TransactionConfirmationParameter
+      - ConfirmationScreen
+      - ConfirmationPresenter
+      - ConfirmationParameter
       - ResultScreen
       - ResultPresenter
       - ResultParameter
@@ -118,10 +129,12 @@ custom_categories:
   - name: Utility / Extensions
     children:
       - Authenticator
+      - AuthenticatorAaid
       - '[String: String]'
       - Notification
       - OSLog
       - PinAuthenticatorProtectionStatus
+      - PasswordAuthenticatorProtectionStatus
       - String
       - String?
       - UIApplication
@@ -153,6 +166,8 @@ custom_categories:
   - name: Utility / Validation
     children:
       - AccountValidator
+      - AuthenticatorValidator
       - AuthCloudApiRegistrationValidator
       - LoginValidator
       - ValidationResult
+      - PasswordPolicyImpl

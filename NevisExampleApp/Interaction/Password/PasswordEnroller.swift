@@ -19,6 +19,9 @@ class PasswordEnrollerImpl {
 	/// The logger.
 	private let logger: SDKLogger
 
+	/// The password policy.
+	private let policy: PasswordPolicy
+
 	// MARK: - Initialization
 
 	/// Creates a new instance.
@@ -26,10 +29,13 @@ class PasswordEnrollerImpl {
 	/// - Parameters:
 	///   - appCoordinator: The application coordinator.
 	///   - logger: The logger.
+	///   - policy: The password policy.
 	init(appCoordinator: AppCoordinator,
-	     logger: SDKLogger) {
+	     logger: SDKLogger,
+	     policy: PasswordPolicy) {
 		self.appCoordinator = appCoordinator
 		self.logger = logger
+		self.policy = policy
 	}
 }
 
@@ -49,8 +55,7 @@ extension PasswordEnrollerImpl: PasswordEnroller {
 		appCoordinator.navigateToCredential(with: parameter)
 	}
 
-	/// You can add custom Password policy by overriding the `passwordPolicy` getter.
-//	func passwordPolicy() -> PasswordPolicy {
-//		// custom PasswordPolicy implementation
-//	}
+	func passwordPolicy() -> PasswordPolicy {
+		policy
+	}
 }
