@@ -31,7 +31,6 @@ class AccountSelectorImpl {
 	///   - appCoordinator: The application coordinator.
 	///   - logger: The logger.
 	init(appCoordinator: AppCoordinator,
-	     errorHandlerChain: ErrorHandlerChain,
 	     logger: SDKLogger) {
 		self.appCoordinator = appCoordinator
 		self.logger = logger

@@ -254,6 +254,9 @@ private extension AppAssembly {
 		container.autoregister(PasswordUserVerifier.self,
 		                       initializer: PasswordUserVerifierImpl.init)
 
+		container.autoregister(PasswordPolicy.self,
+		                       initializer: PasswordPolicyImpl.init)
+
 		container.autoregister(BiometricUserVerifier.self,
 		                       initializer: BiometricUserVerifierImpl.init)
 
