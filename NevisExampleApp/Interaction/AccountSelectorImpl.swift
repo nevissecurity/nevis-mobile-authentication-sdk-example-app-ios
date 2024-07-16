@@ -80,7 +80,7 @@ extension AccountSelectorImpl: AccountSelector {
 				                                                message: transactionConfirmationDataString)
 				appCoordinator.navigateToAccountSelection(with: parameter)
 			}
-		case let .failure(error):
+		case .failure:
 			handler.cancel()
 		}
 	}
