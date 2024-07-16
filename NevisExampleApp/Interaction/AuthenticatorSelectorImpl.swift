@@ -69,8 +69,8 @@ extension AuthenticatorSelectorImpl: AuthenticatorSelector {
 
 		let validator = AuthenticatorValidator()
 		let validationResult = switch operation {
-		case .registration: validator.validateForRegistration(context: context, whitelistedAuthenticators: configuration.authenticatorWhitelist)
-		case .authentication: validator.validateForAuthentication(context: context, whitelistedAuthenticators: configuration.authenticatorWhitelist)
+		case .registration: validator.validateForRegistration(context: context, allowlistedAuthenticators: configuration.authenticatorAllowlist)
+		case .authentication: validator.validateForAuthentication(context: context, allowlistedAuthenticators: configuration.authenticatorAllowlist)
 		}
 
 		switch validationResult {
