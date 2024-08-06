@@ -36,7 +36,6 @@ custom_categories:
     children:
       - AppAssembly
       - DependencyProvider
-      - ObjectScope
   - name: Error
     children:
       - AppError
@@ -52,7 +51,6 @@ custom_categories:
       - AccountSelectorImpl
       - AuthenticatorSelectorImpl
       - AuthenticationAuthenticatorSelectorName
-      - AuthenticationAuthenticatorSelectorImpl
       - BiometricUserVerifierImpl
       - DevicePasscodeUserVerifierImpl
       - OutOfBandOperationHandler
@@ -64,7 +62,6 @@ custom_categories:
       - PasswordEnrollerImpl
       - PasswordUserVerifierImpl
       - RegistrationAuthenticatorSelectorName
-      - RegistrationAuthenticatorSelectorImpl
   - name: Model
     children:
       - AuthenticatorItem
@@ -171,3 +168,4 @@ custom_categories:
       - LoginValidator
       - ValidationResult
       - PasswordPolicyImpl
+      - PasswordPolicyError
