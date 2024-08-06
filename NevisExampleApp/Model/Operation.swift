@@ -7,7 +7,7 @@
 import Foundation
 
 /// Domain model of a FIDO UAF operation.
-public enum Operation {
+enum Operation {
 	/// Client initialization operation.
 	case initClient
 

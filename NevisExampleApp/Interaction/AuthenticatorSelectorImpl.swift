@@ -17,8 +17,11 @@ let AuthenticationAuthenticatorSelectorName = "auth_selector_auth"
 /// Navigates to the ``SelectAuthenticatorScreen`` where the user can select from the available authenticators.
 class AuthenticatorSelectorImpl {
 
+	/// Supported operations for authenticator selection.
 	enum Operation {
+		/// Registration operation.
 		case registration
+		/// Authentication operation.
 		case authentication
 	}
 

@@ -231,6 +231,14 @@ enum L10n {
 				}
 			}
 
+			/// Password policy related localized strings.
+			enum Policy {
+				/// Error message: "The password must not be password."
+				static let errorMessage = L10n.tr("password_policy_error_message")
+				/// Error cause: "The password is password."
+				static let errorCause = L10n.tr("password_policy_error_cause")
+			}
+
 			/// Password field placeholder: "Enter Password"
 			static let passwordPlaceholder = L10n.tr("password_password_placeholder")
 			/// Password confirm field placeholder: "Enter old Password"
@@ -407,6 +415,7 @@ enum L10n {
 			static let title = L10n.tr("operation_device_information_change_title")
 		}
 
+		/// Local data related localized strings.
 		enum LocalData {
 			/// Operation title: "Local data operation"
 			static let title = L10n.tr("operation_local_data_title")
@@ -517,12 +526,14 @@ enum L10n {
 			/// Confirm button title: "Ok"
 			static let confirm = L10n.tr("error_qr_scan_confirm")
 
+			/// Unavailable error related localized strings.
 			enum Unavailable {
 				/// Alert message: "Qr Code scanning is not supported using a simulator.
 				/// You can start an Out-of-Band operation by opening a deep link or try out the Auth Cloud API registration."
 				static let message = L10n.tr("error_qr_scan_unavailable_message")
 			}
 
+			/// Unauthorized error related localized strings.
 			enum Unauthorized {
 				/// Alert message: "Camera access is required to scan Qr code."
 				static let message = L10n.tr("error_qr_scan_unauthorized_message")

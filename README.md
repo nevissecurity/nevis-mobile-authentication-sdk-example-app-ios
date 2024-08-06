@@ -147,6 +147,12 @@ With the change PIN operation you can modify the PIN of a registered PIN authent
 * in case of a single registered user see the [HomePresenter](NevisExampleApp/Screens/Home/HomePresenter.swift) class.
 * in case of multiple registered users see the [SelectAccountPresenter](NevisExampleApp/Screens/Select%20Account/SelectAccountPresenter.swift) class.
 
+#### Change Password
+
+With the change password operation you can modify the password of a registered Password authenticator for a given user. It is implemented in:
+* in case of a single registered user see the [HomePresenter](NevisExampleApp/Screens/Home/HomePresenter.swift) class.
+* in case of multiple registered users see the [SelectAccountPresenter](NevisExampleApp/Screens/Select%20Account/SelectAccountPresenter.swift) class.
+
 #### Decode out-of-band payload
 
 Out-of-band operations occur when a message is delivered to the application through an alternate channel like a push notification, a QR code, or a deep link. With the help of the [OutOfBandOperationHandlerImpl](NevisExampleApp/Interaction/OutOfBandOperationHandlerImpl.swift) class the application can create an `OutOfBandPayload` either from a JSON or a Base64 URL encoded String. The `OutOfBandPayload` is then used to start an `OutOfBandOperation`, see chapters [Out-of-Band Registration](#out-of-band-registration) and [Out-of-Band Authentication](#out-of-band-authentication).
