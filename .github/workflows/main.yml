@@ -19,7 +19,7 @@ jobs:
     steps:
       # Checkout the repository under $GITHUB_WORKSPACE
       - name: Checkout Project
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Ensure correct Xcode version is installed.
       - name: Setup Xcode
@@ -55,6 +55,6 @@ jobs:
           TEMP_KEYCHAIN_NAME: ${{ secrets.TEMP_KEYCHAIN_NAME }}
           HOST_NAME: ${{ secrets.HOST_NAME }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        uses: maierj/fastlane-action@v3.0.0
+        uses: maierj/fastlane-action@v3.1.0
         with:
           lane: 'main'
