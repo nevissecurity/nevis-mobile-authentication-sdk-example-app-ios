@@ -23,15 +23,15 @@ extension AccountValidator {
 			return .failure(AppError.authenticatorNotFound)
 		}
 
-		var accounts = [any Account]()
+		var accounts: [Username: any Account] = [:]
 		supportedAuthenticators.forEach { authenticator in
-			authenticator.registration?.registeredAccounts.forEach { account in
+			authenticator.registration.registeredAccounts.forEach { account in
 				if context.isPolicyCompliant(username: account.username, aaid: authenticator.aaid) {
-					accounts.append(account)
+					accounts[account.username] = account
 				}
 			}
 		}
 
-		return .success(accounts)
+		return .success(accounts.values.map { $0 })
 	}
 }
