@@ -249,7 +249,7 @@ private extension SelectAccountPresenter {
 				}
 
 				let registeredAuthenticators = authenticators.filter {
-					$0.registration?.isRegistered(account.username) ?? false
+					$0.registration.isRegistered(account.username)
 				}
 
 				self.doDeregistration(for: account.username,

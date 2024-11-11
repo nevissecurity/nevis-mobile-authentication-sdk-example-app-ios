@@ -39,12 +39,10 @@ extension AuthenticatorValidator {
 	/// - Returns: The result of the validation
 	func validateForAuthentication(context: AuthenticatorSelectionContext, allowlistedAuthenticators: [AuthenticatorAaid]) -> ValidationResult<[any Authenticator]> {
 		let allowedAuthenticators = allowedAuthenticators(context: context, allowlistedAuthenticators: allowlistedAuthenticators).filter { authenticator in
-			guard let registration = authenticator.registration else { return false }
-
 			// Do not display:
 			//   - policy non-registered authenticators,
 			//   - not hardware supported authenticators.
-			return authenticator.isSupportedByHardware && registration.isRegistered(context.account.username)
+			authenticator.isSupportedByHardware && authenticator.registration.isRegistered(context.account.username)
 		}
 
 		if allowedAuthenticators.isEmpty {

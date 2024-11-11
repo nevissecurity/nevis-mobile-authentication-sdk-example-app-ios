@@ -1,24 +1,24 @@
 PODS:
-  - FittedSheets (2.6.1)
+  - FittedSheets (2.7.1)
   - KRActivityIndicatorView (3.0.8)
   - KRProgressHUD (3.4.8):
     - KRActivityIndicatorView (= 3.0.8)
   - MercariQRScanner (1.9.0)
-  - NevisMobileAuthentication (3.7.3)
-  - NevisMobileAuthentication-Debug (3.7.3)
-  - Swinject (2.8.3)
-  - SwinjectAutoregistration (2.8.3):
-    - Swinject (~> 2.8.3)
+  - NevisMobileAuthentication (3.8.1)
+  - NevisMobileAuthentication-Debug (3.8.1)
+  - Swinject (2.9.1)
+  - SwinjectAutoregistration (2.9.1):
+    - Swinject (~> 2.9.1)
   - Then (3.0.0)
 
 DEPENDENCIES:
-  - FittedSheets (= 2.6.1)
+  - FittedSheets (= 2.7.1)
   - KRProgressHUD (= 3.4.8)
   - MercariQRScanner (= 1.9.0)
-  - NevisMobileAuthentication (= 3.7.3)
-  - NevisMobileAuthentication-Debug (= 3.7.3)
-  - Swinject (= 2.8.3)
-  - SwinjectAutoregistration (= 2.8.3)
+  - NevisMobileAuthentication (= 3.8.1)
+  - NevisMobileAuthentication-Debug (= 3.8.1)
+  - Swinject (= 2.9.1)
+  - SwinjectAutoregistration (= 2.9.1)
   - Then (= 3.0.0)
 
 SPEC REPOS:
@@ -34,16 +34,16 @@ SPEC REPOS:
     - Then
 
 SPEC CHECKSUMS:
-  FittedSheets: 37e35f105c531f3845075f1788dd8517a35315c4
+  FittedSheets: 38ec85129bf5c970f99d4dba4fbf48185c5fa98a
   KRActivityIndicatorView: c5c503bf56e54834382dd926b64ff47287ca0006
   KRProgressHUD: d0fb4e72428d312eb6966e84c543ea58fb1efbc7
   MercariQRScanner: e5aea873969af59b09b4cc411fc1c5b6293dba44
-  NevisMobileAuthentication: 2acb327b1ec23d0d5cd17ff05392cad6405cf070
-  NevisMobileAuthentication-Debug: b8e3141e0e926a93488c7d92d7658b8ed388a2b7
-  Swinject: 893c9a543000ac2f10ee4cbaf0933c6992c935d5
-  SwinjectAutoregistration: e3ee378dc458acf78d176fc7fec3902603452667
+  NevisMobileAuthentication: c42744e752332068c6f7f2828dbbd713ebc18f14
+  NevisMobileAuthentication-Debug: 148684612cd8c5a40f782831aa36a98dc8230e90
+  Swinject: a827d508c6270da03ec74e558e728917a888fa9b
+  SwinjectAutoregistration: a14d8ed61e88b0044a292958d63318b378375ca6
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
 
-PODFILE CHECKSUM: 11aba951730638eee898effcb9a85f540ce5d708
+PODFILE CHECKSUM: 81cf7bc3e4de16cd9976dafa133216c7567c8447
 
 COCOAPODS: 1.16.2
