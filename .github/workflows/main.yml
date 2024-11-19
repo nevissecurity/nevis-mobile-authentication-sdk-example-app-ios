@@ -19,7 +19,7 @@ env:
   TEMP_KEYCHAIN_NAME: ${{ vars.TEMP_KEYCHAIN_NAME }}
   FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
   FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
-  HOST_NAME: ${{ secrets.HOST_NAME }}
+  HOST_NAME: ${{ vars.HOST_NAME }}
   SLACK_WEBHOOK_URL: ${{ vars.SLACK_WEBHOOK_URL }}
 
   CURRENT_BUILD_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
