@@ -144,21 +144,20 @@ extension HomePresenter {
 
 	/// Starts deregistering all accounts.
 	func deregister() {
+		guard let accounts = mobileAuthenticationClient?.localData.accounts, !accounts.isEmpty else {
+			let operationError = OperationError(operation: .deregistration,
+			                                    underlyingError: AppError.accountsNotFound)
+			return errorHandlerChain.handle(error: operationError)
+		}
+
 		switch configurationLoader.environment {
 		case .authenticationCloud:
-			guard let accounts = mobileAuthenticationClient?.localData.accounts else {
-				return appCoordinator.navigateToResult(with: .success(operation: .deregistration))
-			}
-
 			view?.disableInteraction()
 			let usernames = accounts.map(\.username)
 			doDeregistration(for: usernames)
 		case .identitySuite:
 			// In the Identity Suite environment the deregistration endpoint is guarded,
 			// and as such we need to provide a cookie to the deregister call.
-			// Also in Identity Siute a deregistration has to be authenticated for every user,
-			// so batch deregistration is not really possible.
-			let accounts = mobileAuthenticationClient?.localData.accounts ?? [any Account]()
 			let parameter: SelectAccountParameter = .select(accounts: accounts,
 			                                                operation: .deregistration,
 			                                                handler: nil,
