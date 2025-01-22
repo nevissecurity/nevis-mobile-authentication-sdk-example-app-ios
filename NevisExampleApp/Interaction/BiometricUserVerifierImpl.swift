@@ -6,7 +6,10 @@
 
 import NevisMobileAuthentication
 
-/// Default implementation of ``BiometricUserVerifier`` protocol.
+/// Default implementation of `BiometricUserVerifier` protocol.
+/// For more information about biometric user verification please read the [official documentation](https://docs.nevis.net/mobilesdk/guide/operation/registration#biometric-user-verifier).
+///
+/// Navigates to the ``ConfirmationScreen`` where the user can verify the biometrics.
 class BiometricUserVerifierImpl {
 
 	// MARK: - Properties
@@ -14,19 +17,13 @@ class BiometricUserVerifierImpl {
 	/// The application coordinator.
 	private let appCoordinator: AppCoordinator
 
-	/// The logger.
-	private let logger: SDKLogger
-
 	// MARK: - Initialization
 
 	/// Creates a new instance.
 	///
 	/// - Parameters:
 	///   - appCoordinator: The application coordinator.
-	///   - logger: The logger.
-	init(appCoordinator: AppCoordinator,
-	     logger: SDKLogger) {
-		self.logger = logger
+	init(appCoordinator: AppCoordinator) {
 		self.appCoordinator = appCoordinator
 	}
 }
@@ -35,7 +32,7 @@ class BiometricUserVerifierImpl {
 
 extension BiometricUserVerifierImpl: BiometricUserVerifier {
 	func verifyBiometric(context: BiometricUserVerificationContext, handler: BiometricUserVerificationHandler) {
-		logger.log("Please start biometric user verification.")
+		logger.sdk("Please start biometric user verification.")
 
 		let parameter: ConfirmationParameter = .confirmBiometric(authenticator: context.authenticator.localizedTitle,
 		                                                         handler: handler)

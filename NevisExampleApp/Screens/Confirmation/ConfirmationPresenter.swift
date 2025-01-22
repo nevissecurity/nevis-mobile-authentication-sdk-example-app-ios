@@ -51,9 +51,8 @@ final class ConfirmationPresenter {
 		setParameter(parameter as? ConfirmationParameter)
 	}
 
-	/// :nodoc:
 	deinit {
-		os_log("ConfirmationPresenter", log: OSLog.deinit, type: .debug)
+		logger.deinit("ConfirmationPresenter")
 	}
 }
 

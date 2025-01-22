@@ -38,9 +38,6 @@ final class AuthCloudApiRegistrationPresenter {
 	/// The error handler chain.
 	private let errorHandlerChain: ErrorHandlerChain
 
-	/// The logger.
-	private let logger: SDKLogger
-
 	// MARK: - Initialization
 
 	/// Creates a new instance.
@@ -54,7 +51,6 @@ final class AuthCloudApiRegistrationPresenter {
 	///   - devicePasscodeUserVerifier: The device passcode user verifier.
 	///   - appCoordinator: The application coordinator.
 	///   - errorHandlerChain: The error handler chain.
-	///   - logger: The logger.
 	init(clientProvider: ClientProvider,
 	     authenticatorSelector: AuthenticatorSelector,
 	     pinEnroller: PinEnroller,
@@ -62,8 +58,7 @@ final class AuthCloudApiRegistrationPresenter {
 	     biometricUserVerifier: BiometricUserVerifier,
 	     devicePasscodeUserVerifier: DevicePasscodeUserVerifier,
 	     appCoordinator: AppCoordinator,
-	     errorHandlerChain: ErrorHandlerChain,
-	     logger: SDKLogger) {
+	     errorHandlerChain: ErrorHandlerChain) {
 		self.clientProvider = clientProvider
 		self.authenticatorSelector = authenticatorSelector
 		self.pinEnroller = pinEnroller
@@ -72,12 +67,10 @@ final class AuthCloudApiRegistrationPresenter {
 		self.devicePasscodeUserVerifier = devicePasscodeUserVerifier
 		self.appCoordinator = appCoordinator
 		self.errorHandlerChain = errorHandlerChain
-		self.logger = logger
 	}
 
-	/// :nodoc:
 	deinit {
-		os_log("AuthCloudApiRegistrationPresenter", log: OSLog.deinit, type: .debug)
+		logger.deinit("AuthCloudApiRegistrationPresenter")
 	}
 }
 
@@ -102,11 +95,11 @@ extension AuthCloudApiRegistrationPresenter {
 			.biometricUserVerifier(biometricUserVerifier)
 			.devicePasscodeUserVerifier(devicePasscodeUserVerifier)
 			.onSuccess {
-				self.logger.log("Auth Cloud Api registration succeeded.", color: .green)
+				logger.sdk("Auth Cloud Api registration succeeded.", .green)
 				self.appCoordinator.navigateToResult(with: .success(operation: .registration))
 			}
 			.onError {
-				self.logger.log("Auth Cloud Api registration failed.", color: .red)
+				logger.sdk("Auth Cloud Api registration failed.", .red)
 				let operationError = OperationError(operation: .registration, underlyingError: $0)
 				self.errorHandlerChain.handle(error: operationError)
 			}

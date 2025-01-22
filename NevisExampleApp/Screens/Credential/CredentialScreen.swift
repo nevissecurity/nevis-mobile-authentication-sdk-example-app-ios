@@ -54,9 +54,8 @@ class CredentialScreen: BaseScreen, Screen {
 		self.presenter.view = self
 	}
 
-	/// :nodoc:
 	deinit {
-		os_log("CredentialScreen", log: OSLog.deinit, type: .debug)
+		logger.deinit("CredentialScreen")
 	}
 }
 
@@ -87,7 +86,6 @@ extension CredentialScreen {
 
 // MARK: - Setups
 
-/// :nodoc:
 private extension CredentialScreen {
 
 	func setupUI() {
@@ -194,7 +192,6 @@ private extension CredentialScreen {
 
 // MARK: - CredentialView
 
-/// :nodoc:
 extension CredentialScreen: CredentialView {
 
 	func update(by protectionInfo: CredentialProtectionInformation) {
@@ -206,7 +203,6 @@ extension CredentialScreen: CredentialView {
 
 // MARK: - Actions
 
-/// :nodoc:
 private extension CredentialScreen {
 
 	@objc

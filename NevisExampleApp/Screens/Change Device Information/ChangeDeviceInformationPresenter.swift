@@ -30,9 +30,6 @@ final class ChangeDeviceInformationPresenter {
 	/// The error handler chain.
 	private let errorHandlerChain: ErrorHandlerChain
 
-	/// The logger.
-	private let logger: SDKLogger
-
 	/// The current device information.
 	private var deviceInformation: DeviceInformation?
 
@@ -44,23 +41,19 @@ final class ChangeDeviceInformationPresenter {
 	///   - clientProvider: The client provider.
 	///   - appCoordinator: The application coordinator.
 	///   - errorHandlerChain: The error handler chain.
-	///   - logger: The logger.
 	///   - parameter: The navigation parameter.
 	init(clientProvider: ClientProvider,
 	     appCoordinator: AppCoordinator,
 	     errorHandlerChain: ErrorHandlerChain,
-	     logger: SDKLogger,
 	     parameter: NavigationParameterizable? = nil) {
 		self.clientProvider = clientProvider
 		self.appCoordinator = appCoordinator
 		self.errorHandlerChain = errorHandlerChain
-		self.logger = logger
 		setParameter(parameter as? ChangeDeviceInformationParameter)
 	}
 
-	/// :nodoc:
 	deinit {
-		os_log("ChangeDeviceInformationPresenter", log: OSLog.deinit, type: .debug)
+		logger.deinit("ChangeDeviceInformationPresenter")
 	}
 }
 
@@ -84,11 +77,11 @@ extension ChangeDeviceInformationPresenter {
 		client?.operations.deviceInformationChange
 			.name(name)
 			.onSuccess {
-				self.logger.log("Change device information succeeded.", color: .green)
+				logger.sdk("Change device information succeeded.", .green)
 				self.appCoordinator.navigateToResult(with: .success(operation: .deviceInformationChange))
 			}
 			.onError {
-				self.logger.log("Change device information failed.", color: .red)
+				logger.sdk("Change device information failed.", .red)
 				let operationError = OperationError(operation: .deviceInformationChange, underlyingError: $0)
 				self.errorHandlerChain.handle(error: operationError)
 			}

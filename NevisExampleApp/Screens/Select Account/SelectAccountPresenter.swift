@@ -59,10 +59,7 @@ final class SelectAccountPresenter {
 	/// The error handler chain.
 	private let errorHandlerChain: ErrorHandlerChain
 
-	/// The logger.
-	private let logger: SDKLogger
-
-	/// The ``MobileAuthenticationClient`` instance.
+	/// The `MobileAuthenticationClient` instance.
 	private var mobileAuthenticationClient: MobileAuthenticationClient? {
 		clientProvider.get()
 	}
@@ -94,7 +91,6 @@ final class SelectAccountPresenter {
 	///   - devicePasscodeUserVerifier: The device passcode user verifier.
 	///   - appCoordinator: The application coordinator.
 	///   - errorHandlerChain: The error handler chain.
-	///   - logger: The logger.
 	///   - parameter: The navigation parameter.
 	init(clientProvider: ClientProvider,
 	     authenticatorSelector: AuthenticatorSelector,
@@ -106,7 +102,6 @@ final class SelectAccountPresenter {
 	     devicePasscodeUserVerifier: DevicePasscodeUserVerifier,
 	     appCoordinator: AppCoordinator,
 	     errorHandlerChain: ErrorHandlerChain,
-	     logger: SDKLogger,
 	     parameter: NavigationParameterizable) {
 		self.clientProvider = clientProvider
 		self.authenticatorSelector = authenticatorSelector
@@ -118,13 +113,11 @@ final class SelectAccountPresenter {
 		self.devicePasscodeUserVerifier = devicePasscodeUserVerifier
 		self.appCoordinator = appCoordinator
 		self.errorHandlerChain = errorHandlerChain
-		self.logger = logger
 		setParameter(parameter as? SelectAccountParameter)
 	}
 
-	/// :nodoc:
 	deinit {
-		os_log("SelectAccountPresenter", log: OSLog.deinit, type: .debug)
+		logger.deinit("SelectAccountPresenter")
 		// If it is not nil at this moment, it means that a concurrent operation will be started.
 		handler?.cancel()
 	}
@@ -199,8 +192,8 @@ private extension SelectAccountPresenter {
 			.passwordUserVerifier(passwordUserVerifier)
 			.biometricUserVerifier(biometricUserVerifier)
 			.devicePasscodeUserVerifier(devicePasscodeUserVerifier)
-			.onSuccess { // (authorizationProvider: AuthorizationProvider) in
-				self.logger.log("In-band authentication succeeded.", color: .green)
+			.onSuccess {
+				logger.sdk("In-band authentication succeeded.", .green)
 				self.printAuthorizationInfo($0)
 
 				if let handler {
@@ -210,7 +203,7 @@ private extension SelectAccountPresenter {
 				self.appCoordinator.navigateToResult(with: .success(operation: self.operation!))
 			}
 			.onError { error in
-				self.logger.log("In-band authentication failed.", color: .red)
+				logger.sdk("In-band authentication failed.", .red)
 				handler?(.failure(error))
 				switch error {
 				case let .FidoError(_, _, sessionProvider),
@@ -221,7 +214,7 @@ private extension SelectAccountPresenter {
 				case .Unknown:
 					fallthrough
 				@unknown default:
-					self.logger.log("In-band authentication failed because of an unknown error.", color: .red)
+					logger.sdk("In-band authentication failed because of an unknown error.", .red)
 				}
 
 				let operationError = OperationError(operation: .authentication, underlyingError: error)
@@ -234,7 +227,7 @@ private extension SelectAccountPresenter {
 	///
 	/// - Parameter account: The account to deregister.
 	func deregister(using account: any Account) {
-		logger.log("Deregistering account: \(account)")
+		logger.sdk("Deregistering account: %@", .black, .debug, account.username)
 
 		// Deregistration (Identity Suite env) is in progress where the deregistration endpoint is guarded,
 		// so an authorization provider is needed.
@@ -249,7 +242,7 @@ private extension SelectAccountPresenter {
 				self.printAuthorizationInfo(authorizationProvider)
 				self.doDeregistration(for: account.username, authorizationProvider: authorizationProvider)
 			case .failure:
-				self.logger.log("Deregistration failed for user \(account.username)", color: .red)
+				logger.sdk("Deregistration failed for user %@", .black, .debug, account.username)
 			}
 		}
 	}
@@ -264,11 +257,11 @@ private extension SelectAccountPresenter {
 			.username(username)
 			.authorizationProvider(authorizationProvider)
 			.onSuccess {
-				self.logger.log("Deregistration succeeded for user \(username)", color: .green)
+				logger.sdk("Deregistration succeeded for user %@", .green, .debug, username)
 				self.appCoordinator.navigateToResult(with: .success(operation: self.operation!))
 			}
 			.onError {
-				self.logger.log("Deregistration failed for user \(username)", color: .red)
+				logger.sdk("Deregistration failed for user %@", .red, .debug, username)
 				let operationError = OperationError(operation: .deregistration, underlyingError: $0)
 				self.errorHandlerChain.handle(error: operationError)
 			}
@@ -279,17 +272,17 @@ private extension SelectAccountPresenter {
 	///
 	/// - Parameter account: The seleced account.
 	func changePin(using account: any Account) {
-		logger.log("Changing PIN for account: \(account)")
+		logger.sdk("Changing PIN for account: %@", .black, .debug, account.username)
 		view?.disableInteraction()
 		mobileAuthenticationClient?.operations.pinChange
 			.username(account.username)
 			.pinChanger(pinChanger)
 			.onSuccess {
-				self.logger.log("PIN change succeeded.", color: .green)
+				logger.sdk("PIN change succeeded.", .green)
 				self.appCoordinator.navigateToResult(with: .success(operation: .pinChange))
 			}
 			.onError {
-				self.logger.log("PIN change failed.", color: .red)
+				logger.sdk("PIN change failed.", .red)
 				let operationError = OperationError(operation: .pinChange, underlyingError: $0)
 				self.errorHandlerChain.handle(error: operationError)
 			}
@@ -300,17 +293,17 @@ private extension SelectAccountPresenter {
 	///
 	/// - Parameter account: The seleced account.
 	func changePassword(using account: any Account) {
-		logger.log("Changing Password for account: \(account)")
+		logger.sdk("Changing Password for account: %@", .black, .debug, account.username)
 		view?.disableInteraction()
 		mobileAuthenticationClient?.operations.passwordChange
 			.username(account.username)
 			.passwordChanger(passwordChanger)
 			.onSuccess {
-				self.logger.log("Password change succeeded.", color: .green)
+				logger.sdk("Password change succeeded.", .green)
 				self.appCoordinator.navigateToResult(with: .success(operation: .passwordChange))
 			}
 			.onError {
-				self.logger.log("Password change failed.", color: .red)
+				logger.sdk("Password change failed.", .red)
 				let operationError = OperationError(operation: .passwordChange, underlyingError: $0)
 				self.errorHandlerChain.handle(error: operationError)
 			}
@@ -339,10 +332,10 @@ private extension SelectAccountPresenter {
 	/// - Parameter authorizationProvider: The ``AuthorizationProvider`` holding the authorization information.
 	func printAuthorizationInfo(_ authorizationProvider: AuthorizationProvider?) {
 		if let cookieAuthorizationProvider = authorizationProvider as? CookieAuthorizationProvider {
-			logger.log("Received cookies: \(cookieAuthorizationProvider.cookies)")
+			logger.sdk("Received cookies: %@", .black, .debug, cookieAuthorizationProvider.cookies)
 		}
 		else if let jwtAuthorizationProvider = authorizationProvider as? JwtAuthorizationProvider {
-			logger.log("Received JWT is \(jwtAuthorizationProvider.jwt)")
+			logger.sdk("Received JWT is %@", .black, .debug, jwtAuthorizationProvider.jwt)
 		}
 	}
 
@@ -351,10 +344,10 @@ private extension SelectAccountPresenter {
 	/// - Parameter sessionProvider: The ``SessionProvider`` holding the session information.
 	func printSessionInfo(_ sessionProvider: SessionProvider?) {
 		if let cookieSessionProvider = sessionProvider as? CookieSessionProvider {
-			logger.log("Received cookies: \(cookieSessionProvider.cookies)")
+			logger.sdk("Received cookies: %@", .black, .debug, cookieSessionProvider.cookies)
 		}
 		else if let jwtSessionProvider = sessionProvider as? JwtSessionProvider {
-			logger.log("Received JWT is \(jwtSessionProvider.jwt)")
+			logger.sdk("Received JWT is %@", .black, .debug, jwtSessionProvider.jwt)
 		}
 	}
 }

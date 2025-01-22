@@ -38,9 +38,8 @@ final class ConfirmationScreen: BaseScreen, Screen {
 		self.presenter = presenter
 	}
 
-	/// :nodoc:
 	deinit {
-		os_log("ConfirmationScreen", log: OSLog.deinit, type: .debug)
+		logger.deinit("ConfirmationScreen")
 	}
 }
 
@@ -61,7 +60,6 @@ extension ConfirmationScreen {
 
 // MARK: - Setups
 
-/// :nodoc:
 private extension ConfirmationScreen {
 
 	func setupUI() {
@@ -108,7 +106,6 @@ private extension ConfirmationScreen {
 
 // MARK: - Actions
 
-/// :nodoc:
 private extension ConfirmationScreen {
 	@objc
 	func confirm() {

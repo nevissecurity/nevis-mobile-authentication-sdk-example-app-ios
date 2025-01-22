@@ -6,7 +6,8 @@
 
 import NevisMobileAuthentication
 
-/// Default implementation of ``AccountSelector`` protocol.
+/// Default implementation of `AccountSelector` protocol.
+/// For more information about account selection please read the [official documentation](https://docs.nevis.net/mobilesdk/guide/operation/authentication#account-selector).
 ///
 /// First validates the accounts based on policy compliance. Then based on the number of accounts:
 ///  - if no account found, the SDK will raise an error.
@@ -20,20 +21,14 @@ class AccountSelectorImpl {
 	/// The application coordinator.
 	private let appCoordinator: AppCoordinator
 
-	/// The logger.
-	private let logger: SDKLogger
-
 	// MARK: - Initialization
 
 	/// Creates a new instance.
 	///
 	/// - Parameters:
 	///   - appCoordinator: The application coordinator.
-	///   - logger: The logger.
-	init(appCoordinator: AppCoordinator,
-	     logger: SDKLogger) {
+	init(appCoordinator: AppCoordinator) {
 		self.appCoordinator = appCoordinator
-		self.logger = logger
 	}
 }
 
@@ -41,7 +36,7 @@ class AccountSelectorImpl {
 
 extension AccountSelectorImpl: AccountSelector {
 	func selectAccount(context: AccountSelectionContext, handler: AccountSelectionHandler) {
-		logger.log("Please select one of the received available accounts!")
+		logger.sdk("Please select one of the received available accounts!")
 		let validator = AccountValidator()
 		let result = validator.validate(context: context)
 		switch result {
@@ -50,7 +45,7 @@ extension AccountSelectorImpl: AccountSelector {
 			case 0:
 				// No username is compliant with the policy.
 				// Provide a random username that will generate an error in the SDK.
-				logger.log("No valid account found!", color: .red)
+				logger.sdk("No valid account found!", .red)
 				handler.username("")
 			case 1:
 				if let transactionConfirmationData = context.transactionConfirmationData,
@@ -62,7 +57,7 @@ extension AccountSelectorImpl: AccountSelector {
 				}
 				else {
 					// Typical case: authentication with username provided, just use it.
-					logger.log("One account found, performing automatic selection!")
+					logger.sdk("One account found, performing automatic selection!")
 					handler.username(validAccounts.first!.username)
 				}
 			default:

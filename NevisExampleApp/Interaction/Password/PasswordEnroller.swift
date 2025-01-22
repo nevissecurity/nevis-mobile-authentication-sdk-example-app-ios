@@ -6,7 +6,8 @@
 
 import NevisMobileAuthentication
 
-/// Default implementation of ``PasswordEnroller`` protocol.
+/// Default implementation of `PasswordEnroller` protocol.
+/// For more information about password enrollment please read the [official documentation](https://docs.nevis.net/mobilesdk/guide/operation/registration#password-enroller).
 ///
 /// Navigates to the ``CredentialScreen`` where the user can enroll the Passowrord authenticator.
 class PasswordEnrollerImpl {
@@ -15,9 +16,6 @@ class PasswordEnrollerImpl {
 
 	/// The application coordinator.
 	private let appCoordinator: AppCoordinator
-
-	/// The logger.
-	private let logger: SDKLogger
 
 	/// The password policy.
 	private let policy: PasswordPolicy
@@ -28,13 +26,10 @@ class PasswordEnrollerImpl {
 	///
 	/// - Parameters:
 	///   - appCoordinator: The application coordinator.
-	///   - logger: The logger.
 	///   - policy: The password policy.
 	init(appCoordinator: AppCoordinator,
-	     logger: SDKLogger,
 	     policy: PasswordPolicy) {
 		self.appCoordinator = appCoordinator
-		self.logger = logger
 		self.policy = policy
 	}
 }
@@ -44,10 +39,10 @@ class PasswordEnrollerImpl {
 extension PasswordEnrollerImpl: PasswordEnroller {
 	func enrollPassword(context: PasswordEnrollmentContext, handler: PasswordEnrollmentHandler) {
 		if context.lastRecoverableError != nil {
-			logger.log("Password enrollment failed. Please try again.")
+			logger.sdk("Password enrollment failed. Please try again.", .red)
 		}
 		else {
-			logger.log("Please start Password enrollment.")
+			logger.sdk("Please start Password enrollment.")
 		}
 
 		let parameter: PasswordParameter = .enrollment(lastRecoverableError: context.lastRecoverableError,

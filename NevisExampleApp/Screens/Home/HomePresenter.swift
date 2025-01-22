@@ -32,10 +32,7 @@ final class HomePresenter {
 	/// The error handler chain.
 	private let errorHandlerChain: ErrorHandlerChain
 
-	/// The logger.
-	private let logger: SDKLogger
-
-	/// The ``MobileAuthenticationClient`` instance.
+	/// The `MobileAuthenticationClient` instance.
 	private var mobileAuthenticationClient: MobileAuthenticationClient? {
 		clientProvider.get()
 	}
@@ -51,26 +48,22 @@ final class HomePresenter {
 	///   - passwordChanger: The Password changer.
 	///   - appCoordinator: The application coordinator.
 	///   - errorHandlerChain: The error handler chain.
-	///   - logger: The logger.
 	init(configurationLoader: ConfigurationLoader,
 	     clientProvider: ClientProvider,
 	     pinChanger: PinChanger,
 	     passwordChanger: PasswordChanger,
 	     appCoordinator: AppCoordinator,
-	     errorHandlerChain: ErrorHandlerChain,
-	     logger: SDKLogger) {
+	     errorHandlerChain: ErrorHandlerChain) {
 		self.configurationLoader = configurationLoader
 		self.clientProvider = clientProvider
 		self.pinChanger = pinChanger
 		self.passwordChanger = passwordChanger
 		self.appCoordinator = appCoordinator
 		self.errorHandlerChain = errorHandlerChain
-		self.logger = logger
 	}
 
-	/// :nodoc:
 	deinit {
-		os_log("HomePresenter", log: OSLog.deinit, type: .debug)
+		logger.deinit("HomePresenter")
 	}
 }
 
@@ -83,7 +76,7 @@ extension HomePresenter {
 	/// - Parameter handler: The code need to be executed on successful client initialization.
 	func initClient(completion handler: @escaping () -> ()) {
 		if mobileAuthenticationClient != nil {
-			logger.log("Client already initialized.")
+			logger.sdk("Client already initialized.")
 			return handler()
 		}
 
@@ -93,16 +86,16 @@ extension HomePresenter {
 				return
 			}
 
-			logger.log("Initializing client.")
+			logger.sdk("Initializing client.")
 			MobileAuthenticationClientInitializer()
 				.configuration(configuration.sdkConfiguration)
 				.onSuccess { client in
-					self.logger.log("Client initialization succeeded.", color: .green)
+					logger.sdk("Client initialization succeeded.", .green)
 					self.clientProvider.save(client: client)
 					handler()
 				}
 				.onError {
-					self.logger.log("Client initialization failed.", color: .red)
+					logger.sdk("Client initialization failed.", .red)
 					let operationError = OperationError(operation: .initClient, underlyingError: $0)
 					self.errorHandlerChain.handle(error: operationError)
 				}
@@ -129,7 +122,7 @@ extension HomePresenter {
 	/// Starts an In-Band Authentication operation.
 	func authenticate() {
 		guard let accounts = mobileAuthenticationClient?.localData.accounts, !accounts.isEmpty else {
-			logger.log("Accounts not found.", color: .red)
+			logger.sdk("Accounts not found.", .red)
 			let operationError = OperationError(operation: .authentication,
 			                                    underlyingError: AppError.accountsNotFound)
 			return errorHandlerChain.handle(error: operationError)
@@ -228,7 +221,7 @@ extension HomePresenter {
 	func changeDeviceInformation() {
 		let deviceInformation = mobileAuthenticationClient?.localData.deviceInformation
 		guard let deviceInformation else {
-			logger.log("Device information not found.", color: .red)
+			logger.sdk("Device information not found.", .red)
 			let operationError = OperationError(operation: .deviceInformationChange,
 			                                    underlyingError: AppError.deviceInformationNotFound)
 			return errorHandlerChain.handle(error: operationError)
@@ -247,7 +240,7 @@ extension HomePresenter {
 	func deleteLocalAuthenticators() {
 		// find enrolled accounts
 		guard let accounts = mobileAuthenticationClient?.localData.accounts, !accounts.isEmpty else {
-			logger.log("Accounts not found.", color: .red)
+			logger.sdk("Accounts not found.", .red)
 			let operationError = OperationError(operation: .localData,
 			                                    underlyingError: AppError.accountsNotFound)
 			return errorHandlerChain.handle(error: operationError)
@@ -256,10 +249,10 @@ extension HomePresenter {
 		doDeleteAuthenticators(of: accounts.map(\.username)) { result in
 			switch result {
 			case .success:
-				self.logger.log("Delete authenticators succeeded.", color: .green)
+				logger.sdk("Delete authenticators succeeded.", .green)
 				self.appCoordinator.navigateToResult(with: .success(operation: .localData))
 			case let .failure(error):
-				self.logger.log("Delete authenticators failed.", color: .red)
+				logger.sdk("Delete authenticators failed.", .red)
 				let operationError = OperationError(operation: .localData, underlyingError: error)
 				self.errorHandlerChain.handle(error: operationError)
 			}
@@ -283,18 +276,18 @@ private extension HomePresenter {
 	func doDeregistration(for usernames: [Username]) {
 		var remainingUsernames = usernames
 		guard let username = remainingUsernames.popLast() else {
-			logger.log("Deregistration succeeded.", color: .green)
+			logger.sdk("Deregistration succeeded.", .green)
 			return appCoordinator.navigateToResult(with: .success(operation: .deregistration))
 		}
 
 		mobileAuthenticationClient?.operations.deregistration
 			.username(username)
 			.onSuccess {
-				self.logger.log("Deregistration succeeded for user \(username)", color: .green)
+				logger.sdk("Deregistration succeeded for user %@", .green, .debug, username)
 				self.doDeregistration(for: remainingUsernames)
 			}
 			.onError {
-				self.logger.log("Deregistration failed for user \(username)", color: .red)
+				logger.sdk("Deregistration failed for user %@", .red, .debug, username)
 				let operationError = OperationError(operation: .deregistration, underlyingError: $0)
 				self.errorHandlerChain.handle(error: operationError)
 			}
@@ -310,11 +303,11 @@ private extension HomePresenter {
 			.username(username)
 			.pinChanger(pinChanger)
 			.onSuccess {
-				self.logger.log("PIN change succeeded.", color: .green)
+				logger.sdk("PIN change succeeded.", .green)
 				self.appCoordinator.navigateToResult(with: .success(operation: .pinChange))
 			}
 			.onError {
-				self.logger.log("PIN change failed.", color: .red)
+				logger.sdk("PIN change failed.", .red)
 				let operationError = OperationError(operation: .pinChange, underlyingError: $0)
 				self.errorHandlerChain.handle(error: operationError)
 			}
@@ -330,11 +323,11 @@ private extension HomePresenter {
 			.username(username)
 			.passwordChanger(passwordChanger)
 			.onSuccess {
-				self.logger.log("Password change succeeded.", color: .green)
+				logger.sdk("Password change succeeded.", .green)
 				self.appCoordinator.navigateToResult(with: .success(operation: .passwordChange))
 			}
 			.onError {
-				self.logger.log("Password change failed.", color: .red)
+				logger.sdk("Password change failed.", .red)
 				let operationError = OperationError(operation: .passwordChange, underlyingError: $0)
 				self.errorHandlerChain.handle(error: operationError)
 			}
@@ -356,7 +349,7 @@ private extension HomePresenter {
 			if case let .failure(error) = result {
 				return handler(.failure(error))
 			}
-			self.logger.log("Delete authenticators succeeded for user \(username).", color: .green)
+			logger.sdk("Delete authenticators succeeded for user %@.", .green, .debug, username)
 			self.doDeleteAuthenticators(of: remainingUsernames, completion: handler)
 		}
 	}

@@ -25,9 +25,8 @@ final class QrScannerPresenter {
 		self.outOfBandOperationHandler = outOfBandOperationHandler
 	}
 
-	/// :nodoc:
 	deinit {
-		os_log("QrScannerPresenter", log: OSLog.deinit, type: .debug)
+		logger.deinit("QrScannerPresenter")
 	}
 }
 

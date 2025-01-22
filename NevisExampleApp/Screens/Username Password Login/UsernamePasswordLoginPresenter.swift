@@ -45,9 +45,6 @@ final class UsernamePasswordLoginPresenter {
 	/// The error handler chain.
 	private let errorHandlerChain: ErrorHandlerChain
 
-	/// The logger.
-	private let logger: SDKLogger
-
 	// MARK: - Initialization
 
 	/// Creates a new instance.
@@ -63,7 +60,6 @@ final class UsernamePasswordLoginPresenter {
 	///   - devicePasscodeUserVerifier: The device passcode user verifier.
 	///   - appCoordinator: The application coordinator.
 	///   - errorHandlerChain: The error handler chain.
-	///   - logger: The logger.
 	init(configurationLoader: ConfigurationLoader,
 	     loginService: LoginService,
 	     clientProvider: ClientProvider,
@@ -73,8 +69,7 @@ final class UsernamePasswordLoginPresenter {
 	     biometricUserVerifier: BiometricUserVerifier,
 	     devicePasscodeUserVerifier: DevicePasscodeUserVerifier,
 	     appCoordinator: AppCoordinator,
-	     errorHandlerChain: ErrorHandlerChain,
-	     logger: SDKLogger) {
+	     errorHandlerChain: ErrorHandlerChain) {
 		self.configurationLoader = configurationLoader
 		self.loginService = loginService
 		self.clientProvider = clientProvider
@@ -85,12 +80,10 @@ final class UsernamePasswordLoginPresenter {
 		self.devicePasscodeUserVerifier = devicePasscodeUserVerifier
 		self.appCoordinator = appCoordinator
 		self.errorHandlerChain = errorHandlerChain
-		self.logger = logger
 	}
 
-	/// :nodoc:
 	deinit {
-		os_log("UsernamePasswordLoginPresenter", log: OSLog.deinit, type: .debug)
+		logger.deinit("UsernamePasswordLoginPresenter")
 	}
 }
 
@@ -172,11 +165,11 @@ private extension UsernamePasswordLoginPresenter {
 			.biometricUserVerifier(biometricUserVerifier)
 			.devicePasscodeUserVerifier(devicePasscodeUserVerifier)
 			.onSuccess {
-				self.logger.log("In-Band registration succeeded.", color: .green)
+				logger.sdk("In-Band registration succeeded.", .green)
 				self.appCoordinator.navigateToResult(with: .success(operation: .registration))
 			}
 			.onError {
-				self.logger.log("In-Band registration failed.", color: .red)
+				logger.sdk("In-Band registration failed.", .red)
 				let operationError = OperationError(operation: .registration,
 				                                    underlyingError: $0)
 				self.errorHandlerChain.handle(error: operationError)

@@ -6,6 +6,7 @@
 
 import NevisMobileAuthentication
 
+/// Information about the `PinAuthenticatorProtectionStatus`.
 extension PinAuthenticatorProtectionStatus {
 	/// Returns the localized description.
 	var localizedDescription: String {

@@ -35,9 +35,9 @@ Your development setup has to meet the following prerequisites:
 
 Dependencies in this project are provided via Cocoapods. Please install all dependencies by running
 
-`
-pod install
-`
+```
+$ pod install
+```
 
 ### Configuration
 

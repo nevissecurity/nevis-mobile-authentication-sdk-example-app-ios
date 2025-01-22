@@ -36,9 +36,8 @@ final class SelectAuthenticatorScreen: BaseScreen, Screen {
 		self.presenter = presenter
 	}
 
-	/// :nodoc:
 	deinit {
-		os_log("SelectAuthenticatorScreen", log: OSLog.deinit, type: .debug)
+		logger.deinit("SelectAuthenticatorScreen")
 	}
 }
 
@@ -68,7 +67,6 @@ extension SelectAuthenticatorScreen {
 
 // MARK: - Setups
 
-/// :nodoc:
 private extension SelectAuthenticatorScreen {
 
 	func setupUI() {
@@ -100,7 +98,6 @@ private extension SelectAuthenticatorScreen {
 
 // MARK: - UITableViewDataSource
 
-/// :nodoc:
 extension SelectAuthenticatorScreen: UITableViewDataSource {
 	func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
 		authenticatorItems.count
@@ -137,7 +134,6 @@ extension SelectAuthenticatorScreen: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 
-/// :nodoc:
 extension SelectAuthenticatorScreen: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)

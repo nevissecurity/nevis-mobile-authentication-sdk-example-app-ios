@@ -136,8 +136,7 @@ private extension AppAssembly {
 			                                         biometricUserVerifier: res~>,
 			                                         devicePasscodeUserVerifier: res~>,
 			                                         appCoordinator: res~>,
-			                                         errorHandlerChain: res~>,
-			                                         logger: res~>)
+			                                         errorHandlerChain: res~>)
 		}.inObjectScope(.transient)
 
 		container.register(UsernamePasswordLoginPresenter.self) { res in
@@ -152,8 +151,7 @@ private extension AppAssembly {
 			                                      biometricUserVerifier: res~>,
 			                                      devicePasscodeUserVerifier: res~>,
 			                                      appCoordinator: res~>,
-			                                      errorHandlerChain: res~>,
-			                                      logger: res~>)
+			                                      errorHandlerChain: res~>)
 		}.inObjectScope(.transient)
 
 		container.register(SelectAccountPresenter.self) { res, arg in
@@ -169,7 +167,6 @@ private extension AppAssembly {
 			                              devicePasscodeUserVerifier: res~>,
 			                              appCoordinator: res~>,
 			                              errorHandlerChain: res~>,
-			                              logger: res~>,
 			                              parameter: arg)
 		}.inObjectScope(.transient)
 
@@ -223,7 +220,6 @@ private extension AppAssembly {
 		container.register(AuthenticatorSelector.self,
 		                   name: RegistrationAuthenticatorSelectorName) { res in
 			AuthenticatorSelectorImpl(appCoordinator: res~>,
-			                          logger: res~>,
 			                          configurationLoader: res~>,
 			                          operation: .registration)
 		}
@@ -231,7 +227,6 @@ private extension AppAssembly {
 		container.register(AuthenticatorSelector.self,
 		                   name: AuthenticationAuthenticatorSelectorName) { res in
 			AuthenticatorSelectorImpl(appCoordinator: res~>,
-			                          logger: res~>,
 			                          configurationLoader: res~>,
 			                          operation: .authentication)
 		}
@@ -266,10 +261,6 @@ private extension AppAssembly {
 		container.autoregister(LoginService.self,
 		                       initializer: LoginServiceImpl.init)
 
-		container.autoregister(SDKLogger.self,
-		                       initializer: SDKLoggerImpl.init)
-			.inObjectScope(.container)
-
 		container.register(OutOfBandOperationHandler.self) { res in
 			let authSelectorForReg = res ~> (AuthenticatorSelector.self,
 			                                 name: RegistrationAuthenticatorSelectorName)
@@ -286,8 +277,7 @@ private extension AppAssembly {
 			                                     biometricUserVerifier: res~>,
 			                                     devicePasscodeUserVerifier: res~>,
 			                                     appCoordinator: res~>,
-			                                     errorHandlerChain: res~>,
-			                                     logger: res~>)
+			                                     errorHandlerChain: res~>)
 		}
 		.inObjectScope(.transient)
 
