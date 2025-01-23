@@ -37,9 +37,8 @@ final class SelectAccountScreen: BaseScreen, Screen {
 		self.presenter.view = self
 	}
 
-	/// :nodoc:
 	deinit {
-		os_log("SelectAccountScreen", log: OSLog.deinit, type: .debug)
+		logger.deinit("SelectAccountScreen")
 	}
 }
 
@@ -69,7 +68,6 @@ extension SelectAccountScreen {
 
 // MARK: - Setups
 
-/// :nodoc:
 private extension SelectAccountScreen {
 
 	func setupUI() {
@@ -101,7 +99,6 @@ private extension SelectAccountScreen {
 
 // MARK: - UITableViewDataSource
 
-/// :nodoc:
 extension SelectAccountScreen: UITableViewDataSource {
 	func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
 		accounts.count
@@ -122,7 +119,6 @@ extension SelectAccountScreen: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 
-/// :nodoc:
 extension SelectAccountScreen: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)

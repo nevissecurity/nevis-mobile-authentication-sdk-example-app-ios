@@ -6,6 +6,7 @@
 
 import NevisMobileAuthentication
 
+/// Information about the `PasswordAuthenticatorProtectionStatus`.
 extension PasswordAuthenticatorProtectionStatus {
 	/// Returns the localized description.
 	var localizedDescription: String {

@@ -44,7 +44,6 @@ class AuthenticatorCell: UITableViewCell {
 
 // MARK: - Private setups
 
-/// :nodoc:
 private extension AuthenticatorCell {
 
 	func setupUI() {

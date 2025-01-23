@@ -45,9 +45,8 @@ final class ChangeDeviceInformationScreen: BaseScreen, Screen {
 		self.presenter.view = self
 	}
 
-	/// :nodoc:
 	deinit {
-		os_log("ChangeDeviceInformationScreen", log: OSLog.deinit, type: .debug)
+		logger.deinit("ChangeDeviceInformationScreen")
 	}
 }
 
@@ -76,7 +75,6 @@ extension ChangeDeviceInformationScreen {
 
 // MARK: - Setups
 
-/// :nodoc:
 private extension ChangeDeviceInformationScreen {
 
 	func setupUI() {
@@ -140,7 +138,6 @@ private extension ChangeDeviceInformationScreen {
 
 // MARK: - UITextFieldDelegate
 
-/// :nodoc:
 extension ChangeDeviceInformationScreen: UITextFieldDelegate {
 
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -150,7 +147,6 @@ extension ChangeDeviceInformationScreen: UITextFieldDelegate {
 
 // MARK: - Actions
 
-/// :nodoc:
 private extension ChangeDeviceInformationScreen {
 
 	@objc

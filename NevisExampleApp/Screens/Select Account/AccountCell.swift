@@ -42,7 +42,6 @@ class AccountCell: UITableViewCell {
 
 // MARK: - Private setups
 
-/// :nodoc:
 private extension AccountCell {
 
 	func setupUI() {

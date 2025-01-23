@@ -6,7 +6,8 @@
 
 import NevisMobileAuthentication
 
-/// Default implementation of ``PinChanger`` protocol.
+/// Default implementation of `PinChanger` protocol.
+/// For more information about PIN change please read the [official documentation](https://docs.nevis.net/mobilesdk/guide/operation/other-operations#change-pin).
 ///
 /// Navigates to the ``CredentialScreen`` where the user can change the PIN.
 class PinChangerImpl {
@@ -16,20 +17,14 @@ class PinChangerImpl {
 	/// The application coordinator.
 	private let appCoordinator: AppCoordinator
 
-	/// The logger.
-	private let logger: SDKLogger
-
 	// MARK: - Initialization
 
 	/// Creates a new instance.
 	///
 	/// - Parameters:
 	///   - appCoordinator: The application coordinator.
-	///   - logger: The logger.
-	init(appCoordinator: AppCoordinator,
-	     logger: SDKLogger) {
+	init(appCoordinator: AppCoordinator) {
 		self.appCoordinator = appCoordinator
-		self.logger = logger
 	}
 }
 
@@ -38,10 +33,10 @@ class PinChangerImpl {
 extension PinChangerImpl: PinChanger {
 	func changePin(context: PinChangeContext, handler: PinChangeHandler) {
 		if context.lastRecoverableError != nil {
-			logger.log("PIN change failed. Please try again.")
+			logger.sdk("PIN change failed. Please try again.", .red)
 		}
 		else {
-			logger.log("Please start PIN change.")
+			logger.sdk("Please start PIN change.")
 		}
 
 		appCoordinator.topScreen?.enableInteraction()

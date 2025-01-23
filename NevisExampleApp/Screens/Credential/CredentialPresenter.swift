@@ -93,9 +93,6 @@ final class CredentialPresenter {
 	/// The view of the presenter.
 	weak var view: CredentialView?
 
-	/// The logger.
-	private let logger: SDKLogger
-
 	/// The current credential type.
 	private var credentialType: AuthenticatorAaid = .Pin
 
@@ -156,17 +153,13 @@ final class CredentialPresenter {
 	/// Creates a new instance.
 	///
 	/// - Parameters:
-	///   - logger: The logger.
 	///   - parameter: The navigation parameter.
-	init(logger: SDKLogger,
-	     parameter: NavigationParameterizable? = nil) {
-		self.logger = logger
+	init(parameter: NavigationParameterizable? = nil) {
 		setParameter(parameter as? CredentialParameter)
 	}
 
-	/// :nodoc:
 	deinit {
-		os_log("CredentialPresenter", log: OSLog.deinit, type: .debug)
+		logger.deinit("CredentialPresenter")
 
 		// If it is not nil at this moment, it means that a concurrent operation is about to be started.
 		pinEnrollmentHandler?.cancel()
@@ -261,11 +254,11 @@ extension CredentialPresenter {
 		if case .Pin = credentialType {
 			switch pinProtectionStatus {
 			case .Unlocked, .none:
-				logger.log("PIN authenticator is unlocked.")
+				logger.sdk("PIN authenticator is unlocked.")
 				return .init()
 			case let .LastAttemptFailed(remainingTries, coolDown):
-				logger.log("Last attempt failed using the PIN authenticator.")
-				logger.log("Remaining tries: \(remainingTries), cool down period: \(coolDown).")
+				logger.sdk("Last attempt failed using the PIN authenticator.")
+				logger.sdk("Remaining tries: %d, cool down period: %d.", .black, .debug, remainingTries, coolDown)
 				if coolDown > 0 {
 					startCoolDownTimer(with: coolDown, remainingTries: remainingTries)
 				}
@@ -273,21 +266,21 @@ extension CredentialPresenter {
 				return .init(message: pinProtectionStatus?.localizedDescription ?? String(),
 				             isInCoolDown: coolDown > 0)
 			case .LockedOut:
-				logger.log("PIN authenticator is locked.")
+				logger.sdk("PIN authenticator is locked.")
 				return .init(message: pinProtectionStatus?.localizedDescription ?? String())
 			case .some:
-				logger.log("Unknown PIN authenticator protection status.")
+				logger.sdk("Unknown PIN authenticator protection status.")
 				return .init()
 			}
 		}
 		else if case .Password = credentialType {
 			switch passwordProtectionStatus {
 			case .Unlocked, .none:
-				logger.log("Password authenticator is unlocked.")
+				logger.sdk("Password authenticator is unlocked.")
 				return .init()
 			case let .LastAttemptFailed(remainingTries, coolDown):
-				logger.log("Last attempt failed using the Password authenticator.")
-				logger.log("Remaining tries: \(remainingTries), cool down period: \(coolDown).")
+				logger.sdk("Last attempt failed using the Password authenticator.")
+				logger.sdk("Remaining tries: %d, cool down period: %d.", .black, .debug, remainingTries, coolDown)
 				if coolDown > 0 {
 					startCoolDownTimer(with: coolDown, remainingTries: remainingTries)
 				}
@@ -295,10 +288,10 @@ extension CredentialPresenter {
 				return .init(message: passwordProtectionStatus?.localizedDescription ?? String(),
 				             isInCoolDown: coolDown > 0)
 			case .LockedOut:
-				logger.log("Password authenticator is locked.")
+				logger.sdk("Password authenticator is locked.")
 				return .init(message: passwordProtectionStatus?.localizedDescription ?? String())
 			case .some:
-				logger.log("Unknown Password authenticator protection status.")
+				logger.sdk("Unknown Password authenticator protection status.")
 				return .init()
 			}
 		}
@@ -313,7 +306,7 @@ extension CredentialPresenter {
 	///  - oldCredential: The old credential.
 	///  - credential: The credential.
 	func confirm(oldCredential: String, credential: String) {
-		logger.log("Confirming entered credentials.")
+		logger.sdk("Confirming entered credentials.")
 		view?.disableInteraction()
 		switch operation {
 		case .enrollment:
@@ -338,19 +331,19 @@ extension CredentialPresenter {
 	func cancel() {
 		switch operation {
 		case .enrollment:
-			logger.log("Cancelling credential enrollment.")
+			logger.sdk("Cancelling credential enrollment.")
 			pinEnrollmentHandler?.cancel()
 			pinEnrollmentHandler = nil
 			passwordEnrollmentHandler?.cancel()
 			passwordEnrollmentHandler = nil
 		case .verification:
-			logger.log("Cancelling credential verification.")
+			logger.sdk("Cancelling credential verification.")
 			pinVerificationHandler?.cancel()
 			pinVerificationHandler = nil
 			passwordVerificationHandler?.cancel()
 			passwordVerificationHandler = nil
 		case .credentialChange:
-			logger.log("Cancelling credential change.")
+			logger.sdk("Cancelling credential change.")
 			pinCredentialChangeHandler?.cancel()
 			pinCredentialChangeHandler = nil
 			passwordCredentialChangeHandler?.cancel()

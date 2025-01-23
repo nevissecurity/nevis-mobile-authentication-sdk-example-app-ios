@@ -44,9 +44,8 @@ final class SelectAuthenticatorPresenter {
 		setParameter(parameter as? SelectAuthenticatorParameter)
 	}
 
-	/// :nodoc:
 	deinit {
-		os_log("SelectAuthenticatorPresenter", log: OSLog.deinit, type: .debug)
+		logger.deinit("SelectAuthenticatorPresenter")
 		// If it is not nil at this moment, it means that a concurrent operation will be started.
 		handler?.cancel()
 	}

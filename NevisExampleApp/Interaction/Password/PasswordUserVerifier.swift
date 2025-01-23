@@ -6,7 +6,8 @@
 
 import NevisMobileAuthentication
 
-/// Default implementation of ``PasswordUserVerifier`` protocol.
+/// Default implementation of `PasswordUserVerifier` protocol.
+/// For more information about password user verification please read the [official documentation](https://docs.nevis.net/mobilesdk/guide/operation/authentication#password-user-verifier).
 ///
 /// Navigates to the ``CredentialScreen`` where the user can verify the Password.
 class PasswordUserVerifierImpl {
@@ -16,20 +17,14 @@ class PasswordUserVerifierImpl {
 	/// The application coordinator.
 	private let appCoordinator: AppCoordinator
 
-	/// The logger.
-	private let logger: SDKLogger
-
 	// MARK: - Initialization
 
 	/// Creates a new instance.
 	///
 	/// - Parameters:
 	///   - appCoordinator: The application coordinator.
-	///   - logger: The logger.
-	init(appCoordinator: AppCoordinator,
-	     logger: SDKLogger) {
+	init(appCoordinator: AppCoordinator) {
 		self.appCoordinator = appCoordinator
-		self.logger = logger
 	}
 }
 
@@ -38,10 +33,10 @@ class PasswordUserVerifierImpl {
 extension PasswordUserVerifierImpl: PasswordUserVerifier {
 	func verifyPassword(context: PasswordUserVerificationContext, handler: PasswordUserVerificationHandler) {
 		if context.lastRecoverableError != nil {
-			logger.log("Password user verification failed. Please try again.")
+			logger.sdk("Password user verification failed. Please try again.", .red)
 		}
 		else {
-			logger.log("Please start Password user verification.")
+			logger.sdk("Please start Password user verification.")
 		}
 
 		let parameter: PasswordParameter = .verification(protectionStatus: context.authenticatorProtectionStatus,

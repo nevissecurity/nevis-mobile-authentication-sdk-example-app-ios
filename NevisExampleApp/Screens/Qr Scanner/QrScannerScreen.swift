@@ -31,9 +31,8 @@ final class QrScannerScreen: BaseScreen, Screen {
 		self.presenter = presenter
 	}
 
-	/// :nodoc:
 	deinit {
-		os_log("QrScannerScreen", log: OSLog.deinit, type: .debug)
+		logger.deinit("QrScannerScreen")
 	}
 }
 
@@ -62,7 +61,6 @@ extension QrScannerScreen {
 
 // MARK: - Setups
 
-/// :nodoc:
 private extension QrScannerScreen {
 
 	func setupUI() {
@@ -106,7 +104,6 @@ private extension QrScannerScreen {
 
 // MARK: - QRScannerViewDelegate
 
-/// :nodoc:
 extension QrScannerScreen: QRScannerViewDelegate {
 
 	func qrScannerView(_: QRScannerView, didFailure error: QRScannerError) {

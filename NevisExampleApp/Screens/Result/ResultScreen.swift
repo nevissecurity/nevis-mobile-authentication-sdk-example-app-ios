@@ -38,9 +38,8 @@ final class ResultScreen: BaseScreen, Screen {
 		self.presenter = presenter
 	}
 
-	/// :nodoc:
 	deinit {
-		os_log("ResultScreen", log: OSLog.deinit, type: .debug)
+		logger.deinit("ResultScreen")
 	}
 }
 
@@ -61,7 +60,6 @@ extension ResultScreen {
 
 // MARK: - Setups
 
-/// :nodoc:
 private extension ResultScreen {
 
 	func setupUI() {
@@ -107,7 +105,6 @@ private extension ResultScreen {
 
 // MARK: - Actions
 
-/// :nodoc:
 private extension ResultScreen {
 	@objc
 	func doAction() {

@@ -47,10 +47,7 @@ final class OutOfBandOperationHandlerImpl {
 	/// The error handler chain.
 	private let errorHandlerChain: ErrorHandlerChain
 
-	/// The logger.
-	private let logger: SDKLogger
-
-	/// The ``MobileAuthenticationClient`` instance.
+	/// The `MobileAuthenticationClient` instance.
 	private var mobileAuthenticationClient: MobileAuthenticationClient? {
 		clientProvider.get()
 	}
@@ -72,7 +69,6 @@ final class OutOfBandOperationHandlerImpl {
 	///   - devicePasscodeUserVerifier: The device passcode user verifier.
 	///   - appCoordinator: The application coordinator.
 	///   - errorHandlerChain: The error handler chain.
-	///   - logger: The logger.
 	init(clientProvider: ClientProvider,
 	     accountSelector: AccountSelector,
 	     registrationAuthenticatorSelector: AuthenticatorSelector,
@@ -84,8 +80,7 @@ final class OutOfBandOperationHandlerImpl {
 	     biometricUserVerifier: BiometricUserVerifier,
 	     devicePasscodeUserVerifier: DevicePasscodeUserVerifier,
 	     appCoordinator: AppCoordinator,
-	     errorHandlerChain: ErrorHandlerChain,
-	     logger: SDKLogger) {
+	     errorHandlerChain: ErrorHandlerChain) {
 		self.clientProvider = clientProvider
 		self.accountSelector = accountSelector
 		self.registrationAuthenticatorSelector = registrationAuthenticatorSelector
@@ -98,12 +93,10 @@ final class OutOfBandOperationHandlerImpl {
 		self.devicePasscodeUserVerifier = devicePasscodeUserVerifier
 		self.appCoordinator = appCoordinator
 		self.errorHandlerChain = errorHandlerChain
-		self.logger = logger
 	}
 
-	/// :nodoc:
 	deinit {
-		os_log("OutOfBandOperationHandlerImpl", log: OSLog.deinit, type: .debug)
+		logger.deinit("OutOfBandOperationHandlerImpl")
 	}
 }
 
@@ -127,11 +120,11 @@ private extension OutOfBandOperationHandlerImpl {
 		mobileAuthenticationClient?.operations.outOfBandPayloadDecode
 			.base64UrlEncoded(base64UrlEncoded)
 			.onSuccess {
-				self.logger.log("Decode payload succeeded.", color: .green)
+				logger.sdk("Decode payload succeeded.", .green)
 				handler($0)
 			}
 			.onError {
-				self.logger.log("Decode payload failed.", color: .red)
+				logger.sdk("Decode payload failed.", .red)
 				let operationError = OperationError(operation: .payloadDecode, underlyingError: $0)
 				self.errorHandlerChain.handle(error: operationError)
 			}
@@ -151,7 +144,7 @@ private extension OutOfBandOperationHandlerImpl {
 				self.authenticate(using: $0)
 			}
 			.onError {
-				self.logger.log("Out-of-Band operation failed.", color: .red)
+				logger.sdk("Out-of-Band operation failed.", .red)
 				let operationError = OperationError(operation: .outOfBand, underlyingError: $0)
 				self.errorHandlerChain.handle(error: operationError)
 			}
@@ -171,11 +164,11 @@ private extension OutOfBandOperationHandlerImpl {
 			.biometricUserVerifier(biometricUserVerifier)
 			.devicePasscodeUserVerifier(devicePasscodeUserVerifier)
 			.onSuccess {
-				self.logger.log("Out-of-Band registration succeeded.", color: .green)
+				logger.sdk("Out-of-Band registration succeeded.", .green)
 				self.appCoordinator.navigateToResult(with: .success(operation: .registration))
 			}
 			.onError {
-				self.logger.log("Out-of-Band registration failed.", color: .red)
+				logger.sdk("Out-of-Band registration failed.", .red)
 				let operationError = OperationError(operation: .registration, underlyingError: $0)
 				self.errorHandlerChain.handle(error: operationError)
 			}
@@ -194,11 +187,11 @@ private extension OutOfBandOperationHandlerImpl {
 			.biometricUserVerifier(biometricUserVerifier)
 			.devicePasscodeUserVerifier(devicePasscodeUserVerifier)
 			.onSuccess { _ in
-				self.logger.log("Out-of-Band authentication succeeded.", color: .green)
+				logger.sdk("Out-of-Band authentication succeeded.", .green)
 				self.appCoordinator.navigateToResult(with: .success(operation: .authentication))
 			}
 			.onError {
-				self.logger.log("Out-of-Band authentication failed.", color: .red)
+				logger.sdk("Out-of-Band authentication failed.", .red)
 				let operationError = OperationError(operation: .authentication, underlyingError: $0)
 				self.errorHandlerChain.handle(error: operationError)
 			}

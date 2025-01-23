@@ -6,7 +6,8 @@
 
 import NevisMobileAuthentication
 
-/// Default implementation of ``PinEnroller`` protocol.
+/// Default implementation of `PinEnroller` protocol.
+/// For more information about PIN enrollment please read the [official documentation](https://docs.nevis.net/mobilesdk/guide/operation/registration#pin-enroller).
 ///
 /// Navigates to the ``CredentialScreen`` where the user can enroll the PIN authenticator.
 class PinEnrollerImpl {
@@ -16,20 +17,14 @@ class PinEnrollerImpl {
 	/// The application coordinator.
 	private let appCoordinator: AppCoordinator
 
-	/// The logger.
-	private let logger: SDKLogger
-
 	// MARK: - Initialization
 
 	/// Creates a new instance.
 	///
 	/// - Parameters:
 	///   - appCoordinator: The application coordinator.
-	///   - logger: The logger.
-	init(appCoordinator: AppCoordinator,
-	     logger: SDKLogger) {
+	init(appCoordinator: AppCoordinator) {
 		self.appCoordinator = appCoordinator
-		self.logger = logger
 	}
 }
 
@@ -38,10 +33,10 @@ class PinEnrollerImpl {
 extension PinEnrollerImpl: PinEnroller {
 	func enrollPin(context: PinEnrollmentContext, handler: PinEnrollmentHandler) {
 		if context.lastRecoverableError != nil {
-			logger.log("PIN enrollment failed. Please try again.")
+			logger.sdk("PIN enrollment failed. Please try again.", .red)
 		}
 		else {
-			logger.log("Please start PIN enrollment.")
+			logger.sdk("Please start PIN enrollment.")
 		}
 
 		let parameter: PinParameter = .enrollment(lastRecoverableError: context.lastRecoverableError,

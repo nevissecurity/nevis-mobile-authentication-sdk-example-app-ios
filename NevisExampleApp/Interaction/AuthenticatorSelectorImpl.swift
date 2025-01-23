@@ -12,7 +12,8 @@ let RegistrationAuthenticatorSelectorName = "auth_selector_reg"
 /// The unique name of authenticator selector implementation for Authentication operation.
 let AuthenticationAuthenticatorSelectorName = "auth_selector_auth"
 
-/// Default implementation of ``AuthenticatorSelector`` protocol.
+/// Default implementation of `AuthenticatorSelector` protocol.
+/// For more information about authenticator selection please read the [official documentation](https://docs.nevis.net/mobilesdk/guide/operation/registration#authenticator-selector).
 ///
 /// Navigates to the ``SelectAuthenticatorScreen`` where the user can select from the available authenticators.
 class AuthenticatorSelectorImpl {
@@ -30,9 +31,6 @@ class AuthenticatorSelectorImpl {
 	/// The application coordinator.
 	private let appCoordinator: AppCoordinator
 
-	/// The logger.
-	private let logger: SDKLogger
-
 	/// The configuration loader.
 	private let configurationLoader: ConfigurationLoader
 
@@ -45,15 +43,12 @@ class AuthenticatorSelectorImpl {
 	///
 	/// - Parameters:
 	///   - appCoordinator: The application coordinator.
-	///   - logger: The logger.
 	///   - configurationLoader: The configuration loader.
 	///   - operation: The current operation.
 	init(appCoordinator: AppCoordinator,
-	     logger: SDKLogger,
 	     configurationLoader: ConfigurationLoader,
 	     operation: Operation) {
 		self.appCoordinator = appCoordinator
-		self.logger = logger
 		self.configurationLoader = configurationLoader
 		self.operation = operation
 	}
@@ -64,11 +59,11 @@ class AuthenticatorSelectorImpl {
 extension AuthenticatorSelectorImpl: AuthenticatorSelector {
 	func selectAuthenticator(context: AuthenticatorSelectionContext, handler: AuthenticatorSelectionHandler) {
 		guard let configuration = try? configurationLoader.load() else {
-			logger.log("Configuration cannot be loaded during authenticator selection!", color: .red)
+			logger.sdk("Configuration cannot be loaded during authenticator selection!", .red)
 			return handler.cancel()
 		}
 
-		logger.log("Please select one of the received available authenticators!")
+		logger.sdk("Please select one of the received available authenticators!")
 
 		let validator = AuthenticatorValidator()
 		let validationResult = switch operation {

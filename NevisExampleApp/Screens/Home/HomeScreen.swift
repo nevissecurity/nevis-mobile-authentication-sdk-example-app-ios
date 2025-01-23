@@ -63,9 +63,8 @@ final class HomeScreen: BaseScreen, Screen {
 		self.presenter.view = self
 	}
 
-	/// :nodoc:
 	deinit {
-		os_log("HomeScreen", log: OSLog.deinit, type: .debug)
+		logger.deinit("HomeScreen")
 	}
 }
 
@@ -96,7 +95,6 @@ extension HomeScreen {
 
 // MARK: - Setups
 
-/// :nodoc:
 private extension HomeScreen {
 
 	func setupUI() {
@@ -207,7 +205,6 @@ private extension HomeScreen {
 
 // MARK: - Actions
 
-/// :nodoc:
 private extension HomeScreen {
 
 	@objc

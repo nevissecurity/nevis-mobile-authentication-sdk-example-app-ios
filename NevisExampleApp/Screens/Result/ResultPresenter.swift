@@ -58,9 +58,8 @@ final class ResultPresenter {
 		setParameter(parameter as? ResultParameter)
 	}
 
-	/// :nodoc:
 	deinit {
-		os_log("ResultPresenter", log: OSLog.deinit, type: .debug)
+		logger.deinit("ResultPresenter")
 	}
 }
 

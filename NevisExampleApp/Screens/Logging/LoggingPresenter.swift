@@ -11,26 +11,19 @@ final class LoggingPresenter {
 
 	// MARK: - Properties
 
-	/// The logger.
-	private let logger: SDKLogger
-
 	/// The view of the presenter.
 	weak var view: LoggingView?
 
 	// MARK: - Initialization
 
 	/// Creates a new instance.
-	///
-	/// - Parameter logger: The logger.
-	init(logger: SDKLogger) {
-		self.logger = logger
+	init() {
 		NotificationCenter.default.addObserver(self,
 		                                       selector: #selector(log(_:)),
 		                                       name: .log,
 		                                       object: nil)
 	}
 
-	/// :nodoc:
 	deinit {
 		NotificationCenter.default.removeObserver(self)
 	}
