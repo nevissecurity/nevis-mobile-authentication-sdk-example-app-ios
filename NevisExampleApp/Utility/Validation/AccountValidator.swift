@@ -32,6 +32,6 @@ extension AccountValidator {
 			}
 		}
 
-		return .success(accounts.values.map { $0 })
+		return .success(accounts.values.map(\.self))
 	}
 }
