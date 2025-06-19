@@ -25,10 +25,8 @@ enum PinParameter: CredentialParameter {
 	///
 	///  - Parameters:
 	///    - protectionStatus: The object describing the PIN authenticator protection status.
-	///    - lastRecoverableError: The object that informs that an error occurred during PIN verification.
 	///    - handler: The PIN verification handler.
 	case verification(protectionStatus: PinAuthenticatorProtectionStatus,
-	                  lastRecoverableError: PinUserVerificationError?,
 	                  handler: PinUserVerificationHandler)
 
 	/// Represents PIN change.
@@ -56,10 +54,8 @@ enum PasswordParameter: CredentialParameter {
 	///
 	///  - Parameters:
 	///    - protectionStatus: The object describing the Password authenticator protection status.
-	///    - lastRecoverableError: The object that informs that an error occurred during Password verification.
 	///    - handler: The Password verification handler.
 	case verification(protectionStatus: PasswordAuthenticatorProtectionStatus,
-	                  lastRecoverableError: PasswordUserVerificationError?,
 	                  handler: PasswordUserVerificationHandler)
 
 	/// Represents Password change.
@@ -110,9 +106,6 @@ final class CredentialPresenter {
 	/// Error that can occur during PIN enrollment.
 	private var pinEnrollmentError: PinEnrollmentError?
 
-	/// Error that can occur during PIN verification.
-	private var pinVerificationError: PinUserVerificationError?
-
 	/// Error that can occur during PIN change.
 	private var pinCredentialChangeError: PinChangeRecoverableError?
 
@@ -132,9 +125,6 @@ final class CredentialPresenter {
 
 	/// Error that can occur during Password enrollment.
 	private var passwordEnrollmentError: PasswordEnrollmentError?
-
-	/// Error that can occur during Password verification.
-	private var passwordVerificationError: PasswordUserVerificationError?
 
 	/// Error that can occur during Password change.
 	private var passwordCredentialChangeError: PasswordChangeRecoverableError?
@@ -241,7 +231,7 @@ extension CredentialPresenter {
 		case .enrollment:
 			pinEnrollmentError?.localizedDescription ?? passwordEnrollmentError?.localizedDescription ?? String()
 		case .verification:
-			pinVerificationError?.localizedDescription ?? passwordVerificationError?.localizedDescription ?? String()
+			String()
 		case .credentialChange:
 			pinCredentialChangeError?.localizedDescription ?? passwordCredentialChangeError?.localizedDescription ?? String()
 		}
@@ -371,10 +361,9 @@ private extension CredentialPresenter {
 				operation = .enrollment
 				pinEnrollmentError = error
 				pinEnrollmentHandler = handler
-			case let .verification(status, error, handler):
+			case let .verification(status, handler):
 				operation = .verification
 				pinProtectionStatus = status
-				pinVerificationError = error
 				pinVerificationHandler = handler
 			case let .credentialChange(status, error, handler):
 				operation = .credentialChange
@@ -390,10 +379,9 @@ private extension CredentialPresenter {
 				operation = .enrollment
 				passwordEnrollmentError = error
 				passwordEnrollmentHandler = handler
-			case let .verification(status, error, handler):
+			case let .verification(status, handler):
 				operation = .verification
 				passwordProtectionStatus = status
-				passwordVerificationError = error
 				passwordVerificationHandler = handler
 			case let .credentialChange(status, error, handler):
 				operation = .credentialChange
