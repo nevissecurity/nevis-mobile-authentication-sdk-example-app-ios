@@ -32,15 +32,9 @@ class PinUserVerifierImpl {
 
 extension PinUserVerifierImpl: PinUserVerifier {
 	func verifyPin(context: PinUserVerificationContext, handler: PinUserVerificationHandler) {
-		if context.lastRecoverableError != nil {
-			logger.sdk("PIN user verification failed. Please try again.", .red)
-		}
-		else {
-			logger.sdk("Please start PIN user verification.")
-		}
+		logger.sdk("Please start PIN user verification.")
 
 		let parameter: PinParameter = .verification(protectionStatus: context.authenticatorProtectionStatus,
-		                                            lastRecoverableError: context.lastRecoverableError,
 		                                            handler: handler)
 		appCoordinator.navigateToCredential(with: parameter)
 	}
