@@ -47,6 +47,18 @@ final class HomeScreen: BaseScreen, Screen {
 	/// The in-Band Register button.
 	private let inBandRegisterButton = OutlinedButton(title: L10n.Home.inBandRegistration)
 
+	/// The title label of Nevis Mobile Authentication SDK version.
+	private let versionTitleLabel = NSLabel(text: L10n.Home.sdkVersion, style: .normal)
+
+	/// The value label of Nevis Mobile Authentication SDK version.
+	private let versionValueLabel = NSLabel(style: .info)
+
+	/// The title label of application facet identifier.
+	private let facetIdTitleLabel = NSLabel(text: L10n.Home.facetId, style: .normal)
+
+	/// The value label of application facet identifier.
+	private let facetIdValueLabel = NSLabel(style: .info)
+
 	// MARK: - Properties
 
 	/// The presenter.
@@ -85,6 +97,8 @@ extension HomeScreen {
 		super.viewWillAppear(animated)
 		presenter.initClient {
 			self.descriptionLabel.text = L10n.Home.description(self.presenter.numberOfAccounts())
+			self.versionValueLabel.text = self.presenter.sdkVersion()
+			self.facetIdValueLabel.text = self.presenter.facetId()
 		}
 	}
 
@@ -110,6 +124,8 @@ private extension HomeScreen {
 		setupDeleteAuthenticatorsButton()
 		setupSeparatorLabel()
 		setupInBandRegisterButton()
+		setupVersionLabels()
+		setupFacetIdLabels()
 	}
 
 	func setupTitleLabel() {
@@ -120,7 +136,7 @@ private extension HomeScreen {
 
 	func setupDescriptionLabel() {
 		descriptionLabel.do {
-			addItem($0, topSpacing: 30)
+			addItem($0, spacing: 16, topSpacing: 30)
 		}
 	}
 
@@ -199,6 +215,26 @@ private extension HomeScreen {
 			addItemToBottom($0, spacing: 16)
 			$0.setHeight(with: 40)
 			$0.addTarget(self, action: #selector(register), for: .touchUpInside)
+		}
+	}
+
+	func setupVersionLabels() {
+		versionTitleLabel.do {
+			addItemToBottom($0, spacing: 8)
+		}
+
+		versionValueLabel.do {
+			addItemToBottom($0, spacing: 16)
+		}
+	}
+
+	func setupFacetIdLabels() {
+		facetIdTitleLabel.do {
+			addItemToBottom($0, spacing: 8)
+		}
+
+		facetIdValueLabel.do {
+			addItemToBottom($0, spacing: 16)
 		}
 	}
 }
