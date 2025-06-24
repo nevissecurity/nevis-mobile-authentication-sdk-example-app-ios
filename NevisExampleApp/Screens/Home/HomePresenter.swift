@@ -263,6 +263,20 @@ extension HomePresenter {
 	func register() {
 		appCoordinator.navigateToUsernamePasswordLogin()
 	}
+
+	/// Returns the version of Nevis Mobile Authentication SDK.
+	///
+	/// - Returns: The version of Nevis Mobile Authentication SDK.
+	func sdkVersion() -> String {
+		MetaData.mobileAuthenticationVersion.descriptionWithBuild
+	}
+
+	/// Returns the application facet identifier.
+	///
+	/// - Returns: The application facet identifier.
+	func facetId() -> String {
+		MetaData.applicationFacetId
+	}
 }
 
 // MARK: - Private Interface
