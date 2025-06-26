@@ -35,7 +35,7 @@ Your development setup has to meet the following prerequisites:
 
 Dependencies in this project are provided via Cocoapods. Please install all dependencies by running
 
-```
+```bash
 $ pod install
 ```
 
@@ -52,8 +52,8 @@ The example apps are supporting two kinds of configuration: `authenticationCloud
 > [!NOTE]
 > Only *build-time* configuration change is supported.
 
-To change the configuration open the [AppAssembly.swift](NevisExampleApp/Dependency%20Provider/AppAssembly.swift) file which describes the dependency injection related configuration using the `Swinject` library.
-The `environment` parameter should be changed when injecting the `ConfigurationLoaderImpl` component to one of the values already mentioned.
+To change the configuration open the [AppAssembly.swift](NevisExampleApp/Dependency%20Provider/AppAssembly.swift) file which describes the dependency injection related configuration using the [Swinject](https://github.com/Swinject/Swinject) library.
+The `environment` parameter should be changed when injecting the [ConfigurationLoaderImpl](NevisExampleApp/Configuration/ConfigurationLoaderImpl.swift) component to one of the values already mentioned.
 
 #### Handling deep links
 
@@ -102,7 +102,7 @@ In this section you can find hints about how the Nevis Mobile Authentication SDK
 
 ### Initialization
 
-The [HomePresenter](NevisExampleApp/Screens/Home/HomePresenter.swift) class is responsible for creating and initializing a `MobileAuthenticationClient` instance which is the entry point to the SDK. Later this instance can be used to start the different operations.
+The [HomePresenter](NevisExampleApp/Screens/Home/HomePresenter.swift) class is responsible for creating and initializing a [MobileAuthenticationClient](https://docs.nevis.net/mobilesdk/api-references/swift/documentation/nevismobileauthentication/mobileauthenticationclient) instance which is the entry point to the SDK. Later this instance can be used to start the different operations.
 
 ### Registration
 
@@ -113,7 +113,7 @@ Before being able to authenticate using the Nevis Mobile Authentication SDK, go 
 If the application is using a backend using the Nevis Authentication Cloud, the [AuthCloudApiRegistrationPresenter](NevisExampleApp/Screens/Auth%20Cloud%20Api%20Registration/AuthCloudApiRegistrationPresenter.swift) class will be used by passing the `enrollment` response or an `appLinkUri`.
 
 When the backend used by the application does not use the Nevis Authentication Cloud the name of the user to be registered is passed to the [UsernamePasswordLoginPresenter](NevisExampleApp/Screens/Username%20Password%20Login/UsernamePasswordLoginPresenter.swift) class.
-If authorization is required by the backend to register, provide an `AuthorizationProvider`. In the example app a `CookieAuthorizationProvider` is created from the cookies (see [UsernamePasswordLoginPresenter](NevisExampleApp/Screens/Username%20Password%20Login/UsernamePasswordLoginPresenter.swift)) obtained by the [LoginServiceImpl](NevisExampleApp/Utility/Login/LoginServiceImpl.swift) class.
+If authorization is required by the backend to register, provide an [AuthorizationProvider](https://docs.nevis.net/mobilesdk/api-references/swift/documentation/nevismobileauthentication/authorizationprovider). In the example app a [CookieAuthorizationProvider](https://docs.nevis.net/mobilesdk/api-references/swift/documentation/nevismobileauthentication/cookieauthorizationprovider) is created from the cookies (see [UsernamePasswordLoginPresenter](NevisExampleApp/Screens/Username%20Password%20Login/UsernamePasswordLoginPresenter.swift)) obtained by the [LoginServiceImpl](NevisExampleApp/Utility/Login/LoginServiceImpl.swift) class.
 
 #### Out-of-band registration
 
@@ -133,7 +133,7 @@ When the authentication is initiated in another device or application, the infor
 
 #### Transaction confirmation
 
-There are cases when specific information is to be presented to the user during the user verification process, known as transaction confirmation. The `AuthenticatorSelectionContext` and the `AccountSelectionContext` contain a byte array with the information. In the example app it is handled in the [AccountSelectorImpl](NevisExampleApp/Interaction/AccountSelectorImpl.swift) class.
+There are cases when specific information is to be presented to the user during the user verification process, known as transaction confirmation. The [AuthenticatorSelectionContext](https://docs.nevis.net/mobilesdk/api-references/swift/documentation/nevismobileauthentication/authenticatorselectioncontext) and the [AccountSelectionContext](https://docs.nevis.net/mobilesdk/api-references/swift/documentation/nevismobileauthentication/accountselectioncontext) contain a byte array with the information. In the example app it is handled in the [AccountSelectorImpl](NevisExampleApp/Interaction/AccountSelectorImpl.swift) class.
 
 ### Deregistration
 
@@ -155,7 +155,7 @@ With the change password operation you can modify the password of a registered P
 
 #### Decode out-of-band payload
 
-Out-of-band operations occur when a message is delivered to the application through an alternate channel like a push notification, a QR code, or a deep link. With the help of the [OutOfBandOperationHandlerImpl](NevisExampleApp/Interaction/OutOfBandOperationHandlerImpl.swift) class the application can create an `OutOfBandPayload` either from a JSON or a Base64 URL encoded String. The `OutOfBandPayload` is then used to start an `OutOfBandOperation`, see chapters [Out-of-Band Registration](#out-of-band-registration) and [Out-of-Band Authentication](#out-of-band-authentication).
+Out-of-band operations occur when a message is delivered to the application through an alternate channel like a push notification, a QR code, or a deep link. With the help of the [OutOfBandOperationHandlerImpl](NevisExampleApp/Interaction/OutOfBandOperationHandlerImpl.swift) class the application can create an [OutOfBandPayload](https://docs.nevis.net/mobilesdk/api-references/swift/documentation/nevismobileauthentication/outofbandpayload) either from a JSON or a Base64 URL encoded String. The [OutOfBandPayload](https://docs.nevis.net/mobilesdk/api-references/swift/documentation/nevismobileauthentication/outofbandpayload) is then used to start an [OutOfBandOperation](https://docs.nevis.net/mobilesdk/api-references/swift/documentation/nevismobileauthentication/outofbandoperation), see chapters [Out-of-Band Registration](#out-of-band-registration) and [Out-of-Band Authentication](#out-of-band-authentication).
 
 #### Change device information
 
@@ -163,6 +163,17 @@ During registration, the device information can be provided that contains the na
 
 > [!NOTE]
 > Firebase Cloud Messaging is not supported in the example app.
+
+#### Get information
+
+You can use the [LocalData](https://docs.nevis.net/mobilesdk/api-references/swift/documentation/nevismobileauthentication/localdata) to obtain the following information (see the [HomePresenter](NevisExampleApp/Screens/Home/HomePresenter.swift) class):
+- The registered accounts.
+- The device information.
+- The authenticator information.
+
+#### Get MetaData
+
+The [HomePresenter](NevisExampleApp/Screens/Home/HomePresenter.swift) class is responsible for obtaining the information of the SDK and the application with the help of [MetaData](https://docs.nevis.net/mobilesdk/api-references/swift/documentation/nevismobileauthentication/metadata), such as the SDK version and the application facet identifier.
 
 ### Error handling
 
