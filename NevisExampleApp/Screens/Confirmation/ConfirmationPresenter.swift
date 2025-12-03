@@ -69,8 +69,10 @@ extension ConfirmationPresenter {
 
 	/// Verifies the user using the previously selected authentication method.
 	func confirm() {
-		biometricUserVerificationHandler?.verify()
-		devicePasscodeUserVerificationHandler?.verify()
+		biometricUserVerificationHandler?.verify(using: .init(reason: L10n.BiometricPrompt.reason,
+		                                                      fallbackButtonTitle: L10n.BiometricPrompt.fallback,
+		                                                      cancelButtonTitle: L10n.BiometricPrompt.cancel))
+		devicePasscodeUserVerificationHandler?.verify(using: .init(reason: L10n.DevicePasscodePrompt.reason))
 	}
 
 	/// Cancels user verification.
