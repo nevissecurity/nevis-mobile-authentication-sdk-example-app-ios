@@ -209,6 +209,8 @@ private extension SelectAccountPresenter {
 				case let .FidoError(_, _, sessionProvider),
 				     let .NetworkError(_, sessionProvider):
 					self.printSessionInfo(sessionProvider)
+				case .AppAttestationError(cause: _):
+					fallthrough
 				case .NoDeviceLockError:
 					fallthrough
 				case .Unknown:
