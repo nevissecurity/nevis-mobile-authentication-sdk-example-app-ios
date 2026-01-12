@@ -99,7 +99,7 @@ platform :ios do
 			use_automatic_signing: false,
 			team_id: ENV["DEVELOPER_PORTAL_TEAM_ID"],
 			code_sign_identity: ENV["CODE_SIGNING_IDENTITY"],
-			profile_name:,
+			profile_name:
 		)
 
 		gym(
@@ -116,7 +116,7 @@ platform :ios do
 				}
 			},
 			output_directory: "#{output_dir}/builds",
-			xcargs: "OTHER_CODE_SIGN_FLAGS=\"--keychain=#{keychain_name}\"",
+			xcargs: "OTHER_CODE_SIGN_FLAGS=\"--keychain=#{keychain_name}\""
 		)
 
 		firebase_app_distribution(
