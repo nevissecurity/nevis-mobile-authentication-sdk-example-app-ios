@@ -4,6 +4,7 @@
 // Copyright © 2022. Nevis Security AG. All rights reserved.
 //
 
+import Combine
 import NevisMobileAuthentication
 import UIKit
 
@@ -51,6 +52,9 @@ final class OutOfBandOperationHandlerImpl {
 	private var mobileAuthenticationClient: MobileAuthenticationClient? {
 		clientProvider.get()
 	}
+
+	/// Stores Combine subscriptions for the lifetime of the handler.
+	private var cancellables = Set<AnyCancellable>()
 
 	// MARK: - Initialization
 
@@ -117,18 +121,24 @@ private extension OutOfBandOperationHandlerImpl {
 	///
 	/// - Parameter handler: The code need to be executed on successful payload decoding.
 	func decode(base64UrlEncoded: String, completion handler: @escaping (OutOfBandPayload) -> ()) {
-		mobileAuthenticationClient?.operations.outOfBandPayloadDecode
-			.base64UrlEncoded(base64UrlEncoded)
-			.onSuccess {
-				logger.sdk("Decode payload succeeded.", .green)
-				handler($0)
+		clientProvider.resolve()
+			.compactMap(\.self)
+			.receive(on: DispatchQueue.main)
+			.sink { client in
+				client.operations.outOfBandPayloadDecode
+					.base64UrlEncoded(base64UrlEncoded)
+					.onSuccess {
+						logger.sdk("Decode payload succeeded.", .green)
+						handler($0)
+					}
+					.onError { [weak self] error in
+						logger.sdk("Decode payload failed.", .red)
+						let operationError = OperationError(operation: .payloadDecode, underlyingError: error)
+						self?.errorHandlerChain.handle(error: operationError)
+					}
+					.execute()
 			}
-			.onError {
-				logger.sdk("Decode payload failed.", .red)
-				let operationError = OperationError(operation: .payloadDecode, underlyingError: $0)
-				self.errorHandlerChain.handle(error: operationError)
-			}
-			.execute()
+			.store(in: &cancellables)
 	}
 
 	/// Starts an Out-of-Band operation with the given payload.

@@ -92,7 +92,7 @@ extension ResultPresenter {
 
 	/// Navigates back to the Home screen.
 	func doAction() {
-		appCoordinator.start()
+		appCoordinator.navigateToHome()
 	}
 }
 

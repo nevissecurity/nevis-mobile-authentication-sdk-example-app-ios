@@ -90,7 +90,7 @@ extension ChangeDeviceInformationPresenter {
 
 	/// Cancels device information change.
 	func cancel() {
-		appCoordinator.start()
+		appCoordinator.navigateToHome()
 	}
 }
 

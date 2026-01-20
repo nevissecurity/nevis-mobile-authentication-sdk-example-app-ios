@@ -4,6 +4,7 @@
 // Copyright © 2022. Nevis Security AG. All rights reserved.
 //
 
+import Combine
 import NevisMobileAuthentication
 
 /// Protocol declaration for handling an instance of `MobileAuthenticationClient`.
@@ -18,6 +19,11 @@ protocol ClientProvider {
 	///
 	/// - Returns: An optional `MobileAuthenticationClient` instance.
 	func get() -> MobileAuthenticationClient?
+
+	/// Returns a publisher that delivers the current client (or `nil`) and subsequent updates.
+	///
+	/// - Returns: A publisher that never fails.
+	func resolve() -> AnyPublisher<MobileAuthenticationClient?, Never>
 
 	/// Resets the state of the provider.
 	func reset()

@@ -22,6 +22,7 @@ Please note that the example app only demonstrates a subset of the available SDK
 ### Application
 
 - ``AppDelegate``
+- ``SceneDelegate``
 
 ### Configuration
 

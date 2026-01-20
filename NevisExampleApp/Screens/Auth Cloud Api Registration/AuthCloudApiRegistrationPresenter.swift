@@ -119,6 +119,6 @@ extension AuthCloudApiRegistrationPresenter {
 
 	/// Cancels the registration.
 	func cancel() {
-		appCoordinator.start()
+		appCoordinator.navigateToHome()
 	}
 }
