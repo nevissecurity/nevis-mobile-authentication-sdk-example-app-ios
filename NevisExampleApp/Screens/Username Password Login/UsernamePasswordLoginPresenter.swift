@@ -131,7 +131,7 @@ extension UsernamePasswordLoginPresenter {
 
 	/// Cancels the login.
 	func cancel() {
-		appCoordinator.start()
+		appCoordinator.navigateToHome()
 	}
 }
 
