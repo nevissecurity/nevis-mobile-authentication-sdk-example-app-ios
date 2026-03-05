@@ -412,11 +412,11 @@
 				3859EB26292CF92000013472 /* Logging */,
 				3859EB20292CF92000013472 /* Qr Scanner */,
 				3859EB0E292CF92000013472 /* Result */,
-				3859EB1F292CF92000013472 /* Screen.swift */,
 				3859EB1A292CF92000013472 /* Select Account */,
 				3859EB29292CF92000013472 /* Select Authenticator */,
 				3859EB33292CF92000013472 /* Transaction Confirmation */,
 				38DABD5E29D5817E008B8116 /* Username Password Login */,
+				3859EB1F292CF92000013472 /* Screen.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -717,7 +717,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1610;
+				LastUpgradeCheck = 2620;
 				TargetAttributes = {
 					3833EB182685EA03002C5E0C = {
 						CreatedOnToolsVersion = 12.5;
@@ -972,6 +972,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1028,6 +1029,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
@@ -1053,7 +1055,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.2.0;
+				MARKETING_VERSION = 4.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ch.nevis.mobile.authentication.sdk.ios.example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1085,7 +1087,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.2.0;
+				MARKETING_VERSION = 4.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ch.nevis.mobile.authentication.sdk.ios.example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
