@@ -24,9 +24,11 @@ enum L10n {
 		/// - parameter accountsCount: The number of remaining retries.
 		/// - returns: The localized string.
 		static func description(_ accountsCount: Any) -> String {
-			L10n.tr("home_description",
-			        "Localizable",
-			        String(describing: accountsCount))
+			L10n.tr(
+				"home_description",
+				"Localizable",
+				String(describing: accountsCount)
+			)
 		}
 
 		/// Read Qr Code button: "Read Qr Code"
@@ -110,10 +112,12 @@ enum L10n {
 				/// - parameter coolDown: The cool down time.
 				/// - returns: The localized string.
 				static func lastRetryWithCoolDown(_ remainingTries: Any, _ coolDown: Any) -> String {
-					L10n.tr("pin_protection_status_last_retry_with_cool_down",
-					        "Localizable",
-					        String(describing: remainingTries),
-					        String(describing: coolDown))
+					L10n.tr(
+						"pin_protection_status_last_retry_with_cool_down",
+						"Localizable",
+						String(describing: remainingTries),
+						String(describing: coolDown)
+					)
 				}
 
 				/// PIN protection status message for last retry without cool down: "You have %@ try left.\nAfter that your PIN will be blocked."
@@ -121,9 +125,11 @@ enum L10n {
 				/// - parameter remainingTries: The number of remaining retries.
 				/// - returns: The localized string.
 				static func lastRetryWithoutCoolDown(_ remainingTries: Any) -> String {
-					L10n.tr("pin_protection_status_last_retry_without_cool_down",
-					        "Localizable",
-					        String(describing: remainingTries))
+					L10n.tr(
+						"pin_protection_status_last_retry_without_cool_down",
+						"Localizable",
+						String(describing: remainingTries)
+					)
 				}
 
 				/// PIN protection status message for remaining retries with cool down: "You have %@ tries left.\nPlease retry in %@ seconds."
@@ -132,10 +138,12 @@ enum L10n {
 				/// - parameter coolDown: The cool down time.
 				/// - returns: The localized string.
 				static func retriesWithCoolDown(_ remainingTries: Any, _ coolDown: Any) -> String {
-					L10n.tr("pin_protection_status_retries_with_cool_down",
-					        "Localizable",
-					        String(describing: remainingTries),
-					        String(describing: coolDown))
+					L10n.tr(
+						"pin_protection_status_retries_with_cool_down",
+						"Localizable",
+						String(describing: remainingTries),
+						String(describing: coolDown)
+					)
 				}
 
 				/// PIN protection status message for remaining retries without cool down: "You have %@ tries left."
@@ -143,9 +151,11 @@ enum L10n {
 				/// - parameter remainingTries: The number of remaining retries.
 				/// - returns: The localized string.
 				static func retriesWithoutCoolDown(_ remainingTries: Any) -> String {
-					L10n.tr("pin_protection_status_retries_without_cool_down",
-					        "Localizable",
-					        String(describing: remainingTries))
+					L10n.tr(
+						"pin_protection_status_retries_without_cool_down",
+						"Localizable",
+						String(describing: remainingTries)
+					)
 				}
 			}
 
@@ -196,10 +206,12 @@ enum L10n {
 				/// - parameter coolDown: The cool down time.
 				/// - returns: The localized string.
 				static func lastRetryWithCoolDown(_ remainingTries: Any, _ coolDown: Any) -> String {
-					L10n.tr("password_protection_status_last_retry_with_cool_down",
-					        "Localizable",
-					        String(describing: remainingTries),
-					        String(describing: coolDown))
+					L10n.tr(
+						"password_protection_status_last_retry_with_cool_down",
+						"Localizable",
+						String(describing: remainingTries),
+						String(describing: coolDown)
+					)
 				}
 
 				/// Password protection status message for last retry without cool down: "You have %@ try left.\nAfter that your Password will be blocked."
@@ -207,9 +219,11 @@ enum L10n {
 				/// - parameter remainingTries: The number of remaining retries.
 				/// - returns: The localized string.
 				static func lastRetryWithoutCoolDown(_ remainingTries: Any) -> String {
-					L10n.tr("password_protection_status_last_retry_without_cool_down",
-					        "Localizable",
-					        String(describing: remainingTries))
+					L10n.tr(
+						"password_protection_status_last_retry_without_cool_down",
+						"Localizable",
+						String(describing: remainingTries)
+					)
 				}
 
 				/// Password protection status message for remaining retries with cool down: "You have %@ tries left.\nPlease retry in %@ seconds."
@@ -218,10 +232,12 @@ enum L10n {
 				/// - parameter coolDown: The cool down time.
 				/// - returns: The localized string.
 				static func retriesWithCoolDown(_ remainingTries: Any, _ coolDown: Any) -> String {
-					L10n.tr("password_protection_status_retries_with_cool_down",
-					        "Localizable",
-					        String(describing: remainingTries),
-					        String(describing: coolDown))
+					L10n.tr(
+						"password_protection_status_retries_with_cool_down",
+						"Localizable",
+						String(describing: remainingTries),
+						String(describing: coolDown)
+					)
 				}
 
 				/// Password protection status message for remaining retries without cool down: "You have %@ tries left."
@@ -229,9 +245,11 @@ enum L10n {
 				/// - parameter remainingTries: The number of remaining retries.
 				/// - returns: The localized string.
 				static func retriesWithoutCoolDown(_ remainingTries: Any) -> String {
-					L10n.tr("password_protection_status_retries_without_cool_down",
-					        "Localizable",
-					        String(describing: remainingTries))
+					L10n.tr(
+						"password_protection_status_retries_without_cool_down",
+						"Localizable",
+						String(describing: remainingTries)
+					)
 				}
 			}
 
@@ -281,9 +299,11 @@ enum L10n {
 		/// - parameter currentName: The current name of the device.
 		/// - returns: The localized string.
 		static func currentName(_ currentName: Any) -> String {
-			L10n.tr("change_device_information_current_name",
-			        "Localizable",
-			        String(describing: currentName))
+			L10n.tr(
+				"change_device_information_current_name",
+				"Localizable",
+				String(describing: currentName)
+			)
 		}
 
 		/// Name field placeholder: "New name"
@@ -339,9 +359,11 @@ enum L10n {
 		/// - parameter authenticator: The selected authenticator.
 		/// - returns: The localized string.
 		static func title(_ authenticator: Any) -> String {
-			L10n.tr("confirmation_title",
-			        "Localizable",
-			        String(describing: authenticator))
+			L10n.tr(
+				"confirmation_title",
+				"Localizable",
+				String(describing: authenticator)
+			)
 		}
 
 		/// Confirm button: "Confirm"
@@ -432,9 +454,11 @@ enum L10n {
 			/// - parameter operation: The current operation.
 			/// - returns: The localized string.
 			static func title(_ operation: Any) -> String {
-				L10n.tr("operation_success_title",
-				        "Localizable",
-				        String(describing: operation))
+				L10n.tr(
+					"operation_success_title",
+					"Localizable",
+					String(describing: operation)
+				)
 			}
 		}
 
@@ -445,9 +469,11 @@ enum L10n {
 			/// - parameter operation: The current operation.
 			/// - returns: The localized string.
 			static func title(_ operation: Any) -> String {
-				L10n.tr("operation_failed_title",
-				        "Localizable",
-				        String(describing: operation))
+				L10n.tr(
+					"operation_failed_title",
+					"Localizable",
+					String(describing: operation)
+				)
 			}
 		}
 	}

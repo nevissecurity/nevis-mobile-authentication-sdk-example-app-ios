@@ -125,9 +125,13 @@ extension SelectAuthenticatorScreen: UITableViewDataSource {
 
 			return nil
 		}
-		cell.bind(viewModel: .init(title: item.authenticator.localizedTitle,
-		                           isEnabled: item.isEnabled,
-		                           details: details))
+		cell.bind(
+			viewModel: .init(
+				title: item.authenticator.localizedTitle,
+				isEnabled: item.isEnabled,
+				details: details
+			)
+		)
 		return cell
 	}
 }

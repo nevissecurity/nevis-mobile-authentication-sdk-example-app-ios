@@ -18,9 +18,11 @@ class LoginServiceImpl {
 
 	/// Creates a new instance.
 	init() {
-		self.session = URLSession(configuration: .ephemeral,
-		                          delegate: LoginSessionDelegate(),
-		                          delegateQueue: nil)
+		self.session = URLSession(
+			configuration: .ephemeral,
+			delegate: LoginSessionDelegate(),
+			delegateQueue: nil
+		)
 	}
 }
 
@@ -32,8 +34,10 @@ extension LoginServiceImpl: LoginService {
 		do {
 			var httpRequest = URLRequest(url: request.url)
 			httpRequest.httpMethod = "POST"
-			httpRequest.addValue("application/x-www-form-urlencoded;charset=utf-8",
-			                     forHTTPHeaderField: "Content-Type")
+			httpRequest.addValue(
+				"application/x-www-form-urlencoded;charset=utf-8",
+				forHTTPHeaderField: "Content-Type"
+			)
 			let requestData = try JSONEncoder().encode(request)
 			guard let parameters = try JSONSerialization.jsonObject(with: requestData) as? [String: String] else {
 				return handler(.failure(AppError.loginError))
@@ -52,19 +56,24 @@ extension LoginServiceImpl: LoginService {
 					}
 
 					var response = try JSONDecoder().decode(LoginResponse.self, from: responseData)
-					let cookies = HTTPCookie.cookies(withResponseHeaderFields: httpResponse.allHeaderFields as! [String: String],
-					                                 for: request.url)
+					let headerFields = httpResponse.allHeaderFields.reduce(into: [String: String]()) { result, pair in
+						if let key = pair.key as? String, let value = pair.value as? String {
+							result[key] = value
+						}
+					}
+					let cookies = HTTPCookie.cookies(
+						withResponseHeaderFields: headerFields,
+						for: request.url
+					)
 					response.cookies = cookies
 					DispatchQueue.main.async { handler(.success(response)) }
-				}
-				catch {
+				} catch {
 					DispatchQueue.main.async { handler(.failure(error)) }
 				}
 			}
 
 			task.resume()
-		}
-		catch {
+		} catch {
 			return handler(.failure(error))
 		}
 	}
@@ -84,10 +93,10 @@ class LoginSessionDelegate: NSObject, URLSessionDelegate {
 	// swiftformat:disable:next unusedArguments
 	func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> ()) {
 		if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust,
-		   let serverTrust = challenge.protectionSpace.serverTrust {
+			let serverTrust = challenge.protectionSpace.serverTrust
+		{
 			completionHandler(.useCredential, URLCredential(trust: serverTrust))
-		}
-		else {
+		} else {
 			completionHandler(.performDefaultHandling, nil)
 		}
 	}

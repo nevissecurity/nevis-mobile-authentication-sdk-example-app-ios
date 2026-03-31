@@ -73,18 +73,20 @@ final class OutOfBandOperationHandlerImpl {
 	///   - devicePasscodeUserVerifier: The device passcode user verifier.
 	///   - appCoordinator: The application coordinator.
 	///   - errorHandlerChain: The error handler chain.
-	init(clientProvider: ClientProvider,
-	     accountSelector: AccountSelector,
-	     registrationAuthenticatorSelector: AuthenticatorSelector,
-	     authenticationAuthenticatorSelector: AuthenticatorSelector,
-	     pinEnroller: PinEnroller,
-	     pinUserVerifier: PinUserVerifier,
-	     passwordEnroller: PasswordEnroller,
-	     passwordUserVerifier: PasswordUserVerifier,
-	     biometricUserVerifier: BiometricUserVerifier,
-	     devicePasscodeUserVerifier: DevicePasscodeUserVerifier,
-	     appCoordinator: AppCoordinator,
-	     errorHandlerChain: ErrorHandlerChain) {
+	init(
+		clientProvider: ClientProvider,
+		accountSelector: AccountSelector,
+		registrationAuthenticatorSelector: AuthenticatorSelector,
+		authenticationAuthenticatorSelector: AuthenticatorSelector,
+		pinEnroller: PinEnroller,
+		pinUserVerifier: PinUserVerifier,
+		passwordEnroller: PasswordEnroller,
+		passwordUserVerifier: PasswordUserVerifier,
+		biometricUserVerifier: BiometricUserVerifier,
+		devicePasscodeUserVerifier: DevicePasscodeUserVerifier,
+		appCoordinator: AppCoordinator,
+		errorHandlerChain: ErrorHandlerChain
+	) {
 		self.clientProvider = clientProvider
 		self.accountSelector = accountSelector
 		self.registrationAuthenticatorSelector = registrationAuthenticatorSelector

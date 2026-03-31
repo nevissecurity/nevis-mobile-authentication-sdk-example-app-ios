@@ -131,12 +131,12 @@ private extension AuthCloudApiRegistrationScreen {
 		let validator = AuthCloudApiRegistrationValidator()
 		let result = validator.validate(enrollResponseField.text, appLinkUriField.text)
 		switch result {
-		case .success:
-			errorLabel.superview?.isHidden = true
-			presenter.register(enrollResponse: enrollResponseField.text, appLinkUri: appLinkUriField.text)
-		case let .failure(error):
-			errorLabel.text = error.localizedDescription
-			errorLabel.superview?.isHidden = false
+			case .success:
+				errorLabel.superview?.isHidden = true
+				presenter.register(enrollResponse: enrollResponseField.text, appLinkUri: appLinkUriField.text)
+			case let .failure(error):
+				errorLabel.text = error.localizedDescription
+				errorLabel.superview?.isHidden = false
 		}
 	}
 

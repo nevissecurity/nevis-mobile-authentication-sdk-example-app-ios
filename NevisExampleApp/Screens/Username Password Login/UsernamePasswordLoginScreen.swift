@@ -132,8 +132,7 @@ extension UsernamePasswordLoginScreen: UITextFieldDelegate {
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		if textField == usernameField {
 			passwordField.becomeFirstResponder()
-		}
-		else {
+		} else {
 			passwordField.resignFirstResponder()
 		}
 		return true
@@ -149,12 +148,12 @@ private extension UsernamePasswordLoginScreen {
 		let validator = LoginValidator()
 		let result = validator.validate(usernameField.text, passwordField.text)
 		switch result {
-		case .success:
-			errorLabel.superview?.isHidden = true
-			presenter.login(username: usernameField.text!, password: passwordField.text!)
-		case let .failure(error):
-			errorLabel.text = error.localizedDescription
-			errorLabel.superview?.isHidden = false
+			case .success:
+				errorLabel.superview?.isHidden = true
+				presenter.login(username: usernameField.text!, password: passwordField.text!)
+			case let .failure(error):
+				errorLabel.text = error.localizedDescription
+				errorLabel.superview?.isHidden = false
 		}
 	}
 

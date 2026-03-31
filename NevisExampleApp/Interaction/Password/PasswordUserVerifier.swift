@@ -10,7 +10,7 @@ import NevisMobileAuthentication
 /// For more information about password user verification please read the [official documentation](https://docs.nevis.net/mobilesdk/guide/operation/authentication#password-user-verifier).
 ///
 /// Navigates to the ``CredentialScreen`` where the user can verify the Password.
-class PasswordUserVerifierImpl {
+final class PasswordUserVerifierImpl {
 
 	// MARK: - Properties
 
@@ -34,8 +34,10 @@ extension PasswordUserVerifierImpl: PasswordUserVerifier {
 	func verifyPassword(context: PasswordUserVerificationContext, handler: PasswordUserVerificationHandler) {
 		logger.sdk("Please start Password user verification.")
 
-		let parameter: PasswordParameter = .verification(protectionStatus: context.authenticatorProtectionStatus,
-		                                                 handler: handler)
+		let parameter: PasswordParameter = .verification(
+			protectionStatus: context.authenticatorProtectionStatus,
+			handler: handler
+		)
 		appCoordinator.navigateToCredential(with: parameter)
 	}
 }

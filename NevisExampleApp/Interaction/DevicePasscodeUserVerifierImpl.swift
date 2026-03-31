@@ -10,7 +10,7 @@ import NevisMobileAuthentication
 /// For more information about device passcode user verification please read the [official documentation](https://docs.nevis.net/mobilesdk/guide/operation/registration#device-passcode-user-verifier).
 ///
 /// Navigates to the ``ConfirmationScreen`` where the user can verify the device passcode.
-class DevicePasscodeUserVerifierImpl {
+final class DevicePasscodeUserVerifierImpl {
 
 	// MARK: - Properties
 
@@ -34,8 +34,10 @@ extension DevicePasscodeUserVerifierImpl: DevicePasscodeUserVerifier {
 	func verifyDevicePasscode(context: DevicePasscodeUserVerificationContext, handler: DevicePasscodeUserVerificationHandler) {
 		logger.sdk("Please start device passcode user verification.")
 
-		let parameter: ConfirmationParameter = .confirmDevicePasscode(authenticator: context.authenticator.localizedTitle,
-		                                                              handler: handler)
+		let parameter: ConfirmationParameter = .confirmDevicePasscode(
+			authenticator: context.authenticator.localizedTitle,
+			handler: handler
+		)
 		appCoordinator.navigateToConfirmation(with: parameter)
 	}
 }

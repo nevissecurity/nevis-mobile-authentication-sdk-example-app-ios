@@ -51,14 +51,16 @@ final class AuthCloudApiRegistrationPresenter {
 	///   - devicePasscodeUserVerifier: The device passcode user verifier.
 	///   - appCoordinator: The application coordinator.
 	///   - errorHandlerChain: The error handler chain.
-	init(clientProvider: ClientProvider,
-	     authenticatorSelector: AuthenticatorSelector,
-	     pinEnroller: PinEnroller,
-	     passwordEnroller: PasswordEnroller,
-	     biometricUserVerifier: BiometricUserVerifier,
-	     devicePasscodeUserVerifier: DevicePasscodeUserVerifier,
-	     appCoordinator: AppCoordinator,
-	     errorHandlerChain: ErrorHandlerChain) {
+	init(
+		clientProvider: ClientProvider,
+		authenticatorSelector: AuthenticatorSelector,
+		pinEnroller: PinEnroller,
+		passwordEnroller: PasswordEnroller,
+		biometricUserVerifier: BiometricUserVerifier,
+		devicePasscodeUserVerifier: DevicePasscodeUserVerifier,
+		appCoordinator: AppCoordinator,
+		errorHandlerChain: ErrorHandlerChain
+	) {
 		self.clientProvider = clientProvider
 		self.authenticatorSelector = authenticatorSelector
 		self.pinEnroller = pinEnroller
@@ -104,12 +106,12 @@ extension AuthCloudApiRegistrationPresenter {
 				self.errorHandlerChain.handle(error: operationError)
 			}
 
-		// Emtpy string is not allowed!
+		// Empty string is not allowed!
 		if let enrollResponse, !enrollResponse.isEmpty {
 			operation?.enrollResponse(enrollResponse)
 		}
 
-		// Emtpy string is not allowed!
+		// Empty string is not allowed!
 		if let appLinkUri, !appLinkUri.isEmpty {
 			operation?.appLinkUri(appLinkUri)
 		}

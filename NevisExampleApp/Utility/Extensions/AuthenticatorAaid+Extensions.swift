@@ -12,7 +12,7 @@ extension AuthenticatorAaid: Codable {
 		let container = try decoder.singleValueContainer()
 		let aaid = try container.decode(String.self)
 		guard let authenticatorAaid = AuthenticatorAaid(rawValue: aaid) else {
-			throw NSError(domain: "AuthenticatorAaid cannot be decoced", code: 1)
+			throw NSError(domain: "AuthenticatorAaid cannot be decoded", code: 1)
 		}
 		self = authenticatorAaid
 	}

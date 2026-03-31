@@ -60,16 +60,18 @@ final class UsernamePasswordLoginPresenter {
 	///   - devicePasscodeUserVerifier: The device passcode user verifier.
 	///   - appCoordinator: The application coordinator.
 	///   - errorHandlerChain: The error handler chain.
-	init(configurationLoader: ConfigurationLoader,
-	     loginService: LoginService,
-	     clientProvider: ClientProvider,
-	     authenticatorSelector: AuthenticatorSelector,
-	     pinEnroller: PinEnroller,
-	     passwordEnroller: PasswordEnroller,
-	     biometricUserVerifier: BiometricUserVerifier,
-	     devicePasscodeUserVerifier: DevicePasscodeUserVerifier,
-	     appCoordinator: AppCoordinator,
-	     errorHandlerChain: ErrorHandlerChain) {
+	init(
+		configurationLoader: ConfigurationLoader,
+		loginService: LoginService,
+		clientProvider: ClientProvider,
+		authenticatorSelector: AuthenticatorSelector,
+		pinEnroller: PinEnroller,
+		passwordEnroller: PasswordEnroller,
+		biometricUserVerifier: BiometricUserVerifier,
+		devicePasscodeUserVerifier: DevicePasscodeUserVerifier,
+		appCoordinator: AppCoordinator,
+		errorHandlerChain: ErrorHandlerChain
+	) {
 		self.configurationLoader = configurationLoader
 		self.loginService = loginService
 		self.clientProvider = clientProvider
@@ -104,8 +106,10 @@ extension UsernamePasswordLoginPresenter {
 			}
 
 			guard let url = URL(string: configuration.loginConfiguration.loginRequestURL) else {
-				let operationError = OperationError(operation: .registration,
-				                                    underlyingError: AppError.readLoginConfigurationError)
+				let operationError = OperationError(
+					operation: .registration,
+					underlyingError: AppError.readLoginConfigurationError
+				)
 				return errorHandlerChain.handle(error: operationError)
 			}
 
@@ -113,18 +117,21 @@ extension UsernamePasswordLoginPresenter {
 			let request = LoginRequest(url: url, username: username, password: password)
 			loginService.send(request: request) { result in
 				switch result {
-				case let .success(response):
-					self.register(username: response.extId, cookies: response.cookies)
-				case let .failure(error):
-					let operationError = OperationError(operation: .registration,
-					                                    underlyingError: error)
-					self.errorHandlerChain.handle(error: operationError)
+					case let .success(response):
+						self.register(username: response.extId, cookies: response.cookies)
+					case let .failure(error):
+						let operationError = OperationError(
+							operation: .registration,
+							underlyingError: error
+						)
+						self.errorHandlerChain.handle(error: operationError)
 				}
 			}
-		}
-		catch {
-			let operationError = OperationError(operation: .registration,
-			                                    underlyingError: error)
+		} catch {
+			let operationError = OperationError(
+				operation: .registration,
+				underlyingError: error
+			)
 			errorHandlerChain.handle(error: operationError)
 		}
 	}
@@ -146,8 +153,10 @@ private extension UsernamePasswordLoginPresenter {
 	///   - cookies: The cookies used for authorization.
 	func register(username: String, cookies: [HTTPCookie]?) {
 		guard let cookies, !cookies.isEmpty else {
-			let operationError = OperationError(operation: .registration,
-			                                    underlyingError: AppError.cookieNotFound)
+			let operationError = OperationError(
+				operation: .registration,
+				underlyingError: AppError.cookieNotFound
+			)
 			return errorHandlerChain.handle(error: operationError)
 		}
 
@@ -170,8 +179,10 @@ private extension UsernamePasswordLoginPresenter {
 			}
 			.onError {
 				logger.sdk("In-Band registration failed.", .red)
-				let operationError = OperationError(operation: .registration,
-				                                    underlyingError: $0)
+				let operationError = OperationError(
+					operation: .registration,
+					underlyingError: $0
+				)
 				self.errorHandlerChain.handle(error: operationError)
 			}
 			.execute()

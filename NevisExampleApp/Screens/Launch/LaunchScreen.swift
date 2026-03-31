@@ -45,8 +45,7 @@ extension LaunchScreen {
 private extension LaunchScreen {
 
 	func setupUI() {
-		guard let splashViewController = UIStoryboard(name: "LaunchScreen", bundle: nil)
-			.instantiateInitialViewController() else {
+		guard let splashViewController = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController() else {
 			return
 		}
 

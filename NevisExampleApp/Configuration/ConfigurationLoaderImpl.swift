@@ -29,8 +29,7 @@ class ConfigurationLoaderImpl {
 extension ConfigurationLoaderImpl: ConfigurationLoader {
 
 	func load() throws -> AppConfiguration? {
-		guard let url = Bundle.main.url(forResource: environment.configFileName,
-		                                withExtension: "plist") else {
+		guard let url = Bundle.main.url(forResource: environment.configFileName, withExtension: "plist") else {
 			return nil
 		}
 

@@ -7,9 +7,8 @@ require "securerandom"
 
 default_platform(:ios)
 
-workspace = "NevisExampleApp.xcworkspace"
-app_xcodeproj = "NevisExampleApp.xcodeproj"
-target_name = "NevisExampleApp"
+project = "NevisExampleApp.xcodeproj"
+scheme = "NevisExampleApp"
 app_identifier = "ch.nevis.mobile.authentication.sdk.ios.example"
 match_type = "adhoc"
 config_plist = File.expand_path("../NevisExampleApp/Resources/ConfigAuthenticationCloud.plist")
@@ -80,8 +79,6 @@ platform :ios do
 
 		UI.message("Distributing #{display_name} #{version} (#{build_number}) 📦")
 
-		cocoapods
-
 		match(
 			type: match_type,
 			readonly: true,
@@ -94,7 +91,7 @@ platform :ios do
 
 		profile_name = ENV["sigh_#{app_identifier}_#{match_type}_profile-name"]
 		update_code_signing_settings(
-			path: app_xcodeproj,
+			path: project,
 			build_configurations: ["Release"],
 			use_automatic_signing: false,
 			team_id: ENV["DEVELOPER_PORTAL_TEAM_ID"],
@@ -103,12 +100,12 @@ platform :ios do
 		)
 
 		gym(
-			workspace:,
-			scheme: target_name,
+			project:,
+			scheme:,
 			configuration: "Release",
 			clean: true,
 			skip_profile_detection: true,
-			skip_package_dependencies_resolution: true,
+			disable_package_automatic_updates: true,
 			export_method: "ad-hoc",
 			export_options: {
 				provisioningProfiles: {
@@ -121,7 +118,7 @@ platform :ios do
 
 		firebase_app_distribution(
 			app: ENV["FIREBASE_APP_ID"],
-			ipa_path: "#{output_dir}/builds/#{target_name}.ipa",
+			ipa_path: "#{output_dir}/builds/#{scheme}.ipa",
 			groups: "developers, internal-testers, presales"
 		)
 
@@ -136,15 +133,14 @@ platform :ios do
 
 	desc "Build the application"
 	lane :pr do
-		cocoapods
 		gym(
-			workspace:,
-			scheme: target_name,
+			project:,
+			scheme:,
 			configuration: "Release",
 			clean: true,
 			skip_codesigning: true,
 			skip_profile_detection: true,
-			skip_package_dependencies_resolution: true,
+			disable_package_automatic_updates: true,
 			skip_archive: true,
 			skip_package_ipa: true
 		)

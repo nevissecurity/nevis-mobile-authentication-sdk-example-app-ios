@@ -1,4 +1,8 @@
-![Nevis Logo](https://www.nevis.net/hubfs/Nevis/images/logotype.svg)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://www.nevis.net/hubfs/Nevis%202023%20theme/Icons/negativ.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://www.nevis.net/hubfs/Nevis%202023%20theme/Icons/positiv.svg">
+  <img alt="Fallback image description" src="https://www.nevis.net/hubfs/Nevis/images/logotype.svg">
+</picture>
 
 # Nevis Mobile Authentication SDK iOS Example App
 
@@ -33,11 +37,9 @@ Your development setup has to meet the following prerequisites:
 
 ### Initialization
 
-Dependencies in this project are provided via Cocoapods. Please install all dependencies by running
+[Swift Package Manager](https://developer.apple.com/documentation/xcode/swift-packages) is used to resolve application dependencies. See the "Frameworks, Libraries, and Embedded Content" section on the NevisExampleApp target's General pane in Xcode for the list of exact dependencies.
 
-```bash
-$ pod install
-```
+Xcode updates your package dependencies and resolves package versions automatically. If not, it can be triggered from the File > Packages menu.
 
 ### Configuration
 

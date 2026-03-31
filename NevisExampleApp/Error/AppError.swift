@@ -12,7 +12,7 @@ enum AppError: Error {
 	case loadAppConfigurationError
 	/// Login configuration read error.
 	case readLoginConfigurationError
-	/// No ccokie was received during In-Band Registration.
+	/// No cookie was received during In-Band Registration.
 	case cookieNotFound
 	/// No accounts found.
 	case accountsNotFound
@@ -39,30 +39,30 @@ enum AppError: Error {
 extension AppError: LocalizedError {
 	var errorDescription: String? {
 		switch self {
-		case .loadAppConfigurationError:
-			L10n.Error.App.loadAppConfigurationError
-		case .readLoginConfigurationError:
-			L10n.Error.App.readLoginConfigurationError
-		case .cookieNotFound:
-			L10n.Error.App.cookieNotFound
-		case .accountsNotFound:
-			L10n.Error.App.accountsNotFound
-		case .authenticatorNotFound:
-			L10n.Error.App.authenticatorNotFound
-		case .pinAuthenticatorNotFound:
-			L10n.Error.App.pinAuthenticatorNotFound
-		case .passwordAuthenticatorNotFound:
-			L10n.Error.App.passwordAuthenticatorNotFound
-		case .deviceInformationNotFound:
-			L10n.Error.App.deviceInformationNotFound
-		case .authCloudApiRegistrationDataNotFound:
-			L10n.Error.App.authCloudApiRegistrationDataNotFound
-		case .authCloudApiRegistrationDataWrong:
-			L10n.Error.App.authCloudApiRegistrationDataWrong
-		case .loginDataNotFound:
-			L10n.Error.App.loginDataNotFound
-		case .loginError:
-			L10n.Error.App.loginFailed
+			case .loadAppConfigurationError:
+				L10n.Error.App.loadAppConfigurationError
+			case .readLoginConfigurationError:
+				L10n.Error.App.readLoginConfigurationError
+			case .cookieNotFound:
+				L10n.Error.App.cookieNotFound
+			case .accountsNotFound:
+				L10n.Error.App.accountsNotFound
+			case .authenticatorNotFound:
+				L10n.Error.App.authenticatorNotFound
+			case .pinAuthenticatorNotFound:
+				L10n.Error.App.pinAuthenticatorNotFound
+			case .passwordAuthenticatorNotFound:
+				L10n.Error.App.passwordAuthenticatorNotFound
+			case .deviceInformationNotFound:
+				L10n.Error.App.deviceInformationNotFound
+			case .authCloudApiRegistrationDataNotFound:
+				L10n.Error.App.authCloudApiRegistrationDataNotFound
+			case .authCloudApiRegistrationDataWrong:
+				L10n.Error.App.authCloudApiRegistrationDataWrong
+			case .loginDataNotFound:
+				L10n.Error.App.loginDataNotFound
+			case .loginError:
+				L10n.Error.App.loginFailed
 		}
 	}
 }

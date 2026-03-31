@@ -13,8 +13,10 @@ enum SelectAuthenticatorParameter: NavigationParameterizable {
 	///  - Parameters:
 	///    - authenticatorItems: The list of authenticator items.
 	///    - handler: The authenticator selection handler.
-	case select(authenticatorItems: [AuthenticatorItem],
-	            handler: AuthenticatorSelectionHandler)
+	case select(
+		authenticatorItems: [AuthenticatorItem],
+		handler: AuthenticatorSelectionHandler
+	)
 }
 
 /// Presenter of Authenticator Selection view.
@@ -38,8 +40,10 @@ final class SelectAuthenticatorPresenter {
 	/// - Parameters:
 	///   - appCoordinator: The application coordinator.
 	///   - parameter: The navigation parameter.
-	init(appCoordinator: AppCoordinator,
-	     parameter: NavigationParameterizable? = nil) {
+	init(
+		appCoordinator: AppCoordinator,
+		parameter: NavigationParameterizable? = nil
+	) {
 		self.appCoordinator = appCoordinator
 		setParameter(parameter as? SelectAuthenticatorParameter)
 	}
@@ -75,18 +79,18 @@ extension SelectAuthenticatorPresenter {
 
 private extension SelectAuthenticatorPresenter {
 
-	/// Handles the recevied parameter.
+	/// Handles the received parameter.
 	///
-	/// - Parameter paramter: The parameter to handle.
+	/// - Parameter parameter: The parameter to handle.
 	func setParameter(_ parameter: SelectAuthenticatorParameter?) {
 		guard let parameter else {
 			preconditionFailure("Parameter type mismatch!")
 		}
 
 		switch parameter {
-		case let .select(authenticatorItems, handler):
-			self.authenticatorItems = authenticatorItems
-			self.handler = handler
+			case let .select(authenticatorItems, handler):
+				self.authenticatorItems = authenticatorItems
+				self.handler = handler
 		}
 	}
 }

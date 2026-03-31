@@ -48,12 +48,14 @@ final class HomePresenter {
 	///   - passwordChanger: The Password changer.
 	///   - appCoordinator: The application coordinator.
 	///   - errorHandlerChain: The error handler chain.
-	init(configurationLoader: ConfigurationLoader,
-	     clientProvider: ClientProvider,
-	     pinChanger: PinChanger,
-	     passwordChanger: PasswordChanger,
-	     appCoordinator: AppCoordinator,
-	     errorHandlerChain: ErrorHandlerChain) {
+	init(
+		configurationLoader: ConfigurationLoader,
+		clientProvider: ClientProvider,
+		pinChanger: PinChanger,
+		passwordChanger: PasswordChanger,
+		appCoordinator: AppCoordinator,
+		errorHandlerChain: ErrorHandlerChain
+	) {
 		self.configurationLoader = configurationLoader
 		self.clientProvider = clientProvider
 		self.pinChanger = pinChanger
@@ -100,8 +102,7 @@ extension HomePresenter {
 					self.errorHandlerChain.handle(error: operationError)
 				}
 				.execute()
-		}
-		catch {
+		} catch {
 			let operationError = OperationError(operation: .initClient, underlyingError: error)
 			errorHandlerChain.handle(error: operationError)
 		}
@@ -123,39 +124,47 @@ extension HomePresenter {
 	func authenticate() {
 		guard let accounts = mobileAuthenticationClient?.localData.accounts, !accounts.isEmpty else {
 			logger.sdk("Accounts not found.", .red)
-			let operationError = OperationError(operation: .authentication,
-			                                    underlyingError: AppError.accountsNotFound)
+			let operationError = OperationError(
+				operation: .authentication,
+				underlyingError: AppError.accountsNotFound
+			)
 			return errorHandlerChain.handle(error: operationError)
 		}
 
-		let parameter: SelectAccountParameter = .select(accounts: accounts,
-		                                                operation: .authentication,
-		                                                handler: nil,
-		                                                message: nil)
+		let parameter: SelectAccountParameter = .select(
+			accounts: accounts,
+			operation: .authentication,
+			handler: nil,
+			message: nil
+		)
 		appCoordinator.navigateToAccountSelection(with: parameter)
 	}
 
 	/// Starts deregistering all accounts.
 	func deregister() {
 		guard let accounts = mobileAuthenticationClient?.localData.accounts, !accounts.isEmpty else {
-			let operationError = OperationError(operation: .deregistration,
-			                                    underlyingError: AppError.accountsNotFound)
+			let operationError = OperationError(
+				operation: .deregistration,
+				underlyingError: AppError.accountsNotFound
+			)
 			return errorHandlerChain.handle(error: operationError)
 		}
 
 		switch configurationLoader.environment {
-		case .authenticationCloud:
-			view?.disableInteraction()
-			let usernames = accounts.map(\.username)
-			doDeregistration(for: usernames)
-		case .identitySuite:
-			// In the Identity Suite environment the deregistration endpoint is guarded,
-			// and as such we need to provide a cookie to the deregister call.
-			let parameter: SelectAccountParameter = .select(accounts: accounts,
-			                                                operation: .deregistration,
-			                                                handler: nil,
-			                                                message: nil)
-			appCoordinator.navigateToAccountSelection(with: parameter)
+			case .authenticationCloud:
+				view?.disableInteraction()
+				let usernames = accounts.map(\.username)
+				doDeregistration(for: usernames)
+			case .identitySuite:
+				// In the Identity Suite environment the deregistration endpoint is guarded,
+				// and as such we need to provide a cookie to the deregister call.
+				let parameter: SelectAccountParameter = .select(
+					accounts: accounts,
+					operation: .deregistration,
+					handler: nil,
+					message: nil
+				)
+				appCoordinator.navigateToAccountSelection(with: parameter)
 		}
 	}
 
@@ -166,27 +175,35 @@ extension HomePresenter {
 
 		// find enrolled accounts
 		guard let accounts = mobileAuthenticationClient?.localData.accounts, !accounts.isEmpty else {
-			let operationError = OperationError(operation: operation,
-			                                    underlyingError: AppError.accountsNotFound)
+			let operationError = OperationError(
+				operation: operation,
+				underlyingError: AppError.accountsNotFound
+			)
 			return errorHandlerChain.handle(error: operationError)
 		}
 
 		// find Credential authenticator
 		guard let authenticators = mobileAuthenticationClient?.localData.authenticators else {
-			let operationError = OperationError(operation: operation,
-			                                    underlyingError: authenticatorNotFoundError)
+			let operationError = OperationError(
+				operation: operation,
+				underlyingError: authenticatorNotFoundError
+			)
 			return errorHandlerChain.handle(error: operationError)
 		}
 
 		guard let credentialAuthenticator = authenticators.filter({ $0.aaid == authenticatorType.rawValue }).first else {
-			let operationError = OperationError(operation: operation,
-			                                    underlyingError: authenticatorNotFoundError)
+			let operationError = OperationError(
+				operation: operation,
+				underlyingError: authenticatorNotFoundError
+			)
 			return errorHandlerChain.handle(error: operationError)
 		}
 
 		guard let enrollment = credentialAuthenticator.userEnrollment as? SdkUserEnrollment else {
-			let operationError = OperationError(operation: operation,
-			                                    underlyingError: authenticatorNotFoundError)
+			let operationError = OperationError(
+				operation: operation,
+				underlyingError: authenticatorNotFoundError
+			)
 			return errorHandlerChain.handle(error: operationError)
 		}
 
@@ -197,23 +214,27 @@ extension HomePresenter {
 		}
 
 		switch eligibleAccounts.count {
-		case 0:
-			let operationError = OperationError(operation: operation,
-			                                    underlyingError: AppError.accountsNotFound)
-			return errorHandlerChain.handle(error: operationError)
-		case 1 where authenticatorType == .Pin:
-			// do PIN change automatically
-			doPinChange(for: eligibleAccounts.first!.username)
-		case 1 where authenticatorType == .Password:
-			// do PIN change automatically
-			doPasswordChange(for: eligibleAccounts.first!.username)
-		default:
-			// in case of multiple eligible accounts we have to show the account selection screen
-			let parameter: SelectAccountParameter = .select(accounts: eligibleAccounts,
-			                                                operation: operation,
-			                                                handler: nil,
-			                                                message: nil)
-			appCoordinator.navigateToAccountSelection(with: parameter)
+			case 0:
+				let operationError = OperationError(
+					operation: operation,
+					underlyingError: AppError.accountsNotFound
+				)
+				return errorHandlerChain.handle(error: operationError)
+			case 1 where authenticatorType == .Pin:
+				// do PIN change automatically
+				doPinChange(for: eligibleAccounts.first!.username)
+			case 1 where authenticatorType == .Password:
+				// do PIN change automatically
+				doPasswordChange(for: eligibleAccounts.first!.username)
+			default:
+				// in case of multiple eligible accounts we have to show the account selection screen
+				let parameter: SelectAccountParameter = .select(
+					accounts: eligibleAccounts,
+					operation: operation,
+					handler: nil,
+					message: nil
+				)
+				appCoordinator.navigateToAccountSelection(with: parameter)
 		}
 	}
 
@@ -222,8 +243,10 @@ extension HomePresenter {
 		let deviceInformation = mobileAuthenticationClient?.localData.deviceInformation
 		guard let deviceInformation else {
 			logger.sdk("Device information not found.", .red)
-			let operationError = OperationError(operation: .deviceInformationChange,
-			                                    underlyingError: AppError.deviceInformationNotFound)
+			let operationError = OperationError(
+				operation: .deviceInformationChange,
+				underlyingError: AppError.deviceInformationNotFound
+			)
 			return errorHandlerChain.handle(error: operationError)
 		}
 
@@ -241,20 +264,22 @@ extension HomePresenter {
 		// find enrolled accounts
 		guard let accounts = mobileAuthenticationClient?.localData.accounts, !accounts.isEmpty else {
 			logger.sdk("Accounts not found.", .red)
-			let operationError = OperationError(operation: .localData,
-			                                    underlyingError: AppError.accountsNotFound)
+			let operationError = OperationError(
+				operation: .localData,
+				underlyingError: AppError.accountsNotFound
+			)
 			return errorHandlerChain.handle(error: operationError)
 		}
 
 		doDeleteAuthenticators(of: accounts.map(\.username)) { result in
 			switch result {
-			case .success:
-				logger.sdk("Delete authenticators succeeded.", .green)
-				self.appCoordinator.navigateToResult(with: .success(operation: .localData))
-			case let .failure(error):
-				logger.sdk("Delete authenticators failed.", .red)
-				let operationError = OperationError(operation: .localData, underlyingError: error)
-				self.errorHandlerChain.handle(error: operationError)
+				case .success:
+					logger.sdk("Delete authenticators succeeded.", .green)
+					self.appCoordinator.navigateToResult(with: .success(operation: .localData))
+				case let .failure(error):
+					logger.sdk("Delete authenticators failed.", .red)
+					let operationError = OperationError(operation: .localData, underlyingError: error)
+					self.errorHandlerChain.handle(error: operationError)
 			}
 		}
 	}
@@ -380,8 +405,7 @@ private extension HomePresenter {
 				DispatchQueue.main.async {
 					handler(.success)
 				}
-			}
-			catch {
+			} catch {
 				DispatchQueue.main.async {
 					handler(.failure(error))
 				}

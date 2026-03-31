@@ -6,7 +6,7 @@
 
 import NevisMobileAuthentication
 
-/// Object descirbing an operation error.
+/// Object describing an operation error.
 struct OperationError: Error {
 
 	// MARK: - Properties

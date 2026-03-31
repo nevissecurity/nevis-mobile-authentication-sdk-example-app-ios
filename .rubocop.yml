@@ -31,14 +31,6 @@ Layout/LineLength:
   StyleGuide: 'https://rubystyle.guide/#max-line-length'
   Max: 150
 
-# Naming Cops
-
-Naming/FileName:
-  Description: 'Checks that Ruby source files have snake case names.'
-  StyleGuide: 'https://rubystyle.guide/#snake-case-files'
-  Exclude:
-    - 'Podfile'
-
 # Style Cops
 
 Style/StringLiterals:
@@ -57,18 +49,6 @@ Style/FetchEnvVar:
 Style/HashSyntax:
   Description: 'Checks hash literal syntax.'
   StyleGuide: 'https://rubystyle.guide/#hash-literals'
-  Exclude:
-    - 'Podfile'
-
-Style/WordArray:
-  Description: 'Checks for array literals made up of word-like strings.'
-  StyleGuide: 'https://rubystyle.guide/#percent-w'
-  EnforcedStyle: brackets
-
-Style/SymbolArray:
-  Description: 'Checks for array literals made up of symbols.'
-  StyleGuide: 'https://rubystyle.guide/#percent-i'
-  EnforcedStyle: brackets
 
 Style/MultilineIfModifier:
   Description: 'Checks for uses of if/unless modifiers with multiple-lines bodies.'

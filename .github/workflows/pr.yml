@@ -26,7 +26,7 @@ jobs:
     steps:
       # Checkout the repository under $GITHUB_WORKSPACE
       - name: Checkout Project
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       # Ensure correct Xcode version is installed.
       - name: Setup Xcode
@@ -42,8 +42,12 @@ jobs:
           bundler-cache: true
 
       # Run RuboCop to lint Ruby code
-      - name: Run Ruby Linter
+      - name: Lint Ruby
         run: bundle exec rubocop
+
+      # Run swift format to lint Swift code
+      - name: Lint Swift
+        run: swift format lint --strict --parallel --recursive NevisExampleApp
 
       # Build & Distribute
       - name: Run Fastlane

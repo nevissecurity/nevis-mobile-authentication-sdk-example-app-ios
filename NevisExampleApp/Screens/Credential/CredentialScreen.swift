@@ -115,13 +115,17 @@ private extension CredentialScreen {
 	}
 
 	func setupToolbar() {
-		let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
-		                                target: nil,
-		                                action: nil)
-		let doneButton = UIBarButtonItem(title: L10n.Credential.done,
-		                                 style: .done,
-		                                 target: self,
-		                                 action: #selector(done))
+		let flexSpace = UIBarButtonItem(
+			barButtonSystemItem: .flexibleSpace,
+			target: nil,
+			action: nil
+		)
+		let doneButton = UIBarButtonItem(
+			title: L10n.Credential.done,
+			style: .done,
+			target: self,
+			action: #selector(done)
+		)
 		keyboardToolbar.do {
 			$0.frame = CGRect(origin: .zero, size: CGSize(width: 100, height: 44))
 			$0.setItems([flexSpace, doneButton], animated: false)
@@ -183,8 +187,7 @@ private extension CredentialScreen {
 	func setupTextFields() {
 		if let superview = oldCredentialField.superview, !superview.isHidden {
 			oldCredentialField.becomeFirstResponder()
-		}
-		else {
+		} else {
 			credentialField.becomeFirstResponder()
 		}
 	}

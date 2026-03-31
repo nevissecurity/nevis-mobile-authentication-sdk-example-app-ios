@@ -5,9 +5,9 @@
 //
 
 import Foundation
+import UIKit
 import os
 import os.log
-import UIKit
 
 /// Class for logging purposes. Wraps `os_log` using custom categories.
 class Logger {
@@ -59,16 +59,20 @@ class Logger {
 private extension Logger {
 	func notify(message: StaticString, color: UIColor, args: CVarArg...) {
 		let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: color]
-		let attributedMessage = NSAttributedString(string: String(format: "\(message)", args),
-		                                           attributes: attributes)
+		let attributedMessage = NSAttributedString(
+			string: String(format: "\(message)", args),
+			attributes: attributes
+		)
 		let logMessage = NSMutableAttributedString(attributedString: NSAttributedString(string: "["))
 		logMessage.append(NSAttributedString(string: dateFormatter.string(from: Date())))
 		logMessage.append(NSAttributedString(string: "] "))
 		logMessage.append(attributedMessage)
 		logMessage.append(NSAttributedString(string: "\n"))
-		NotificationCenter.default.post(name: .log,
-		                                object: nil,
-		                                userInfo: [Notification.UserInfoKey.message: logMessage])
+		NotificationCenter.default.post(
+			name: .log,
+			object: nil,
+			userInfo: [Notification.UserInfoKey.message: logMessage]
+		)
 	}
 }
 
@@ -89,15 +93,15 @@ private extension Logger {
 
 	func log(_ message: StaticString, log: OSLog, type: OSLogType, _ args: CVarArg...) {
 		switch args.count {
-		case 0: os_log(message, log: log, type: type)
-		case 1: os_log(message, log: log, type: type, args[0])
-		case 2: os_log(message, log: log, type: type, args[0], args[1])
-		case 3: os_log(message, log: log, type: type, args[0], args[1], args[2])
-		case 4: os_log(message, log: log, type: type, args[0], args[1], args[2], args[3])
-		case 5: os_log(message, log: log, type: type, args[0], args[1], args[2], args[3], args[4])
-		case 6: os_log(message, log: log, type: type, args[0], args[1], args[2], args[3], args[4], args[5])
-		case 7...: os_log(message, log: log, type: type, args[0], args[1], args[2], args[3], args[4], args[5], Array(args.dropFirst(6)))
-		default: os_log(message, log: log, type: type, args)
+			case 0: os_log(message, log: log, type: type)
+			case 1: os_log(message, log: log, type: type, args[0])
+			case 2: os_log(message, log: log, type: type, args[0], args[1])
+			case 3: os_log(message, log: log, type: type, args[0], args[1], args[2])
+			case 4: os_log(message, log: log, type: type, args[0], args[1], args[2], args[3])
+			case 5: os_log(message, log: log, type: type, args[0], args[1], args[2], args[3], args[4])
+			case 6: os_log(message, log: log, type: type, args[0], args[1], args[2], args[3], args[4], args[5])
+			case 7...: os_log(message, log: log, type: type, args[0], args[1], args[2], args[3], args[4], args[5], Array(args.dropFirst(6)))
+			default: os_log(message, log: log, type: type, args)
 		}
 	}
 }

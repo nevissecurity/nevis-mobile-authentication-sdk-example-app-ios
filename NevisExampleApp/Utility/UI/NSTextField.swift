@@ -16,8 +16,10 @@ class NSTextField: UITextField {
 	/// - Parameters:
 	///   - placeholder: The placeholder to display. Default value is an empty string.
 	///   - returnKeyType: The return key type. Default value is `done`.
-	init(placeholder: String = "",
-	     returnKeyType: UIReturnKeyType = .done) {
+	init(
+		placeholder: String = "",
+		returnKeyType: UIReturnKeyType = .done
+	) {
 		super.init(frame: .zero)
 		self.text = nil
 		self.placeholder = placeholder

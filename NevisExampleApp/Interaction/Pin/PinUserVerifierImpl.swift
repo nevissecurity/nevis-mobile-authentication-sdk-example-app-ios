@@ -10,7 +10,7 @@ import NevisMobileAuthentication
 /// For more information about PIN user verification please read the [official documentation](https://docs.nevis.net/mobilesdk/guide/operation/authentication#pin-user-verifier).
 ///
 /// Navigates to the ``CredentialScreen`` where the user can verify the PIN.
-class PinUserVerifierImpl {
+final class PinUserVerifierImpl {
 
 	// MARK: - Properties
 
@@ -34,8 +34,10 @@ extension PinUserVerifierImpl: PinUserVerifier {
 	func verifyPin(context: PinUserVerificationContext, handler: PinUserVerificationHandler) {
 		logger.sdk("Please start PIN user verification.")
 
-		let parameter: PinParameter = .verification(protectionStatus: context.authenticatorProtectionStatus,
-		                                            handler: handler)
+		let parameter: PinParameter = .verification(
+			protectionStatus: context.authenticatorProtectionStatus,
+			handler: handler
+		)
 		appCoordinator.navigateToCredential(with: parameter)
 	}
 }

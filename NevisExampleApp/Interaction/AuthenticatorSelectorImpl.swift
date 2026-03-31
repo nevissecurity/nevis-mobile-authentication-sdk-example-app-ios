@@ -16,7 +16,7 @@ let AuthenticationAuthenticatorSelectorName = "auth_selector_auth"
 /// For more information about authenticator selection please read the [official documentation](https://docs.nevis.net/mobilesdk/guide/operation/registration#authenticator-selector).
 ///
 /// Navigates to the ``SelectAuthenticatorScreen`` where the user can select from the available authenticators.
-class AuthenticatorSelectorImpl {
+final class AuthenticatorSelectorImpl {
 
 	/// Supported operations for authenticator selection.
 	enum Operation {
@@ -45,9 +45,11 @@ class AuthenticatorSelectorImpl {
 	///   - appCoordinator: The application coordinator.
 	///   - configurationLoader: The configuration loader.
 	///   - operation: The current operation.
-	init(appCoordinator: AppCoordinator,
-	     configurationLoader: ConfigurationLoader,
-	     operation: Operation) {
+	init(
+		appCoordinator: AppCoordinator,
+		configurationLoader: ConfigurationLoader,
+		operation: Operation
+	) {
 		self.appCoordinator = appCoordinator
 		self.configurationLoader = configurationLoader
 		self.operation = operation
@@ -66,26 +68,31 @@ extension AuthenticatorSelectorImpl: AuthenticatorSelector {
 		logger.sdk("Please select one of the received available authenticators!")
 
 		let validator = AuthenticatorValidator()
-		let validationResult = switch operation {
-		case .registration: validator.validateForRegistration(context: context, allowlistedAuthenticators: configuration.authenticatorAllowlist)
-		case .authentication: validator.validateForAuthentication(context: context, allowlistedAuthenticators: configuration.authenticatorAllowlist)
-		}
+		let validationResult =
+			switch operation {
+				case .registration: validator.validateForRegistration(context: context, allowlistedAuthenticators: configuration.authenticatorAllowlist)
+				case .authentication: validator.validateForAuthentication(context: context, allowlistedAuthenticators: configuration.authenticatorAllowlist)
+			}
 
 		switch validationResult {
-		case let .success(validatedAuthenticators):
-			let authenticatorItems = validatedAuthenticators.map {
-				AuthenticatorItem(authenticator: $0,
-				                  isPolicyCompliant: context.isPolicyCompliant(authenticatorAaid: $0.aaid),
-				                  isUserEnrolled: $0.isEnrolled(username: context.account.username))
-			}
-			let parameter: SelectAuthenticatorParameter = .select(authenticatorItems: authenticatorItems,
-			                                                      handler: handler)
-			if case .registration = operation {
-				appCoordinator.topScreen?.enableInteraction()
-			}
-			appCoordinator.navigateToAuthenticatorSelection(with: parameter)
-		case .failure:
-			handler.cancel()
+			case let .success(validatedAuthenticators):
+				let authenticatorItems = validatedAuthenticators.map {
+					AuthenticatorItem(
+						authenticator: $0,
+						isPolicyCompliant: context.isPolicyCompliant(authenticatorAaid: $0.aaid),
+						isUserEnrolled: $0.isEnrolled(username: context.account.username)
+					)
+				}
+				let parameter: SelectAuthenticatorParameter = .select(
+					authenticatorItems: authenticatorItems,
+					handler: handler
+				)
+				if case .registration = operation {
+					appCoordinator.topScreen?.enableInteraction()
+				}
+				appCoordinator.navigateToAuthenticatorSelection(with: parameter)
+			case .failure:
+				handler.cancel()
 		}
 	}
 }

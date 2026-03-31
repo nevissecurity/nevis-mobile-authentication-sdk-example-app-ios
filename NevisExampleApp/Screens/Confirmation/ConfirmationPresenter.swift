@@ -45,8 +45,10 @@ final class ConfirmationPresenter {
 	/// - Parameters:
 	///   - appCoordinator: The application coordinator.
 	///   - parameter: The navigation parameter.
-	init(appCoordinator: AppCoordinator,
-	     parameter: NavigationParameterizable? = nil) {
+	init(
+		appCoordinator: AppCoordinator,
+		parameter: NavigationParameterizable? = nil
+	) {
 		self.appCoordinator = appCoordinator
 		setParameter(parameter as? ConfirmationParameter)
 	}
@@ -69,9 +71,13 @@ extension ConfirmationPresenter {
 
 	/// Verifies the user using the previously selected authentication method.
 	func confirm() {
-		biometricUserVerificationHandler?.verify(using: .init(reason: L10n.BiometricPrompt.reason,
-		                                                      fallbackButtonTitle: L10n.BiometricPrompt.fallback,
-		                                                      cancelButtonTitle: L10n.BiometricPrompt.cancel))
+		biometricUserVerificationHandler?.verify(
+			using: .init(
+				reason: L10n.BiometricPrompt.reason,
+				fallbackButtonTitle: L10n.BiometricPrompt.fallback,
+				cancelButtonTitle: L10n.BiometricPrompt.cancel
+			)
+		)
 		devicePasscodeUserVerificationHandler?.verify(using: .init(reason: L10n.DevicePasscodePrompt.reason))
 	}
 
@@ -86,21 +92,21 @@ extension ConfirmationPresenter {
 
 private extension ConfirmationPresenter {
 
-	/// Handles the recevied parameter.
+	/// Handles the received parameter.
 	///
-	/// - Parameter paramter: The parameter to handle.
+	/// - Parameter parameter: The parameter to handle.
 	func setParameter(_ parameter: ConfirmationParameter?) {
 		guard let parameter else {
 			preconditionFailure("Parameter type mismatch!")
 		}
 
 		switch parameter {
-		case let .confirmBiometric(authenticator, handler):
-			self.authenticator = authenticator
-			biometricUserVerificationHandler = handler
-		case let .confirmDevicePasscode(authenticator, handler):
-			self.authenticator = authenticator
-			devicePasscodeUserVerificationHandler = handler
+			case let .confirmBiometric(authenticator, handler):
+				self.authenticator = authenticator
+				biometricUserVerificationHandler = handler
+			case let .confirmDevicePasscode(authenticator, handler):
+				self.authenticator = authenticator
+				devicePasscodeUserVerificationHandler = handler
 		}
 	}
 }
