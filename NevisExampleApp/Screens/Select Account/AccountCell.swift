@@ -57,7 +57,7 @@ extension AccountCell {
 
 	/// Binds the view model.
 	///
-	/// - Parameter viewModel: The model that need to be binded.
+	/// - Parameter viewModel: The model that need to be bound.
 	func bind(viewModel: SelectAccountItemViewModel) {
 		textLabel?.text = viewModel.title
 	}

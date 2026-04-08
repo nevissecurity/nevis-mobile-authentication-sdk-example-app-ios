@@ -18,11 +18,13 @@ extension UIView {
 	///   - toSafeLayout: Tells whether anchoring to safe layout is needed. Default value is false.
 	/// - Returns: `self`
 	@discardableResult
-	func anchorToSuperView(topPadding: CGFloat = 0.0,
-	                       bottomPadding: CGFloat = 0.0,
-	                       leftPadding: CGFloat = 0.0,
-	                       rightPadding: CGFloat = 0.0,
-	                       toSafeLayout: Bool = false) -> UIView {
+	func anchorToSuperView(
+		topPadding: CGFloat = 0.0,
+		bottomPadding: CGFloat = 0.0,
+		leftPadding: CGFloat = 0.0,
+		rightPadding: CGFloat = 0.0,
+		toSafeLayout: Bool = false
+	) -> UIView {
 		anchorToTop(topPadding, toSafeLayout: toSafeLayout)
 		anchorToBottom(bottomPadding, toSafeLayout: toSafeLayout)
 		anchorToLeft(leftPadding)
@@ -119,11 +121,12 @@ extension UIView {
 
 		translatesAutoresizingMaskIntoConstraints = false
 		if toSafeLayout {
-			let top = topAnchor.constraint(equalTo: superView.safeAreaLayoutGuide.topAnchor,
-			                               constant: padding)
+			let top = topAnchor.constraint(
+				equalTo: superView.safeAreaLayoutGuide.topAnchor,
+				constant: padding
+			)
 			top.isActive = true
-		}
-		else {
+		} else {
 			let top = topAnchor.constraint(equalTo: superView.topAnchor, constant: padding)
 			top.isActive = true
 		}
@@ -145,10 +148,11 @@ extension UIView {
 
 		translatesAutoresizingMaskIntoConstraints = false
 		if toSafeLayout {
-			bottomAnchor.constraint(equalTo: superView.safeAreaLayoutGuide.bottomAnchor,
-			                        constant: -padding).isActive = true
-		}
-		else {
+			bottomAnchor.constraint(
+				equalTo: superView.safeAreaLayoutGuide.bottomAnchor,
+				constant: -padding
+			).isActive = true
+		} else {
 			bottomAnchor.constraint(equalTo: superView.bottomAnchor, constant: -padding).isActive = true
 		}
 

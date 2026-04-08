@@ -16,10 +16,12 @@ class NSLabel: UILabel {
 	/// - Parameters:
 	///   - text: The text to display. Default value is an empty string.
 	///   - style: The style of the label.
-	///   - textAlignment: The text aligment. Default value is `nil`.
-	init(text: String = "",
-	     style: Style,
-	     textAlignment: NSTextAlignment? = nil) {
+	///   - textAlignment: The text alignment. Default value is `nil`.
+	init(
+		text: String = "",
+		style: Style,
+		textAlignment: NSTextAlignment? = nil
+	) {
 		super.init(frame: .zero)
 		self.text = text
 		font = style.font

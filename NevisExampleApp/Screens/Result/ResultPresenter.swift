@@ -52,8 +52,10 @@ final class ResultPresenter {
 	/// - Parameters:
 	///   - appCoordinator: The application coordinator.
 	///   - parameter: The navigation parameter.
-	init(appCoordinator: AppCoordinator,
-	     parameter: NavigationParameterizable? = nil) {
+	init(
+		appCoordinator: AppCoordinator,
+		parameter: NavigationParameterizable? = nil
+	) {
 		self.appCoordinator = appCoordinator
 		setParameter(parameter as? ResultParameter)
 	}
@@ -72,14 +74,14 @@ extension ResultPresenter {
 	/// - Returns: The actual screen title based on the operation.
 	func getTitle() -> String {
 		switch result {
-		case .success:
-			return L10n.Operation.Success.title(operation!.localizedTitle)
-		case .failure:
-			guard let operation else {
-				return L10n.Error.App.Generic.title
-			}
+			case .success:
+				return L10n.Operation.Success.title(operation!.localizedTitle)
+			case .failure:
+				guard let operation else {
+					return L10n.Error.App.Generic.title
+				}
 
-			return L10n.Operation.Failed.title(operation.localizedTitle)
+				return L10n.Operation.Failed.title(operation.localizedTitle)
 		}
 	}
 
@@ -100,21 +102,21 @@ extension ResultPresenter {
 
 private extension ResultPresenter {
 
-	/// Handles the recevied parameter.
+	/// Handles the received parameter.
 	///
-	/// - Parameter paramter: The parameter to handle.
+	/// - Parameter parameter: The parameter to handle.
 	func setParameter(_ parameter: ResultParameter?) {
 		guard let parameter else {
 			preconditionFailure("Parameter type mismatch!")
 		}
 
 		switch parameter {
-		case let .success(operation):
-			self.operation = operation
-		case let .failure(operation, description):
-			result = .failure
-			self.operation = operation
-			self.description = description
+			case let .success(operation):
+				self.operation = operation
+			case let .failure(operation, description):
+				result = .failure
+				self.operation = operation
+				self.description = description
 		}
 	}
 }

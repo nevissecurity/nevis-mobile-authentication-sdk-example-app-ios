@@ -76,8 +76,7 @@ struct AppConfiguration: Codable {
 		if let hostName {
 			// using the convenience initializer
 			self.sdkConfiguration = Configuration(authCloudHostname: hostName)
-		}
-		else {
+		} else {
 			self.sdkConfiguration = try container.decode(Configuration.self, forKey: .sdkConfiguration)
 		}
 		self.authenticatorAllowlist = try container.decode([AuthenticatorAaid].self, forKey: .authenticatorAllowlist)

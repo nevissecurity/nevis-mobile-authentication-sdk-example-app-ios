@@ -18,10 +18,7 @@ final class LoggingPresenter {
 
 	/// Creates a new instance.
 	init() {
-		NotificationCenter.default.addObserver(self,
-		                                       selector: #selector(log(_:)),
-		                                       name: .log,
-		                                       object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(log(_:)), name: .log, object: nil)
 	}
 
 	deinit {
@@ -39,7 +36,8 @@ private extension LoggingPresenter {
 	@objc
 	func log(_ notification: Notification) {
 		guard let userInfo = notification.userInfo,
-		      let message = userInfo[Notification.UserInfoKey.message] as? NSAttributedString else {
+			let message = userInfo[Notification.UserInfoKey.message] as? NSAttributedString
+		else {
 			return
 		}
 

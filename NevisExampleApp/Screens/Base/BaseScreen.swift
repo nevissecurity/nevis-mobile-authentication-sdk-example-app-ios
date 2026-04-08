@@ -190,16 +190,20 @@ extension BaseScreen {
 	/// - parameter leftSpacing: The left spacing. Default value is 16.0.
 	/// - parameter rightSpacing: The right spacing. Default value is 16.0.
 	/// - parameter topSpacing: The top spacing. Default value is 0.
-	func addItemToTop(_ item: UIView,
-	                  spacing: CGFloat = 0.0,
-	                  leftSpacing: CGFloat = 16.0,
-	                  rightSpacing: CGFloat = 16.0,
-	                  topSpacing: CGFloat = 0.0) {
-		topStackView.addItem(item,
-		                     spacing: spacing,
-		                     leftSpacing: leftSpacing,
-		                     rightSpacing: rightSpacing,
-		                     topSpacing: topSpacing)
+	func addItemToTop(
+		_ item: UIView,
+		spacing: CGFloat = 0.0,
+		leftSpacing: CGFloat = 16.0,
+		rightSpacing: CGFloat = 16.0,
+		topSpacing: CGFloat = 0.0
+	) {
+		topStackView.addItem(
+			item,
+			spacing: spacing,
+			leftSpacing: leftSpacing,
+			rightSpacing: rightSpacing,
+			topSpacing: topSpacing
+		)
 	}
 
 	/// Adds an item to the middle of the screen.
@@ -209,16 +213,20 @@ extension BaseScreen {
 	/// - parameter leftSpacing: The left spacing. Default value is 16.0.
 	/// - parameter rightSpacing: The right spacing. Default value is 16.0.
 	/// - parameter topSpacing: The top spacing. Default value is 0.
-	func addItem(_ item: UIView,
-	             spacing: CGFloat = 0.0,
-	             leftSpacing: CGFloat = 16.0,
-	             rightSpacing: CGFloat = 16.0,
-	             topSpacing: CGFloat = 0.0) {
-		contentStackView.addItem(item,
-		                         spacing: spacing,
-		                         leftSpacing: leftSpacing,
-		                         rightSpacing: rightSpacing,
-		                         topSpacing: topSpacing)
+	func addItem(
+		_ item: UIView,
+		spacing: CGFloat = 0.0,
+		leftSpacing: CGFloat = 16.0,
+		rightSpacing: CGFloat = 16.0,
+		topSpacing: CGFloat = 0.0
+	) {
+		contentStackView.addItem(
+			item,
+			spacing: spacing,
+			leftSpacing: leftSpacing,
+			rightSpacing: rightSpacing,
+			topSpacing: topSpacing
+		)
 	}
 
 	/// Adds an item to the center of the screen.
@@ -236,15 +244,19 @@ extension BaseScreen {
 	/// - parameter leftSpacing: The left spacing. Default value is 16.0.
 	/// - parameter rightSpacing: The right spacing. Default value is 16.0.
 	/// - parameter topSpacing: The top spacing. Default value is 0.
-	func addItemToBottom(_ item: UIView,
-	                     spacing: CGFloat = 0.0,
-	                     leftSpacing: CGFloat = 16.0,
-	                     rightSpacing: CGFloat = 16.0,
-	                     topSpacing: CGFloat = 0.0) {
-		bottomStackView.addItem(item,
-		                        spacing: spacing,
-		                        leftSpacing: leftSpacing,
-		                        rightSpacing: rightSpacing,
-		                        topSpacing: topSpacing)
+	func addItemToBottom(
+		_ item: UIView,
+		spacing: CGFloat = 0.0,
+		leftSpacing: CGFloat = 16.0,
+		rightSpacing: CGFloat = 16.0,
+		topSpacing: CGFloat = 0.0
+	) {
+		bottomStackView.addItem(
+			item,
+			spacing: spacing,
+			leftSpacing: leftSpacing,
+			rightSpacing: rightSpacing,
+			topSpacing: topSpacing
+		)
 	}
 }

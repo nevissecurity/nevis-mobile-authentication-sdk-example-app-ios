@@ -40,8 +40,7 @@ extension ErrorHandlerChainImpl: ErrorHandlerChain {
 		if index < errorHandlers.count {
 			// executing next element in the chain
 			errorHandlers[index].handle(error: error, chain: self)
-		}
-		else {
+		} else {
 			// reset the index
 			index = -1
 

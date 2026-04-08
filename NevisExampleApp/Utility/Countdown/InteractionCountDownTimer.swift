@@ -7,7 +7,7 @@
 import Foundation
 
 /// A convenient timer that is run until the defined `TimeInterval`, then invalidated.
-/// Calls the given `intervalCallback` periodically in each `refreshInveral`, until the timer is invalidated.
+/// Calls the given `intervalCallback` periodically in each `refreshInterval`, until the timer is invalidated.
 final class InteractionCountDownTimer {
 
 	// MARK: - Properties
@@ -40,9 +40,11 @@ final class InteractionCountDownTimer {
 	///   - timerLifeTime: The interval for how long the timer should run.
 	///   - refreshInterval: The interval when to call the `intervalCallback`. Default value is 1.0.
 	///   - intervalCallback: The callback that is called providing the remaining time in the timer. Default value is *nil*.
-	init(timerLifeTime: TimeInterval,
-	     refreshInterval: TimeInterval = 1.0,
-	     intervalCallback: ((Int) -> ())? = nil) {
+	init(
+		timerLifeTime: TimeInterval,
+		refreshInterval: TimeInterval = 1.0,
+		intervalCallback: ((Int) -> ())? = nil
+	) {
 		self.timerLifeTime = timerLifeTime
 		self.refreshInterval = refreshInterval
 		self.intervalCallback = intervalCallback

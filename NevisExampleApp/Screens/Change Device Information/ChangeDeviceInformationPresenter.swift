@@ -42,10 +42,12 @@ final class ChangeDeviceInformationPresenter {
 	///   - appCoordinator: The application coordinator.
 	///   - errorHandlerChain: The error handler chain.
 	///   - parameter: The navigation parameter.
-	init(clientProvider: ClientProvider,
-	     appCoordinator: AppCoordinator,
-	     errorHandlerChain: ErrorHandlerChain,
-	     parameter: NavigationParameterizable? = nil) {
+	init(
+		clientProvider: ClientProvider,
+		appCoordinator: AppCoordinator,
+		errorHandlerChain: ErrorHandlerChain,
+		parameter: NavigationParameterizable? = nil
+	) {
 		self.clientProvider = clientProvider
 		self.appCoordinator = appCoordinator
 		self.errorHandlerChain = errorHandlerChain
@@ -98,17 +100,17 @@ extension ChangeDeviceInformationPresenter {
 
 private extension ChangeDeviceInformationPresenter {
 
-	/// Handles the recevied parameter.
+	/// Handles the received parameter.
 	///
-	/// - Parameter paramter: The parameter to handle.
+	/// - Parameter parameter: The parameter to handle.
 	func setParameter(_ parameter: ChangeDeviceInformationParameter?) {
 		guard let parameter else {
 			preconditionFailure("Parameter type mismatch!")
 		}
 
 		switch parameter {
-		case let .change(deviceInformation):
-			self.deviceInformation = deviceInformation
+			case let .change(deviceInformation):
+				self.deviceInformation = deviceInformation
 		}
 	}
 }

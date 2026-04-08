@@ -1,14 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/ruby,dotenv,macos,xcode,intellij+all,cocoapods,fastlane,sonarqube
-# Edit at https://www.toptal.com/developers/gitignore?templates=ruby,dotenv,macos,xcode,intellij+all,cocoapods,fastlane,sonarqube
-
-### CocoaPods ###
-## CocoaPods GitIgnore Template
-
-# CocoaPods - Only use to conserve bandwidth / Save time on Pushing
-#           - Also handy if you have a large number of dependant pods
-#           - AS PER https://guides.cocoapods.org/using/using-cocoapods.html NEVER IGNORE THE LOCK FILE
-Pods/
-Podfile.lock
+# Created by https://www.toptal.com/developers/gitignore/api/ruby,macos,xcode,dotenv,fastlane,sonarqube,intellij+all,swiftpm,swiftpackagemanager
+# Edit at https://www.toptal.com/developers/gitignore?templates=ruby,macos,xcode,dotenv,fastlane,sonarqube,intellij+all,swiftpm,swiftpackagemanager
 
 ### dotenv ###
 .env
@@ -76,7 +67,7 @@ Podfile.lock
 # .idea/modules.xml
 # .idea/*.iml
 # .idea/modules
-*.iml
+# *.iml
 # *.ipr
 
 # CMake
@@ -184,12 +175,6 @@ build/
 build-iPhoneOS/
 build-iPhoneSimulator/
 
-## Specific to RubyMotion (use of CocoaPods):
-# We recommend against adding the Pods directory to your .gitignore. However
-# you should judge for yourself, the pros and cons are mentioned at:
-# https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
-# vendor/Pods/
-
 ## Documentation cache and generated files:
 /.yardoc/
 /_yardoc/
@@ -225,6 +210,15 @@ build-iPhoneSimulator/
 # SonarLint working directories, configuration files (including credentials)
 .sonarlint/
 
+### SwiftPackageManager ###
+Packages
+.build/
+xcuserdata
+DerivedData/
+
+### SwiftPM ###
+
+
 ### Xcode ###
 ## User settings
 xcuserdata/
@@ -242,10 +236,4 @@ xcuserdata/
 /*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
 
-# End of https://www.toptal.com/developers/gitignore/api/ruby,dotenv,macos,xcode,intellij+all,cocoapods,fastlane,sonarqube
-
-### Custom Xcode Patch ###
-*.xcworkspace/*
-
-### Jazzy Patch ###
-Docs/generated
+# End of https://www.toptal.com/developers/gitignore/api/ruby,macos,xcode,dotenv,fastlane,sonarqube,intellij+all,swiftpm,swiftpackagemanager

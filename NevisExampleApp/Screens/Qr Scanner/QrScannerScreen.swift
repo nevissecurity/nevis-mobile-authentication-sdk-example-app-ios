@@ -5,7 +5,7 @@
 //
 
 import AVFoundation
-import MercariQRScanner
+import QRScanner
 import UIKit
 
 /// The Qr Scanner view.
@@ -69,18 +69,18 @@ private extension QrScannerScreen {
 
 	func setupQRScanner() {
 		switch AVCaptureDevice.authorizationStatus(for: .video) {
-		case .authorized:
-			setupQRScannerView()
-		case .notDetermined:
-			AVCaptureDevice.requestAccess(for: .video) { [weak self] granted in
-				if granted {
-					DispatchQueue.main.async { [weak self] in
-						self?.setupQRScannerView()
+			case .authorized:
+				setupQRScannerView()
+			case .notDetermined:
+				AVCaptureDevice.requestAccess(for: .video) { [weak self] granted in
+					if granted {
+						DispatchQueue.main.async { [weak self] in
+							self?.setupQRScannerView()
+						}
 					}
 				}
-			}
-		default:
-			showAlert()
+			default:
+				showAlert()
 		}
 	}
 
@@ -93,9 +93,11 @@ private extension QrScannerScreen {
 
 	func showAlert() {
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-			let alert = UIAlertController(title: L10n.Error.QrCodeScan.title,
-			                              message: L10n.Error.QrCodeScan.Unauthorized.message,
-			                              preferredStyle: .alert)
+			let alert = UIAlertController(
+				title: L10n.Error.QrCodeScan.title,
+				message: L10n.Error.QrCodeScan.Unauthorized.message,
+				preferredStyle: .alert
+			)
 			alert.addAction(.init(title: L10n.Error.QrCodeScan.confirm, style: .default))
 			self?.present(alert, animated: true)
 		}

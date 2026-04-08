@@ -33,7 +33,7 @@ extension AppCoordinatorImpl: AppCoordinator {
 	}
 
 	func navigateToHome() {
-		rootNavigationController?.dismiss(animated: true, completion: nil) // e.g. error
+		rootNavigationController?.dismiss(animated: true, completion: nil)  // e.g. error
 
 		if let screenInStack = rootNavigationController?.screenInStackFor(screenType: HomeScreen.self) {
 			logger.app("Navigating to Home.")
@@ -53,11 +53,12 @@ extension AppCoordinatorImpl: AppCoordinator {
 
 	func navigateToQrScanner() {
 		#if targetEnvironment(simulator)
-			let alert = UIAlertController(title: L10n.Error.QrCodeScan.title,
-			                              message: L10n.Error.QrCodeScan.Unavailable.message,
-			                              preferredStyle: .alert)
-			alert.addAction(.init(title: L10n.Error.QrCodeScan.confirm,
-			                      style: .default))
+			let alert = UIAlertController(
+				title: L10n.Error.QrCodeScan.title,
+				message: L10n.Error.QrCodeScan.Unavailable.message,
+				preferredStyle: .alert
+			)
+			alert.addAction(.init(title: L10n.Error.QrCodeScan.confirm, style: .default))
 			present(alert)
 		#else
 			guard let screen = DependencyProvider.shared.container.resolve(QrScannerScreen.self) else {
@@ -70,8 +71,12 @@ extension AppCoordinatorImpl: AppCoordinator {
 	}
 
 	func navigateToChangeDeviceInformation(with parameter: ChangeDeviceInformationParameter) {
-		guard let screen = DependencyProvider.shared.container.resolve(ChangeDeviceInformationScreen.self,
-		                                                               argument: parameter as NavigationParameterizable) else {
+		guard
+			let screen = DependencyProvider.shared.container.resolve(
+				ChangeDeviceInformationScreen.self,
+				argument: parameter as NavigationParameterizable
+			)
+		else {
 			return
 		}
 
@@ -98,8 +103,12 @@ extension AppCoordinatorImpl: AppCoordinator {
 	}
 
 	func navigateToAccountSelection(with parameter: SelectAccountParameter) {
-		guard let screen = DependencyProvider.shared.container.resolve(SelectAccountScreen.self,
-		                                                               argument: parameter as NavigationParameterizable) else {
+		guard
+			let screen = DependencyProvider.shared.container.resolve(
+				SelectAccountScreen.self,
+				argument: parameter as NavigationParameterizable
+			)
+		else {
 			return
 		}
 
@@ -108,8 +117,12 @@ extension AppCoordinatorImpl: AppCoordinator {
 	}
 
 	func navigateToAuthenticatorSelection(with parameter: SelectAuthenticatorParameter) {
-		guard let screen = DependencyProvider.shared.container.resolve(SelectAuthenticatorScreen.self,
-		                                                               argument: parameter as NavigationParameterizable) else {
+		guard
+			let screen = DependencyProvider.shared.container.resolve(
+				SelectAuthenticatorScreen.self,
+				argument: parameter as NavigationParameterizable
+			)
+		else {
 			return
 		}
 
@@ -118,17 +131,23 @@ extension AppCoordinatorImpl: AppCoordinator {
 	}
 
 	func navigateToCredential(with parameter: CredentialParameter) {
-		guard let screen = DependencyProvider.shared.container.resolve(CredentialScreen.self,
-		                                                               argument: parameter as NavigationParameterizable) else {
+		guard
+			let screen = DependencyProvider.shared.container.resolve(
+				CredentialScreen.self,
+				argument: parameter as NavigationParameterizable
+			)
+		else {
 			return
 		}
 
 		if let credentialScreen = topScreen as? CredentialScreen {
 			// the `PinEnrollerImpl`, `PinUserVerifierImpl`, `PasswordEnrollerImpl` or `PasswordUserVerifierImpl` navigates to the Credential screen although that is the visible screen.
-			// It means that the user entered invalid credentials and a recoverable error recevied.
+			// It means that the user entered invalid credentials and a recoverable error received.
 			// Just refresh the screen with the new presenter.
-			credentialScreen.presenter = DependencyProvider.shared.container.resolve(CredentialPresenter.self,
-			                                                                         argument: parameter as NavigationParameterizable)
+			credentialScreen.presenter = DependencyProvider.shared.container.resolve(
+				CredentialPresenter.self,
+				argument: parameter as NavigationParameterizable
+			)
 			credentialScreen.presenter.view = credentialScreen
 			logger.app("Refreshing credential (PIN, Password) screen.")
 			credentialScreen.refresh()
@@ -141,8 +160,12 @@ extension AppCoordinatorImpl: AppCoordinator {
 	}
 
 	func navigateToTransactionConfirmation(with parameter: TransactionConfirmationParameter) {
-		guard let screen = DependencyProvider.shared.container.resolve(TransactionConfirmationScreen.self,
-		                                                               argument: parameter as NavigationParameterizable) else {
+		guard
+			let screen = DependencyProvider.shared.container.resolve(
+				TransactionConfirmationScreen.self,
+				argument: parameter as NavigationParameterizable
+			)
+		else {
 			return
 		}
 
@@ -151,8 +174,12 @@ extension AppCoordinatorImpl: AppCoordinator {
 	}
 
 	func navigateToConfirmation(with parameter: ConfirmationParameter) {
-		guard let screen = DependencyProvider.shared.container.resolve(ConfirmationScreen.self,
-		                                                               argument: parameter as NavigationParameterizable) else {
+		guard
+			let screen = DependencyProvider.shared.container.resolve(
+				ConfirmationScreen.self,
+				argument: parameter as NavigationParameterizable
+			)
+		else {
 			return
 		}
 
@@ -161,8 +188,12 @@ extension AppCoordinatorImpl: AppCoordinator {
 	}
 
 	func navigateToResult(with parameter: ResultParameter) {
-		guard let screen = DependencyProvider.shared.container.resolve(ResultScreen.self,
-		                                                               argument: parameter as NavigationParameterizable) else {
+		guard
+			let screen = DependencyProvider.shared.container.resolve(
+				ResultScreen.self,
+				argument: parameter as NavigationParameterizable
+			)
+		else {
 			return
 		}
 

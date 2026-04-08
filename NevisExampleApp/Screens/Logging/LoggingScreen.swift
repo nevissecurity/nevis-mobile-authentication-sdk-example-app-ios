@@ -66,12 +66,12 @@ extension LoggingScreen {
 private extension LoggingScreen {
 
 	func setupUI() {
-		setupSeperator()
+		setupSeparator()
 		setupTitleLabel()
 		setupLogView()
 	}
 
-	func setupSeperator() {
+	func setupSeparator() {
 		separator.do {
 			view.addSubview($0)
 			$0.anchorToTop(0)

@@ -16,8 +16,8 @@ extension PasswordPolicyError: LocalizedError {
 	/// A message describing what error occurred.
 	var errorDescription: String? {
 		switch self {
-		case .invalidPassword:
-			L10n.Credential.Password.Policy.errorCause
+			case .invalidPassword:
+				L10n.Credential.Password.Policy.errorCause
 		}
 	}
 }

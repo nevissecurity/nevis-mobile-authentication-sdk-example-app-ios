@@ -75,19 +75,19 @@ extension TransactionConfirmationPresenter {
 
 private extension TransactionConfirmationPresenter {
 
-	/// Handles the recevied parameter.
+	/// Handles the received parameter.
 	///
-	/// - Parameter paramter: The parameter to handle.
+	/// - Parameter parameter: The parameter to handle.
 	func setParameter(_ parameter: TransactionConfirmationParameter?) {
 		guard let parameter else {
 			preconditionFailure("Parameter type mismatch!")
 		}
 
 		switch parameter {
-		case let .confirm(message, account, handler):
-			self.message = message
-			self.account = account
-			self.handler = handler
+			case let .confirm(message, account, handler):
+				self.message = message
+				self.account = account
+				self.handler = handler
 		}
 	}
 }

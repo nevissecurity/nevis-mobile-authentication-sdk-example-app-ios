@@ -10,7 +10,7 @@ import NevisMobileAuthentication
 /// For more information about PIN change please read the [official documentation](https://docs.nevis.net/mobilesdk/guide/operation/other-operations#change-pin).
 ///
 /// Navigates to the ``CredentialScreen`` where the user can change the PIN.
-class PinChangerImpl {
+final class PinChangerImpl {
 
 	// MARK: - Properties
 
@@ -34,21 +34,22 @@ extension PinChangerImpl: PinChanger {
 	func changePin(context: PinChangeContext, handler: PinChangeHandler) {
 		if context.lastRecoverableError != nil {
 			logger.sdk("PIN change failed. Please try again.", .red)
-		}
-		else {
+		} else {
 			logger.sdk("Please start PIN change.")
 		}
 
 		appCoordinator.topScreen?.enableInteraction()
-		let parameter: PinParameter = .credentialChange(protectionStatus: context.authenticatorProtectionStatus,
-		                                                lastRecoverableError: context.lastRecoverableError,
-		                                                handler: handler)
+		let parameter: PinParameter = .credentialChange(
+			protectionStatus: context.authenticatorProtectionStatus,
+			lastRecoverableError: context.lastRecoverableError,
+			handler: handler
+		)
 		appCoordinator.navigateToCredential(with: parameter)
 	}
 
 	/// You can add custom PIN policy by overriding the `pinPolicy` getter.
-	/// The default minimum and maximum PIN length is 6 without any furhter validation during PIN enrollment or change.
-//	func pinPolicy() -> PinPolicy {
-//		// custom PinPolicy implementation
-//	}
+	/// The default minimum and maximum PIN length is 6 without any further validation during PIN enrollment or change.
+	//	func pinPolicy() -> PinPolicy {
+	//		// custom PinPolicy implementation
+	//	}
 }

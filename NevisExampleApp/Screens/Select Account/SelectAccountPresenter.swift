@@ -15,10 +15,12 @@ enum SelectAccountParameter: NavigationParameterizable {
 	///    - operation: The ongoing operation.
 	///    - handler: The account selection handler.
 	///    - message: The message to confirm.
-	case select(accounts: [any Account],
-	            operation: Operation,
-	            handler: AccountSelectionHandler?,
-	            message: String?)
+	case select(
+		accounts: [any Account],
+		operation: Operation,
+		handler: AccountSelectionHandler?,
+		message: String?
+	)
 }
 
 /// Presenter of Account Selection view.
@@ -70,7 +72,7 @@ final class SelectAccountPresenter {
 	/// The current operation.
 	private var operation: Operation?
 
-	/// The account seelction handler.
+	/// The account selection handler.
 	private var handler: AccountSelectionHandler?
 
 	/// The transaction confirmation data.
@@ -92,17 +94,19 @@ final class SelectAccountPresenter {
 	///   - appCoordinator: The application coordinator.
 	///   - errorHandlerChain: The error handler chain.
 	///   - parameter: The navigation parameter.
-	init(clientProvider: ClientProvider,
-	     authenticatorSelector: AuthenticatorSelector,
-	     pinChanger: PinChanger,
-	     pinUserVerifier: PinUserVerifier,
-	     passwordChanger: PasswordChanger,
-	     passwordUserVerifier: PasswordUserVerifier,
-	     biometricUserVerifier: BiometricUserVerifier,
-	     devicePasscodeUserVerifier: DevicePasscodeUserVerifier,
-	     appCoordinator: AppCoordinator,
-	     errorHandlerChain: ErrorHandlerChain,
-	     parameter: NavigationParameterizable) {
+	init(
+		clientProvider: ClientProvider,
+		authenticatorSelector: AuthenticatorSelector,
+		pinChanger: PinChanger,
+		pinUserVerifier: PinUserVerifier,
+		passwordChanger: PasswordChanger,
+		passwordUserVerifier: PasswordUserVerifier,
+		biometricUserVerifier: BiometricUserVerifier,
+		devicePasscodeUserVerifier: DevicePasscodeUserVerifier,
+		appCoordinator: AppCoordinator,
+		errorHandlerChain: ErrorHandlerChain,
+		parameter: NavigationParameterizable
+	) {
 		self.clientProvider = clientProvider
 		self.authenticatorSelector = authenticatorSelector
 		self.pinChanger = pinChanger
@@ -146,18 +150,18 @@ extension SelectAccountPresenter {
 		}
 
 		switch operation {
-		case .authentication:
-			// in-band authentication is in progress (arriving from the Home screen)
-			inBandAuthenticate(using: account)
-		case .deregistration:
-			deregister(using: account)
-		case .pinChange:
-			changePin(using: account)
-		case .passwordChange:
-			changePassword(using: account)
-		default:
-			handler?.username(account.username)
-			handler = nil
+			case .authentication:
+				// in-band authentication is in progress (arriving from the Home screen)
+				inBandAuthenticate(using: account)
+			case .deregistration:
+				deregister(using: account)
+			case .pinChange:
+				changePin(using: account)
+			case .passwordChange:
+				changePassword(using: account)
+			default:
+				handler?.username(account.username)
+				handler = nil
 		}
 	}
 }
@@ -172,9 +176,11 @@ private extension SelectAccountPresenter {
 	///   - transaction: The transaction that need to be confirmed or cancelled by the user.
 	///   - account: The current account.
 	func confirm(transaction: String, using account: any Account) {
-		let parameter: TransactionConfirmationParameter = .confirm(message: transaction,
-		                                                           account: account,
-		                                                           handler: handler!)
+		let parameter: TransactionConfirmationParameter = .confirm(
+			message: transaction,
+			account: account,
+			handler: handler!
+		)
 		appCoordinator.navigateToTransactionConfirmation(with: parameter)
 		handler = nil
 	}
@@ -206,17 +212,17 @@ private extension SelectAccountPresenter {
 				logger.sdk("In-band authentication failed.", .red)
 				handler?(.failure(error))
 				switch error {
-				case let .FidoError(_, _, sessionProvider),
-				     let .NetworkError(_, sessionProvider):
-					self.printSessionInfo(sessionProvider)
-				case .AppAttestationError(cause: _):
-					fallthrough
-				case .NoDeviceLockError:
-					fallthrough
-				case .Unknown:
-					fallthrough
-				@unknown default:
-					logger.sdk("In-band authentication failed because of an unknown error.", .red)
+					case let .FidoError(_, _, sessionProvider),
+						let .NetworkError(_, sessionProvider):
+						self.printSessionInfo(sessionProvider)
+					case .AppAttestationError(cause: _):
+						fallthrough
+					case .NoDeviceLockError:
+						fallthrough
+					case .Unknown:
+						fallthrough
+					@unknown default:
+						logger.sdk("In-band authentication failed because of an unknown error.", .red)
 				}
 
 				let operationError = OperationError(operation: .authentication, underlyingError: error)
@@ -236,15 +242,15 @@ private extension SelectAccountPresenter {
 		// First perform In-Band authentication then a deregistration with the username.
 		inBandAuthenticate(using: account) { result in
 			switch result {
-			case let .success(authorizationProvider):
-				guard let authorizationProvider else {
-					return self.errorHandlerChain.handle(error: AppError.cookieNotFound)
-				}
+				case let .success(authorizationProvider):
+					guard let authorizationProvider else {
+						return self.errorHandlerChain.handle(error: AppError.cookieNotFound)
+					}
 
-				self.printAuthorizationInfo(authorizationProvider)
-				self.doDeregistration(for: account.username, authorizationProvider: authorizationProvider)
-			case .failure:
-				logger.sdk("Deregistration failed for user %@", .black, .debug, account.username)
+					self.printAuthorizationInfo(authorizationProvider)
+					self.doDeregistration(for: account.username, authorizationProvider: authorizationProvider)
+				case .failure:
+					logger.sdk("Deregistration failed for user %@", .black, .debug, account.username)
 			}
 		}
 	}
@@ -253,7 +259,7 @@ private extension SelectAccountPresenter {
 	///
 	/// - Parameters:
 	///   - username: The username of the account to deregister.
-	///   - authorizationProvider: The authoriztion provider.
+	///   - authorizationProvider: The authorization provider.
 	func doDeregistration(for username: String, authorizationProvider: AuthorizationProvider) {
 		mobileAuthenticationClient?.operations.deregistration
 			.username(username)
@@ -272,7 +278,7 @@ private extension SelectAccountPresenter {
 
 	/// Changes the PIN of the selected account.
 	///
-	/// - Parameter account: The seleced account.
+	/// - Parameter account: The selected account.
 	func changePin(using account: any Account) {
 		logger.sdk("Changing PIN for account: %@", .black, .debug, account.username)
 		view?.disableInteraction()
@@ -293,7 +299,7 @@ private extension SelectAccountPresenter {
 
 	/// Changes the Password of the selected account.
 	///
-	/// - Parameter account: The seleced account.
+	/// - Parameter account: The selected account.
 	func changePassword(using account: any Account) {
 		logger.sdk("Changing Password for account: %@", .black, .debug, account.username)
 		view?.disableInteraction()
@@ -312,20 +318,20 @@ private extension SelectAccountPresenter {
 			.execute()
 	}
 
-	/// Handles the recevied parameter.
+	/// Handles the received parameter.
 	///
-	/// - Parameter paramter: The parameter to handle.
+	/// - Parameter parameter: The parameter to handle.
 	func setParameter(_ parameter: SelectAccountParameter?) {
 		guard let parameter else {
 			preconditionFailure("Parameter type mismatch!")
 		}
 
 		switch parameter {
-		case let .select(accounts, operation, handler, transactionConfirmationData):
-			self.accounts = accounts
-			self.operation = operation
-			self.handler = handler
-			self.transactionConfirmationData = transactionConfirmationData
+			case let .select(accounts, operation, handler, transactionConfirmationData):
+				self.accounts = accounts
+				self.operation = operation
+				self.handler = handler
+				self.transactionConfirmationData = transactionConfirmationData
 		}
 	}
 
@@ -335,8 +341,7 @@ private extension SelectAccountPresenter {
 	func printAuthorizationInfo(_ authorizationProvider: AuthorizationProvider?) {
 		if let cookieAuthorizationProvider = authorizationProvider as? CookieAuthorizationProvider {
 			logger.sdk("Received cookies: %@", .black, .debug, cookieAuthorizationProvider.cookies)
-		}
-		else if let jwtAuthorizationProvider = authorizationProvider as? JwtAuthorizationProvider {
+		} else if let jwtAuthorizationProvider = authorizationProvider as? JwtAuthorizationProvider {
 			logger.sdk("Received JWT is %@", .black, .debug, jwtAuthorizationProvider.jwt)
 		}
 	}
@@ -347,8 +352,7 @@ private extension SelectAccountPresenter {
 	func printSessionInfo(_ sessionProvider: SessionProvider?) {
 		if let cookieSessionProvider = sessionProvider as? CookieSessionProvider {
 			logger.sdk("Received cookies: %@", .black, .debug, cookieSessionProvider.cookies)
-		}
-		else if let jwtSessionProvider = sessionProvider as? JwtSessionProvider {
+		} else if let jwtSessionProvider = sessionProvider as? JwtSessionProvider {
 			logger.sdk("Received JWT is %@", .black, .debug, jwtSessionProvider.jwt)
 		}
 	}
