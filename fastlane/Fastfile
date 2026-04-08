@@ -74,7 +74,7 @@ platform :ios do
 		update_config(host_name: ENV["HOST_NAME"])
 
 		build_number = ENV["BUILD_NUMBER"] || get_build_number
-		version = get_version_number
+		version = get_version_number(xcodeproj: project, target: scheme)
 		increment_build_number(build_number:)
 
 		UI.message("Distributing #{display_name} #{version} (#{build_number}) 📦")
