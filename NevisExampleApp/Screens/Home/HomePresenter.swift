@@ -4,6 +4,7 @@
 // Copyright © 2022. Nevis Security AG. All rights reserved.
 //
 
+import Foundation
 import NevisMobileAuthentication
 
 /// Presenter of Home view.
@@ -236,6 +237,31 @@ extension HomePresenter {
 				)
 				appCoordinator.navigateToAccountSelection(with: parameter)
 		}
+	}
+
+	/// Starts device information check operation.
+	func checkDeviceInformation() {
+		mobileAuthenticationClient?.operations.deviceInformationCheck
+			.onResult { result in
+				guard result.errors.isEmpty else {
+					logger.sdk("Device information check failed.", .red, .error)
+					result.errors.forEach { error in
+						logger.sdk("Error: %@", .red, .error, error.localizedDescription)
+					}
+					return
+				}
+
+				logger.sdk("Device Information Check succeeded.")
+				guard result.mismatches.isEmpty else {
+					logger.sdk("Mismatches found.", .red, .error)
+					result.mismatches.forEach { mismatch in
+						logger.sdk("Mismatch: %@", .red, .error, String(describing: mismatch))
+					}
+					return
+				}
+				logger.sdk("No mismatches found.")
+			}
+			.execute()
 	}
 
 	/// Starts device information change operation.

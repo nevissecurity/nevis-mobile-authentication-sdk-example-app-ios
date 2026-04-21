@@ -41,6 +41,8 @@ enum L10n {
 		static let changePin = L10n.tr("home_pin_change_button")
 		/// Change Password  button: "Password Change"
 		static let changePassword = L10n.tr("home_password_change_button")
+		/// Check Device Information button: "Check Device Information"
+		static let checkDeviceInformation = L10n.tr("home_check_device_information_button")
 		/// Change device information button: "Change Device Information"
 		static let changeDeviceInformation = L10n.tr("home_change_device_information_button")
 		/// Auth Cloud Api registration button: "Auth Cloud Api Registration"

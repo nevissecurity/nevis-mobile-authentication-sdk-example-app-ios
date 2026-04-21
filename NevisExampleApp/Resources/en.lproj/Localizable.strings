@@ -10,6 +10,7 @@
 "home_deregister_button" = "Deregister";
 "home_pin_change_button" = "PIN change";
 "home_password_change_button" = "Password change";
+"home_check_device_information_button" = "Check Device Information";
 "home_change_device_information_button" = "Change Device Information";
 "home_auth_cloud_api_registration_button" = "Auth Cloud Api Registration";
 "home_delete_authenticators_button" = "Delete Authenticators";

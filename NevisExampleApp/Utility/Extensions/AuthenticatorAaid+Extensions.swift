@@ -4,6 +4,7 @@
 // Copyright © 2024. Nevis Security AG. All rights reserved.
 //
 
+import Foundation
 import NevisMobileAuthentication
 
 /// Codable extension for `AuthenticatorAaid`.

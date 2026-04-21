@@ -32,6 +32,9 @@ final class HomeScreen: BaseScreen, Screen {
 	/// The Password Change button.
 	private let passwordChangeButton = OutlinedButton(title: L10n.Home.changePassword)
 
+	/// The Check Device Information button.
+	private let checkDeviceInformationButton = OutlinedButton(title: L10n.Home.checkDeviceInformation)
+
 	/// The Change Device Information button.
 	private let changeDeviceInformationButton = OutlinedButton(title: L10n.Home.changeDeviceInformation)
 
@@ -119,6 +122,7 @@ private extension HomeScreen {
 		setupDeregisterButton()
 		setupPinChangeButton()
 		setupPasswordChangeButton()
+		setupCheckDeviceInformationButton()
 		setupChangeDeviceInformationButton()
 		setupAuthCloudApiRegisterButton()
 		setupDeleteAuthenticatorsButton()
@@ -177,6 +181,14 @@ private extension HomeScreen {
 			addItemToBottom($0, spacing: 16)
 			$0.setHeight(with: 40)
 			$0.addTarget(self, action: #selector(changePassword), for: .touchUpInside)
+		}
+	}
+
+	func setupCheckDeviceInformationButton() {
+		checkDeviceInformationButton.do {
+			addItemToBottom($0, spacing: 16)
+			$0.setHeight(with: 40)
+			$0.addTarget(self, action: #selector(checkDeviceInformation), for: .touchUpInside)
 		}
 	}
 
@@ -266,6 +278,11 @@ private extension HomeScreen {
 	@objc
 	func changePassword() {
 		presenter.changeCredential(.Password)
+	}
+
+	@objc
+	func checkDeviceInformation() {
+		presenter.checkDeviceInformation()
 	}
 
 	@objc
