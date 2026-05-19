@@ -219,6 +219,8 @@ private extension SelectAccountPresenter {
 						fallthrough
 					case .NoDeviceLockError:
 						fallthrough
+					case .ServerCanceledOperation(cause: _):
+						fallthrough
 					case .Unknown:
 						fallthrough
 					@unknown default:
