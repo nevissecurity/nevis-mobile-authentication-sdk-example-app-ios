@@ -21,6 +21,9 @@
 # snapshot generated screenshots
 **/fastlane/screenshots
 
+# build artifacts
+**/fastlane/output
+
 # scan temporary files
 **/fastlane/test_output
 
