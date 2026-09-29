@@ -115,6 +115,23 @@ extension OutOfBandOperationHandlerImpl: OutOfBandOperationHandler {
 			self.startOutOfBandOperation(with: $0)
 		}
 	}
+
+	func startOutOfBandOperation(with payload: OutOfBandPayload) {
+		mobileAuthenticationClient?.operations.outOfBandOperation
+			.payload(payload)
+			.onRegistration {
+				self.register(using: $0)
+			}
+			.onAuthentication {
+				self.authenticate(using: $0)
+			}
+			.onError {
+				logger.sdk("Out-of-Band operation failed.", .red)
+				let operationError = OperationError(operation: .outOfBand, underlyingError: $0)
+				self.errorHandlerChain.handle(error: operationError)
+			}
+			.execute()
+	}
 }
 
 private extension OutOfBandOperationHandlerImpl {
@@ -141,26 +158,6 @@ private extension OutOfBandOperationHandlerImpl {
 					.execute()
 			}
 			.store(in: &cancellables)
-	}
-
-	/// Starts an Out-of-Band operation with the given payload.
-	///
-	/// - Parameter payload: The Out-of-Band payload.
-	func startOutOfBandOperation(with payload: OutOfBandPayload) {
-		mobileAuthenticationClient?.operations.outOfBandOperation
-			.payload(payload)
-			.onRegistration {
-				self.register(using: $0)
-			}
-			.onAuthentication {
-				self.authenticate(using: $0)
-			}
-			.onError {
-				logger.sdk("Out-of-Band operation failed.", .red)
-				let operationError = OperationError(operation: .outOfBand, underlyingError: $0)
-				self.errorHandlerChain.handle(error: operationError)
-			}
-			.execute()
 	}
 
 	/// Starts an Out-of-Band registration operation.

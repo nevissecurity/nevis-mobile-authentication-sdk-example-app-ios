@@ -26,6 +26,9 @@ final class HomePresenter {
 	/// The Password changer.
 	private let passwordChanger: PasswordChanger
 
+	/// The Out-of-Band Operation handler.
+	private let outOfBandOperationHandler: OutOfBandOperationHandler
+
 	/// The application coordinator.
 	private let appCoordinator: AppCoordinator
 
@@ -46,6 +49,7 @@ final class HomePresenter {
 	///   - clientProvider: The client provider.
 	///   - pinChanger: The PIN changer.
 	///   - passwordChanger: The Password changer.
+	///   - outOfBandOperationHandler: The Out-of-Band Operation handler.
 	///   - appCoordinator: The application coordinator.
 	///   - errorHandlerChain: The error handler chain.
 	init(
@@ -53,6 +57,7 @@ final class HomePresenter {
 		clientProvider: ClientProvider,
 		pinChanger: PinChanger,
 		passwordChanger: PasswordChanger,
+		outOfBandOperationHandler: OutOfBandOperationHandler,
 		appCoordinator: AppCoordinator,
 		errorHandlerChain: ErrorHandlerChain
 	) {
@@ -60,6 +65,7 @@ final class HomePresenter {
 		self.clientProvider = clientProvider
 		self.pinChanger = pinChanger
 		self.passwordChanger = passwordChanger
+		self.outOfBandOperationHandler = outOfBandOperationHandler
 		self.appCoordinator = appCoordinator
 		self.errorHandlerChain = errorHandlerChain
 	}
@@ -138,6 +144,40 @@ extension HomePresenter {
 			message: nil
 		)
 		appCoordinator.navigateToAccountSelection(with: parameter)
+	}
+
+	/// Fetches pending out-of-band operations.
+	func fetchPendingOperations() {
+		view?.disableInteraction()
+		guard let accounts = mobileAuthenticationClient?.localData.accounts, !accounts.isEmpty else {
+			logger.sdk("Accounts not found.", .red)
+			let operationError = OperationError(
+				operation: .fetchPendingOperations,
+				underlyingError: AppError.accountsNotFound
+			)
+			return errorHandlerChain.handle(error: operationError)
+		}
+
+		mobileAuthenticationClient?.operations.pendingOutOfBandOperations
+			.onResult { result in
+				guard result.errors.isEmpty else {
+					let errors = result.errors.map() { $0.localizedDescription }
+					logger.sdk("Fetch pending out of band operations failed. Error(s): %@", .red, .error, errors)
+
+					let operationError = OperationError(operation: .fetchPendingOperations, underlyingError: result.errors.first!)
+					return self.errorHandlerChain.handle(error: operationError)
+				}
+
+				self.view?.enableInteraction()
+
+				guard let payload = result.operations.last?.payload else {
+					return logger.sdk("Pending out of band operation not found.", .black, .debug)
+				}
+
+				logger.sdk("Pending out of band operation found.", .black, .debug)
+				self.outOfBandOperationHandler.startOutOfBandOperation(with: payload)
+			}
+			.execute()
 	}
 
 	/// Starts deregistering all accounts.
