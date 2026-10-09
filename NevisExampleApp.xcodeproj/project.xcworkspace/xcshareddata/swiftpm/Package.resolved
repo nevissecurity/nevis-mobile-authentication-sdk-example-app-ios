@@ -33,8 +33,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/nevissecurity/nevis-mobile-authentication-sdk-ios-package",
       "state" : {
-        "revision" : "aa4da6f0a5d12caf9b7d04c22ea036ce97686acd",
-        "version" : "4.5.0"
+        "revision" : "5af5783541229c8430e7f493ceec7bf4e1355ee8",
+        "version" : "4.6.0"
       }
     },
     {
