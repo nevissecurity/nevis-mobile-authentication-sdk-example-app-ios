@@ -15,6 +15,7 @@ enum ChangeDeviceInformationParameter: NavigationParameterizable {
 }
 
 /// Presenter of Change Device Information view.
+@MainActor
 final class ChangeDeviceInformationPresenter {
 	// MARK: - Properties
 
@@ -80,12 +81,16 @@ extension ChangeDeviceInformationPresenter {
 			.name(name)
 			.onSuccess {
 				logger.sdk("Change device information succeeded.", .green)
-				self.appCoordinator.navigateToResult(with: .success(operation: .deviceInformationChange))
+				Task { @MainActor in
+					self.appCoordinator.navigateToResult(with: .success(operation: .deviceInformationChange))
+				}
 			}
-			.onError {
+			.onError { error in
 				logger.sdk("Change device information failed.", .red)
-				let operationError = OperationError(operation: .deviceInformationChange, underlyingError: $0)
-				self.errorHandlerChain.handle(error: operationError)
+				Task { @MainActor in
+					let operationError = OperationError(operation: .deviceInformationChange, underlyingError: error)
+					self.errorHandlerChain.handle(error: operationError)
+				}
 			}
 			.execute()
 	}

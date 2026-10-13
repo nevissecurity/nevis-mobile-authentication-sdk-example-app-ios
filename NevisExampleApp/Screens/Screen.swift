@@ -5,6 +5,7 @@
 //
 
 /// By conforming to the protocol means that a presenter will be belong to the instance.
+@MainActor
 protocol Screen {
 
 	/// Associated type for the presenter.

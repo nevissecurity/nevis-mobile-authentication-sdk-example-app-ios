@@ -7,6 +7,7 @@
 import UIKit
 
 /// Describes application related navigation operations.
+@MainActor
 protocol AppCoordinator: Coordinator {
 
 	/// The top most screen in the view stack.

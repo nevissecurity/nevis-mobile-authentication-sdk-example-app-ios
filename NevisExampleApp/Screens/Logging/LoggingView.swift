@@ -7,6 +7,7 @@
 import Foundation
 
 /// View protocol for the ``LoggingScreen``.
+@MainActor
 protocol LoggingView: AnyObject {
 
 	/// Updates the view with the message.

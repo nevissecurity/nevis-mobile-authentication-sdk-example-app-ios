@@ -84,6 +84,7 @@ enum PasswordParameter: CredentialParameter {
 // MARK: - Presenter
 
 /// Presenter of Credential view.
+@MainActor
 final class CredentialPresenter {
 
 	/// Available credential operations.

@@ -7,6 +7,7 @@
 import UIKit
 
 /// Default implementation of ``AppCoordinator`` protocol.
+@MainActor
 final class AppCoordinatorImpl {
 
 	// MARK: - Properties

@@ -7,6 +7,7 @@
 import Foundation
 
 /// Presenter of Logging view.
+@MainActor
 final class LoggingPresenter {
 
 	// MARK: - Properties

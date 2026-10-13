@@ -46,13 +46,15 @@ extension PasswordChangerImpl: PasswordChanger {
 			logger.sdk("Please start Password change.")
 		}
 
-		appCoordinator.topScreen?.enableInteraction()
-		let parameter: PasswordParameter = .credentialChange(
-			protectionStatus: context.authenticatorProtectionStatus,
-			lastRecoverableError: context.lastRecoverableError,
-			handler: handler
-		)
-		appCoordinator.navigateToCredential(with: parameter)
+		Task { @MainActor in
+			appCoordinator.topScreen?.enableInteraction()
+			let parameter: PasswordParameter = .credentialChange(
+				protectionStatus: context.authenticatorProtectionStatus,
+				lastRecoverableError: context.lastRecoverableError,
+				handler: handler
+			)
+			appCoordinator.navigateToCredential(with: parameter)
+		}
 	}
 
 	func passwordPolicy() -> PasswordPolicy {

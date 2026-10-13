@@ -8,6 +8,7 @@ import NevisMobileAuthentication
 import UIKit
 
 /// Presenter of Username Password Login view.
+@MainActor
 final class UsernamePasswordLoginPresenter {
 
 	// MARK: - Properties
@@ -115,16 +116,16 @@ extension UsernamePasswordLoginPresenter {
 
 			view?.disableInteraction()
 			let request = LoginRequest(url: url, username: username, password: password)
-			loginService.send(request: request) { result in
-				switch result {
-					case let .success(response):
-						self.register(username: response.extId, cookies: response.cookies)
-					case let .failure(error):
-						let operationError = OperationError(
-							operation: .registration,
-							underlyingError: error
-						)
-						self.errorHandlerChain.handle(error: operationError)
+			Task {
+				do {
+					let response = try await loginService.send(request: request)
+					register(username: response.extId, cookies: response.cookies)
+				} catch {
+					let operationError = OperationError(
+						operation: .registration,
+						underlyingError: error
+					)
+					errorHandlerChain.handle(error: operationError)
 				}
 			}
 		} catch {
@@ -175,15 +176,19 @@ private extension UsernamePasswordLoginPresenter {
 			.devicePasscodeUserVerifier(devicePasscodeUserVerifier)
 			.onSuccess {
 				logger.sdk("In-Band registration succeeded.", .green)
-				self.appCoordinator.navigateToResult(with: .success(operation: .registration))
+				Task { @MainActor in
+					self.appCoordinator.navigateToResult(with: .success(operation: .registration))
+				}
 			}
-			.onError {
+			.onError { error in
 				logger.sdk("In-Band registration failed.", .red)
-				let operationError = OperationError(
-					operation: .registration,
-					underlyingError: $0
-				)
-				self.errorHandlerChain.handle(error: operationError)
+				Task { @MainActor in
+					let operationError = OperationError(
+						operation: .registration,
+						underlyingError: error
+					)
+					self.errorHandlerChain.handle(error: operationError)
+				}
 			}
 			.execute()
 	}

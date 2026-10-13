@@ -34,10 +34,12 @@ extension BiometricUserVerifierImpl: BiometricUserVerifier {
 	func verifyBiometric(context: BiometricUserVerificationContext, handler: BiometricUserVerificationHandler) {
 		logger.sdk("Please start biometric user verification.")
 
-		let parameter: ConfirmationParameter = .confirmBiometric(
-			authenticator: context.authenticator.localizedTitle,
-			handler: handler
-		)
-		appCoordinator.navigateToConfirmation(with: parameter)
+		Task { @MainActor in
+			let parameter: ConfirmationParameter = .confirmBiometric(
+				authenticator: context.authenticator.localizedTitle,
+				handler: handler
+			)
+			appCoordinator.navigateToConfirmation(with: parameter)
+		}
 	}
 }

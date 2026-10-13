@@ -51,12 +51,14 @@ extension AccountSelectorImpl: AccountSelector {
 						if let transactionConfirmationData = context.transactionConfirmationData,
 							let message = String(data: transactionConfirmationData, encoding: .utf8)
 						{
-							let parameter: TransactionConfirmationParameter = .confirm(
-								message: message,
-								account: validAccounts.first!,
-								handler: handler
-							)
-							appCoordinator.navigateToTransactionConfirmation(with: parameter)
+							Task { @MainActor in
+								let parameter: TransactionConfirmationParameter = .confirm(
+									message: message,
+									account: validAccounts.first!,
+									handler: handler
+								)
+								appCoordinator.navigateToTransactionConfirmation(with: parameter)
+							}
 						} else {
 							// Typical case: authentication with username provided, just use it.
 							logger.sdk("One account found, performing automatic selection!")
@@ -71,13 +73,15 @@ extension AccountSelectorImpl: AccountSelector {
 							return nil
 						}
 
-						let parameter: SelectAccountParameter = .select(
-							accounts: validAccounts,
-							operation: .unknown,
-							handler: handler,
-							message: transactionConfirmationDataString
-						)
-						appCoordinator.navigateToAccountSelection(with: parameter)
+						Task { @MainActor in
+							let parameter: SelectAccountParameter = .select(
+								accounts: validAccounts,
+								operation: .unknown,
+								handler: handler,
+								message: transactionConfirmationDataString
+							)
+							appCoordinator.navigateToAccountSelection(with: parameter)
+						}
 				}
 			case .failure:
 				handler.cancel()

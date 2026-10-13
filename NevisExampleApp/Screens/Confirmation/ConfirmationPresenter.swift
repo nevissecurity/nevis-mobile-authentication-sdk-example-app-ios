@@ -22,6 +22,7 @@ enum ConfirmationParameter: NavigationParameterizable {
 }
 
 /// Presenter of Confirmation view.
+@MainActor
 final class ConfirmationPresenter {
 
 	// MARK: - Properties

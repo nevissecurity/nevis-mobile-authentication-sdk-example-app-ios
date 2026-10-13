@@ -76,21 +76,23 @@ extension AuthenticatorSelectorImpl: AuthenticatorSelector {
 
 		switch validationResult {
 			case let .success(validatedAuthenticators):
-				let authenticatorItems = validatedAuthenticators.map {
-					AuthenticatorItem(
-						authenticator: $0,
-						isPolicyCompliant: context.isPolicyCompliant(authenticatorAaid: $0.aaid),
-						isUserEnrolled: $0.isEnrolled(username: context.account.username)
+				Task { @MainActor in
+					let authenticatorItems = validatedAuthenticators.map {
+						AuthenticatorItem(
+							authenticator: $0,
+							isPolicyCompliant: context.isPolicyCompliant(authenticatorAaid: $0.aaid),
+							isUserEnrolled: $0.isEnrolled(username: context.account.username)
+						)
+					}
+					let parameter: SelectAuthenticatorParameter = .select(
+						authenticatorItems: authenticatorItems,
+						handler: handler
 					)
+					if case .registration = operation {
+						appCoordinator.topScreen?.enableInteraction()
+					}
+					appCoordinator.navigateToAuthenticatorSelection(with: parameter)
 				}
-				let parameter: SelectAuthenticatorParameter = .select(
-					authenticatorItems: authenticatorItems,
-					handler: handler
-				)
-				if case .registration = operation {
-					appCoordinator.topScreen?.enableInteraction()
-				}
-				appCoordinator.navigateToAuthenticatorSelection(with: parameter)
 			case .failure:
 				handler.cancel()
 		}

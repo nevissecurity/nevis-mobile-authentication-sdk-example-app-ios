@@ -81,7 +81,6 @@
 		3859EB99292CFA1900013472 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EB6F292CFA1800013472 /* Style.swift */; };
 		3859EB9A292CFA1900013472 /* NSLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EB70292CFA1800013472 /* NSLabel.swift */; };
 		3859EB9D292CFA1900013472 /* InteractionCountDownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EB75292CFA1800013472 /* InteractionCountDownTimer.swift */; };
-		3859EBA2292CFA1900013472 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EB7C292CFA1900013472 /* UIApplication+Extension.swift */; };
 		3859EBA3292CFA1900013472 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EB7D292CFA1900013472 /* UIView+Extension.swift */; };
 		3859EBA4292CFA1900013472 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EB7E292CFA1900013472 /* UINavigationController+Extension.swift */; };
 		3859EBA7292CFA1900013472 /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EB81292CFA1900013472 /* UIStackView+Extension.swift */; };
@@ -159,7 +158,6 @@
 		387108AB2F7BF9C800E34D99 /* DevicePasscodeUserVerifierImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1CBF22A8E31DE00D4F7EB /* DevicePasscodeUserVerifierImpl.swift */; };
 		387108AC2F7BF9C800E34D99 /* DependencyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EADC292CF7F000013472 /* DependencyProvider.swift */; };
 		387108AD2F7BF9C800E34D99 /* ConfigurationLoaderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EAE2292CF82D00013472 /* ConfigurationLoaderImpl.swift */; };
-		387108AE2F7BF9C800E34D99 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EB7C292CFA1900013472 /* UIApplication+Extension.swift */; };
 		387108AF2F7BF9C800E34D99 /* AccountValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EB91292CFA1900013472 /* AccountValidator.swift */; };
 		387108B02F7BF9C800E34D99 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EAF1292CF8A800013472 /* AppError.swift */; };
 		387108B12F7BF9C800E34D99 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EB64292CF9AF00013472 /* Operation.swift */; };
@@ -318,7 +316,6 @@
 		3859EB6F292CFA1800013472 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		3859EB70292CFA1800013472 /* NSLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLabel.swift; sourceTree = "<group>"; };
 		3859EB75292CFA1800013472 /* InteractionCountDownTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractionCountDownTimer.swift; sourceTree = "<group>"; };
-		3859EB7C292CFA1900013472 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		3859EB7D292CFA1900013472 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		3859EB7E292CFA1900013472 /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
 		3859EB81292CFA1900013472 /* UIStackView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
@@ -746,7 +743,6 @@
 				06000BAB2C37DDDD00AB53A1 /* PasswordAuthenticatorProtectionStatus+Extension.swift */,
 				3859EB82292CFA1900013472 /* PinAuthenticatorProtectionStatus+Extension.swift */,
 				3859EBB8292CFA7000013472 /* String+Extension.swift */,
-				3859EB7C292CFA1900013472 /* UIApplication+Extension.swift */,
 				3859EBB9292CFA7000013472 /* UIDevice+Extension.swift */,
 				3859EB7E292CFA1900013472 /* UINavigationController+Extension.swift */,
 				3859EB81292CFA1900013472 /* UIStackView+Extension.swift */,
@@ -1053,7 +1049,6 @@
 				38E1CBF32A8E31DE00D4F7EB /* DevicePasscodeUserVerifierImpl.swift in Sources */,
 				3859EADE292CF7F000013472 /* DependencyProvider.swift in Sources */,
 				3859EAE8292CF82D00013472 /* ConfigurationLoaderImpl.swift in Sources */,
-				3859EBA2292CFA1900013472 /* UIApplication+Extension.swift in Sources */,
 				3859EBB3292CFA1900013472 /* AccountValidator.swift in Sources */,
 				3859EAF8292CF8A800013472 /* AppError.swift in Sources */,
 				3859EB68292CF9AF00013472 /* Operation.swift in Sources */,
@@ -1164,7 +1159,6 @@
 				387108AB2F7BF9C800E34D99 /* DevicePasscodeUserVerifierImpl.swift in Sources */,
 				387108AC2F7BF9C800E34D99 /* DependencyProvider.swift in Sources */,
 				387108AD2F7BF9C800E34D99 /* ConfigurationLoaderImpl.swift in Sources */,
-				387108AE2F7BF9C800E34D99 /* UIApplication+Extension.swift in Sources */,
 				387108AF2F7BF9C800E34D99 /* AccountValidator.swift in Sources */,
 				387108B02F7BF9C800E34D99 /* AppError.swift in Sources */,
 				387108B12F7BF9C800E34D99 /* Operation.swift in Sources */,
@@ -1373,7 +1367,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = NevisExampleApp/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1384,7 +1378,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_WORKSPACE = YES;
 			};
@@ -1405,7 +1399,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = NevisExampleApp/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1416,7 +1410,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_WORKSPACE = YES;
 			};
@@ -1436,7 +1430,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = NevisExampleApp/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1447,7 +1441,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_WORKSPACE = YES;
 			};
@@ -1468,7 +1462,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = NevisExampleApp/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1479,7 +1473,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_WORKSPACE = YES;
 			};

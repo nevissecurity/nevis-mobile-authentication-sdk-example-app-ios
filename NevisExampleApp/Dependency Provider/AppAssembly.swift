@@ -33,50 +33,50 @@ private extension AppAssembly {
 	///
 	/// - Parameter container: The container provided by the `Assembler`.
 	func registerScreens(container: Container) {
-		container.autoregister(LaunchScreen.self, initializer: LaunchScreen.init)
+		container.autoregisterOnMain(LaunchScreen.self, initializer: LaunchScreen.init)
 			.inObjectScope(.weak)
 
-		container.autoregister(HomeScreen.self, initializer: HomeScreen.init)
+		container.autoregisterOnMain(HomeScreen.self, initializer: HomeScreen.init)
 			.inObjectScope(.weak)
 
-		container.autoregister(QrScannerScreen.self, initializer: QrScannerScreen.init)
+		container.autoregisterOnMain(QrScannerScreen.self, initializer: QrScannerScreen.init)
 			.inObjectScope(.weak)
 
-		container.register(ChangeDeviceInformationScreen.self) { (res: Resolver, arg: NavigationParameterizable) in
+		container.registerOnMain(ChangeDeviceInformationScreen.self) { (res: Resolver, arg: NavigationParameterizable) in
 			ChangeDeviceInformationScreen(presenter: res ~> (ChangeDeviceInformationPresenter.self, argument: arg))
 		}.inObjectScope(.weak)
 
-		container.autoregister(AuthCloudApiRegistrationScreen.self, initializer: AuthCloudApiRegistrationScreen.init)
+		container.autoregisterOnMain(AuthCloudApiRegistrationScreen.self, initializer: AuthCloudApiRegistrationScreen.init)
 			.inObjectScope(.weak)
 
-		container.autoregister(UsernamePasswordLoginScreen.self, initializer: UsernamePasswordLoginScreen.init)
+		container.autoregisterOnMain(UsernamePasswordLoginScreen.self, initializer: UsernamePasswordLoginScreen.init)
 			.inObjectScope(.weak)
 
-		container.register(SelectAccountScreen.self) { (res: Resolver, arg: NavigationParameterizable) in
+		container.registerOnMain(SelectAccountScreen.self) { (res: Resolver, arg: NavigationParameterizable) in
 			SelectAccountScreen(presenter: res ~> (SelectAccountPresenter.self, argument: arg))
 		}.inObjectScope(.weak)
 
-		container.register(SelectAuthenticatorScreen.self) { (res: Resolver, arg: NavigationParameterizable) in
+		container.registerOnMain(SelectAuthenticatorScreen.self) { (res: Resolver, arg: NavigationParameterizable) in
 			SelectAuthenticatorScreen(presenter: res ~> (SelectAuthenticatorPresenter.self, argument: arg))
 		}.inObjectScope(.weak)
 
-		container.register(CredentialScreen.self) { (res: Resolver, arg: NavigationParameterizable) in
+		container.registerOnMain(CredentialScreen.self) { (res: Resolver, arg: NavigationParameterizable) in
 			CredentialScreen(presenter: res ~> (CredentialPresenter.self, argument: arg))
 		}.inObjectScope(.weak)
 
-		container.register(TransactionConfirmationScreen.self) { (res: Resolver, arg: NavigationParameterizable) in
+		container.registerOnMain(TransactionConfirmationScreen.self) { (res: Resolver, arg: NavigationParameterizable) in
 			TransactionConfirmationScreen(presenter: res ~> (TransactionConfirmationPresenter.self, argument: arg))
 		}.inObjectScope(.weak)
 
-		container.register(ConfirmationScreen.self) { (res: Resolver, arg: NavigationParameterizable) in
+		container.registerOnMain(ConfirmationScreen.self) { (res: Resolver, arg: NavigationParameterizable) in
 			ConfirmationScreen(presenter: res ~> (ConfirmationPresenter.self, argument: arg))
 		}.inObjectScope(.weak)
 
-		container.register(ResultScreen.self) { (res: Resolver, arg: NavigationParameterizable) in
+		container.registerOnMain(ResultScreen.self) { (res: Resolver, arg: NavigationParameterizable) in
 			ResultScreen(presenter: res ~> (ResultPresenter.self, argument: arg))
 		}.inObjectScope(.weak)
 
-		container.autoregister(
+		container.autoregisterOnMain(
 			LoggingScreen.self,
 			initializer: LoggingScreen.init
 		)
@@ -89,7 +89,7 @@ private extension AppAssembly {
 	///
 	/// - Parameter container: The container provided by the `Assembler`.
 	func registerCoordinators(container: Container) {
-		container.autoregister(AppCoordinator.self, initializer: AppCoordinatorImpl.init)
+		container.autoregisterOnMain(AppCoordinator.self, initializer: AppCoordinatorImpl.init)
 			.inObjectScope(.container)
 	}
 
@@ -99,23 +99,23 @@ private extension AppAssembly {
 	///
 	/// - Parameter container: The container provided by the `Assembler`.
 	func registerPresenters(container: Container) {
-		container.autoregister(LaunchPresenter.self, initializer: LaunchPresenter.init)
+		container.autoregisterOnMain(LaunchPresenter.self, initializer: LaunchPresenter.init)
 			.inObjectScope(.transient)
 
-		container.autoregister(HomePresenter.self, initializer: HomePresenter.init)
+		container.autoregisterOnMain(HomePresenter.self, initializer: HomePresenter.init)
 			.inObjectScope(.transient)
 
-		container.autoregister(QrScannerPresenter.self, initializer: QrScannerPresenter.init)
+		container.autoregisterOnMain(QrScannerPresenter.self, initializer: QrScannerPresenter.init)
 			.inObjectScope(.transient)
 
-		container.autoregister(
+		container.autoregisterOnMain(
 			ChangeDeviceInformationPresenter.self,
 			argument: NavigationParameterizable.self,
 			initializer: ChangeDeviceInformationPresenter.init
 		)
 		.inObjectScope(.transient)
 
-		container.register(AuthCloudApiRegistrationPresenter.self) { res in
+		container.registerOnMain(AuthCloudApiRegistrationPresenter.self) { res in
 			let authenticatorSelector = res ~> (AuthenticatorSelector.self, name: RegistrationAuthenticatorSelectorName)
 			return AuthCloudApiRegistrationPresenter(
 				clientProvider: res~>,
@@ -129,7 +129,7 @@ private extension AppAssembly {
 			)
 		}.inObjectScope(.transient)
 
-		container.register(UsernamePasswordLoginPresenter.self) { res in
+		container.registerOnMain(UsernamePasswordLoginPresenter.self) { res in
 			let authenticatorSelector = res ~> (AuthenticatorSelector.self, name: RegistrationAuthenticatorSelectorName)
 			return UsernamePasswordLoginPresenter(
 				configurationLoader: res~>,
@@ -145,7 +145,7 @@ private extension AppAssembly {
 			)
 		}.inObjectScope(.transient)
 
-		container.register(SelectAccountPresenter.self) { res, arg in
+		container.registerOnMain(SelectAccountPresenter.self) { res, arg in
 			let authenticatorSelector = res ~> (AuthenticatorSelector.self, name: AuthenticationAuthenticatorSelectorName)
 			return SelectAccountPresenter(
 				clientProvider: res~>,
@@ -162,42 +162,42 @@ private extension AppAssembly {
 			)
 		}.inObjectScope(.transient)
 
-		container.autoregister(
+		container.autoregisterOnMain(
 			SelectAuthenticatorPresenter.self,
 			argument: NavigationParameterizable.self,
 			initializer: SelectAuthenticatorPresenter.init
 		)
 		.inObjectScope(.transient)
 
-		container.autoregister(
+		container.autoregisterOnMain(
 			CredentialPresenter.self,
 			argument: NavigationParameterizable.self,
 			initializer: CredentialPresenter.init
 		)
 		.inObjectScope(.transient)
 
-		container.autoregister(
+		container.autoregisterOnMain(
 			TransactionConfirmationPresenter.self,
 			argument: NavigationParameterizable.self,
 			initializer: TransactionConfirmationPresenter.init
 		)
 		.inObjectScope(.transient)
 
-		container.autoregister(
+		container.autoregisterOnMain(
 			ResultPresenter.self,
 			argument: NavigationParameterizable.self,
 			initializer: ResultPresenter.init
 		)
 		.inObjectScope(.transient)
 
-		container.autoregister(
+		container.autoregisterOnMain(
 			ConfirmationPresenter.self,
 			argument: NavigationParameterizable.self,
 			initializer: ConfirmationPresenter.init
 		)
 		.inObjectScope(.transient)
 
-		container.autoregister(LoggingPresenter.self, initializer: LoggingPresenter.init)
+		container.autoregisterOnMain(LoggingPresenter.self, initializer: LoggingPresenter.init)
 			.inObjectScope(.transient)
 	}
 
@@ -252,7 +252,7 @@ private extension AppAssembly {
 
 		container.autoregister(LoginService.self, initializer: LoginServiceImpl.init)
 
-		container.register(OutOfBandOperationHandler.self) { res in
+		container.registerOnMain(OutOfBandOperationHandler.self) { res in
 			let authSelectorForReg = res ~> (AuthenticatorSelector.self, name: RegistrationAuthenticatorSelectorName)
 			let authSelectorForAuth = res ~> (AuthenticatorSelector.self, name: AuthenticationAuthenticatorSelectorName)
 			return OutOfBandOperationHandlerImpl(
@@ -272,23 +272,120 @@ private extension AppAssembly {
 		}
 		.inObjectScope(.transient)
 
-		container.autoregister(
+		container.autoregisterOnMain(
 			ErrorHandler.self,
 			name: NevisErrorHandlerName,
 			initializer: NevisErrorHandler.init
 		)
 
-		container.autoregister(
+		container.autoregisterOnMain(
 			ErrorHandler.self,
 			name: GeneralErrorHandlerName,
 			initializer: GeneralErrorHandler.init
 		)
 
-		container.register(ErrorHandlerChain.self) { res in
+		container.registerOnMain(ErrorHandlerChain.self) { res in
 			ErrorHandlerChainImpl(errorHandlers: [
 				res ~> (ErrorHandler.self, name: NevisErrorHandlerName),
 				res ~> (ErrorHandler.self, name: GeneralErrorHandlerName),
 			])
+		}
+	}
+}
+
+// MARK: - Main Actor Registration
+
+/// Swinject is not concurrency-aware: its factories are nonisolated. These helpers allow registering
+/// `@MainActor`-isolated types. Resolution must happen on the main thread, otherwise it traps.
+private extension Container {
+
+	/// Wraps a value so it can cross into / out of the main actor; Swinject owns these values and resolves them on the main thread.
+	struct UncheckedSendableBox<Value>: @unchecked Sendable {
+		let value: Value
+	}
+
+	@discardableResult
+	func registerOnMain<Service>(
+		_ serviceType: Service.Type,
+		name: String? = nil,
+		factory: @escaping @MainActor (Resolver) -> Service
+	) -> ServiceEntry<Service> {
+		register(serviceType, name: name) { resolver in
+			let resolver = UncheckedSendableBox(value: resolver)
+			return MainActor.assumeIsolated {
+				UncheckedSendableBox(value: factory(resolver.value))
+			}.value
+		}
+	}
+
+	@discardableResult
+	func registerOnMain<Service, Argument>(
+		_ serviceType: Service.Type,
+		name: String? = nil,
+		factory: @escaping @MainActor (Resolver, Argument) -> Service
+	) -> ServiceEntry<Service> {
+		register(serviceType, name: name) { (resolver: Resolver, argument: Argument) in
+			let input = UncheckedSendableBox(value: (resolver, argument))
+			return MainActor.assumeIsolated {
+				UncheckedSendableBox(value: factory(input.value.0, input.value.1))
+			}.value
+		}
+	}
+
+	@discardableResult
+	func autoregisterOnMain<Service, each Dependency>(
+		_ serviceType: Service.Type,
+		name: String? = nil,
+		initializer: @escaping @MainActor (repeat each Dependency) -> Service
+	) -> ServiceEntry<Service> {
+		registerOnMain(serviceType, name: name) { resolver in
+			initializer(repeat resolver ~> (each Dependency).self)
+		}
+	}
+
+	// A variadic pack followed by the argument is not supported by the compiler, hence the explicit overloads.
+
+	@discardableResult
+	func autoregisterOnMain<Service, Argument>(
+		_ serviceType: Service.Type,
+		argument _: Argument.Type,
+		initializer: @escaping @MainActor (Argument) -> Service
+	) -> ServiceEntry<Service> {
+		registerOnMain(serviceType) { (_: Resolver, argument: Argument) in
+			initializer(argument)
+		}
+	}
+
+	@discardableResult
+	func autoregisterOnMain<Service, Argument, A>(
+		_ serviceType: Service.Type,
+		argument _: Argument.Type,
+		initializer: @escaping @MainActor (A, Argument) -> Service
+	) -> ServiceEntry<Service> {
+		registerOnMain(serviceType) { (resolver: Resolver, argument: Argument) in
+			initializer(resolver~>, argument)
+		}
+	}
+
+	@discardableResult
+	func autoregisterOnMain<Service, Argument, A, B>(
+		_ serviceType: Service.Type,
+		argument _: Argument.Type,
+		initializer: @escaping @MainActor (A, B, Argument) -> Service
+	) -> ServiceEntry<Service> {
+		registerOnMain(serviceType) { (resolver: Resolver, argument: Argument) in
+			initializer(resolver~>, resolver~>, argument)
+		}
+	}
+
+	@discardableResult
+	func autoregisterOnMain<Service, Argument, A, B, C>(
+		_ serviceType: Service.Type,
+		argument _: Argument.Type,
+		initializer: @escaping @MainActor (A, B, C, Argument) -> Service
+	) -> ServiceEntry<Service> {
+		registerOnMain(serviceType) { (resolver: Resolver, argument: Argument) in
+			initializer(resolver~>, resolver~>, resolver~>, argument)
 		}
 	}
 }
