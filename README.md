@@ -19,7 +19,11 @@ Some SDK features demonstrated in this example app are:
 * Simulating in-band authentication after registration
 * Deregistering a registered account
 * Changing the PIN of the PIN authenticator
+* Changing the password of the Password authenticator
 * Changing the device information
+* Fetch pending operations
+* Authenticating from a share extension using the registrations of the containing app
+* Authenticating from an Apple Watch, the iPhone app runs the operation on behalf of the watch
 
 Please note that the example app only demonstrates a subset of the available SDK features. The main purpose is to demonstrate how the SDK can be used, not to cover all supported scenarios.
 
@@ -33,11 +37,14 @@ Before you start compiling and using the example applications please ensure you 
 Your development setup has to meet the following prerequisites:
 
 * iOS 15 or later
+* watchOS 10 or later for the watch app
 * Xcode 26.2, including Swift 6 or later
 
 ### Initialization
 
 [Swift Package Manager](https://developer.apple.com/documentation/xcode/swift-packages) is used to resolve application dependencies. See the "Frameworks, Libraries, and Embedded Content" section on the NevisExampleApp target's General pane in Xcode for the list of exact dependencies.
+
+The code shared by the app, the share extension and the watch app (platform independent models, the watch ↔ iPhone messages and shared localizations) is in the local [NevisExampleShared](Packages/NevisExampleShared) package, it is resolved together with the project.
 
 Xcode updates your package dependencies and resolves package versions automatically. If not, it can be triggered from the File > Packages menu.
 
@@ -46,6 +53,24 @@ Xcode updates your package dependencies and resolves package versions automatica
 Before being able to use the example app with your Authentication Cloud instance, you'll need to update the configuration file with the right host information.
 
 Edit the [ConfigAuthenticationCloud.plist](NevisExampleApp/Resources/ConfigAuthenticationCloud.plist) file and replace the host name information with your Authentication Cloud instance.
+
+The share extension accesses the registrations of the containing app through a shared keychain access group. See [iOS App Extensions](https://docs.nevis.net/mobilesdk/concept/concept-description/ios-app-extensions) for details. In the `appExtension` dictionary of the configuration file set:
+
+* `applicationIdentifier` to the bundle identifier of the containing app.
+* `keychainAccessGroup` to `<TEAM_ID>.<applicationIdentifier>`, where `<TEAM_ID>` is your Apple Developer Team ID (the App ID prefix of the containing app).
+
+```
+<key>appExtension</key>
+<dict>
+    <key>applicationIdentifier</key>
+    <string>ch.nevis.mobile.authentication.sdk.ios.example</string>
+    <key>keychainAccessGroup</key>
+    <string>ABCDE12345.ch.nevis.mobile.authentication.sdk.ios.example</string>
+</dict>
+```
+
+> [!NOTE]
+> The keychain access group must match the one in the [entitlements](NevisExampleShareExtension/Resources/NevisExampleShareExtension.entitlements) of the extension. If you change the bundle identifier of the app, update both.
 
 #### Configuration Change
 
@@ -56,6 +81,8 @@ The example apps are supporting two kinds of configuration: `authenticationCloud
 
 To change the configuration open the [AppAssembly.swift](NevisExampleApp/Dependency%20Provider/AppAssembly.swift) file which describes the dependency injection related configuration using the [Swinject](https://github.com/Swinject/Swinject) library.
 The `environment` parameter should be changed when injecting the [ConfigurationLoaderImpl](NevisExampleApp/Configuration/ConfigurationLoaderImpl.swift) component to one of the values already mentioned.
+
+The share extension does not use dependency injection, it creates its [ConfigurationLoaderImpl](NevisExampleApp/Configuration/ConfigurationLoaderImpl.swift) in the [ShareScreen](NevisExampleShareExtension/Presentation/Screens/ShareScreen.swift) class. Change the `environment` there as well, so that the app and the extension use the same configuration.
 
 #### Handling deep links
 
@@ -180,6 +207,32 @@ You can use the [LocalData](https://docs.nevis.net/mobilesdk/api-references/swif
 #### Get MetaData
 
 The [HomePresenter](NevisExampleApp/Screens/Home/HomePresenter.swift) class is responsible for obtaining the information of the SDK and the application with the help of [MetaData](https://docs.nevis.net/mobilesdk/api-references/swift/documentation/nevismobileauthentication/metadata), such as the SDK version and the application facet identifier.
+
+### Share extension
+
+The [NevisExampleShareExtension](NevisExampleShareExtension) target demonstrates authentication from an app extension. It initializes the SDK with an app extension specific [Configuration](https://docs.nevis.net/mobilesdk/api-references/swift/documentation/nevismobileauthentication/configuration), lists the accounts registered in the containing app and authenticates the selected one with any of its registered authenticators. A locked out authenticator can be deleted from the device.
+
+The SDK operations are wrapped by the [AuthenticationServiceImpl](NevisExampleShareExtension/Service/AuthenticationServiceImpl.swift) class, the user interface is implemented in SwiftUI. The authentication itself is run by [HeadlessAuthentication](NevisExampleApp/Headless/HeadlessAuthentication.swift), which is shared with the iPhone app: it selects the authenticator chosen up front and requests the PIN or password through a closure instead of the screens of the app.
+
+> [!NOTE]
+> The extension can only use registrations created by the containing app, registering or deregistering accounts is not possible from the extension.
+
+You can read more about using the SDK in app extensions in the [iOS App Extensions](https://docs.nevis.net/mobilesdk/concept/concept-description/ios-app-extensions) concept description.
+
+### Watch app
+
+The [NevisExampleWatchApp](NevisExampleWatchApp) target demonstrates authentication from an Apple Watch. The SDK is not available on watchOS and the watch cannot access the keychain of the iPhone, so the watch app delegates the operations to the iPhone app over [WatchConnectivity](https://developer.apple.com/documentation/watchconnectivity). It lists the accounts registered in the iPhone app and authenticates the selected one:
+
+* PIN and password are entered on the watch, including the remaining tries and the cool down after a failed attempt.
+* Face ID, Touch ID and Device Passcode are verified on the iPhone with the system prompt. If the iPhone app is not in the foreground, the verification starts when the user opens it.
+
+On the iPhone the messages of the watch are processed by the [WatchMessageHandlerImpl](NevisExampleApp/Watch/WatchMessageHandlerImpl.swift) class, which runs the authentication with [HeadlessAuthentication](NevisExampleApp/Headless/HeadlessAuthentication.swift) and pushes the progress to the watch. The messages are typed and JSON encoded, they are defined in the [NevisExampleShared](Packages/NevisExampleShared) package together with the description of the message flow.
+
+> [!NOTE]
+> The iPhone app must be launched at least once after the installation. Afterwards the system launches it in the background to deliver the messages of the watch. Registering or deregistering accounts is only possible in the iPhone app.
+
+> [!NOTE]
+> Installing the watch app on a device requires a provisioning profile for its bundle identifier (`<app bundle identifier>.watchapp`). For ad-hoc distribution the watch must be registered in the profile as well.
 
 ### Error handling
 

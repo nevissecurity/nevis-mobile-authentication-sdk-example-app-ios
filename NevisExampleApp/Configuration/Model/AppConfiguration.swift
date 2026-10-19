@@ -4,6 +4,7 @@
 // Copyright © 2022. Nevis Security AG. All rights reserved.
 //
 
+import Foundation
 import NevisMobileAuthentication
 
 /// Object describing application configuration
@@ -31,34 +32,12 @@ struct AppConfiguration: Codable {
 		/// Key for the authenticator allowlist.
 		case authenticatorAllowlist
 
-		/// Enumeration for the nested SDK configuration keys used during coding.
-		enum NestedCodingKeys: String, CodingKey {
-			/// Key for the base URL.
-			case baseUrl
+		/// Enumeration for the Auth Cloud specific configuration keys used during coding.
+		enum AuthCloudCodingKeys: String, CodingKey {
 			/// Key for the host name.
 			case hostName
-			/// Key for the registration request path.
-			case registrationRequestPath
-			/// Key for the registration response path.
-			case registrationResponsePath
-			/// Key for the authentication request path.
-			case authenticationRequestPath
-			/// Key for the authentication response path.
-			case authenticationResponsePath
-			/// Key for the deregistration request path.
-			case deregistrationRequestPath
-			/// Key for the dispatch target resource path.
-			case dispatchTargetResourcePath
-			/// Key for the devices resource path.
-			case deviceResourcePath
-			/// Key for the authentication max retries.
-			case authenticationMaxRetries
-			/// Key for the authentication retry interval.
-			case authenticationRetryIntervalInSeconds
-			/// Key for the network timeout.
-			case networkTimeoutInSeconds
-			/// Key for the user interaction timeout.
-			case userInteractionTimeoutInSeconds
+			/// Key for the app extension related configuration.
+			case appExtension
 		}
 	}
 
@@ -71,14 +50,39 @@ struct AppConfiguration: Codable {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 
 		self.loginConfiguration = try container.decode(LoginConfiguration.self, forKey: .loginConfiguration)
-		let sdkContainer = try container.nestedContainer(keyedBy: CodingKeys.NestedCodingKeys.self, forKey: .sdkConfiguration)
+		let sdkContainer = try container.nestedContainer(keyedBy: CodingKeys.AuthCloudCodingKeys.self, forKey: .sdkConfiguration)
 		let hostName = try sdkContainer.decodeIfPresent(String.self, forKey: .hostName)
 		if let hostName {
-			// using the convenience initializer
-			self.sdkConfiguration = Configuration(authCloudHostname: hostName)
+			let appExtension = try sdkContainer.decodeIfPresent(Configuration.AppExtension.self, forKey: .appExtension)
+			if Bundle.main.isAppExtension, let appExtension {
+				self.sdkConfiguration = Configuration(authCloudHostname: hostName, appExtension: appExtension)
+			} else {
+				// using the convenience initializer
+				self.sdkConfiguration = Configuration(authCloudHostname: hostName)
+			}
 		} else {
-			self.sdkConfiguration = try container.decode(Configuration.self, forKey: .sdkConfiguration)
+			let configuration = try container.decode(Configuration.self, forKey: .sdkConfiguration)
+			self.sdkConfiguration = Bundle.main.isAppExtension ? configuration : configuration.withoutAppExtension()
 		}
 		self.authenticatorAllowlist = try container.decode([AuthenticatorAaid].self, forKey: .authenticatorAllowlist)
+	}
+}
+
+private extension Configuration {
+	/// Returns a copy of the configuration without the app extension related configuration,
+	/// which must be used only by the app extension, not by the containing app.
+	func withoutAppExtension() -> Configuration {
+		Configuration(
+			baseUrl: baseUrl,
+			registrationRequestPath: registrationRequestPath,
+			registrationResponsePath: registrationResponsePath,
+			authenticationRequestPath: authenticationRequestPath,
+			authenticationResponsePath: authenticationResponsePath,
+			deregistrationRequestPath: deregistrationRequestPath,
+			dispatchTargetResourcePath: dispatchTargetResourcePath,
+			deviceResourcePath: deviceResourcePath,
+			networkTimeoutInSeconds: networkTimeoutInSeconds,
+			userInteractionTimeoutInSeconds: userInteractionTimeoutInSeconds
+		)
 	}
 }
