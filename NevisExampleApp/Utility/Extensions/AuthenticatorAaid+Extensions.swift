@@ -4,6 +4,8 @@
 // Copyright © 2024. Nevis Security AG. All rights reserved.
 //
 
+import Foundation
+import NevisExampleShared
 import NevisMobileAuthentication
 
 /// Codable extension for `AuthenticatorAaid`.
@@ -15,6 +17,16 @@ extension AuthenticatorAaid: @retroactive Codable {
 			throw NSError(domain: "AuthenticatorAaid cannot be decoded", code: 1)
 		}
 		self = authenticatorAaid
+	}
+
+	/// The platform independent representation of the authenticator. `nil` for an unknown AAID.
+	var kind: AuthenticatorKind? {
+		AuthenticatorKind(rawValue: rawValue)
+	}
+
+	/// Returns the localized title.
+	var localizedTitle: String {
+		kind?.localizedTitle ?? String()
 	}
 }
 

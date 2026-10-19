@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,14 +11,48 @@
 		06000BAE2C37ECD800AB53A1 /* PasswordChangerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06000BAD2C37ECD800AB53A1 /* PasswordChangerImpl.swift */; };
 		06000BB02C37EDA100AB53A1 /* PasswordEnroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06000BAF2C37EDA100AB53A1 /* PasswordEnroller.swift */; };
 		06000BB22C37EE6A00AB53A1 /* PasswordUserVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06000BB12C37EE6A00AB53A1 /* PasswordUserVerifier.swift */; };
+		06157CD87B390671323BFE67 /* HeadlessPinUserVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F081AA11C9CCFF8CBF45FBB0 /* HeadlessPinUserVerifier.swift */; };
 		06471B152C29685C006879F9 /* AuthenticatorAaid+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06471B142C29685C006879F9 /* AuthenticatorAaid+Extensions.swift */; };
 		068293672C3FCE77005563AB /* PasswordPolicyImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068293662C3FCE77005563AB /* PasswordPolicyImpl.swift */; };
 		068E9ABC2C2D60BA0059E33C /* AuthenticatorValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068E9ABB2C2D60BA0059E33C /* AuthenticatorValidator.swift */; };
+		0BC95AECEC205CBD5F26DFBE /* PhoneSessionImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E2F1C2F9A542752752A4AD /* PhoneSessionImpl.swift */; };
+		0F2D05D808CA074C69B788ED /* HeadlessPinUserVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F081AA11C9CCFF8CBF45FBB0 /* HeadlessPinUserVerifier.swift */; };
+		1173486DE78D427298CEFC4D /* HeadlessAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679E6D5B288250BD2CEDFD2C /* HeadlessAuthentication.swift */; };
+		15AAFE371C0FFCB498D7D7B7 /* AuthenticationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADAD6DE1B33A218E033910E /* AuthenticationState.swift */; };
+		1A21FBFCC927D30FDE955FE1 /* WatchSessionDelegateImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D90354A2F0FDDD4B8099DC /* WatchSessionDelegateImpl.swift */; };
+		232E57C17DA99F663714CE7F /* WatchSessionDelegateImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D90354A2F0FDDD4B8099DC /* WatchSessionDelegateImpl.swift */; };
+		2DA22CF7E4FA2C0B87AF74CF /* WatchMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09E6F257B80281C5271B854 /* WatchMessageHandler.swift */; };
 		380C12DA2F1FBF7700123C4C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380C12D92F1FBF7700123C4C /* SceneDelegate.swift */; };
+		382F5C043089F1E60051E3A1 /* NevisExampleWatchApp.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 38B5AE643088F13D0080B456 /* NevisExampleWatchApp.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		382F5C0A3089F21B0051E3A1 /* NevisExampleShared in Frameworks */ = {isa = PBXBuildFile; productRef = 382F5C093089F21B0051E3A1 /* NevisExampleShared */; };
+		382F5C0C3089F2410051E3A1 /* NevisExampleShared in Frameworks */ = {isa = PBXBuildFile; productRef = 382F5C0B3089F2410051E3A1 /* NevisExampleShared */; };
+		382F5C0E3089F2510051E3A1 /* NevisExampleShared in Frameworks */ = {isa = PBXBuildFile; productRef = 382F5C0D3089F2510051E3A1 /* NevisExampleShared */; };
+		382F5C103089F25C0051E3A1 /* NevisExampleShared in Frameworks */ = {isa = PBXBuildFile; productRef = 382F5C0F3089F25C0051E3A1 /* NevisExampleShared */; };
+		382F5C14308A0B0B0051E3A1 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382F5C13308A0B0B0051E3A1 /* MessageView.swift */; };
+		382F5C16308A27410051E3A1 /* AccountRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382F5C15308A27410051E3A1 /* AccountRow.swift */; };
+		382F5C18308A282A0051E3A1 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382F5C17308A282A0051E3A1 /* Icon.swift */; };
+		382F5C1A308A2FE90051E3A1 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 382F5C19308A2FE90051E3A1 /* AppIcon.icon */; };
 		382FE1D72BADD5FC00999625 /* ConfirmationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382FE1D62BADD5FC00999625 /* ConfirmationPresenter.swift */; };
 		382FE1D92BADD60400999625 /* ConfirmationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382FE1D82BADD60400999625 /* ConfirmationScreen.swift */; };
-		3833EB262685EA03002C5E0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3833EB252685EA03002C5E0C /* Assets.xcassets */; };
 		3833EB292685EA03002C5E0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3833EB272685EA03002C5E0C /* LaunchScreen.storyboard */; };
+		3838147D3087B74B0069F89A /* ConfigIdentitySuite.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38821E6D292500ED0009522A /* ConfigIdentitySuite.plist */; };
+		3846BBB9307F606E005FAFB9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3846BBB8307F606E005FAFB9 /* Localizable.xcstrings */; };
+		3846BBBE307F6365005FAFB9 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3846BBBD307F6365005FAFB9 /* Strings.swift */; };
+		3846BBC0307F73D1005FAFB9 /* ConfigAuthenticationCloud.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38821E6F292502670009522A /* ConfigAuthenticationCloud.plist */; };
+		3846BBC2307F73EC005FAFB9 /* ConfigurationLoaderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EAE2292CF82D00013472 /* ConfigurationLoaderImpl.swift */; };
+		3846BBC3307F73EC005FAFB9 /* ConfigurationLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EAE1292CF82D00013472 /* ConfigurationLoader.swift */; };
+		3846BBC4307F7402005FAFB9 /* LoginConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EAE6292CF82D00013472 /* LoginConfiguration.swift */; };
+		3846BBC5307F7402005FAFB9 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EAE4292CF82D00013472 /* AppConfiguration.swift */; };
+		3846BBC6307F7402005FAFB9 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EAE5292CF82D00013472 /* Environment.swift */; };
+		3846BBCA307F79FF005FAFB9 /* AuthenticatorAaid+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06471B142C29685C006879F9 /* AuthenticatorAaid+Extensions.swift */; };
+		3846BBCC307F7FEF005FAFB9 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3846BBCB307F7FEF005FAFB9 /* Icon.swift */; };
+		3846BBCE307FA35E005FAFB9 /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3846BBCD307FA35E005FAFB9 /* Bundle+Extension.swift */; };
+		3846BBCF307FA35E005FAFB9 /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3846BBCD307FA35E005FAFB9 /* Bundle+Extension.swift */; };
+		3846BBD0307FA35E005FAFB9 /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3846BBCD307FA35E005FAFB9 /* Bundle+Extension.swift */; };
+		3846BBD3307FA53A005FAFB9 /* ExtensionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3846BBD2307FA53A005FAFB9 /* ExtensionError.swift */; };
+		3846BBDB307FB144005FAFB9 /* OutlinedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3846BBDA307FB144005FAFB9 /* OutlinedButton.swift */; };
+		3846BBDD307FC87A005FAFB9 /* InfoCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3846BBDC307FC87A005FAFB9 /* InfoCard.swift */; };
+		3846BBDF307FCDDD005FAFB9 /* SingleSelectionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3846BBDE307FCDDD005FAFB9 /* SingleSelectionList.swift */; };
 		3859EAD7292CF78900013472 /* AppCoordinatorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EAD3292CF78900013472 /* AppCoordinatorImpl.swift */; };
 		3859EAD8292CF78900013472 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EAD4292CF78900013472 /* AppCoordinator.swift */; };
 		3859EAD9292CF78900013472 /* NavigationParameterizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EAD5292CF78900013472 /* NavigationParameterizable.swift */; };
@@ -102,6 +136,10 @@
 		3859EBC4292CFB0500013472 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EBC3292CFB0500013472 /* AppDelegate.swift */; };
 		3859EBC6292D085600013472 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EBC5292D085600013472 /* BaseView.swift */; };
 		3859EBC8292D096100013472 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EBC7292D096100013472 /* UIViewController+Extension.swift */; };
+		3870C34830890743003507DD /* ClientInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3870C34730890743003507DD /* ClientInitializer.swift */; };
+		3870C34930890743003507DD /* ClientInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3870C34730890743003507DD /* ClientInitializer.swift */; };
+		3870C34B3089074C003507DD /* ClientInitializerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3870C34A3089074C003507DD /* ClientInitializerImpl.swift */; };
+		3870C34C3089074C003507DD /* ClientInitializerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3870C34A3089074C003507DD /* ClientInitializerImpl.swift */; };
 		387108732F7BF8E900E34D99 /* FittedSheets in Frameworks */ = {isa = PBXBuildFile; productRef = 387108722F7BF8E900E34D99 /* FittedSheets */; };
 		387108772F7BF9C800E34D99 /* PinAuthenticatorProtectionStatus+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EB82292CFA1900013472 /* PinAuthenticatorProtectionStatus+Extension.swift */; };
 		387108782F7BF9C800E34D99 /* LaunchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EB15292CF92000013472 /* LaunchPresenter.swift */; };
@@ -211,7 +249,6 @@
 		387108E32F7BF9C800E34D99 /* ConfigIdentitySuite.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38821E6D292500ED0009522A /* ConfigIdentitySuite.plist */; };
 		387108E42F7BF9C800E34D99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3833EB272685EA03002C5E0C /* LaunchScreen.storyboard */; };
 		387108E52F7BF9C800E34D99 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38C1B37B269D815A00ED5782 /* Localizable.strings */; };
-		387108E62F7BF9C800E34D99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3833EB252685EA03002C5E0C /* Assets.xcassets */; };
 		387108EE2F7BFAF400E34D99 /* KRProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 387108ED2F7BFAF400E34D99 /* KRProgressHUD */; };
 		387108F12F7BFB0100E34D99 /* KRProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 387108F02F7BFB0100E34D99 /* KRProgressHUD */; };
 		387108F42F7BFB3800E34D99 /* QRScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 387108F32F7BFB3800E34D99 /* QRScanner */; };
@@ -221,23 +258,171 @@
 		387108FE2F7BFB8F00E34D99 /* SwinjectAutoregistration in Frameworks */ = {isa = PBXBuildFile; productRef = 387108FD2F7BFB8F00E34D99 /* SwinjectAutoregistration */; };
 		387109002F7BFB9600E34D99 /* SwinjectAutoregistration in Frameworks */ = {isa = PBXBuildFile; productRef = 387108FF2F7BFB9600E34D99 /* SwinjectAutoregistration */; };
 		3872BFCE2A29D18F0041C594 /* AuthenticatorItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3872BFCD2A29D18F0041C594 /* AuthenticatorItem.swift */; };
+		38756A1C30821AE7009FE4D4 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38756A1B30821AE7009FE4D4 /* View+Extension.swift */; };
+		38756A2330824674009FE4D4 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38756A2230824674009FE4D4 /* AuthenticationService.swift */; };
+		38756A25308246AF009FE4D4 /* AuthenticationServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38756A24308246AF009FE4D4 /* AuthenticationServiceImpl.swift */; };
+		38756A29308256CE009FE4D4 /* AuthenticationServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38756A28308256CE009FE4D4 /* AuthenticationServiceError.swift */; };
+		38756A2D30825E4C009FE4D4 /* Status+Presentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38756A2C30825E4C009FE4D4 /* Status+Presentation.swift */; };
+		38756A3130826807009FE4D4 /* CardHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38756A3030826807009FE4D4 /* CardHeader.swift */; };
+		38756A3330826963009FE4D4 /* CardStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38756A3230826963009FE4D4 /* CardStyle.swift */; };
+		38756A3530826A97009FE4D4 /* CheckmarkModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38756A3430826A97009FE4D4 /* CheckmarkModifier.swift */; };
+		38756A3730826B32009FE4D4 /* Image+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38756A3630826B32009FE4D4 /* Image+Extension.swift */; };
 		388DBCDF2D40F7DA005CD4B3 /* Documentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = 388DBCDE2D40F7DA005CD4B3 /* Documentation.docc */; };
 		388DBCE12D411857005CD4B3 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388DBCE02D411857005CD4B3 /* Logger.swift */; };
 		3892453C2F7BFFD800A5C1D6 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 3892453B2F7BFFD800A5C1D6 /* Then */; };
 		3892453E2F7BFFE000A5C1D6 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 3892453D2F7BFFE000A5C1D6 /* Then */; };
 		38A68C5D29253BAB00685419 /* ConfigAuthenticationCloud.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38821E6F292502670009522A /* ConfigAuthenticationCloud.plist */; };
 		38A68C5E29253BAB00685419 /* ConfigIdentitySuite.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38821E6D292500ED0009522A /* ConfigIdentitySuite.plist */; };
+		38B5AE543088D73C0080B456 /* NevisExampleShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 38FEE0C9307E6B1C00F1D8F4 /* NevisExampleShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		38B5AE593088DD730080B456 /* Documentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = 38B5AE583088DD730080B456 /* Documentation.docc */; };
+		38B5AE5E3088EB8D0080B456 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 38B5AE5D3088EB8D0080B456 /* AppIcon.icon */; };
+		38B5AE5F3088EB8D0080B456 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 38B5AE5D3088EB8D0080B456 /* AppIcon.icon */; };
+		38B5AE6E3088F13E0080B456 /* NevisExampleWatchApp.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 38B5AE643088F13D0080B456 /* NevisExampleWatchApp.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		38B5AE773088F14D0080B456 /* WatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5AE743088F14D0080B456 /* WatchView.swift */; };
+		38B5AE783088F14D0080B456 /* WatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5AE753088F14D0080B456 /* WatchApp.swift */; };
+		38B5AE813088F4230080B456 /* WatchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5AE803088F4230080B456 /* WatchModel.swift */; };
+		38B5AE843088F8380080B456 /* WatchSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5AE833088F8380080B456 /* WatchSessionDelegate.swift */; };
+		38B5AE853088F8380080B456 /* WatchSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5AE833088F8380080B456 /* WatchSessionDelegate.swift */; };
 		38C1B379269D815A00ED5782 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38C1B37B269D815A00ED5782 /* Localizable.strings */; };
+		38C918B230860BC700A8565F /* CredentialKind+Presentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C918B130860BC700A8565F /* CredentialKind+Presentation.swift */; };
+		38C918B3308611EA00A8565F /* PinAuthenticatorProtectionStatus+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3859EB82292CFA1900013472 /* PinAuthenticatorProtectionStatus+Extension.swift */; };
+		38C918B4308611EA00A8565F /* PasswordAuthenticatorProtectionStatus+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06000BAB2C37DDDD00AB53A1 /* PasswordAuthenticatorProtectionStatus+Extension.swift */; };
 		38DABD6529D581D3008B8116 /* UsernamePasswordLoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DABD6329D581D3008B8116 /* UsernamePasswordLoginScreen.swift */; };
 		38DABD6629D581D3008B8116 /* UsernamePasswordLoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DABD6429D581D3008B8116 /* UsernamePasswordLoginPresenter.swift */; };
 		38DABD6A29D585C0008B8116 /* LoginValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DABD6929D585C0008B8116 /* LoginValidator.swift */; };
 		38DD8B3C2F7BFCBE00ACAA95 /* NevisMobileAuthentication-Debug in Frameworks */ = {isa = PBXBuildFile; productRef = 38DD8B3B2F7BFCBE00ACAA95 /* NevisMobileAuthentication-Debug */; };
 		38DD8B3E2F7BFCC500ACAA95 /* NevisMobileAuthentication in Frameworks */ = {isa = PBXBuildFile; productRef = 38DD8B3D2F7BFCC500ACAA95 /* NevisMobileAuthentication */; };
+		38DEDF1730810CC3004A0449 /* CredentialCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DEDF1630810CC3004A0449 /* CredentialCard.swift */; };
 		38E17EB02A28DD7200441821 /* Authenticator+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E17EAF2A28DD7200441821 /* Authenticator+Extension.swift */; };
 		38E1CBF32A8E31DE00D4F7EB /* DevicePasscodeUserVerifierImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1CBF22A8E31DE00D4F7EB /* DevicePasscodeUserVerifierImpl.swift */; };
+		38E9A1B44FCA95F040E03C57 /* HeadlessDevicePasscodeUserVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECADD9B14116D7B12B5E997 /* HeadlessDevicePasscodeUserVerifier.swift */; };
+		38FEE0D3307E6B1C00F1D8F4 /* NevisExampleShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 38FEE0C9307E6B1C00F1D8F4 /* NevisExampleShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		38FEE0E5307E6D5000F1D8F4 /* ShareScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FEE0E4307E6D5000F1D8F4 /* ShareScreen.swift */; };
+		38FEE0E7307E708F00F1D8F4 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FEE0E6307E708F00F1D8F4 /* ShareView.swift */; };
+		38FEE0E9307E728C00F1D8F4 /* ShareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FEE0E8307E728C00F1D8F4 /* ShareModel.swift */; };
+		38FEE0EB307E734B00F1D8F4 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FEE0EA307E734B00F1D8F4 /* Status.swift */; };
 		38FF9DC5292E09E70027C09E /* CredentialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF9DC4292E09E70027C09E /* CredentialView.swift */; };
 		38FF9DC7292E0B160027C09E /* LoggingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF9DC6292E0B160027C09E /* LoggingView.swift */; };
+		3E4AAEB006D42837A3F296AE /* HeadlessDevicePasscodeUserVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECADD9B14116D7B12B5E997 /* HeadlessDevicePasscodeUserVerifier.swift */; };
+		427B28DE7F6B4053A4EDBA98 /* AuthenticationError+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C4B22B44EDA0C3CCC7830D /* AuthenticationError+Extension.swift */; };
+		4708D94D754ACBE171939CC9 /* HeadlessPasswordUserVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ABFB14C94DE938C2C0A4B5 /* HeadlessPasswordUserVerifier.swift */; };
+		4B2A61999F8E0BFFEBD64546 /* HeadlessPasswordUserVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ABFB14C94DE938C2C0A4B5 /* HeadlessPasswordUserVerifier.swift */; };
+		5360B797752C0E1CF1D6B387 /* Documentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = A5F69ACC57F321D43D3D8EA4 /* Documentation.docc */; };
+		61798D4BB25DF0E24E1B038D /* AuthenticationError+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C4B22B44EDA0C3CCC7830D /* AuthenticationError+Extension.swift */; };
+		63D3B53060BA93582D1AB3F6 /* WatchMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09E6F257B80281C5271B854 /* WatchMessageHandler.swift */; };
+		6A9699ABD113D19FA299CF55 /* LocalData+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3E610FAD41993FAADE4F90 /* LocalData+Extension.swift */; };
+		6E8E9C4FF8175D0C6AF0541F /* HeadlessAuthenticatorSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CD27F6D598590F89C2417A /* HeadlessAuthenticatorSelector.swift */; };
+		8196002EE4CA97D60A2F01B9 /* WatchMessageSenderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F78FEAAE28C5273559BEFD6 /* WatchMessageSenderImpl.swift */; };
+		819E76581F69340D7B33E5BC /* PhoneSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58A4E5C9ECCD53D527CB70E /* PhoneSession.swift */; };
+		8B9C7D500DC8B72AE02B18AA /* WatchMessageHandlerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D313DB01AC6D21EA5C306D5D /* WatchMessageHandlerImpl.swift */; };
+		8D51FB9548F92DFE360EC788 /* HeadlessAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679E6D5B288250BD2CEDFD2C /* HeadlessAuthentication.swift */; };
+		91682FA3B03A3F663CC047DE /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B30B42269FE3CA3E4623A2EB /* Localizable.xcstrings */; };
+		92F7CD26F5FA53413A0ECBED /* HeadlessPinUserVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F081AA11C9CCFF8CBF45FBB0 /* HeadlessPinUserVerifier.swift */; };
+		953B3F9F0DCEF70776C61D5C /* HeadlessBiometricUserVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410A8449D81C6F86C8C0F3D7 /* HeadlessBiometricUserVerifier.swift */; };
+		96610D0B62C022E4514285F4 /* HeadlessAuthenticatorSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CD27F6D598590F89C2417A /* HeadlessAuthenticatorSelector.swift */; };
+		99BE6F404179F4BB235B5392 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF5E40C417D1B4A8FB2570D /* AuthenticationView.swift */; };
+		9BAF7726C4B5CBF73F3B8061 /* Authenticator+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E17EAF2A28DD7200441821 /* Authenticator+Extension.swift */; };
+		9D43F5816B32F702B2FB71B7 /* WatchMessageHandlerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D313DB01AC6D21EA5C306D5D /* WatchMessageHandlerImpl.swift */; };
+		9DA6900BC8BEAC53EEC4D744 /* WatchMessageSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EED126E314613208F5F412C /* WatchMessageSender.swift */; };
+		A66D6DD55C31A25E6A8D46ED /* LocalData+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3E610FAD41993FAADE4F90 /* LocalData+Extension.swift */; };
+		AC3FF21E02ECE642C65BDA3D /* AuthenticationError+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C4B22B44EDA0C3CCC7830D /* AuthenticationError+Extension.swift */; };
+		B43DC99CF4FCA4545E67FF94 /* HeadlessPasswordUserVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ABFB14C94DE938C2C0A4B5 /* HeadlessPasswordUserVerifier.swift */; };
+		CC1A2E1FE178E371BA5D1E31 /* HeadlessBiometricUserVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410A8449D81C6F86C8C0F3D7 /* HeadlessBiometricUserVerifier.swift */; };
+		CDAB3AA7A3081D22EF5FE54A /* LocalData+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3E610FAD41993FAADE4F90 /* LocalData+Extension.swift */; };
+		D5BF797A5CEC31AF4619204E /* WatchMessageSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EED126E314613208F5F412C /* WatchMessageSender.swift */; };
+		D8DB3B62E0D65F7B00E897F7 /* CredentialEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102BB586210B444BEAE78900 /* CredentialEntry.swift */; };
+		DA91B2FA975C38FA67D856D5 /* HeadlessDevicePasscodeUserVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECADD9B14116D7B12B5E997 /* HeadlessDevicePasscodeUserVerifier.swift */; };
+		E5EC4E5D7DC9EE7BC3E7917D /* WatchMessageSenderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F78FEAAE28C5273559BEFD6 /* WatchMessageSenderImpl.swift */; };
+		EED5F0FF81133A5ACEE5F67B /* WatchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9259E463F21202DB603B692C /* WatchState.swift */; };
+		F2F472FC9B9D93E6A6898DD1 /* HeadlessAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679E6D5B288250BD2CEDFD2C /* HeadlessAuthentication.swift */; };
+		FB794EDE16CE6D2E5BD49962 /* HeadlessAuthenticatorSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CD27F6D598590F89C2417A /* HeadlessAuthenticatorSelector.swift */; };
+		FE5F5B09DB82094DE3437C0F /* HeadlessBiometricUserVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410A8449D81C6F86C8C0F3D7 /* HeadlessBiometricUserVerifier.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		382F5C053089F1E60051E3A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3833EB112685EA03002C5E0C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 38B5AE633088F13D0080B456;
+			remoteInfo = NevisExampleWatchApp;
+		};
+		38B5AE523088D7300080B456 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3833EB112685EA03002C5E0C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 38FEE0C8307E6B1C00F1D8F4;
+			remoteInfo = NevisExampleShareExtension;
+		};
+		38B5AE6C3088F13E0080B456 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3833EB112685EA03002C5E0C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 38B5AE633088F13D0080B456;
+			remoteInfo = "NevisExampleWatchApp Watch App";
+		};
+		38B5AE89308900820080B456 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3833EB112685EA03002C5E0C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 38B5AE633088F13D0080B456;
+			remoteInfo = NevisExampleWatchApp;
+		};
+		38FEE0D1307E6B1C00F1D8F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3833EB112685EA03002C5E0C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 38FEE0C8307E6B1C00F1D8F4;
+			remoteInfo = NevisExampleShareExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		382F5C073089F1E60051E3A1 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				382F5C043089F1E60051E3A1 /* NevisExampleWatchApp.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		38B5AE573088D73D0080B456 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				38B5AE543088D73C0080B456 /* NevisExampleShareExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		38B5AE6F3088F13E0080B456 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				38B5AE6E3088F13E0080B456 /* NevisExampleWatchApp.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		38FEE0D8307E6B1C00F1D8F4 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				38FEE0D3307E6B1C00F1D8F4 /* NevisExampleShareExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		06000BAB2C37DDDD00AB53A1 /* PasswordAuthenticatorProtectionStatus+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasswordAuthenticatorProtectionStatus+Extension.swift"; sourceTree = "<group>"; };
@@ -247,13 +432,29 @@
 		06471B142C29685C006879F9 /* AuthenticatorAaid+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthenticatorAaid+Extensions.swift"; sourceTree = "<group>"; };
 		068293662C3FCE77005563AB /* PasswordPolicyImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordPolicyImpl.swift; sourceTree = "<group>"; };
 		068E9ABB2C2D60BA0059E33C /* AuthenticatorValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatorValidator.swift; sourceTree = "<group>"; };
+		0B3E610FAD41993FAADE4F90 /* LocalData+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalData+Extension.swift"; sourceTree = "<group>"; };
+		102BB586210B444BEAE78900 /* CredentialEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialEntry.swift; sourceTree = "<group>"; };
+		13E2F1C2F9A542752752A4AD /* PhoneSessionImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneSessionImpl.swift; sourceTree = "<group>"; };
+		14ABFB14C94DE938C2C0A4B5 /* HeadlessPasswordUserVerifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlessPasswordUserVerifier.swift; sourceTree = "<group>"; };
 		380C12D92F1FBF7700123C4C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		382F5C13308A0B0B0051E3A1 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		382F5C15308A27410051E3A1 /* AccountRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRow.swift; sourceTree = "<group>"; };
+		382F5C17308A282A0051E3A1 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
+		382F5C19308A2FE90051E3A1 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		382FE1D62BADD5FC00999625 /* ConfirmationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationPresenter.swift; sourceTree = "<group>"; };
 		382FE1D82BADD60400999625 /* ConfirmationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationScreen.swift; sourceTree = "<group>"; };
 		3833EB192685EA03002C5E0C /* NevisExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NevisExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3833EB252685EA03002C5E0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3833EB282685EA03002C5E0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3833EB2A2685EA03002C5E0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3846BBB8307F606E005FAFB9 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		3846BBBD307F6365005FAFB9 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		3846BBCB307F7FEF005FAFB9 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
+		3846BBCD307FA35E005FAFB9 /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
+		3846BBD2307FA53A005FAFB9 /* ExtensionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionError.swift; sourceTree = "<group>"; };
+		3846BBD5307FAB4B005FAFB9 /* NevisExampleShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NevisExampleShareExtension.entitlements; sourceTree = "<group>"; };
+		3846BBDA307FB144005FAFB9 /* OutlinedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinedButton.swift; sourceTree = "<group>"; };
+		3846BBDC307FC87A005FAFB9 /* InfoCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCard.swift; sourceTree = "<group>"; };
+		3846BBDE307FCDDD005FAFB9 /* SingleSelectionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSelectionList.swift; sourceTree = "<group>"; };
 		3859EAD3292CF78900013472 /* AppCoordinatorImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinatorImpl.swift; sourceTree = "<group>"; };
 		3859EAD4292CF78900013472 /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		3859EAD5292CF78900013472 /* NavigationParameterizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationParameterizable.swift; sourceTree = "<group>"; };
@@ -337,20 +538,63 @@
 		3859EBC3292CFB0500013472 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3859EBC5292D085600013472 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		3859EBC7292D096100013472 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		3870C34730890743003507DD /* ClientInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientInitializer.swift; sourceTree = "<group>"; };
+		3870C34A3089074C003507DD /* ClientInitializerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientInitializerImpl.swift; sourceTree = "<group>"; };
 		387108EA2F7BF9C800E34D99 /* NevisExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NevisExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3872BFCD2A29D18F0041C594 /* AuthenticatorItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatorItem.swift; sourceTree = "<group>"; };
+		38756A1B30821AE7009FE4D4 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		38756A2230824674009FE4D4 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		38756A24308246AF009FE4D4 /* AuthenticationServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationServiceImpl.swift; sourceTree = "<group>"; };
+		38756A28308256CE009FE4D4 /* AuthenticationServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationServiceError.swift; sourceTree = "<group>"; };
+		38756A2C30825E4C009FE4D4 /* Status+Presentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Status+Presentation.swift"; sourceTree = "<group>"; };
+		38756A3030826807009FE4D4 /* CardHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardHeader.swift; sourceTree = "<group>"; };
+		38756A3230826963009FE4D4 /* CardStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStyle.swift; sourceTree = "<group>"; };
+		38756A3430826A97009FE4D4 /* CheckmarkModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkModifier.swift; sourceTree = "<group>"; };
+		38756A3630826B32009FE4D4 /* Image+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Extension.swift"; sourceTree = "<group>"; };
 		38821E6D292500ED0009522A /* ConfigIdentitySuite.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ConfigIdentitySuite.plist; sourceTree = "<group>"; };
 		38821E6F292502670009522A /* ConfigAuthenticationCloud.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ConfigAuthenticationCloud.plist; sourceTree = "<group>"; };
 		388DBCDE2D40F7DA005CD4B3 /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
 		388DBCE02D411857005CD4B3 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		38B5AE583088DD730080B456 /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
+		38B5AE5D3088EB8D0080B456 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
+		38B5AE643088F13D0080B456 /* NevisExampleWatchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NevisExampleWatchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		38B5AE743088F14D0080B456 /* WatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchView.swift; sourceTree = "<group>"; };
+		38B5AE753088F14D0080B456 /* WatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchApp.swift; sourceTree = "<group>"; };
+		38B5AE803088F4230080B456 /* WatchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchModel.swift; sourceTree = "<group>"; };
+		38B5AE833088F8380080B456 /* WatchSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionDelegate.swift; sourceTree = "<group>"; };
 		38C1B37A269D815A00ED5782 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		38C918B130860BC700A8565F /* CredentialKind+Presentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CredentialKind+Presentation.swift"; sourceTree = "<group>"; };
 		38DABD6329D581D3008B8116 /* UsernamePasswordLoginScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsernamePasswordLoginScreen.swift; sourceTree = "<group>"; };
 		38DABD6429D581D3008B8116 /* UsernamePasswordLoginPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsernamePasswordLoginPresenter.swift; sourceTree = "<group>"; };
 		38DABD6929D585C0008B8116 /* LoginValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginValidator.swift; sourceTree = "<group>"; };
+		38DEDF1630810CC3004A0449 /* CredentialCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialCard.swift; sourceTree = "<group>"; };
 		38E17EAF2A28DD7200441821 /* Authenticator+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Authenticator+Extension.swift"; sourceTree = "<group>"; };
 		38E1CBF22A8E31DE00D4F7EB /* DevicePasscodeUserVerifierImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicePasscodeUserVerifierImpl.swift; sourceTree = "<group>"; };
+		38FEE0C9307E6B1C00F1D8F4 /* NevisExampleShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NevisExampleShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		38FEE0DA307E6D2300F1D8F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		38FEE0E4307E6D5000F1D8F4 /* ShareScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareScreen.swift; sourceTree = "<group>"; };
+		38FEE0E6307E708F00F1D8F4 /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
+		38FEE0E8307E728C00F1D8F4 /* ShareModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareModel.swift; sourceTree = "<group>"; };
+		38FEE0EA307E734B00F1D8F4 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		38FF9DC4292E09E70027C09E /* CredentialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialView.swift; sourceTree = "<group>"; };
 		38FF9DC6292E0B160027C09E /* LoggingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingView.swift; sourceTree = "<group>"; };
+		3EED126E314613208F5F412C /* WatchMessageSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchMessageSender.swift; sourceTree = "<group>"; };
+		3F78FEAAE28C5273559BEFD6 /* WatchMessageSenderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchMessageSenderImpl.swift; sourceTree = "<group>"; };
+		410A8449D81C6F86C8C0F3D7 /* HeadlessBiometricUserVerifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlessBiometricUserVerifier.swift; sourceTree = "<group>"; };
+		47C4B22B44EDA0C3CCC7830D /* AuthenticationError+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthenticationError+Extension.swift"; sourceTree = "<group>"; };
+		4DF5E40C417D1B4A8FB2570D /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
+		53CD27F6D598590F89C2417A /* HeadlessAuthenticatorSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlessAuthenticatorSelector.swift; sourceTree = "<group>"; };
+		679E6D5B288250BD2CEDFD2C /* HeadlessAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlessAuthentication.swift; sourceTree = "<group>"; };
+		6ADAD6DE1B33A218E033910E /* AuthenticationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationState.swift; sourceTree = "<group>"; };
+		9259E463F21202DB603B692C /* WatchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchState.swift; sourceTree = "<group>"; };
+		A09E6F257B80281C5271B854 /* WatchMessageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchMessageHandler.swift; sourceTree = "<group>"; };
+		A5F69ACC57F321D43D3D8EA4 /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
+		B30B42269FE3CA3E4623A2EB /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		BECADD9B14116D7B12B5E997 /* HeadlessDevicePasscodeUserVerifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlessDevicePasscodeUserVerifier.swift; sourceTree = "<group>"; };
+		C1D90354A2F0FDDD4B8099DC /* WatchSessionDelegateImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionDelegateImpl.swift; sourceTree = "<group>"; };
+		D313DB01AC6D21EA5C306D5D /* WatchMessageHandlerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchMessageHandlerImpl.swift; sourceTree = "<group>"; };
+		D58A4E5C9ECCD53D527CB70E /* PhoneSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneSession.swift; sourceTree = "<group>"; };
+		F081AA11C9CCFF8CBF45FBB0 /* HeadlessPinUserVerifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlessPinUserVerifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -360,6 +604,7 @@
 			files = (
 				387108F12F7BFB0100E34D99 /* KRProgressHUD in Frameworks */,
 				387108F62F7BFB3F00E34D99 /* QRScanner in Frameworks */,
+				382F5C0C3089F2410051E3A1 /* NevisExampleShared in Frameworks */,
 				38DD8B3E2F7BFCC500ACAA95 /* NevisMobileAuthentication in Frameworks */,
 				3892453E2F7BFFE000A5C1D6 /* Then in Frameworks */,
 				387109002F7BFB9600E34D99 /* SwinjectAutoregistration in Frameworks */,
@@ -374,6 +619,7 @@
 			files = (
 				38DD8B3C2F7BFCBE00ACAA95 /* NevisMobileAuthentication-Debug in Frameworks */,
 				387108EE2F7BFAF400E34D99 /* KRProgressHUD in Frameworks */,
+				382F5C0A3089F21B0051E3A1 /* NevisExampleShared in Frameworks */,
 				387108F42F7BFB3800E34D99 /* QRScanner in Frameworks */,
 				3892453C2F7BFFD800A5C1D6 /* Then in Frameworks */,
 				387108FE2F7BFB8F00E34D99 /* SwinjectAutoregistration in Frameworks */,
@@ -382,9 +628,38 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		38B5AE613088F13D0080B456 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				382F5C103089F25C0051E3A1 /* NevisExampleShared in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		38FEE0C6307E6B1C00F1D8F4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				382F5C0E3089F2510051E3A1 /* NevisExampleShared in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		022825A4F7E93B1E74B71DC4 /* Headless */ = {
+			isa = PBXGroup;
+			children = (
+				679E6D5B288250BD2CEDFD2C /* HeadlessAuthentication.swift */,
+				53CD27F6D598590F89C2417A /* HeadlessAuthenticatorSelector.swift */,
+				410A8449D81C6F86C8C0F3D7 /* HeadlessBiometricUserVerifier.swift */,
+				BECADD9B14116D7B12B5E997 /* HeadlessDevicePasscodeUserVerifier.swift */,
+				14ABFB14C94DE938C2C0A4B5 /* HeadlessPasswordUserVerifier.swift */,
+				F081AA11C9CCFF8CBF45FBB0 /* HeadlessPinUserVerifier.swift */,
+			);
+			path = Headless;
+			sourceTree = "<group>";
+		};
 		06000BA92C37D9D000AB53A1 /* Pin */ = {
 			isa = PBXGroup;
 			children = (
@@ -405,6 +680,27 @@
 			path = Password;
 			sourceTree = "<group>";
 		};
+		382F5C11308A0AA20051E3A1 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				102BB586210B444BEAE78900 /* CredentialEntry.swift */,
+				382F5C15308A27410051E3A1 /* AccountRow.swift */,
+				382F5C17308A282A0051E3A1 /* Icon.swift */,
+				382F5C13308A0B0B0051E3A1 /* MessageView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		382F5C12308A0ABC0051E3A1 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				4DF5E40C417D1B4A8FB2570D /* AuthenticationView.swift */,
+				38B5AE803088F4230080B456 /* WatchModel.swift */,
+				38B5AE743088F14D0080B456 /* WatchView.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
 		382FE1D52BADD5EA00999625 /* Confirmation */ = {
 			isa = PBXGroup;
 			children = (
@@ -418,6 +714,8 @@
 			isa = PBXGroup;
 			children = (
 				3833EB1B2685EA03002C5E0C /* NevisExampleApp */,
+				38FEE0DF307E6D2300F1D8F4 /* NevisExampleShareExtension */,
+				38B5AE763088F14D0080B456 /* NevisExampleWatchApp */,
 				387108EF2F7BFB0100E34D99 /* Frameworks */,
 				3833EB1A2685EA03002C5E0C /* Products */,
 			);
@@ -428,6 +726,8 @@
 			children = (
 				3833EB192685EA03002C5E0C /* NevisExampleApp.app */,
 				387108EA2F7BF9C800E34D99 /* NevisExampleApp.app */,
+				38FEE0C9307E6B1C00F1D8F4 /* NevisExampleShareExtension.appex */,
+				38B5AE643088F13D0080B456 /* NevisExampleWatchApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -440,15 +740,58 @@
 				3859EAD1292CF78900013472 /* Coordinator */,
 				3859EADB292CF7F000013472 /* Dependency Provider */,
 				3859EAEC292CF8A800013472 /* Error */,
+				022825A4F7E93B1E74B71DC4 /* Headless */,
 				3859EAFB292CF92000013472 /* Interaction */,
 				3859EB60292CF9AF00013472 /* Model */,
 				3867C19C2685F55400A8B98B /* Resources */,
 				3859EB05292CF92000013472 /* Screens */,
 				3859EB6B292CFA1800013472 /* Utility */,
+				38B5AE823088F81F0080B456 /* Watch */,
 				3859EBC3292CFB0500013472 /* AppDelegate.swift */,
 				380C12D92F1FBF7700123C4C /* SceneDelegate.swift */,
 			);
 			path = NevisExampleApp;
+			sourceTree = "<group>";
+		};
+		3846BBBA307F633C005FAFB9 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				38DEDF133080F600004A0449 /* Extensions */,
+				3846BBBF307F636F005FAFB9 /* Localization */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		3846BBBF307F636F005FAFB9 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				3846BBBD307F6365005FAFB9 /* Strings.swift */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
+		3846BBC7307F7893005FAFB9 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				38756A3030826807009FE4D4 /* CardHeader.swift */,
+				38756A3230826963009FE4D4 /* CardStyle.swift */,
+				38756A3430826A97009FE4D4 /* CheckmarkModifier.swift */,
+				38DEDF1630810CC3004A0449 /* CredentialCard.swift */,
+				3846BBCB307F7FEF005FAFB9 /* Icon.swift */,
+				3846BBDC307FC87A005FAFB9 /* InfoCard.swift */,
+				3846BBDA307FB144005FAFB9 /* OutlinedButton.swift */,
+				3846BBDE307FCDDD005FAFB9 /* SingleSelectionList.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		3846BBD1307FA521005FAFB9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3846BBD2307FA53A005FAFB9 /* ExtensionError.swift */,
+				38FEE0EA307E734B00F1D8F4 /* Status.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		3859EAD1292CF78900013472 /* Coordinator */ = {
@@ -702,6 +1045,7 @@
 		3859EB6B292CFA1800013472 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				3870C3463089072E003507DD /* Client Initializer */,
 				3859EB87292CFA1900013472 /* Client Provider */,
 				3859EB74292CFA1800013472 /* Countdown */,
 				3859EB7B292CFA1900013472 /* Extensions */,
@@ -736,9 +1080,12 @@
 		3859EB7B292CFA1900013472 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				47C4B22B44EDA0C3CCC7830D /* AuthenticationError+Extension.swift */,
 				38E17EAF2A28DD7200441821 /* Authenticator+Extension.swift */,
 				06471B142C29685C006879F9 /* AuthenticatorAaid+Extensions.swift */,
+				3846BBCD307FA35E005FAFB9 /* Bundle+Extension.swift */,
 				3859EB84292CFA1900013472 /* Dictionary+Extension.swift */,
+				0B3E610FAD41993FAADE4F90 /* LocalData+Extension.swift */,
 				3859EB83292CFA1900013472 /* Notification+Extension.swift */,
 				06000BAB2C37DDDD00AB53A1 /* PasswordAuthenticatorProtectionStatus+Extension.swift */,
 				3859EB82292CFA1900013472 /* PinAuthenticatorProtectionStatus+Extension.swift */,
@@ -812,14 +1159,23 @@
 		3867C19C2685F55400A8B98B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				38B5AE5D3088EB8D0080B456 /* AppIcon.icon */,
 				3833EB272685EA03002C5E0C /* LaunchScreen.storyboard */,
 				38C1B37B269D815A00ED5782 /* Localizable.strings */,
-				3833EB252685EA03002C5E0C /* Assets.xcassets */,
 				38821E6F292502670009522A /* ConfigAuthenticationCloud.plist */,
 				38821E6D292500ED0009522A /* ConfigIdentitySuite.plist */,
 				3833EB2A2685EA03002C5E0C /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		3870C3463089072E003507DD /* Client Initializer */ = {
+			isa = PBXGroup;
+			children = (
+				3870C34730890743003507DD /* ClientInitializer.swift */,
+				3870C34A3089074C003507DD /* ClientInitializerImpl.swift */,
+			);
+			path = "Client Initializer";
 			sourceTree = "<group>";
 		};
 		387108EF2F7BFB0100E34D99 /* Frameworks */ = {
@@ -829,6 +1185,88 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		38756A2130824660009FE4D4 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				38756A2230824674009FE4D4 /* AuthenticationService.swift */,
+				38756A28308256CE009FE4D4 /* AuthenticationServiceError.swift */,
+				38756A24308246AF009FE4D4 /* AuthenticationServiceImpl.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		38756A2A30825E2A009FE4D4 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				3846BBC7307F7893005FAFB9 /* Components */,
+				38756A2B30825E3D009FE4D4 /* Mapping */,
+				38FEE0E3307E6D2900F1D8F4 /* Screens */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		38756A2B30825E3D009FE4D4 /* Mapping */ = {
+			isa = PBXGroup;
+			children = (
+				38C918B130860BC700A8565F /* CredentialKind+Presentation.swift */,
+				38756A2C30825E4C009FE4D4 /* Status+Presentation.swift */,
+			);
+			path = Mapping;
+			sourceTree = "<group>";
+		};
+		38B5AE763088F14D0080B456 /* NevisExampleWatchApp */ = {
+			isa = PBXGroup;
+			children = (
+				A5F69ACC57F321D43D3D8EA4 /* Documentation.docc */,
+				BE01895438D4FE76E57EA002 /* Connection */,
+				38B5AE863088FFEA0080B456 /* Model */,
+				38B5AE7F3088F3F90080B456 /* Presentation */,
+				38B5AE7E3088F3DB0080B456 /* Resources */,
+			);
+			path = NevisExampleWatchApp;
+			sourceTree = "<group>";
+		};
+		38B5AE7E3088F3DB0080B456 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				382F5C19308A2FE90051E3A1 /* AppIcon.icon */,
+				B30B42269FE3CA3E4623A2EB /* Localizable.xcstrings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		38B5AE7F3088F3F90080B456 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				382F5C11308A0AA20051E3A1 /* Components */,
+				382F5C12308A0ABC0051E3A1 /* Screens */,
+				38B5AE753088F14D0080B456 /* WatchApp.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		38B5AE823088F81F0080B456 /* Watch */ = {
+			isa = PBXGroup;
+			children = (
+				A09E6F257B80281C5271B854 /* WatchMessageHandler.swift */,
+				D313DB01AC6D21EA5C306D5D /* WatchMessageHandlerImpl.swift */,
+				3EED126E314613208F5F412C /* WatchMessageSender.swift */,
+				3F78FEAAE28C5273559BEFD6 /* WatchMessageSenderImpl.swift */,
+				38B5AE833088F8380080B456 /* WatchSessionDelegate.swift */,
+				C1D90354A2F0FDDD4B8099DC /* WatchSessionDelegateImpl.swift */,
+			);
+			path = Watch;
+			sourceTree = "<group>";
+		};
+		38B5AE863088FFEA0080B456 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6ADAD6DE1B33A218E033910E /* AuthenticationState.swift */,
+				9259E463F21202DB603B692C /* WatchState.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		38DABD5E29D5817E008B8116 /* Username Password Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -836,6 +1274,57 @@
 				38DABD6329D581D3008B8116 /* UsernamePasswordLoginScreen.swift */,
 			);
 			path = "Username Password Login";
+			sourceTree = "<group>";
+		};
+		38DEDF133080F600004A0449 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				38756A3630826B32009FE4D4 /* Image+Extension.swift */,
+				38756A1B30821AE7009FE4D4 /* View+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		38FEE0DB307E6D2300F1D8F4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				38FEE0DA307E6D2300F1D8F4 /* Info.plist */,
+				3846BBB8307F606E005FAFB9 /* Localizable.xcstrings */,
+				3846BBD5307FAB4B005FAFB9 /* NevisExampleShareExtension.entitlements */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		38FEE0DF307E6D2300F1D8F4 /* NevisExampleShareExtension */ = {
+			isa = PBXGroup;
+			children = (
+				38B5AE583088DD730080B456 /* Documentation.docc */,
+				3846BBD1307FA521005FAFB9 /* Models */,
+				38756A2A30825E2A009FE4D4 /* Presentation */,
+				38FEE0DB307E6D2300F1D8F4 /* Resources */,
+				38756A2130824660009FE4D4 /* Service */,
+				3846BBBA307F633C005FAFB9 /* Utility */,
+			);
+			path = NevisExampleShareExtension;
+			sourceTree = "<group>";
+		};
+		38FEE0E3307E6D2900F1D8F4 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				38FEE0E8307E728C00F1D8F4 /* ShareModel.swift */,
+				38FEE0E4307E6D5000F1D8F4 /* ShareScreen.swift */,
+				38FEE0E6307E708F00F1D8F4 /* ShareView.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		BE01895438D4FE76E57EA002 /* Connection */ = {
+			isa = PBXGroup;
+			children = (
+				D58A4E5C9ECCD53D527CB70E /* PhoneSession.swift */,
+				13E2F1C2F9A542752752A4AD /* PhoneSessionImpl.swift */,
+			);
+			path = Connection;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -849,10 +1338,15 @@
 				3833EB152685EA03002C5E0C /* Sources */,
 				3833EB162685EA03002C5E0C /* Frameworks */,
 				3833EB172685EA03002C5E0C /* Resources */,
+				38B5AE573088D73D0080B456 /* Embed Foundation Extensions */,
+				382F5C073089F1E60051E3A1 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				38B5AE8A308900820080B456 /* PBXTargetDependency */,
+				38B5AE533088D7300080B456 /* PBXTargetDependency */,
+				382F5C063089F1E60051E3A1 /* PBXTargetDependency */,
 			);
 			name = NevisExampleApp;
 			productName = NevisExampleApp;
@@ -867,15 +1361,58 @@
 				387108762F7BF9C800E34D99 /* Sources */,
 				387108DF2F7BF9C800E34D99 /* Frameworks */,
 				387108E12F7BF9C800E34D99 /* Resources */,
+				38FEE0D8307E6B1C00F1D8F4 /* Embed Foundation Extensions */,
+				38B5AE6F3088F13E0080B456 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				38FEE0D2307E6B1C00F1D8F4 /* PBXTargetDependency */,
+				38B5AE6D3088F13E0080B456 /* PBXTargetDependency */,
 			);
 			name = "NevisExampleApp-Debug";
 			productName = NevisExampleApp;
 			productReference = 387108EA2F7BF9C800E34D99 /* NevisExampleApp.app */;
 			productType = "com.apple.product-type.application";
+		};
+		38B5AE633088F13D0080B456 /* NevisExampleWatchApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 38B5AE723088F13E0080B456 /* Build configuration list for PBXNativeTarget "NevisExampleWatchApp" */;
+			buildPhases = (
+				38B5AE7B3088F29C0080B456 /* Swift Format */,
+				38B5AE603088F13D0080B456 /* Sources */,
+				38B5AE613088F13D0080B456 /* Frameworks */,
+				38B5AE623088F13D0080B456 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NevisExampleWatchApp;
+			packageProductDependencies = (
+				382F5C0F3089F25C0051E3A1 /* NevisExampleShared */,
+			);
+			productName = "NevisExampleWatchApp Watch App";
+			productReference = 38B5AE643088F13D0080B456 /* NevisExampleWatchApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		38FEE0C8307E6B1C00F1D8F4 /* NevisExampleShareExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 38FEE0D5307E6B1C00F1D8F4 /* Build configuration list for PBXNativeTarget "NevisExampleShareExtension" */;
+			buildPhases = (
+				38FEE0EC307E745D00F1D8F4 /* Swift Format */,
+				38FEE0C5307E6B1C00F1D8F4 /* Sources */,
+				38FEE0C6307E6B1C00F1D8F4 /* Frameworks */,
+				38FEE0C7307E6B1C00F1D8F4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NevisExampleShareExtension;
+			productName = NevisExampleShareExtension;
+			productReference = 38FEE0C9307E6B1C00F1D8F4 /* NevisExampleShareExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -884,11 +1421,17 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastSwiftUpdateCheck = 1250;
+				LastSwiftUpdateCheck = 2660;
 				LastUpgradeCheck = 2620;
 				TargetAttributes = {
 					3833EB182685EA03002C5E0C = {
 						CreatedOnToolsVersion = 12.5;
+					};
+					38B5AE633088F13D0080B456 = {
+						CreatedOnToolsVersion = 26.6;
+					};
+					38FEE0C8307E6B1C00F1D8F4 = {
+						CreatedOnToolsVersion = 26.6;
 					};
 				};
 			};
@@ -899,7 +1442,6 @@
 			knownRegions = (
 				en,
 				Base,
-				hu,
 			);
 			mainGroup = 3833EB102685EA03002C5E0C;
 			packageReferences = (
@@ -910,6 +1452,7 @@
 				387108FC2F7BFB8F00E34D99 /* XCRemoteSwiftPackageReference "SwinjectAutoregistration" */,
 				387109012F7BFBF400E34D99 /* XCRemoteSwiftPackageReference "nevis-mobile-authentication-sdk-ios-package" */,
 				3892453A2F7BFFD800A5C1D6 /* XCRemoteSwiftPackageReference "Then" */,
+				382F5C083089F21B0051E3A1 /* XCLocalSwiftPackageReference "Packages/NevisExampleShared" */,
 			);
 			productRefGroup = 3833EB1A2685EA03002C5E0C /* Products */;
 			projectDirPath = "";
@@ -917,6 +1460,8 @@
 			targets = (
 				387108742F7BF9C800E34D99 /* NevisExampleApp-Debug */,
 				3833EB182685EA03002C5E0C /* NevisExampleApp */,
+				38FEE0C8307E6B1C00F1D8F4 /* NevisExampleShareExtension */,
+				38B5AE633088F13D0080B456 /* NevisExampleWatchApp */,
 			);
 		};
 /* End PBXProject section */
@@ -927,10 +1472,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				38A68C5D29253BAB00685419 /* ConfigAuthenticationCloud.plist in Resources */,
+				38B5AE5F3088EB8D0080B456 /* AppIcon.icon in Resources */,
 				38A68C5E29253BAB00685419 /* ConfigIdentitySuite.plist in Resources */,
 				3833EB292685EA03002C5E0C /* LaunchScreen.storyboard in Resources */,
 				38C1B379269D815A00ED5782 /* Localizable.strings in Resources */,
-				3833EB262685EA03002C5E0C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -939,10 +1484,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				387108E22F7BF9C800E34D99 /* ConfigAuthenticationCloud.plist in Resources */,
+				38B5AE5E3088EB8D0080B456 /* AppIcon.icon in Resources */,
 				387108E32F7BF9C800E34D99 /* ConfigIdentitySuite.plist in Resources */,
 				387108E42F7BF9C800E34D99 /* LaunchScreen.storyboard in Resources */,
 				387108E52F7BF9C800E34D99 /* Localizable.strings in Resources */,
-				387108E62F7BF9C800E34D99 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		38B5AE623088F13D0080B456 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91682FA3B03A3F663CC047DE /* Localizable.xcstrings in Resources */,
+				382F5C1A308A2FE90051E3A1 /* AppIcon.icon in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		38FEE0C7307E6B1C00F1D8F4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3838147D3087B74B0069F89A /* ConfigIdentitySuite.plist in Resources */,
+				3846BBC0307F73D1005FAFB9 /* ConfigAuthenticationCloud.plist in Resources */,
+				3846BBB9307F606E005FAFB9 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -966,7 +1530,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "swift format --in-place --parallel --recursive NevisExampleApp\n";
+			shellScript = "swift format --in-place --parallel --recursive NevisExampleApp Packages/NevisExampleShared\n";
 		};
 		383D36C32F7D0A0600B68A85 /* Swift Format */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -985,7 +1549,45 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "swift format --in-place --parallel --recursive NevisExampleApp\n";
+			shellScript = "swift format --in-place --parallel --recursive NevisExampleApp Packages/NevisExampleShared\n";
+		};
+		38B5AE7B3088F29C0080B456 /* Swift Format */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Swift Format";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "swift format --in-place --parallel --recursive NevisExampleWatchApp\n";
+		};
+		38FEE0EC307E745D00F1D8F4 /* Swift Format */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Swift Format";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "swift format --in-place --parallel --recursive NevisExampleShareExtension\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -994,9 +1596,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5EC4E5D7DC9EE7BC3E7917D /* WatchMessageSenderImpl.swift in Sources */,
+				9DA6900BC8BEAC53EEC4D744 /* WatchMessageSender.swift in Sources */,
+				AC3FF21E02ECE642C65BDA3D /* AuthenticationError+Extension.swift in Sources */,
+				06157CD87B390671323BFE67 /* HeadlessPinUserVerifier.swift in Sources */,
+				4708D94D754ACBE171939CC9 /* HeadlessPasswordUserVerifier.swift in Sources */,
+				38E9A1B44FCA95F040E03C57 /* HeadlessDevicePasscodeUserVerifier.swift in Sources */,
+				953B3F9F0DCEF70776C61D5C /* HeadlessBiometricUserVerifier.swift in Sources */,
+				FB794EDE16CE6D2E5BD49962 /* HeadlessAuthenticatorSelector.swift in Sources */,
+				F2F472FC9B9D93E6A6898DD1 /* HeadlessAuthentication.swift in Sources */,
+				8B9C7D500DC8B72AE02B18AA /* WatchMessageHandlerImpl.swift in Sources */,
+				2DA22CF7E4FA2C0B87AF74CF /* WatchMessageHandler.swift in Sources */,
+				1A21FBFCC927D30FDE955FE1 /* WatchSessionDelegateImpl.swift in Sources */,
+				6A9699ABD113D19FA299CF55 /* LocalData+Extension.swift in Sources */,
 				3859EBA8292CFA1900013472 /* PinAuthenticatorProtectionStatus+Extension.swift in Sources */,
 				3859EB48292CF92000013472 /* LaunchPresenter.swift in Sources */,
 				3859EB3B292CF92000013472 /* AccountSelectorImpl.swift in Sources */,
+				3846BBCF307FA35E005FAFB9 /* Bundle+Extension.swift in Sources */,
 				3859EB9D292CFA1900013472 /* InteractionCountDownTimer.swift in Sources */,
 				3859EBAF292CFA1900013472 /* LoginServiceImpl.swift in Sources */,
 				3859EBC4292CFB0500013472 /* AppDelegate.swift in Sources */,
@@ -1004,6 +1620,7 @@
 				3859EB97292CFA1900013472 /* OutlinedButton.swift in Sources */,
 				3859EB52292CF92000013472 /* QrScannerPresenter.swift in Sources */,
 				382FE1D92BADD60400999625 /* ConfirmationScreen.swift in Sources */,
+				3870C34930890743003507DD /* ClientInitializer.swift in Sources */,
 				3872BFCE2A29D18F0041C594 /* AuthenticatorItem.swift in Sources */,
 				3859EB98292CFA1900013472 /* NSTextField.swift in Sources */,
 				3859EB3F292CF92000013472 /* HomeScreen.swift in Sources */,
@@ -1027,6 +1644,7 @@
 				3859EBB2292CFA1900013472 /* LoginService.swift in Sources */,
 				06000BB22C37EE6A00AB53A1 /* PasswordUserVerifier.swift in Sources */,
 				3859EBA7292CFA1900013472 /* UIStackView+Extension.swift in Sources */,
+				38B5AE843088F8380080B456 /* WatchSessionDelegate.swift in Sources */,
 				3859EB42292CF92000013472 /* CredentialScreen.swift in Sources */,
 				3859EB65292CF9AF00013472 /* OperationError.swift in Sources */,
 				3859EAE9292CF82D00013472 /* AppConfiguration.swift in Sources */,
@@ -1062,6 +1680,7 @@
 				3859EAD9292CF78900013472 /* NavigationParameterizable.swift in Sources */,
 				3859EBAA292CFA1900013472 /* Dictionary+Extension.swift in Sources */,
 				3859EBC6292D085600013472 /* BaseView.swift in Sources */,
+				3870C34B3089074C003507DD /* ClientInitializerImpl.swift in Sources */,
 				3859EAF9292CF8A800013472 /* ErrorHandlerChain.swift in Sources */,
 				3859EAEA292CF82D00013472 /* Environment.swift in Sources */,
 				3859EB46292CF92000013472 /* ChangeDeviceInformationScreen.swift in Sources */,
@@ -1104,9 +1723,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8196002EE4CA97D60A2F01B9 /* WatchMessageSenderImpl.swift in Sources */,
+				D5BF797A5CEC31AF4619204E /* WatchMessageSender.swift in Sources */,
+				427B28DE7F6B4053A4EDBA98 /* AuthenticationError+Extension.swift in Sources */,
+				92F7CD26F5FA53413A0ECBED /* HeadlessPinUserVerifier.swift in Sources */,
+				B43DC99CF4FCA4545E67FF94 /* HeadlessPasswordUserVerifier.swift in Sources */,
+				3E4AAEB006D42837A3F296AE /* HeadlessDevicePasscodeUserVerifier.swift in Sources */,
+				CC1A2E1FE178E371BA5D1E31 /* HeadlessBiometricUserVerifier.swift in Sources */,
+				96610D0B62C022E4514285F4 /* HeadlessAuthenticatorSelector.swift in Sources */,
+				8D51FB9548F92DFE360EC788 /* HeadlessAuthentication.swift in Sources */,
+				9D43F5816B32F702B2FB71B7 /* WatchMessageHandlerImpl.swift in Sources */,
+				63D3B53060BA93582D1AB3F6 /* WatchMessageHandler.swift in Sources */,
+				232E57C17DA99F663714CE7F /* WatchSessionDelegateImpl.swift in Sources */,
+				CDAB3AA7A3081D22EF5FE54A /* LocalData+Extension.swift in Sources */,
 				387108772F7BF9C800E34D99 /* PinAuthenticatorProtectionStatus+Extension.swift in Sources */,
 				387108782F7BF9C800E34D99 /* LaunchPresenter.swift in Sources */,
 				387108792F7BF9C800E34D99 /* AccountSelectorImpl.swift in Sources */,
+				3846BBCE307FA35E005FAFB9 /* Bundle+Extension.swift in Sources */,
 				3871087A2F7BF9C800E34D99 /* InteractionCountDownTimer.swift in Sources */,
 				3871087B2F7BF9C800E34D99 /* LoginServiceImpl.swift in Sources */,
 				3871087C2F7BF9C800E34D99 /* AppDelegate.swift in Sources */,
@@ -1114,6 +1747,7 @@
 				3871087E2F7BF9C800E34D99 /* OutlinedButton.swift in Sources */,
 				3871087F2F7BF9C800E34D99 /* QrScannerPresenter.swift in Sources */,
 				387108802F7BF9C800E34D99 /* ConfirmationScreen.swift in Sources */,
+				3870C34830890743003507DD /* ClientInitializer.swift in Sources */,
 				387108812F7BF9C800E34D99 /* AuthenticatorItem.swift in Sources */,
 				387108822F7BF9C800E34D99 /* NSTextField.swift in Sources */,
 				387108832F7BF9C800E34D99 /* HomeScreen.swift in Sources */,
@@ -1137,6 +1771,7 @@
 				387108952F7BF9C800E34D99 /* LoginService.swift in Sources */,
 				387108962F7BF9C800E34D99 /* PasswordUserVerifier.swift in Sources */,
 				387108972F7BF9C800E34D99 /* UIStackView+Extension.swift in Sources */,
+				38B5AE853088F8380080B456 /* WatchSessionDelegate.swift in Sources */,
 				387108982F7BF9C800E34D99 /* CredentialScreen.swift in Sources */,
 				387108992F7BF9C800E34D99 /* OperationError.swift in Sources */,
 				3871089A2F7BF9C800E34D99 /* AppConfiguration.swift in Sources */,
@@ -1172,6 +1807,7 @@
 				387108B92F7BF9C800E34D99 /* NavigationParameterizable.swift in Sources */,
 				387108BA2F7BF9C800E34D99 /* Dictionary+Extension.swift in Sources */,
 				387108BB2F7BF9C800E34D99 /* BaseView.swift in Sources */,
+				3870C34C3089074C003507DD /* ClientInitializerImpl.swift in Sources */,
 				387108BC2F7BF9C800E34D99 /* ErrorHandlerChain.swift in Sources */,
 				387108BD2F7BF9C800E34D99 /* Environment.swift in Sources */,
 				387108BE2F7BF9C800E34D99 /* ChangeDeviceInformationScreen.swift in Sources */,
@@ -1210,7 +1846,102 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		38B5AE603088F13D0080B456 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5360B797752C0E1CF1D6B387 /* Documentation.docc in Sources */,
+				D8DB3B62E0D65F7B00E897F7 /* CredentialEntry.swift in Sources */,
+				99BE6F404179F4BB235B5392 /* AuthenticationView.swift in Sources */,
+				15AAFE371C0FFCB498D7D7B7 /* AuthenticationState.swift in Sources */,
+				382F5C16308A27410051E3A1 /* AccountRow.swift in Sources */,
+				EED5F0FF81133A5ACEE5F67B /* WatchState.swift in Sources */,
+				0BC95AECEC205CBD5F26DFBE /* PhoneSessionImpl.swift in Sources */,
+				382F5C18308A282A0051E3A1 /* Icon.swift in Sources */,
+				819E76581F69340D7B33E5BC /* PhoneSession.swift in Sources */,
+				38B5AE773088F14D0080B456 /* WatchView.swift in Sources */,
+				38B5AE783088F14D0080B456 /* WatchApp.swift in Sources */,
+				382F5C14308A0B0B0051E3A1 /* MessageView.swift in Sources */,
+				38B5AE813088F4230080B456 /* WatchModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		38FEE0C5307E6B1C00F1D8F4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				61798D4BB25DF0E24E1B038D /* AuthenticationError+Extension.swift in Sources */,
+				0F2D05D808CA074C69B788ED /* HeadlessPinUserVerifier.swift in Sources */,
+				4B2A61999F8E0BFFEBD64546 /* HeadlessPasswordUserVerifier.swift in Sources */,
+				DA91B2FA975C38FA67D856D5 /* HeadlessDevicePasscodeUserVerifier.swift in Sources */,
+				FE5F5B09DB82094DE3437C0F /* HeadlessBiometricUserVerifier.swift in Sources */,
+				6E8E9C4FF8175D0C6AF0541F /* HeadlessAuthenticatorSelector.swift in Sources */,
+				1173486DE78D427298CEFC4D /* HeadlessAuthentication.swift in Sources */,
+				A66D6DD55C31A25E6A8D46ED /* LocalData+Extension.swift in Sources */,
+				9BAF7726C4B5CBF73F3B8061 /* Authenticator+Extension.swift in Sources */,
+				3846BBCC307F7FEF005FAFB9 /* Icon.swift in Sources */,
+				38DEDF1730810CC3004A0449 /* CredentialCard.swift in Sources */,
+				3846BBD0307FA35E005FAFB9 /* Bundle+Extension.swift in Sources */,
+				38FEE0E7307E708F00F1D8F4 /* ShareView.swift in Sources */,
+				38FEE0E5307E6D5000F1D8F4 /* ShareScreen.swift in Sources */,
+				38FEE0EB307E734B00F1D8F4 /* Status.swift in Sources */,
+				38C918B3308611EA00A8565F /* PinAuthenticatorProtectionStatus+Extension.swift in Sources */,
+				38C918B4308611EA00A8565F /* PasswordAuthenticatorProtectionStatus+Extension.swift in Sources */,
+				38756A1C30821AE7009FE4D4 /* View+Extension.swift in Sources */,
+				3846BBBE307F6365005FAFB9 /* Strings.swift in Sources */,
+				3846BBC2307F73EC005FAFB9 /* ConfigurationLoaderImpl.swift in Sources */,
+				38756A29308256CE009FE4D4 /* AuthenticationServiceError.swift in Sources */,
+				3846BBC3307F73EC005FAFB9 /* ConfigurationLoader.swift in Sources */,
+				38FEE0E9307E728C00F1D8F4 /* ShareModel.swift in Sources */,
+				3846BBDF307FCDDD005FAFB9 /* SingleSelectionList.swift in Sources */,
+				3846BBC4307F7402005FAFB9 /* LoginConfiguration.swift in Sources */,
+				3846BBC5307F7402005FAFB9 /* AppConfiguration.swift in Sources */,
+				38C918B230860BC700A8565F /* CredentialKind+Presentation.swift in Sources */,
+				38756A3530826A97009FE4D4 /* CheckmarkModifier.swift in Sources */,
+				38B5AE593088DD730080B456 /* Documentation.docc in Sources */,
+				38756A3330826963009FE4D4 /* CardStyle.swift in Sources */,
+				38756A3130826807009FE4D4 /* CardHeader.swift in Sources */,
+				3846BBCA307F79FF005FAFB9 /* AuthenticatorAaid+Extensions.swift in Sources */,
+				3846BBD3307FA53A005FAFB9 /* ExtensionError.swift in Sources */,
+				38756A25308246AF009FE4D4 /* AuthenticationServiceImpl.swift in Sources */,
+				3846BBC6307F7402005FAFB9 /* Environment.swift in Sources */,
+				3846BBDB307FB144005FAFB9 /* OutlinedButton.swift in Sources */,
+				38756A3730826B32009FE4D4 /* Image+Extension.swift in Sources */,
+				3846BBDD307FC87A005FAFB9 /* InfoCard.swift in Sources */,
+				38756A2330824674009FE4D4 /* AuthenticationService.swift in Sources */,
+				38756A2D30825E4C009FE4D4 /* Status+Presentation.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		382F5C063089F1E60051E3A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 38B5AE633088F13D0080B456 /* NevisExampleWatchApp */;
+			targetProxy = 382F5C053089F1E60051E3A1 /* PBXContainerItemProxy */;
+		};
+		38B5AE533088D7300080B456 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 38FEE0C8307E6B1C00F1D8F4 /* NevisExampleShareExtension */;
+			targetProxy = 38B5AE523088D7300080B456 /* PBXContainerItemProxy */;
+		};
+		38B5AE6D3088F13E0080B456 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 38B5AE633088F13D0080B456 /* NevisExampleWatchApp */;
+			targetProxy = 38B5AE6C3088F13E0080B456 /* PBXContainerItemProxy */;
+		};
+		38B5AE8A308900820080B456 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 38B5AE633088F13D0080B456 /* NevisExampleWatchApp */;
+			targetProxy = 38B5AE89308900820080B456 /* PBXContainerItemProxy */;
+		};
+		38FEE0D2307E6B1C00F1D8F4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 38FEE0C8307E6B1C00F1D8F4 /* NevisExampleShareExtension */;
+			targetProxy = 38FEE0D1307E6B1C00F1D8F4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3833EB272685EA03002C5E0C /* LaunchScreen.storyboard */ = {
@@ -1285,13 +2016,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -1343,12 +2075,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1358,7 +2091,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
@@ -1367,7 +2099,6 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = NevisExampleApp/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1388,7 +2119,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1399,7 +2129,6 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = NevisExampleApp/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1420,7 +2149,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
@@ -1430,7 +2159,6 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = NevisExampleApp/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1451,7 +2179,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1462,7 +2190,6 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = NevisExampleApp/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1476,6 +2203,158 @@
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_WORKSPACE = YES;
+			};
+			name = Release;
+		};
+		38B5AE703088F13E0080B456 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = NevisExampleWatchApp;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = ch.nevis.mobile.authentication.sdk.ios.example;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ch.nevis.mobile.authentication.sdk.ios.example.watchapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10;
+			};
+			name = Debug;
+		};
+		38B5AE713088F13E0080B456 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = NevisExampleWatchApp;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = ch.nevis.mobile.authentication.sdk.ios.example;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ch.nevis.mobile.authentication.sdk.ios.example.watchapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10;
+			};
+			name = Release;
+		};
+		38FEE0D6307E6B1C00F1D8F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = NevisExampleShareExtension/Resources/NevisExampleShareExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NevisExampleShareExtension/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NevisExampleShareExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 4.6.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ch.nevis.mobile.authentication.sdk.ios.example.extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		38FEE0D7307E6B1C00F1D8F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = NevisExampleShareExtension/Resources/NevisExampleShareExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NevisExampleShareExtension/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NevisExampleShareExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 4.6.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ch.nevis.mobile.authentication.sdk.ios.example.extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -1509,7 +2388,32 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		38B5AE723088F13E0080B456 /* Build configuration list for PBXNativeTarget "NevisExampleWatchApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				38B5AE703088F13E0080B456 /* Debug */,
+				38B5AE713088F13E0080B456 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		38FEE0D5307E6B1C00F1D8F4 /* Build configuration list for PBXNativeTarget "NevisExampleShareExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				38FEE0D6307E6B1C00F1D8F4 /* Debug */,
+				38FEE0D7307E6B1C00F1D8F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		382F5C083089F21B0051E3A1 /* XCLocalSwiftPackageReference "Packages/NevisExampleShared" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/NevisExampleShared;
+		};
+/* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
 		387108712F7BF8E900E34D99 /* XCRemoteSwiftPackageReference "FittedSheets" */ = {
@@ -1571,6 +2475,25 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		382F5C093089F21B0051E3A1 /* NevisExampleShared */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NevisExampleShared;
+		};
+		382F5C0B3089F2410051E3A1 /* NevisExampleShared */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 382F5C083089F21B0051E3A1 /* XCLocalSwiftPackageReference "Packages/NevisExampleShared" */;
+			productName = NevisExampleShared;
+		};
+		382F5C0D3089F2510051E3A1 /* NevisExampleShared */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 382F5C083089F21B0051E3A1 /* XCLocalSwiftPackageReference "Packages/NevisExampleShared" */;
+			productName = NevisExampleShared;
+		};
+		382F5C0F3089F25C0051E3A1 /* NevisExampleShared */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 382F5C083089F21B0051E3A1 /* XCLocalSwiftPackageReference "Packages/NevisExampleShared" */;
+			productName = NevisExampleShared;
+		};
 		387108722F7BF8E900E34D99 /* FittedSheets */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 387108712F7BF8E900E34D99 /* XCRemoteSwiftPackageReference "FittedSheets" */;

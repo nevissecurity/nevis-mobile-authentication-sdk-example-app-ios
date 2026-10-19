@@ -211,7 +211,18 @@ private extension AppAssembly {
 			ConfigurationLoaderImpl(environment: .authenticationCloud)
 		}
 
+		container.autoregisterOnMain(ClientInitializer.self, initializer: ClientInitializerImpl.init)
+			.inObjectScope(.container)
+
 		container.autoregister(ClientProvider.self, initializer: ClientProviderImpl.init)
+			.inObjectScope(.container)
+
+		container.autoregister(WatchSessionDelegate.self, initializer: WatchSessionDelegateImpl.init)
+			.inObjectScope(.container)
+
+		container.autoregister(WatchMessageSender.self, initializer: WatchMessageSenderImpl.init)
+
+		container.autoregisterOnMain(WatchMessageHandler.self, initializer: WatchMessageHandlerImpl.init)
 			.inObjectScope(.container)
 
 		container.autoregister(AccountSelector.self, initializer: AccountSelectorImpl.init)

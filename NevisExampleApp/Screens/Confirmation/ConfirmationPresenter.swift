@@ -4,6 +4,7 @@
 // Copyright © 2024 Nevis Security AG. All rights reserved.
 //
 
+import NevisExampleShared
 import NevisMobileAuthentication
 
 /// Navigation parameter of the Confirmation view.
@@ -74,12 +75,12 @@ extension ConfirmationPresenter {
 	func confirm() {
 		biometricUserVerificationHandler?.verify(
 			using: .init(
-				reason: L10n.BiometricPrompt.reason,
-				fallbackButtonTitle: L10n.BiometricPrompt.fallback,
-				cancelButtonTitle: L10n.BiometricPrompt.cancel
+				reason: SystemPrompt.Biometric.reason,
+				fallbackButtonTitle: SystemPrompt.Biometric.fallbackButtonTitle,
+				cancelButtonTitle: SystemPrompt.Biometric.cancelButtonTitle
 			)
 		)
-		devicePasscodeUserVerificationHandler?.verify(using: .init(reason: L10n.DevicePasscodePrompt.reason))
+		devicePasscodeUserVerificationHandler?.verify(using: .init(reason: SystemPrompt.DevicePasscode.reason))
 	}
 
 	/// Cancels user verification.

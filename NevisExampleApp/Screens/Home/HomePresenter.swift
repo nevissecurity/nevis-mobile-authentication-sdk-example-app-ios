@@ -5,6 +5,7 @@
 //
 
 import NevisMobileAuthentication
+import UIKit
 
 /// Presenter of Home view.
 @MainActor
@@ -17,6 +18,9 @@ final class HomePresenter {
 
 	/// The configuration loader.
 	private let configurationLoader: ConfigurationLoader
+
+	/// The client initializer.
+	private let clientInitializer: ClientInitializer
 
 	/// The client provider.
 	private let clientProvider: ClientProvider
@@ -47,6 +51,7 @@ final class HomePresenter {
 	///
 	/// - Parameters:
 	///   - configurationLoader: The configuration loader.
+	///   - clientInitializer: The client initializer.
 	///   - clientProvider: The client provider.
 	///   - pinChanger: The PIN changer.
 	///   - passwordChanger: The Password changer.
@@ -55,6 +60,7 @@ final class HomePresenter {
 	///   - errorHandlerChain: The error handler chain.
 	init(
 		configurationLoader: ConfigurationLoader,
+		clientInitializer: ClientInitializer,
 		clientProvider: ClientProvider,
 		pinChanger: PinChanger,
 		passwordChanger: PasswordChanger,
@@ -63,6 +69,7 @@ final class HomePresenter {
 		errorHandlerChain: ErrorHandlerChain
 	) {
 		self.configurationLoader = configurationLoader
+		self.clientInitializer = clientInitializer
 		self.clientProvider = clientProvider
 		self.pinChanger = pinChanger
 		self.passwordChanger = passwordChanger
@@ -84,39 +91,18 @@ extension HomePresenter {
 	///
 	/// - Parameter handler: The code need to be executed on successful client initialization.
 	func initClient(completion handler: @escaping @MainActor () -> ()) {
-		if mobileAuthenticationClient != nil {
-			logger.sdk("Client already initialized.")
-			return handler()
-		}
-
-		do {
-			guard let configuration = try configurationLoader.load() else {
-				errorHandlerChain.handle(error: AppError.loadAppConfigurationError)
-				return
+		Task {
+			do {
+				try await clientInitializer.initialize()
+				Task { @MainActor in
+					handler()
+				}
+			} catch {
+				Task { @MainActor in
+					let operationError = OperationError(operation: .initClient, underlyingError: error)
+					errorHandlerChain.handle(error: operationError)
+				}
 			}
-
-			logger.sdk("Initializing client.")
-			MobileAuthenticationClientInitializer()
-				.configuration(configuration.sdkConfiguration)
-				.onSuccess { client in
-					logger.sdk("Client initialization succeeded.", .green)
-					Task { @MainActor in
-						self.clientProvider.save(client: client)
-						handler()
-					}
-				}
-				.onError { error in
-					logger.sdk("Client initialization failed.", .red)
-					Task { @MainActor in
-						let operationError = OperationError(operation: .initClient, underlyingError: error)
-						self.errorHandlerChain.handle(error: operationError)
-					}
-
-				}
-				.execute()
-		} catch {
-			let operationError = OperationError(operation: .initClient, underlyingError: error)
-			errorHandlerChain.handle(error: operationError)
 		}
 	}
 
@@ -330,6 +316,12 @@ extension HomePresenter {
 					self.errorHandlerChain.handle(error: operationError)
 			}
 		}
+	}
+
+	/// Opens the share sheet.
+	func share() {
+		let activityViewController = UIActivityViewController(activityItems: ["Verify with Nevis"], applicationActivities: nil)
+		appCoordinator.present(activityViewController)
 	}
 
 	/// Starts In-Band registration operation.

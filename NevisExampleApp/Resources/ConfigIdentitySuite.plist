@@ -2,6 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>authenticatorAllowlist</key>
+	<array>
+		<string>F1D0#1001</string>
+		<string>F1D0#1002</string>
+		<string>F1D0#1003</string>
+		<string>F1D0#1004</string>
+	</array>
 	<key>login</key>
 	<dict>
 		<key>loginRequestURL</key>
@@ -9,6 +16,13 @@
 	</dict>
 	<key>sdk</key>
 	<dict>
+		<key>appExtension</key>
+		<dict>
+			<key>applicationIdentifier</key>
+			<string>ch.nevis.mobile.authentication.sdk.ios.example</string>
+			<key>keychainAccessGroup</key>
+			<string>myteam.ch.nevis.mobile.authentication.sdk.ios.example</string>
+		</dict>
 		<key>baseUrl</key>
 		<dict>
 			<key>relative</key>
@@ -37,12 +51,5 @@
 		<key>userInteractionTimeoutInSeconds</key>
 		<integer>240</integer>
 	</dict>
-	<key>authenticatorAllowlist</key>
-	<array>
-		<string>F1D0#1001</string>
-		<string>F1D0#1002</string>
-		<string>F1D0#1003</string>
-		<string>F1D0#1004</string>
-	</array>
 </dict>
 </plist>

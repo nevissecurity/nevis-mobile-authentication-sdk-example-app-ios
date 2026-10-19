@@ -16,6 +16,7 @@
 "home_delete_authenticators_button" = "Delete Authenticators";
 "home_separator" = "Identity Suite only";
 "home_in_band_registration_button" = "In-Band Register";
+"home_share_button" = "Open Share Extension";
 "home_sdk_version" = "Nevis Mobile Authentication SDK";
 "home_facet_id" = "Facet Id";
 
@@ -43,11 +44,6 @@
 "pin_pin_placeholder" = "Enter PIN";
 "pin_missing_old_pin" = "Missing old PIN.";
 "pin_missing_pin" = "Missing PIN.";
-"pin_protection_status_locked_out" = "Your PIN is blocked.";
-"pin_protection_status_last_retry_with_cool_down" = "You have %@ try left.\nPlease retry in %@ seconds.\nAfter that your PIN will be blocked.";
-"pin_protection_status_last_retry_without_cool_down" = "You have %@ try left.\nAfter that your PIN will be blocked.";
-"pin_protection_status_retries_with_cool_down" = "You have %@ tries left.\nPlease retry in %@ seconds.";
-"pin_protection_status_retries_without_cool_down" = "You have %@ tries left.";
 
 // Password screen
 "password_enrollment_title" = "Create Password";
@@ -60,11 +56,6 @@
 "password_password_placeholder" = "Enter Password";
 "password_missing_old_password" = "Missing old Password.";
 "password_missing_password" = "Missing Password.";
-"password_protection_status_locked_out" = "Your Password is blocked.";
-"password_protection_status_last_retry_with_cool_down" = "You have %@ try left.\nPlease retry in %@ seconds.\nAfter that your Password will be blocked.";
-"password_protection_status_last_retry_without_cool_down" = "You have %@ try left.\nAfter that your Password will be blocked.";
-"password_protection_status_retries_with_cool_down" = "You have %@ tries left.\nPlease retry in %@ seconds.";
-"password_protection_status_retries_without_cool_down" = "You have %@ tries left.";
 "password_policy_error_message" = "The password must not be password.";
 "password_policy_error_cause" = "The password is password.";
 
@@ -140,19 +131,3 @@
 "error_qr_scan_unavailable_message" = "Qr Code scanning is not supported using a simulator. You can start an Out-of-Band operation by opening a deep link or try out the Auth Cloud API registration.";
 "error_qr_scan_unauthorized_message" = "Camera access is required to scan Qr code.";
 "error_qr_scan_confirm" = "Ok";
-
-// Authenticator
-"authenticator_pin_title" = "PIN";
-"authenticator_face_recognition_title" = "Face ID";
-"authenticator_fingerprint_title" = "Touch ID";
-"authenticator_device_passcode_title" = "Device Passcode";
-"authenticator_device_password_title" = "Password";
-
-// Biometric prompt
-"biometric_prompt_reason" = "Please authenticate to complete the operation.";
-"biometric_prompt_fallback_button" = "Enter Passcode";
-"biometric_prompt_cancel_button" = "Cancel";
-
-// Device passcode prompt
-"device_passcode_prompt_reason" = "Please authenticate to complete the operation.";
-

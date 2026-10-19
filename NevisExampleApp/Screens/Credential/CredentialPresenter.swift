@@ -4,6 +4,7 @@
 // Copyright © 2022. Nevis Security AG. All rights reserved.
 //
 
+import Foundation
 import NevisMobileAuthentication
 
 // MARK: - Navigation

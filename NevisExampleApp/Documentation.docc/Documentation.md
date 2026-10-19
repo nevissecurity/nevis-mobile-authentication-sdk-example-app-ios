@@ -13,7 +13,10 @@ Some SDK features demonstrated in this example app are:
 * Simulating in-band authentication after registration
 * Deregistering a registered account
 * Changing the PIN of the PIN authenticator
+* Changing the password of the Password authenticator
 * Changing the device information
+* Fetch pending operations
+* Authenticating on behalf of the watch app, see <doc:WatchCompanion>
 
 Please note that the example app only demonstrates a subset of the available SDK features. The main purpose is to demonstrate how the SDK can be used, not to cover all supported scenarios.
 
@@ -71,6 +74,21 @@ Please note that the example app only demonstrates a subset of the available SDK
 - ``PasswordEnrollerImpl``
 - ``PasswordUserVerifierImpl``
 - ``RegistrationAuthenticatorSelectorName``
+
+### Headless Authentication
+
+- ``HeadlessAuthentication``
+- ``HeadlessAuthenticationError``
+- ``CredentialProvider``
+- ``HeadlessAuthenticatorSelector``
+- ``HeadlessBiometricUserVerifier``
+- ``HeadlessDevicePasscodeUserVerifier``
+- ``HeadlessPasswordUserVerifier``
+- ``HeadlessPinUserVerifier``
+
+### Watch
+
+- <doc:WatchCompanion>
 
 ### Model
 

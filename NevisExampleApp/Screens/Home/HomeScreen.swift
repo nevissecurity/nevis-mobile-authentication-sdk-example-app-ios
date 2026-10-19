@@ -44,6 +44,9 @@ final class HomeScreen: BaseScreen, Screen {
 	/// The Delete Authenticators button.
 	private let deleteAuthenticatorsButton = OutlinedButton(title: L10n.Home.deleteAuthenticators)
 
+	/// The Share button.
+	private let shareButton = OutlinedButton(title: L10n.Home.share)
+
 	/// The separator label.
 	private let separatorLabel = NSLabel(text: L10n.Home.separator, style: .normal)
 
@@ -126,6 +129,7 @@ private extension HomeScreen {
 		setupChangeDeviceInformationButton()
 		setupAuthCloudApiRegisterButton()
 		setupDeleteAuthenticatorsButton()
+		setupShareButton()
 		setupSeparatorLabel()
 		setupInBandRegisterButton()
 		setupVersionLabels()
@@ -216,6 +220,14 @@ private extension HomeScreen {
 		}
 	}
 
+	func setupShareButton() {
+		shareButton.do {
+			addItemToBottom($0, spacing: 16)
+			$0.setHeight(with: 40)
+			$0.addTarget(self, action: #selector(share), for: .touchUpInside)
+		}
+	}
+
 	func setupSeparatorLabel() {
 		separatorLabel.do {
 			addItemToBottom($0, spacing: 8)
@@ -298,6 +310,11 @@ private extension HomeScreen {
 	@objc
 	func deleteAuthenticators() {
 		presenter.deleteLocalAuthenticators()
+	}
+
+	@objc
+	func share() {
+		presenter.share()
 	}
 
 	@objc
