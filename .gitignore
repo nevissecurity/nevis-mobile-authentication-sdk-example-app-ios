@@ -214,13 +214,13 @@ build-iPhoneSimulator/
 .sonarlint/
 
 ### SwiftPackageManager ###
-Packages
+# `Packages` removed from the template: it contains the local NevisExampleShared package.
 .build/
 xcuserdata
 DerivedData/
 
 ### SwiftPM ###
-
+.swiftpm/
 
 ### Xcode ###
 ## User settings

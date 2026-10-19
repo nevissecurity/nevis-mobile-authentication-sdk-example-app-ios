@@ -1,0 +1,336 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "authenticator_device_passcode_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Device Passcode"
+          }
+        }
+      }
+    },
+    "authenticator_face_recognition_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Face ID"
+          }
+        }
+      }
+    },
+    "authenticator_fingerprint_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touch ID"
+          }
+        }
+      }
+    },
+    "authenticator_password_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Password"
+          }
+        }
+      }
+    },
+    "authenticator_pin_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PIN"
+          }
+        }
+      }
+    },
+    "biometric_prompt_cancel_button": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "biometric_prompt_fallback_button": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter Passcode"
+          }
+        }
+      }
+    },
+    "biometric_prompt_reason": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Please authenticate to complete the operation."
+          }
+        }
+      }
+    },
+    "credential_password_prompt_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter password"
+          }
+        }
+      }
+    },
+    "credential_pin_prompt_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter PIN"
+          }
+        }
+      }
+    },
+    "device_passcode_prompt_reason": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Please authenticate to complete the operation."
+          }
+        }
+      }
+    },
+    "password_protection_status_last_retry_with_cool_down": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You have %d try left. Please retry in %d seconds. After that your Password will be blocked."
+          }
+        }
+      }
+    },
+    "password_protection_status_last_retry_without_cool_down": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You have %d try left. After that your Password will be blocked."
+          }
+        }
+      }
+    },
+    "password_protection_status_locked_out": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your Password is blocked."
+          }
+        }
+      }
+    },
+    "password_protection_status_retries_with_cool_down": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You have %d tries left. Please retry in %d seconds."
+          }
+        }
+      }
+    },
+    "password_protection_status_retries_without_cool_down": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You have %d tries left."
+          }
+        }
+      }
+    },
+    "pin_protection_status_last_retry_with_cool_down": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You have %d try left. Please retry in %d seconds. After that your PIN will be blocked."
+          }
+        }
+      }
+    },
+    "pin_protection_status_last_retry_without_cool_down": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You have %d try left. After that your PIN will be blocked."
+          }
+        }
+      }
+    },
+    "pin_protection_status_locked_out": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your PIN is blocked."
+          }
+        }
+      }
+    },
+    "pin_protection_status_retries_with_cool_down": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You have %d tries left. Please retry in %d seconds."
+          }
+        }
+      }
+    },
+    "pin_protection_status_retries_without_cool_down": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You have %d tries left."
+          }
+        }
+      }
+    },
+    "watch_error_account_not_found": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The account is not registered on the iPhone."
+          }
+        }
+      }
+    },
+    "watch_error_cancelled": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The operation was cancelled."
+          }
+        }
+      }
+    },
+    "watch_error_initialization_failed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The SDK could not be initialized on the iPhone."
+          }
+        }
+      }
+    },
+    "watch_error_invalid_message": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The message could not be processed."
+          }
+        }
+      }
+    },
+    "watch_error_locked_out": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ is locked after too many failed attempts."
+          }
+        }
+      }
+    },
+    "watch_error_operation_in_progress": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Another operation is already in progress on the iPhone."
+          }
+        }
+      }
+    },
+    "watch_error_phone_app_not_opened": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The app was not opened on the iPhone in time."
+          }
+        }
+      }
+    },
+    "watch_error_timeout": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The iPhone did not respond in time."
+          }
+        }
+      }
+    },
+    "watch_error_unreachable": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The iPhone app is not reachable. Open it on your iPhone."
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

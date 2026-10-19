@@ -15,15 +15,27 @@ final class LoggingPresenter {
 	/// The view of the presenter.
 	weak var view: LoggingView?
 
+	/// The observer of the log notifications. Set once in the initializer, removed on deinit.
+	private nonisolated(unsafe) var observer: NSObjectProtocol?
+
 	// MARK: - Initialization
 
 	/// Creates a new instance.
 	init() {
-		NotificationCenter.default.addObserver(self, selector: #selector(log(_:)), name: .log, object: nil)
+		// The logs are posted on the thread of the caller, deliver them on the main queue.
+		observer = NotificationCenter.default.addObserver(forName: .log, object: nil, queue: .main) { [weak self] notification in
+			// The message is not mutated after posting.
+			nonisolated(unsafe) let message = notification.userInfo?[Notification.UserInfoKey.message] as? NSAttributedString
+			MainActor.assumeIsolated {
+				self?.log(message)
+			}
+		}
 	}
 
 	deinit {
-		NotificationCenter.default.removeObserver(self)
+		if let observer {
+			NotificationCenter.default.removeObserver(observer)
+		}
 	}
 }
 
@@ -31,14 +43,11 @@ final class LoggingPresenter {
 
 private extension LoggingPresenter {
 
-	/// Updates the view with the message sent with the notification.
+	/// Updates the view with the message sent with the log notification.
 	///
-	/// - Parameter notification: The notification which holds the message.
-	@objc
-	func log(_ notification: Notification) {
-		guard let userInfo = notification.userInfo,
-			let message = userInfo[Notification.UserInfoKey.message] as? NSAttributedString
-		else {
+	/// - Parameter message: The logged message.
+	func log(_ message: NSAttributedString?) {
+		guard let message else {
 			return
 		}
 

@@ -50,6 +50,10 @@ jobs:
         with:
           xcode-version: ${{ env.XCODE_VERSION }}
 
+      # Install xcbeautify, used by Fastlane instead of xcpretty if available
+      - name: Install xcbeautify
+        run: command -v xcbeautify || brew install xcbeautify
+
       # Set Ruby version and Cache RubyGem dependencies
       - name: Cache RubyGem Dependencies
         uses: ruby/setup-ruby@v1
