@@ -10,6 +10,7 @@ import NevisMobileAuthentication
 let NevisErrorHandlerName = "error_handler_nevis"
 
 /// An ``ErrorHandler`` implementation for Nevis specific error handling.
+@MainActor
 final class NevisErrorHandler {
 
 	// MARK: - Properties

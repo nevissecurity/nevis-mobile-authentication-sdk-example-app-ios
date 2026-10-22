@@ -11,6 +11,7 @@ import NevisMobileAuthentication
 let GeneralErrorHandlerName = "error_handler_general"
 
 /// An ``ErrorHandler`` implementation for general error handling.
+@MainActor
 final class GeneralErrorHandler {
 
 	// MARK: - Properties

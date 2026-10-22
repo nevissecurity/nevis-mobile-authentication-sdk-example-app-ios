@@ -106,7 +106,7 @@ private extension QrScannerScreen {
 
 // MARK: - QRScannerViewDelegate
 
-extension QrScannerScreen: QRScannerViewDelegate {
+extension QrScannerScreen: @preconcurrency QRScannerViewDelegate {
 
 	func qrScannerView(_: QRScannerView, didFailure error: QRScannerError) {
 		print(error.localizedDescription)

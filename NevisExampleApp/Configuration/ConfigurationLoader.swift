@@ -7,7 +7,7 @@
 import Foundation
 
 /// Protocol declaration for loading application configuration.
-protocol ConfigurationLoader {
+protocol ConfigurationLoader: Sendable {
 
 	/// The actual environment.
 	var environment: Environment { get }

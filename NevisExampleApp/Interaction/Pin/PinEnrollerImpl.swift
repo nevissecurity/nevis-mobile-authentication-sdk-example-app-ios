@@ -38,11 +38,13 @@ extension PinEnrollerImpl: PinEnroller {
 			logger.sdk("Please start PIN enrollment.")
 		}
 
-		let parameter: PinParameter = .enrollment(
-			lastRecoverableError: context.lastRecoverableError,
-			handler: handler
-		)
-		appCoordinator.navigateToCredential(with: parameter)
+		Task { @MainActor in
+			let parameter: PinParameter = .enrollment(
+				lastRecoverableError: context.lastRecoverableError,
+				handler: handler
+			)
+			appCoordinator.navigateToCredential(with: parameter)
+		}
 	}
 
 	/// You can add custom PIN policy by overriding the `pinPolicy` getter.

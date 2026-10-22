@@ -8,6 +8,7 @@ import NevisMobileAuthentication
 import UIKit
 
 /// Presenter of Qr Scanner view.
+@MainActor
 final class QrScannerPresenter {
 
 	// MARK: - Properties

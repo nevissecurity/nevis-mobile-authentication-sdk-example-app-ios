@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	/// - Returns: Returns *false* if the app cannot handle the URL resource or continue a user activity, otherwise return *true*. The return value is ignored if the app is launched as a result of a remote notification.
 	// swiftformat:disable:next unusedArguments
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-		true
+		DependencyProvider.shared.container.resolve(WatchSessionDelegate.self)?.activate()
+		return true
 	}
 }

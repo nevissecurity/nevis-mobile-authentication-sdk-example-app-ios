@@ -34,10 +34,12 @@ extension PasswordUserVerifierImpl: PasswordUserVerifier {
 	func verifyPassword(context: PasswordUserVerificationContext, handler: PasswordUserVerificationHandler) {
 		logger.sdk("Please start Password user verification.")
 
-		let parameter: PasswordParameter = .verification(
-			protectionStatus: context.authenticatorProtectionStatus,
-			handler: handler
-		)
-		appCoordinator.navigateToCredential(with: parameter)
+		Task { @MainActor in
+			let parameter: PasswordParameter = .verification(
+				protectionStatus: context.authenticatorProtectionStatus,
+				handler: handler
+			)
+			appCoordinator.navigateToCredential(with: parameter)
+		}
 	}
 }
