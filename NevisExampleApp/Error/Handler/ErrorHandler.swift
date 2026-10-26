@@ -7,6 +7,7 @@
 import Foundation
 
 /// Describes error handling related operations.
+@MainActor
 protocol ErrorHandler {
 
 	/// Handles the error.

@@ -18,6 +18,7 @@ enum TransactionConfirmationParameter: NavigationParameterizable {
 }
 
 /// Presenter of Transaction Confirmation view.
+@MainActor
 final class TransactionConfirmationPresenter {
 
 	// MARK: - Properties

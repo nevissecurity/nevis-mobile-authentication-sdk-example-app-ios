@@ -7,6 +7,7 @@
 import UIKit
 
 /// Describes application related navigation operations.
+@MainActor
 protocol AppCoordinator: Coordinator {
 
 	/// The top most screen in the view stack.
@@ -61,6 +62,6 @@ protocol AppCoordinator: Coordinator {
 
 	/// Presents an alert controller.
 	///
-	/// - Parameter controller: The alert controller that need to be presented.
-	func present(_ controller: UIAlertController)
+	/// - Parameter controller: The view controller that need to be presented.
+	func present(_ controller: UIViewController)
 }

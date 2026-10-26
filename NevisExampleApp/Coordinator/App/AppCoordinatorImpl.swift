@@ -7,6 +7,7 @@
 import UIKit
 
 /// Default implementation of ``AppCoordinator`` protocol.
+@MainActor
 final class AppCoordinatorImpl {
 
 	// MARK: - Properties
@@ -202,7 +203,7 @@ extension AppCoordinatorImpl: AppCoordinator {
 		rootNavigationController?.pushViewController(screen, animated: true)
 	}
 
-	func present(_ controller: UIAlertController) {
+	func present(_ controller: UIViewController) {
 		rootNavigationController?.present(controller, animated: true)
 	}
 }

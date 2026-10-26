@@ -7,6 +7,7 @@
 import Foundation
 
 /// Default implementation of ``ErrorHandlerChain`` protocol.
+@MainActor
 final class ErrorHandlerChainImpl {
 
 	// MARK: - Properties

@@ -21,6 +21,7 @@ enum ResultParameter: NavigationParameterizable {
 }
 
 /// Presenter of Result view.
+@MainActor
 final class ResultPresenter {
 
 	/// The available result types.

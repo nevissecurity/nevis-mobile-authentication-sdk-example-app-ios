@@ -53,6 +53,8 @@ enum L10n {
 		static let separator = L10n.tr("home_separator")
 		/// In-band registration button: "In-Band Register"
 		static let inBandRegistration = L10n.tr("home_in_band_registration_button")
+		/// Share button: "Open Share Extension"
+		static let share = L10n.tr("home_share_button")
 		/// SDK version title label: "Nevis Mobile Authentication SDK"
 		static let sdkVersion = L10n.tr("home_sdk_version")
 		/// Facet ID title label: "Facet Id"
@@ -103,64 +105,6 @@ enum L10n {
 				static let description = L10n.tr("pin_change_description")
 			}
 
-			/// PIN protection status related localized strings.
-			enum ProtectionStatus {
-				/// Screen description: "Please define a six digit PIN."
-				static let lockedOut = L10n.tr("pin_protection_status_locked_out")
-
-				/// PIN protection status message for last retry with cool down: "You have %@ try left.\nPlease retry in %@ seconds.\nAfter that your PIN will be blocked."
-				///
-				/// - parameter remainingTries: The number of remaining retries.
-				/// - parameter coolDown: The cool down time.
-				/// - returns: The localized string.
-				static func lastRetryWithCoolDown(_ remainingTries: Any, _ coolDown: Any) -> String {
-					L10n.tr(
-						"pin_protection_status_last_retry_with_cool_down",
-						"Localizable",
-						String(describing: remainingTries),
-						String(describing: coolDown)
-					)
-				}
-
-				/// PIN protection status message for last retry without cool down: "You have %@ try left.\nAfter that your PIN will be blocked."
-				///
-				/// - parameter remainingTries: The number of remaining retries.
-				/// - returns: The localized string.
-				static func lastRetryWithoutCoolDown(_ remainingTries: Any) -> String {
-					L10n.tr(
-						"pin_protection_status_last_retry_without_cool_down",
-						"Localizable",
-						String(describing: remainingTries)
-					)
-				}
-
-				/// PIN protection status message for remaining retries with cool down: "You have %@ tries left.\nPlease retry in %@ seconds."
-				///
-				/// - parameter remainingTries: The number of remaining retries.
-				/// - parameter coolDown: The cool down time.
-				/// - returns: The localized string.
-				static func retriesWithCoolDown(_ remainingTries: Any, _ coolDown: Any) -> String {
-					L10n.tr(
-						"pin_protection_status_retries_with_cool_down",
-						"Localizable",
-						String(describing: remainingTries),
-						String(describing: coolDown)
-					)
-				}
-
-				/// PIN protection status message for remaining retries without cool down: "You have %@ tries left."
-				///
-				/// - parameter remainingTries: The number of remaining retries.
-				/// - returns: The localized string.
-				static func retriesWithoutCoolDown(_ remainingTries: Any) -> String {
-					L10n.tr(
-						"pin_protection_status_retries_without_cool_down",
-						"Localizable",
-						String(describing: remainingTries)
-					)
-				}
-			}
-
 			/// Pin field placeholder: "Enter PIN"
 			static let pinPlaceholder = L10n.tr("pin_pin_placeholder")
 			/// PIN confirm field placeholder: "Enter old PIN"
@@ -195,64 +139,6 @@ enum L10n {
 				static let title = L10n.tr("password_change_title")
 				/// Screen description: "Please define a six digit Password."
 				static let description = L10n.tr("password_change_description")
-			}
-
-			/// Password protection status related localized strings.
-			enum ProtectionStatus {
-				/// Screen description: "Please define a six digit Password."
-				static let lockedOut = L10n.tr("password_protection_status_locked_out")
-
-				/// Password protection status message for last retry with cool down: "You have %@ try left.\nPlease retry in %@ seconds.\nAfter that your Password will be blocked."
-				///
-				/// - parameter remainingTries: The number of remaining retries.
-				/// - parameter coolDown: The cool down time.
-				/// - returns: The localized string.
-				static func lastRetryWithCoolDown(_ remainingTries: Any, _ coolDown: Any) -> String {
-					L10n.tr(
-						"password_protection_status_last_retry_with_cool_down",
-						"Localizable",
-						String(describing: remainingTries),
-						String(describing: coolDown)
-					)
-				}
-
-				/// Password protection status message for last retry without cool down: "You have %@ try left.\nAfter that your Password will be blocked."
-				///
-				/// - parameter remainingTries: The number of remaining retries.
-				/// - returns: The localized string.
-				static func lastRetryWithoutCoolDown(_ remainingTries: Any) -> String {
-					L10n.tr(
-						"password_protection_status_last_retry_without_cool_down",
-						"Localizable",
-						String(describing: remainingTries)
-					)
-				}
-
-				/// Password protection status message for remaining retries with cool down: "You have %@ tries left.\nPlease retry in %@ seconds."
-				///
-				/// - parameter remainingTries: The number of remaining retries.
-				/// - parameter coolDown: The cool down time.
-				/// - returns: The localized string.
-				static func retriesWithCoolDown(_ remainingTries: Any, _ coolDown: Any) -> String {
-					L10n.tr(
-						"password_protection_status_retries_with_cool_down",
-						"Localizable",
-						String(describing: remainingTries),
-						String(describing: coolDown)
-					)
-				}
-
-				/// Password protection status message for remaining retries without cool down: "You have %@ tries left."
-				///
-				/// - parameter remainingTries: The number of remaining retries.
-				/// - returns: The localized string.
-				static func retriesWithoutCoolDown(_ remainingTries: Any) -> String {
-					L10n.tr(
-						"password_protection_status_retries_without_cool_down",
-						"Localizable",
-						String(describing: remainingTries)
-					)
-				}
 			}
 
 			/// Password policy related localized strings.
@@ -484,55 +370,6 @@ enum L10n {
 				)
 			}
 		}
-	}
-
-	/// Authenticators related localized strings.
-	enum Authenticator {
-		/// PIN authenticator related localized strings.
-		enum Pin {
-			/// Title: "PIN"
-			static let title = L10n.tr("authenticator_pin_title")
-		}
-
-		/// Face recognition authenticator related localized strings.
-		enum FaceRecognition {
-			/// Title: "Face ID"
-			static let title = L10n.tr("authenticator_face_recognition_title")
-		}
-
-		/// Fingerprint authenticator related localized strings.
-		enum Fingerprint {
-			/// Title: "Touch ID"
-			static let title = L10n.tr("authenticator_fingerprint_title")
-		}
-
-		/// Device Passcode authenticator related localized strings.
-		enum DevicePasscode {
-			/// Title: "Device Passcode"
-			static let title = L10n.tr("authenticator_device_passcode_title")
-		}
-
-		/// Password authenticator related localized strings.
-		enum Password {
-			/// Title: "Password"
-			static let title = L10n.tr("authenticator_device_password_title")
-		}
-	}
-
-	/// Biometric prompt related localized strings.
-	enum BiometricPrompt {
-		// Reason: "Please authenticate to complete the operation."
-		static let reason = L10n.tr("biometric_prompt_reason")
-		// Fallback button: "Enter Passcode"
-		static let fallback = L10n.tr("biometric_prompt_fallback_button")
-		// Cancel button: "Cancel"
-		static let cancel = L10n.tr("biometric_prompt_cancel_button")
-	}
-
-	/// Device passcode prompt related localized strings.
-	enum DevicePasscodePrompt {
-		// Reason: "Please authenticate to complete the operation."
-		static let reason = L10n.tr("device_passcode_prompt_reason")
 	}
 
 	/// Error related localized strings.
