@@ -240,3 +240,5 @@ xcuserdata/
 **/xcshareddata/WorkspaceSettings.xcsettings
 
 # End of https://www.toptal.com/developers/gitignore/api/ruby,macos,xcode,dotenv,fastlane,sonarqube,intellij+all,swiftpm,swiftpackagemanager
+# AI coding assistants: local, per-user state
+.claude/settings.local.json

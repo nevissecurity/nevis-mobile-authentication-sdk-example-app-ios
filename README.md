@@ -36,7 +36,7 @@ Before you start compiling and using the example applications please ensure you 
 
 Your development setup has to meet the following prerequisites:
 
-* iOS 15 or later
+* iOS 15.6 or later
 * watchOS 10 or later for the watch app
 * Xcode 26.2, including Swift 6 or later
 
@@ -121,6 +121,10 @@ Now you're ready to build and run the example app by choosing Product > Run from
 Now that the iOS example app is up and running, it's time to try it out!
 
 Check out our [Quickstart Guide](https://docs.nevis.net/mobilesdk/quickstart).
+
+## AI Assistant Support
+
+This repository contains an [AGENTS.md](AGENTS.md) file with project context for AI coding assistants (e.g. Claude Code, Cursor, GitHub Copilot). `CLAUDE.md`, `.cursorrules` and `.github/copilot-instructions.md` are symlinks to it. It helps the assistant answer questions about configuring, running and adapting the example app, and about moving its SDK integration code into your own application.
 
 ## Integration Notes
 
