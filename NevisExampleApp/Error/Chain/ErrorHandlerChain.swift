@@ -7,6 +7,7 @@
 import Foundation
 
 /// The chain implementation is used to provide the other error handlers for the current ``ErrorHandler``.
+@MainActor
 protocol ErrorHandlerChain {
 
 	/// Handles the given error.

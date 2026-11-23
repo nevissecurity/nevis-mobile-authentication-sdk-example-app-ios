@@ -38,13 +38,15 @@ extension PinChangerImpl: PinChanger {
 			logger.sdk("Please start PIN change.")
 		}
 
-		appCoordinator.topScreen?.enableInteraction()
-		let parameter: PinParameter = .credentialChange(
-			protectionStatus: context.authenticatorProtectionStatus,
-			lastRecoverableError: context.lastRecoverableError,
-			handler: handler
-		)
-		appCoordinator.navigateToCredential(with: parameter)
+		Task { @MainActor in
+			appCoordinator.topScreen?.enableInteraction()
+			let parameter: PinParameter = .credentialChange(
+				protectionStatus: context.authenticatorProtectionStatus,
+				lastRecoverableError: context.lastRecoverableError,
+				handler: handler
+			)
+			appCoordinator.navigateToCredential(with: parameter)
+		}
 	}
 
 	/// You can add custom PIN policy by overriding the `pinPolicy` getter.

@@ -20,6 +20,7 @@ enum SelectAuthenticatorParameter: NavigationParameterizable {
 }
 
 /// Presenter of Authenticator Selection view.
+@MainActor
 final class SelectAuthenticatorPresenter {
 
 	// MARK: - Properties

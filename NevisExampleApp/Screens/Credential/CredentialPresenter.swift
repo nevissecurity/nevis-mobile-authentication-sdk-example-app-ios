@@ -4,6 +4,7 @@
 // Copyright © 2022. Nevis Security AG. All rights reserved.
 //
 
+import Foundation
 import NevisMobileAuthentication
 
 // MARK: - Navigation
@@ -84,6 +85,7 @@ enum PasswordParameter: CredentialParameter {
 // MARK: - Presenter
 
 /// Presenter of Credential view.
+@MainActor
 final class CredentialPresenter {
 
 	/// Available credential operations.

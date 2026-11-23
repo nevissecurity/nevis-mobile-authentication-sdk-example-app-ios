@@ -34,10 +34,12 @@ extension PinUserVerifierImpl: PinUserVerifier {
 	func verifyPin(context: PinUserVerificationContext, handler: PinUserVerificationHandler) {
 		logger.sdk("Please start PIN user verification.")
 
-		let parameter: PinParameter = .verification(
-			protectionStatus: context.authenticatorProtectionStatus,
-			handler: handler
-		)
-		appCoordinator.navigateToCredential(with: parameter)
+		Task { @MainActor in
+			let parameter: PinParameter = .verification(
+				protectionStatus: context.authenticatorProtectionStatus,
+				handler: handler
+			)
+			appCoordinator.navigateToCredential(with: parameter)
+		}
 	}
 }

@@ -12,11 +12,8 @@ class ClientProviderImpl {
 
 	// MARK: - Properties
 
-	/// The client.
-	private var client: MobileAuthenticationClient?
-
-	/// Publishes the current `MobileAuthenticationClient` and subsequent updates.
-	private let clientPublisher = CurrentValueSubject<MobileAuthenticationClient?, Never>(nil)
+	/// Holds the current `MobileAuthenticationClient` and publishes its changes.
+	private let clientSubject = CurrentValueSubject<MobileAuthenticationClient?, Never>(nil)
 }
 
 // MARK: - ClientProvider
@@ -24,19 +21,18 @@ class ClientProviderImpl {
 extension ClientProviderImpl: ClientProvider {
 
 	func save(client: MobileAuthenticationClient) {
-		self.client = client
-		clientPublisher.send(client)
+		clientSubject.send(client)
 	}
 
 	func get() -> MobileAuthenticationClient? {
-		client
+		clientSubject.value
 	}
 
 	func resolve() -> AnyPublisher<MobileAuthenticationClient?, Never> {
-		clientPublisher.eraseToAnyPublisher()
+		clientSubject.eraseToAnyPublisher()
 	}
 
 	func reset() {
-		client = nil
+		clientSubject.send(nil)
 	}
 }

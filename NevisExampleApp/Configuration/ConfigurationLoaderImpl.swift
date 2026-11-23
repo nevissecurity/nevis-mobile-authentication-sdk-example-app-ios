@@ -7,7 +7,7 @@
 import Foundation
 
 /// Default implementation of ``ConfigurationLoader`` protocol.
-class ConfigurationLoaderImpl {
+final class ConfigurationLoaderImpl {
 
 	// MARK: - Properties
 

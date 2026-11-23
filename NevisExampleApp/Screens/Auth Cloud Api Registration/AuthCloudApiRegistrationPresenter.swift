@@ -8,6 +8,7 @@ import NevisMobileAuthentication
 import UIKit
 
 /// Presenter of Auth Cloud Api Registration view.
+@MainActor
 final class AuthCloudApiRegistrationPresenter {
 	// MARK: - Properties
 
@@ -98,12 +99,16 @@ extension AuthCloudApiRegistrationPresenter {
 			.devicePasscodeUserVerifier(devicePasscodeUserVerifier)
 			.onSuccess {
 				logger.sdk("Auth Cloud Api registration succeeded.", .green)
-				self.appCoordinator.navigateToResult(with: .success(operation: .registration))
+				Task { @MainActor in
+					self.appCoordinator.navigateToResult(with: .success(operation: .registration))
+				}
 			}
-			.onError {
+			.onError { error in
 				logger.sdk("Auth Cloud Api registration failed.", .red)
-				let operationError = OperationError(operation: .registration, underlyingError: $0)
-				self.errorHandlerChain.handle(error: operationError)
+				Task { @MainActor in
+					let operationError = OperationError(operation: .registration, underlyingError: error)
+					self.errorHandlerChain.handle(error: operationError)
+				}
 			}
 
 		// Empty string is not allowed!

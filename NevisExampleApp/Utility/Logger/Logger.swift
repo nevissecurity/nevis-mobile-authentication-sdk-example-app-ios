@@ -10,7 +10,7 @@ import os
 import os.log
 
 /// Class for logging purposes. Wraps `os_log` using custom categories.
-class Logger {
+final class Logger: Sendable {
 	private var dateFormatter: DateFormatter {
 		let dateFormatter = DateFormatter()
 		dateFormatter.dateFormat = "HH:mm:ss"

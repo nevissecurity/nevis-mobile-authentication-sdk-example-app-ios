@@ -7,7 +7,8 @@
 import UIKit
 
 /// Defines a simple coordinator contract for managing navigation and scene-level UI setup.
-protocol Coordinator: AnyObject {
+@MainActor
+protocol Coordinator: AnyObject, Sendable {
 
 	/// Starts the coordinator and sets up UI for the given scene.
 	///

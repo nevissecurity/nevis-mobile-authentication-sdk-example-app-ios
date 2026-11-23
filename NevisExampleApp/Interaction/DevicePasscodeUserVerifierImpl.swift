@@ -34,10 +34,12 @@ extension DevicePasscodeUserVerifierImpl: DevicePasscodeUserVerifier {
 	func verifyDevicePasscode(context: DevicePasscodeUserVerificationContext, handler: DevicePasscodeUserVerificationHandler) {
 		logger.sdk("Please start device passcode user verification.")
 
-		let parameter: ConfirmationParameter = .confirmDevicePasscode(
-			authenticator: context.authenticator.localizedTitle,
-			handler: handler
-		)
-		appCoordinator.navigateToConfirmation(with: parameter)
+		Task { @MainActor in
+			let parameter: ConfirmationParameter = .confirmDevicePasscode(
+				authenticator: context.authenticator.localizedTitle,
+				handler: handler
+			)
+			appCoordinator.navigateToConfirmation(with: parameter)
+		}
 	}
 }

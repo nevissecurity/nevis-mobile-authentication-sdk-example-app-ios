@@ -9,6 +9,7 @@ import NevisMobileAuthentication
 import UIKit
 
 /// Default implementation of ``OutOfBandOperationHandler`` protocol.
+@MainActor
 final class OutOfBandOperationHandlerImpl {
 	// MARK: - Properties
 
@@ -119,16 +120,22 @@ extension OutOfBandOperationHandlerImpl: OutOfBandOperationHandler {
 	func startOutOfBandOperation(with payload: OutOfBandPayload) {
 		mobileAuthenticationClient?.operations.outOfBandOperation
 			.payload(payload)
-			.onRegistration {
-				self.register(using: $0)
+			.onRegistration { registration in
+				Task { @MainActor in
+					self.register(using: registration)
+				}
 			}
-			.onAuthentication {
-				self.authenticate(using: $0)
+			.onAuthentication { authentication in
+				Task { @MainActor in
+					self.authenticate(using: authentication)
+				}
 			}
-			.onError {
+			.onError { error in
 				logger.sdk("Out-of-Band operation failed.", .red)
-				let operationError = OperationError(operation: .outOfBand, underlyingError: $0)
-				self.errorHandlerChain.handle(error: operationError)
+				Task { @MainActor in
+					let operationError = OperationError(operation: .outOfBand, underlyingError: error)
+					self.errorHandlerChain.handle(error: operationError)
+				}
 			}
 			.execute()
 	}
@@ -139,21 +146,27 @@ private extension OutOfBandOperationHandlerImpl {
 	/// Decodes a Base64 URL encoded string.
 	///
 	/// - Parameter handler: The code need to be executed on successful payload decoding.
-	func decode(base64UrlEncoded: String, completion handler: @escaping (OutOfBandPayload) -> ()) {
+	func decode(base64UrlEncoded: String, completion handler: @escaping @MainActor (OutOfBandPayload) -> ()) {
+		// The client may not be initialized yet (e.g. deep link on cold start), so wait for the first available one.
 		clientProvider.resolve()
 			.compactMap(\.self)
+			.first()
 			.receive(on: DispatchQueue.main)
 			.sink { client in
 				client.operations.outOfBandPayloadDecode
 					.base64UrlEncoded(base64UrlEncoded)
-					.onSuccess {
+					.onSuccess { payload in
 						logger.sdk("Decode payload succeeded.", .green)
-						handler($0)
+						Task { @MainActor in
+							handler(payload)
+						}
 					}
-					.onError { [weak self] error in
+					.onError { error in
 						logger.sdk("Decode payload failed.", .red)
-						let operationError = OperationError(operation: .payloadDecode, underlyingError: error)
-						self?.errorHandlerChain.handle(error: operationError)
+						Task { @MainActor in
+							let operationError = OperationError(operation: .payloadDecode, underlyingError: error)
+							self.errorHandlerChain.handle(error: operationError)
+						}
 					}
 					.execute()
 			}
@@ -174,12 +187,16 @@ private extension OutOfBandOperationHandlerImpl {
 			.devicePasscodeUserVerifier(devicePasscodeUserVerifier)
 			.onSuccess {
 				logger.sdk("Out-of-Band registration succeeded.", .green)
-				self.appCoordinator.navigateToResult(with: .success(operation: .registration))
+				Task { @MainActor in
+					self.appCoordinator.navigateToResult(with: .success(operation: .registration))
+				}
 			}
-			.onError {
+			.onError { error in
 				logger.sdk("Out-of-Band registration failed.", .red)
-				let operationError = OperationError(operation: .registration, underlyingError: $0)
-				self.errorHandlerChain.handle(error: operationError)
+				Task { @MainActor in
+					let operationError = OperationError(operation: .registration, underlyingError: error)
+					self.errorHandlerChain.handle(error: operationError)
+				}
 			}
 			.execute()
 	}
@@ -197,12 +214,16 @@ private extension OutOfBandOperationHandlerImpl {
 			.devicePasscodeUserVerifier(devicePasscodeUserVerifier)
 			.onSuccess { _ in
 				logger.sdk("Out-of-Band authentication succeeded.", .green)
-				self.appCoordinator.navigateToResult(with: .success(operation: .authentication))
+				Task { @MainActor in
+					self.appCoordinator.navigateToResult(with: .success(operation: .authentication))
+				}
 			}
-			.onError {
+			.onError { error in
 				logger.sdk("Out-of-Band authentication failed.", .red)
-				let operationError = OperationError(operation: .authentication, underlyingError: $0)
-				self.errorHandlerChain.handle(error: operationError)
+				Task { @MainActor in
+					let operationError = OperationError(operation: .authentication, underlyingError: error)
+					self.errorHandlerChain.handle(error: operationError)
+				}
 			}
 			.execute()
 	}

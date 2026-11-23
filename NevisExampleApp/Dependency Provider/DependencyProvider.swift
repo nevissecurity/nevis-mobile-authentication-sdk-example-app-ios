@@ -7,6 +7,7 @@
 import Swinject
 
 /// The DI provider containing the assemblies and persisting the container.
+@MainActor
 final class DependencyProvider {
 
 	// MARK: - Properties

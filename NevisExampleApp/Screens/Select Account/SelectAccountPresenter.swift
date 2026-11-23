@@ -24,6 +24,7 @@ enum SelectAccountParameter: NavigationParameterizable {
 }
 
 /// Presenter of Account Selection view.
+@MainActor
 final class SelectAccountPresenter {
 
 	// MARK: - Properties
@@ -190,7 +191,7 @@ private extension SelectAccountPresenter {
 	/// - Parameters:
 	///   - account: The account that must be used to authenticate.
 	///   - handler: An optional handler that should be executed when In-Band Authentication finished.
-	func inBandAuthenticate(using account: any Account, completion handler: ((Result<AuthorizationProvider?, AuthenticationError>) -> ())? = nil) {
+	func inBandAuthenticate(using account: any Account, completion handler: (@MainActor (Result<AuthorizationProvider?, AuthenticationError>) -> ())? = nil) {
 		mobileAuthenticationClient?.operations.authentication
 			.username(account.username)
 			.authenticatorSelector(authenticatorSelector)
@@ -198,37 +199,41 @@ private extension SelectAccountPresenter {
 			.passwordUserVerifier(passwordUserVerifier)
 			.biometricUserVerifier(biometricUserVerifier)
 			.devicePasscodeUserVerifier(devicePasscodeUserVerifier)
-			.onSuccess {
+			.onSuccess { provider in
 				logger.sdk("In-band authentication succeeded.", .green)
-				self.printAuthorizationInfo($0)
+				Task { @MainActor in
+					self.printAuthorizationInfo(provider)
 
-				if let handler {
-					return handler(.success($0))
+					if let handler {
+						return handler(.success(provider))
+					}
+
+					self.appCoordinator.navigateToResult(with: .success(operation: self.operation!))
 				}
-
-				self.appCoordinator.navigateToResult(with: .success(operation: self.operation!))
 			}
 			.onError { error in
 				logger.sdk("In-band authentication failed.", .red)
-				handler?(.failure(error))
-				switch error {
-					case let .FidoError(_, _, sessionProvider),
-						let .NetworkError(_, sessionProvider):
-						self.printSessionInfo(sessionProvider)
-					case .AppAttestationError(cause: _):
-						fallthrough
-					case .NoDeviceLockError:
-						fallthrough
-					case .ServerCanceledOperation(cause: _):
-						fallthrough
-					case .Unknown:
-						fallthrough
-					@unknown default:
-						logger.sdk("In-band authentication failed because of an unknown error.", .red)
-				}
+				Task { @MainActor in
+					handler?(.failure(error))
+					switch error {
+						case let .FidoError(_, _, sessionProvider),
+							let .NetworkError(_, sessionProvider):
+							self.printSessionInfo(sessionProvider)
+						case .AppAttestationError(cause: _):
+							fallthrough
+						case .NoDeviceLockError:
+							fallthrough
+						case .ServerCanceledOperation(cause: _):
+							fallthrough
+						case .Unknown:
+							fallthrough
+						@unknown default:
+							logger.sdk("In-band authentication failed because of an unknown error.", .red)
+					}
 
-				let operationError = OperationError(operation: .authentication, underlyingError: error)
-				self.errorHandlerChain.handle(error: operationError)
+					let operationError = OperationError(operation: .authentication, underlyingError: error)
+					self.errorHandlerChain.handle(error: operationError)
+				}
 			}
 			.execute()
 	}
@@ -268,12 +273,16 @@ private extension SelectAccountPresenter {
 			.authorizationProvider(authorizationProvider)
 			.onSuccess {
 				logger.sdk("Deregistration succeeded for user %@", .green, .debug, username)
-				self.appCoordinator.navigateToResult(with: .success(operation: self.operation!))
+				Task { @MainActor in
+					self.appCoordinator.navigateToResult(with: .success(operation: self.operation!))
+				}
 			}
-			.onError {
+			.onError { error in
 				logger.sdk("Deregistration failed for user %@", .red, .debug, username)
-				let operationError = OperationError(operation: .deregistration, underlyingError: $0)
-				self.errorHandlerChain.handle(error: operationError)
+				Task { @MainActor in
+					let operationError = OperationError(operation: .deregistration, underlyingError: error)
+					self.errorHandlerChain.handle(error: operationError)
+				}
 			}
 			.execute()
 	}
@@ -289,12 +298,16 @@ private extension SelectAccountPresenter {
 			.pinChanger(pinChanger)
 			.onSuccess {
 				logger.sdk("PIN change succeeded.", .green)
-				self.appCoordinator.navigateToResult(with: .success(operation: .pinChange))
+				Task { @MainActor in
+					self.appCoordinator.navigateToResult(with: .success(operation: .pinChange))
+				}
 			}
-			.onError {
+			.onError { error in
 				logger.sdk("PIN change failed.", .red)
-				let operationError = OperationError(operation: .pinChange, underlyingError: $0)
-				self.errorHandlerChain.handle(error: operationError)
+				Task { @MainActor in
+					let operationError = OperationError(operation: .pinChange, underlyingError: error)
+					self.errorHandlerChain.handle(error: operationError)
+				}
 			}
 			.execute()
 	}
@@ -310,12 +323,16 @@ private extension SelectAccountPresenter {
 			.passwordChanger(passwordChanger)
 			.onSuccess {
 				logger.sdk("Password change succeeded.", .green)
-				self.appCoordinator.navigateToResult(with: .success(operation: .passwordChange))
+				Task { @MainActor in
+					self.appCoordinator.navigateToResult(with: .success(operation: .passwordChange))
+				}
 			}
-			.onError {
+			.onError { error in
 				logger.sdk("Password change failed.", .red)
-				let operationError = OperationError(operation: .passwordChange, underlyingError: $0)
-				self.errorHandlerChain.handle(error: operationError)
+				Task { @MainActor in
+					let operationError = OperationError(operation: .passwordChange, underlyingError: error)
+					self.errorHandlerChain.handle(error: operationError)
+				}
 			}
 			.execute()
 	}

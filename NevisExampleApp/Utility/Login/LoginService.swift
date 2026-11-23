@@ -7,12 +7,12 @@
 import Foundation
 
 /// Protocol describing Login related operations.
-protocol LoginService {
+protocol LoginService: Sendable {
 
 	/// Sends a login request to the server.
 	///
 	/// - Parameters:
 	///   - request: The request to send.
-	///   - handler: The code need to be executed after login.
-	func send(request: LoginRequest, completion handler: @escaping (Result<LoginResponse, Error>) -> ())
+	/// - Returns: The login response.
+	func send(request: LoginRequest) async throws -> LoginResponse
 }

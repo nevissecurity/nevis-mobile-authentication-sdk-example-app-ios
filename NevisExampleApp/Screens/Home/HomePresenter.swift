@@ -5,8 +5,10 @@
 //
 
 import NevisMobileAuthentication
+import UIKit
 
 /// Presenter of Home view.
+@MainActor
 final class HomePresenter {
 
 	// MARK: - Properties
@@ -16,6 +18,9 @@ final class HomePresenter {
 
 	/// The configuration loader.
 	private let configurationLoader: ConfigurationLoader
+
+	/// The client initializer.
+	private let clientInitializer: ClientInitializer
 
 	/// The client provider.
 	private let clientProvider: ClientProvider
@@ -46,6 +51,7 @@ final class HomePresenter {
 	///
 	/// - Parameters:
 	///   - configurationLoader: The configuration loader.
+	///   - clientInitializer: The client initializer.
 	///   - clientProvider: The client provider.
 	///   - pinChanger: The PIN changer.
 	///   - passwordChanger: The Password changer.
@@ -54,6 +60,7 @@ final class HomePresenter {
 	///   - errorHandlerChain: The error handler chain.
 	init(
 		configurationLoader: ConfigurationLoader,
+		clientInitializer: ClientInitializer,
 		clientProvider: ClientProvider,
 		pinChanger: PinChanger,
 		passwordChanger: PasswordChanger,
@@ -62,6 +69,7 @@ final class HomePresenter {
 		errorHandlerChain: ErrorHandlerChain
 	) {
 		self.configurationLoader = configurationLoader
+		self.clientInitializer = clientInitializer
 		self.clientProvider = clientProvider
 		self.pinChanger = pinChanger
 		self.passwordChanger = passwordChanger
@@ -82,35 +90,19 @@ extension HomePresenter {
 	/// Initializes the client.
 	///
 	/// - Parameter handler: The code need to be executed on successful client initialization.
-	func initClient(completion handler: @escaping () -> ()) {
-		if mobileAuthenticationClient != nil {
-			logger.sdk("Client already initialized.")
-			return handler()
-		}
-
-		do {
-			guard let configuration = try configurationLoader.load() else {
-				errorHandlerChain.handle(error: AppError.loadAppConfigurationError)
-				return
-			}
-
-			logger.sdk("Initializing client.")
-			MobileAuthenticationClientInitializer()
-				.configuration(configuration.sdkConfiguration)
-				.onSuccess { client in
-					logger.sdk("Client initialization succeeded.", .green)
-					self.clientProvider.save(client: client)
+	func initClient(completion handler: @escaping @MainActor () -> ()) {
+		Task {
+			do {
+				try await clientInitializer.initialize()
+				Task { @MainActor in
 					handler()
 				}
-				.onError {
-					logger.sdk("Client initialization failed.", .red)
-					let operationError = OperationError(operation: .initClient, underlyingError: $0)
-					self.errorHandlerChain.handle(error: operationError)
+			} catch {
+				Task { @MainActor in
+					let operationError = OperationError(operation: .initClient, underlyingError: error)
+					errorHandlerChain.handle(error: operationError)
 				}
-				.execute()
-		} catch {
-			let operationError = OperationError(operation: .initClient, underlyingError: error)
-			errorHandlerChain.handle(error: operationError)
+			}
 		}
 	}
 
@@ -160,22 +152,24 @@ extension HomePresenter {
 
 		mobileAuthenticationClient?.operations.pendingOutOfBandOperations
 			.onResult { result in
-				guard result.errors.isEmpty else {
-					let errors = result.errors.map() { $0.localizedDescription }
-					logger.sdk("Fetch pending out of band operations failed. Error(s): %@", .red, .error, errors)
+				Task { @MainActor in
+					guard result.errors.isEmpty else {
+						let errors = result.errors.map() { $0.localizedDescription }
+						logger.sdk("Fetch pending out of band operations failed. Error(s): %@", .red, .error, errors)
 
-					let operationError = OperationError(operation: .fetchPendingOperations, underlyingError: result.errors.first!)
-					return self.errorHandlerChain.handle(error: operationError)
+						let operationError = OperationError(operation: .fetchPendingOperations, underlyingError: result.errors.first!)
+						return self.errorHandlerChain.handle(error: operationError)
+					}
+
+					self.view?.enableInteraction()
+
+					guard let payload = result.operations.last?.payload else {
+						return logger.sdk("Pending out of band operation not found.", .black, .debug)
+					}
+
+					logger.sdk("Pending out of band operation found.", .black, .debug)
+					self.outOfBandOperationHandler.startOutOfBandOperation(with: payload)
 				}
-
-				self.view?.enableInteraction()
-
-				guard let payload = result.operations.last?.payload else {
-					return logger.sdk("Pending out of band operation not found.", .black, .debug)
-				}
-
-				logger.sdk("Pending out of band operation found.", .black, .debug)
-				self.outOfBandOperationHandler.startOutOfBandOperation(with: payload)
 			}
 			.execute()
 	}
@@ -324,6 +318,12 @@ extension HomePresenter {
 		}
 	}
 
+	/// Opens the share sheet.
+	func share() {
+		let activityViewController = UIActivityViewController(activityItems: ["Verify with Nevis"], applicationActivities: nil)
+		appCoordinator.present(activityViewController)
+	}
+
 	/// Starts In-Band registration operation.
 	func register() {
 		appCoordinator.navigateToUsernamePasswordLogin()
@@ -353,22 +353,27 @@ private extension HomePresenter {
 	/// - Parameters:
 	///   - usernames: The list of usernames to deregister..
 	func doDeregistration(for usernames: [Username]) {
-		var remainingUsernames = usernames
-		guard let username = remainingUsernames.popLast() else {
+		guard let username = usernames.last else {
 			logger.sdk("Deregistration succeeded.", .green)
 			return appCoordinator.navigateToResult(with: .success(operation: .deregistration))
 		}
+
+		let remainingUsernames = Array(usernames.dropLast())
 
 		mobileAuthenticationClient?.operations.deregistration
 			.username(username)
 			.onSuccess {
 				logger.sdk("Deregistration succeeded for user %@", .green, .debug, username)
-				self.doDeregistration(for: remainingUsernames)
+				Task { @MainActor in
+					self.doDeregistration(for: remainingUsernames)
+				}
 			}
-			.onError {
+			.onError { error in
 				logger.sdk("Deregistration failed for user %@", .red, .debug, username)
-				let operationError = OperationError(operation: .deregistration, underlyingError: $0)
-				self.errorHandlerChain.handle(error: operationError)
+				Task { @MainActor in
+					let operationError = OperationError(operation: .deregistration, underlyingError: error)
+					self.errorHandlerChain.handle(error: operationError)
+				}
 			}
 			.execute()
 	}
@@ -383,12 +388,16 @@ private extension HomePresenter {
 			.pinChanger(pinChanger)
 			.onSuccess {
 				logger.sdk("PIN change succeeded.", .green)
-				self.appCoordinator.navigateToResult(with: .success(operation: .pinChange))
+				Task { @MainActor in
+					self.appCoordinator.navigateToResult(with: .success(operation: .pinChange))
+				}
 			}
-			.onError {
+			.onError { error in
 				logger.sdk("PIN change failed.", .red)
-				let operationError = OperationError(operation: .pinChange, underlyingError: $0)
-				self.errorHandlerChain.handle(error: operationError)
+				Task { @MainActor in
+					let operationError = OperationError(operation: .pinChange, underlyingError: error)
+					self.errorHandlerChain.handle(error: operationError)
+				}
 			}
 			.execute()
 	}
@@ -403,12 +412,16 @@ private extension HomePresenter {
 			.passwordChanger(passwordChanger)
 			.onSuccess {
 				logger.sdk("Password change succeeded.", .green)
-				self.appCoordinator.navigateToResult(with: .success(operation: .passwordChange))
+				Task { @MainActor in
+					self.appCoordinator.navigateToResult(with: .success(operation: .passwordChange))
+				}
 			}
-			.onError {
+			.onError { error in
 				logger.sdk("Password change failed.", .red)
-				let operationError = OperationError(operation: .passwordChange, underlyingError: $0)
-				self.errorHandlerChain.handle(error: operationError)
+				Task { @MainActor in
+					let operationError = OperationError(operation: .passwordChange, underlyingError: error)
+					self.errorHandlerChain.handle(error: operationError)
+				}
 			}
 			.execute()
 	}
@@ -418,12 +431,12 @@ private extension HomePresenter {
 	/// - Parameters:
 	///   - usernames: The usernames of the enrolled accounts.
 	///   - handler: The code need to be executed after deletion.
-	func doDeleteAuthenticators(of usernames: [Username], completion handler: @escaping (Result<(), Error>) -> ()) {
-		var remainingUsernames = usernames
-		guard let username = remainingUsernames.popLast() else {
+	func doDeleteAuthenticators(of usernames: [Username], completion handler: @escaping @MainActor (Result<(), Error>) -> ()) {
+		guard let username = usernames.last else {
 			return handler(.success)
 		}
 
+		let remainingUsernames = Array(usernames.dropLast())
 		doDeleteAuthenticators(of: username) { result in
 			if case let .failure(error) = result {
 				return handler(.failure(error))
@@ -438,17 +451,14 @@ private extension HomePresenter {
 	/// - Parameters:
 	///   - usernames: The username of the enrolled account.
 	///   - handler: The code need to be executed after deletion.
-	func doDeleteAuthenticators(of username: Username, completion handler: @escaping (Result<(), Error>) -> ()) {
-		DispatchQueue.global().async {
+	func doDeleteAuthenticators(of username: Username, completion handler: @escaping @MainActor (Result<(), Error>) -> ()) {
+		let client = mobileAuthenticationClient
+		Task.detached {
 			do {
-				try self.mobileAuthenticationClient?.localData.deleteAuthenticator(username: username, aaid: nil)
-				DispatchQueue.main.async {
-					handler(.success)
-				}
+				try client?.localData.deleteAuthenticator(username: username, aaid: nil)
+				await handler(.success)
 			} catch {
-				DispatchQueue.main.async {
-					handler(.failure(error))
-				}
+				await handler(.failure(error))
 			}
 		}
 	}

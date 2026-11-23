@@ -46,11 +46,13 @@ extension PasswordEnrollerImpl: PasswordEnroller {
 			logger.sdk("Please start Password enrollment.")
 		}
 
-		let parameter: PasswordParameter = .enrollment(
-			lastRecoverableError: context.lastRecoverableError,
-			handler: handler
-		)
-		appCoordinator.navigateToCredential(with: parameter)
+		Task { @MainActor in
+			let parameter: PasswordParameter = .enrollment(
+				lastRecoverableError: context.lastRecoverableError,
+				handler: handler
+			)
+			appCoordinator.navigateToCredential(with: parameter)
+		}
 	}
 
 	func passwordPolicy() -> PasswordPolicy {
