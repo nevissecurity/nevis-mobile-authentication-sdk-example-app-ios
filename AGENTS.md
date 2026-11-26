@@ -39,7 +39,7 @@ The example covers only part of the SDK. For features that are not shown here, u
 
 How the SDK is consumed:
 
-- **Swift Package Manager**, from https://github.com/nevissecurity/nevis-mobile-authentication-sdk-ios-package, pinned to an **exact version** (currently `4.6.0`, see the package references in `NevisExampleApp.xcodeproj`). The package has two products, and SPM can't link per build configuration, so there are **two iPhone app targets**:
+- **Swift Package Manager**, from https://github.com/nevissecurity/nevis-mobile-authentication-sdk-ios-package, pinned to an **exact version** (currently `4.7.0`, see the package references in `NevisExampleApp.xcodeproj`). The package has two products, and SPM can't link per build configuration, so there are **two iPhone app targets**:
   - `NevisExampleApp-Debug` links `NevisMobileAuthentication-Debug`. This is the **debug flavor**: it runs on devices and simulators, has logging, and only a subset of the protection mechanisms.
   - `NevisExampleApp` links `NevisMobileAuthentication`. This is the **release flavor**: all protection mechanisms are on, and it **runs on physical devices only**.
   - Both targets compile the same sources, have the same bundle ID, and embed the same share extension and watch app. The share extension doesn't link the SDK itself; it uses the framework embedded in the containing app (`LD_RUNPATH_SEARCH_PATHS` contains `@executable_path/../../Frameworks`).

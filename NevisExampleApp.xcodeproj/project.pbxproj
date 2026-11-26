@@ -2103,7 +2103,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.6.0;
+				MARKETING_VERSION = 4.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ch.nevis.mobile.authentication.sdk.ios.example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -2133,7 +2133,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.6.0;
+				MARKETING_VERSION = 4.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ch.nevis.mobile.authentication.sdk.ios.example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -2163,7 +2163,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.6.0;
+				MARKETING_VERSION = 4.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ch.nevis.mobile.authentication.sdk.ios.example;
 				PRODUCT_NAME = NevisExampleApp;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -2194,7 +2194,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.6.0;
+				MARKETING_VERSION = 4.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ch.nevis.mobile.authentication.sdk.ios.example;
 				PRODUCT_NAME = NevisExampleApp;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -2302,7 +2302,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 4.6.0;
+				MARKETING_VERSION = 4.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ch.nevis.mobile.authentication.sdk.ios.example.extension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2341,7 +2341,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 4.6.0;
+				MARKETING_VERSION = 4.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ch.nevis.mobile.authentication.sdk.ios.example.extension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2461,7 +2461,7 @@
 			repositoryURL = "https://github.com/nevissecurity/nevis-mobile-authentication-sdk-ios-package";
 			requirement = {
 				kind = exactVersion;
-				version = 4.6.0;
+				version = 4.7.0;
 			};
 		};
 		3892453A2F7BFFD800A5C1D6 /* XCRemoteSwiftPackageReference "Then" */ = {
