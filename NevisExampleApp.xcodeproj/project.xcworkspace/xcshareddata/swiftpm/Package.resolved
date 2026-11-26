@@ -1,5 +1,5 @@
 {
-  "originHash" : "06e1baa2d5a053788a4c2d845b5d6bdb345ae304fff55b53d914bac6489048e0",
+  "originHash" : "2fd08d7fb59d1558f7b58b41ed1a5983cc0b04104288da27abc1f02af16761ec",
   "pins" : [
     {
       "identity" : "fittedsheets",
@@ -33,8 +33,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/nevissecurity/nevis-mobile-authentication-sdk-ios-package",
       "state" : {
-        "revision" : "5af5783541229c8430e7f493ceec7bf4e1355ee8",
-        "version" : "4.6.0"
+        "revision" : "b7f728b7d42a5a6561a241e9ff787eedca5828cd",
+        "version" : "4.7.0"
       }
     },
     {
